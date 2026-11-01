@@ -71,6 +71,8 @@ Call patients 48 hours after discharge.
   SCENES.add({
     render(t) {
       const a = U.end("nurse_05") + 2.9, b = U.start("narr_05") - 0.4;
+      // compress the build-up if the cut gives this phase less time than the long version
+      const k = Math.min(1, (b - a - 0.4) / 7.4), T = x => a + (x - a) * k;
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
@@ -78,18 +80,18 @@ Call patients 48 hours after discharge.
       CHROME.clock = 12 * 60 + 20 + (t - a) * 5;
 
       // left: ready card
-      U.css(card, { opacity: U.prog(t, a + 0.6, a + 1.1).toFixed(3), transform: `translateY(${(1 - U.ease(U.prog(t, a + 0.6, a + 1.2))) * 18}px)` });
-      [...card.querySelectorAll(".rc-does li")].forEach((li, i) => U.css(li, { opacity: U.prog(t, a + 1.6 + i * 0.5, a + 2 + i * 0.5).toFixed(3) }));
-      U.css(card.querySelector(".rc-next"), { opacity: U.prog(t, a + 5.5, a + 6).toFixed(3) });
+      U.css(card, { opacity: U.prog(t, T(a + 0.6), T(a + 1.1)).toFixed(3), transform: `translateY(${(1 - U.ease(U.prog(t, T(a + 0.6), T(a + 1.2)))) * 18}px)` });
+      [...card.querySelectorAll(".rc-does li")].forEach((li, i) => U.css(li, { opacity: U.prog(t, T(a + 1.6) + i * 0.5, T(a + 2) + i * 0.5).toFixed(3) }));
+      U.css(card.querySelector(".rc-next"), { opacity: U.prog(t, T(a + 5.5), T(a + 6)).toFixed(3) });
 
       // right: instructions typed out
-      const p = U.prog(t, a + 0.3, a + 6.5);
+      const p = U.prog(t, T(a + 0.3), T(a + 6.5));
       const n = Math.round(p * CODE.length);
       U.html(code, codeHtml(CODE.slice(0, n), p < 1));
 
       // tools connect one by one
       toolNodes.forEach((node, i) => {
-        const ta = a + 1.4 + i * 0.7;
+        const ta = T(a + 1.4) + i * 0.7;
         U.css(node, { opacity: U.prog(t, ta, ta + 0.3).toFixed(3) });
         const ok = t >= ta + 0.9;
         U.cls(node, "ok", ok);
@@ -98,17 +100,17 @@ Call patients 48 hours after discharge.
 
       // flow graph draws itself
       NODES.forEach((nd, i) => {
-        const ta = a + 2.2 + (nd.side ? 1.2 + i * 0.25 : i * 0.42);
+        const ta = T(a + 2.2) + (nd.side ? 1.2 + i * 0.25 : i * 0.42);
         const g = document.getElementById("n-" + nd.id);
         g.setAttribute("opacity", U.prog(t, ta, ta + 0.3).toFixed(3));
       });
       EDGES.forEach((e, i) => {
         const B = byId[e[1]], j = NODES.indexOf(B);
-        const ta = a + 2.2 + (B.side ? 1.2 + j * 0.25 : j * 0.42) - 0.3;
+        const ta = T(a + 2.2) + (B.side ? 1.2 + j * 0.25 : j * 0.42) - 0.3;
         document.getElementById("e" + i).setAttribute("stroke-dashoffset", (1 - U.prog(t, ta, ta + 0.35)).toFixed(3));
       });
 
-      U.text(sub, t < a + 7 ? "Version 1, building from 23 requirements" : "Version 1, ready");
+      U.text(sub, t < T(a + 7) ? "Version 1, building from 23 requirements" : "Version 1, ready");
     },
   });
 })();
