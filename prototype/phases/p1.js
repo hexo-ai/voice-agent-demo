@@ -131,6 +131,7 @@
       });
 
       U.fade(readyEl, t, U.end("nurse_05") + 0.2, end + 1, 0.4);
+      U.css(document.getElementById("p1-example"), { opacity: (t < U.start("nurse_01") + 4 ? 1 : 1 - U.prog(t, U.start("nurse_01") + 4, U.start("nurse_01") + 5)).toFixed(3) });
       U.html(readyEl, `<b>Spec ready.</b> 23 requirements, 6 escalation rules. Building the first version…`);
     },
   });

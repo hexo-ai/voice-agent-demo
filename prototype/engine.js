@@ -140,7 +140,7 @@
 
     // narrator subtitles, everywhere except the hook (hook shows its words full size)
     const n = U.active(t, l => l.voice === "narrator");
-    if (n && !n.phase.startsWith("Hook")) {
+    if (n) {
       U.text(subtitle, n.text);
       U.fade(subtitle, t, n.start - 0.15, n.start + n.dur + 0.35, 0.25);
     } else U.css(subtitle, { opacity: 0 });

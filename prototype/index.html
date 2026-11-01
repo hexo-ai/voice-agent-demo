@@ -12,9 +12,25 @@
   <!-- Always on screen -->
   <div id="tag">Illustrative product concept</div>
 
-  <!-- Hook (full screen) -->
+  <!-- Hook (full screen): demo vs production, then the expert <-> engineer loop -->
   <section class="scene" id="hook">
-    <p class="hook-line" id="hook-1"></p>
+    <div class="h1" id="hook-1">
+      <div class="hcard done"><span class="hc-k">Demo</span><span class="hc-v">Works in an afternoon</span><span class="hc-tick"></span></div>
+      <svg class="hpath" width="260" height="40"><line x1="0" y1="20" x2="250" y2="20" stroke="#4A5D76" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/></svg>
+      <div class="hcard"><span class="hc-k">Production</span><span class="hc-v">Testing, feedback, fixes</span><span class="hc-weeks" id="hook-weeks">Week 1</span></div>
+    </div>
+    <div class="h2" id="hook-2">
+      <svg id="hook-loop" viewBox="0 0 1100 900" width="1100" height="900"></svg>
+      <div class="hpeople">
+        <div class="hp expert"><span class="hp-dot"></span><span class="hp-n">Domain expert</span><span class="hp-r">Knows the rules</span></div>
+        <div class="hp-arrows">⇄</div>
+        <div class="hp-swap">
+          <div class="hp eng" id="hook-eng"><span class="hp-dot"></span><span class="hp-n">Engineer</span><span class="hp-r">Builds the agent</span></div>
+          <div class="hp sia" id="hook-sia"><span class="hp-dot"></span><span class="hp-n" data-product-name></span><span class="hp-r">Builds and tests the agent</span></div>
+        </div>
+      </div>
+      <div class="hcal" id="hook-cal">Week 1</div>
+    </div>
     <div class="title-card" id="title-card">
       <div class="wordmark big" data-product-name></div>
       <p class="tagline" data-tagline></p>
@@ -34,6 +50,7 @@
   <!-- Phase 1: voice interview -->
   <section class="scene dual" id="p1">
     <div class="nurse-side">
+      <div class="example-tag" id="p1-example">Example: a nurse building a hospital follow-up agent</div>
       <div class="agent-title">
         <span class="agent-kind">New agent</span>
         <span class="agent-name">Post-discharge follow-up</span>
@@ -229,6 +246,10 @@
     <div class="loop-wrap">
       <svg id="loop" viewBox="-100 0 1100 900" width="1100" height="900"></svg>
       <div class="loop-center"><span class="lc-n" id="loop-n">64</span><span class="lc-l">tests and growing</span></div>
+    </div>
+    <div class="domains" id="domains">
+      <h2 class="dm-h">Same loop, any expert whose work happens on the phone</h2>
+      <div class="dm-grid" id="dm-grid"></div>
     </div>
     <div class="endcard" id="endcard">
       <div class="wordmark big" data-product-name></div>

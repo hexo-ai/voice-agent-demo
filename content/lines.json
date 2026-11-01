@@ -5,20 +5,26 @@
     {
       "id": "narr_01",
       "voice": "narrator",
-      "phase": "Hook (full screen)",
-      "text": "Voice agents can now do real clinical work. But each one still takes weeks of engineering to reach production."
+      "phase": "Hook: the problem (full screen)",
+      "text": "Building a voice agent demo takes an afternoon. Getting it into production takes weeks."
     },
     {
       "id": "narr_02",
       "voice": "narrator",
-      "phase": "Hook (full screen)",
-      "text": "What if the nurse could just build it?"
+      "phase": "Hook: the problem (full screen)",
+      "text": "Production means testing every edge case, and a long back-and-forth between the expert who knows the rules of the domain and the engineer who builds the agent."
+    },
+    {
+      "id": "narr_13",
+      "voice": "narrator",
+      "phase": "Hook: the problem (full screen)",
+      "text": "Sia Voice takes the engineer out of that loop. The expert works with it directly."
     },
     {
       "id": "narr_03",
       "voice": "narrator",
       "phase": "Phase 1: Requirements (voice interview)",
-      "text": "I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it."
+      "text": "Here's one example. I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it."
     },
     {
       "id": "nurse_01",
@@ -221,10 +227,16 @@
       "text": "Every mistake becomes a permanent test, whether Sia Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat."
     },
     {
+      "id": "narr_14",
+      "voice": "narrator",
+      "phase": "The loop + close (full screen)",
+      "text": "The same loop works for any expert whose work happens on the phone."
+    },
+    {
       "id": "narr_11",
       "voice": "narrator",
       "phase": "The loop + close (full screen)",
-      "text": "Built by the person who knows the work best. Hours, not weeks."
+      "text": "No engineer in the loop. From use case to production in hours, not weeks."
     }
   ]
 }

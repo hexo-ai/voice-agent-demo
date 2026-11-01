@@ -70,7 +70,7 @@ body { font-family: "Atkinson", system-ui, sans-serif; -webkit-font-smoothing: a
 }
 
 /* ---------- phase 1: nurse side ---------- */
-.agent-title { position: absolute; top: 46px; left: 56px; display: flex; flex-direction: column; gap: 4px; }
+.agent-title { position: absolute; top: 60px; left: 56px; display: flex; flex-direction: column; gap: 4px; }
 .agent-kind { font-size: 18px; color: var(--ink-2); }
 .agent-name { font-size: 32px; font-weight: 700; }
 #orb { position: absolute; left: 160px; top: 150px; width: 520px; height: 520px; }
@@ -327,3 +327,40 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 
 #bgdual { position: absolute; inset: 0; display: grid; grid-template-columns: 840px 1080px; opacity: 0; }
 #bgdual .bg-l { background: var(--paper); } #bgdual .bg-r { background: var(--night); }
+
+/* ---------- hook v2 ---------- */
+#hook { background: var(--night); }
+.hook-line { display: none; }
+.h1 { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 30px; padding-bottom: 80px; }
+.hcard { position: relative; width: 470px; padding: 34px 36px; border-radius: 18px; background: var(--night-2); border: 1.5px solid var(--night-line); display: flex; flex-direction: column; gap: 8px; }
+.hc-k { font-size: 24px; color: var(--night-mute); }
+.hc-v { font-size: 38px; font-weight: 700; color: #fff; line-height: 1.2; }
+.hcard.done { border-color: var(--pass); }
+.hc-tick { position: absolute; top: 28px; right: 30px; width: 40px; height: 40px; border-radius: 50%; background: var(--pass); }
+.hc-tick::after { content: ""; position: absolute; left: 12px; top: 11px; width: 15px; height: 8px; border-left: 3.5px solid #fff; border-bottom: 3.5px solid #fff; transform: rotate(-45deg); }
+.hc-weeks { position: absolute; top: 30px; right: 30px; font-size: 24px; font-weight: 700; color: var(--unsure); font-variant-numeric: tabular-nums; }
+.h2 { position: absolute; inset: 0; opacity: 0; }
+#hook-loop { position: absolute; left: 410px; top: 40px; }
+#hook-loop text { font-family: "Atkinson"; }
+.hpeople { position: absolute; left: 715px; top: 412px; width: 490px; display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; }
+.hp { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.hp-dot { width: 64px; height: 64px; border-radius: 50%; margin-bottom: 8px; }
+.hp.expert .hp-dot { background: var(--vig); box-shadow: 0 0 0 10px rgba(217,147,43,.18); }
+.hp.eng .hp-dot { background: #7D8DA1; box-shadow: 0 0 0 10px rgba(125,141,161,.18); }
+.hp.sia .hp-dot { background: var(--sia); box-shadow: 0 0 0 10px rgba(91,95,214,.25); }
+.hp-n { font-size: 25px; font-weight: 700; color: #fff; }
+.hp-r { font-size: 19px; color: var(--night-mute); }
+.hp-arrows { font-size: 40px; color: var(--night-mute); text-align: center; padding-bottom: 50px; }
+.hp-swap { position: relative; height: 150px; }
+.hp-swap .hp { position: absolute; inset: 0; }
+.hcal { position: absolute; left: 0; right: 0; top: 610px; text-align: center; font-size: 30px; font-weight: 700; color: var(--unsure); font-variant-numeric: tabular-nums; }
+.example-tag { position: absolute; top: 18px; left: 56px; font-size: 17px; font-weight: 700; color: var(--ink-2); background: var(--paper-2); padding: 5px 12px; border-radius: 999px; }
+/* ---------- close: other domains ---------- */
+.domains { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; opacity: 0; background: var(--night); padding-bottom: 120px; }
+.dm-h { font-size: 40px; color: #fff; font-weight: 700; }
+.dm-grid { display: grid; grid-template-columns: repeat(5, 300px); gap: 20px; }
+.dm { background: var(--night-2); border: 1.5px solid var(--night-line); border-radius: 16px; padding: 26px 24px; display: flex; flex-direction: column; gap: 8px; min-height: 170px; }
+.dm .dm-r { font-size: 26px; font-weight: 700; color: #fff; }
+.dm .dm-c { font-size: 20px; color: var(--night-text); line-height: 1.3; }
+.dm .dm-t { margin-top: auto; font-size: 16px; color: var(--sia-soft); }
+.dm.this { border-color: var(--sia); background: #232E52; }

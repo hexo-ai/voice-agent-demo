@@ -8,9 +8,11 @@ The product does not exist yet. Everything shown is scripted and mocked. The vid
 say so on screen.
 
 ### Product in one paragraph
-Voice agent companies use forward-deployed engineers (FDEs) to turn a use case into a
-production agent. That takes weeks per agent and doesn't scale. Our product removes the
-FDE from the loop so a domain expert (first: nurses) builds the agent themselves:
+A voice agent demo is easy; production is hard. Production needs extensive testing and a long
+feedback loop between the **domain expert** (who knows the rules of the domain) and the
+**engineer** (who builds the agent) — that co-work is what takes weeks. SIA Voice takes the
+engineer out of the loop so any domain expert whose work happens on the phone can build a
+production agent directly. The nurse / hospital follow-up agent is **one example**, not the product's scope.
 1. **Requirements** — the system interviews the expert and writes a spec.
 2. **Evaluation** — it generates test scenarios (with edge cases); the expert reviews
    results in plain language.

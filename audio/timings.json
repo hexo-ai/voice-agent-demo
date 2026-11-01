@@ -1,21 +1,27 @@
 [
   {
     "id": "narr_01",
-    "phase": "Hook (full screen)",
+    "phase": "Hook: the problem (full screen)",
     "file": "audio/tts/narr_01.mp3",
-    "seconds": 7.65
+    "seconds": 5.62
   },
   {
     "id": "narr_02",
-    "phase": "Hook (full screen)",
+    "phase": "Hook: the problem (full screen)",
     "file": "audio/tts/narr_02.mp3",
-    "seconds": 2.17
+    "seconds": 9.61
+  },
+  {
+    "id": "narr_13",
+    "phase": "Hook: the problem (full screen)",
+    "file": "audio/tts/narr_13.mp3",
+    "seconds": 5.38
   },
   {
     "id": "narr_03",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts/narr_03.mp3",
-    "seconds": 9.22
+    "seconds": 12.2
   },
   {
     "id": "nurse_01",
@@ -216,9 +222,15 @@
     "seconds": 14.65
   },
   {
+    "id": "narr_14",
+    "phase": "The loop + close (full screen)",
+    "file": "audio/tts/narr_14.mp3",
+    "seconds": 4.08
+  },
+  {
     "id": "narr_11",
     "phase": "The loop + close (full screen)",
     "file": "audio/tts/narr_11.mp3",
-    "seconds": 5.93
+    "seconds": 5.8
   }
 ]

@@ -26,22 +26,36 @@ Product name: **{{product_name}}** — set in `content/config.json` (currently "
 
 ---
 
-## 0:00–0:15 — Hook (full screen)
-Visual: dark screen, simple animation: use case → engineer → weeks of back-and-forth (calendar pages flipping).
+## 0:00–0:25 — Hook: the problem (full screen)
+The problem is not building a demo. It is the weeks of testing and back-and-forth between the
+domain expert (who knows the rules of the domain) and the engineer (who builds the agent).
 
-> **narr_01:** Voice agents can now do real clinical work. But each one still takes weeks of engineering to reach production.
->
-> **narr_02:** What if the nurse could just build it?
+Visual 1 (narr_01): two cards. "Demo: works in an afternoon" (ticked) next to "Production", with a
+week counter running Week 1 → Week 6.
 
-Title card: **{{product_name}}** — *An agent that builds voice agents.*
+> **narr_01:** Building a voice agent demo takes an afternoon. Getting it into production takes weeks.
+
+Visual 2 (narr_02): the expert ↔ engineer loop. Inside: "Domain expert, knows the rules" and
+"Engineer, builds the agent". Around them: Requirements → Build → Test → Feedback → Fix, a highlight
+travelling the loop; the week counter ticks each lap.
+
+> **narr_02:** Production means testing every edge case, and a long back-and-forth between the expert who knows the rules of the domain and the engineer who builds the agent.
+
+Visual 3 (narr_13): the engineer fades out; {{product_name}} takes their place. The loop speeds up and
+the week counter becomes "Hours".
+
+> **narr_13:** {{product_name}} takes the engineer out of that loop. The expert works with it directly.
+
+Title card: **{{product_name}}** — *{{tagline}}*
 
 ---
 
-## 0:15–1:00 — Phase 1: Requirements (voice interview)
+## 0:25–1:10 — Phase 1: Requirements (voice interview)
+On-screen tag at the start: "Example: a nurse building a hospital follow-up agent".
 **Left:** voice-mode screen. Animated orb that pulses with whoever is speaking, live captions underneath. No buttons except mute and end.
 **Right:** "Requirements captured" checklist filling in live as Vignesh speaks; a spec document assembling underneath.
 
-> **narr_03:** I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it.
+> **narr_03:** Here's one example. I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it.
 >
 > **nurse_01:** I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and their follow-up visit.
 >
@@ -179,11 +193,17 @@ Right panel: new rule appears in the spec; six new tiles join the simulation gri
 Visual: a circular loop diagram — Simulate → {{product_name}} self-review → Expert review → Fix → Live test → back to Simulate (three feedback sources highlighted) — spinning faster; test count growing (50 → 56 → 80 → 140).
 
 > **narr_10:** Every mistake becomes a permanent test, whether {{product_name}} finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat.
+
+Visual: the loop gives way to five experts the same loop works for — Nurses (post-discharge follow-up,
+"this demo"), Claims adjusters (first notice of loss), Recruiters (candidate screening), Field-service
+dispatchers (appointment scheduling), Loan officers (document follow-up).
+
+> **narr_14:** The same loop works for any expert whose work happens on the phone.
 >
-> **narr_11:** Built by the person who knows the work best. Hours, not weeks.
+> **narr_11:** No engineer in the loop. From use case to production in hours, not weeks.
 
 End card:
-- **{{product_name}}** — *An agent that builds voice agents.*
+- **{{product_name}}** — *{{tagline}}*
 - **Use case to production-grade agent: hours, not weeks.**
 - "Built on our research accepted at ICML" + arXiv 2605.27276 *(real — the only non-mocked claim)*
 - Small print: "Illustrative product concept. Product UI, calls and numbers are mocked."
