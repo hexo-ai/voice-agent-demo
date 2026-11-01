@@ -121,7 +121,7 @@
       "id": "narr_07",
       "voice": "narrator",
       "phase": "Phase 4: Simulations",
-      "text": "S.I.A. Voice catches each failure, works out why it happened, and fixes it itself."
+      "text": "Sia Voice catches each failure, works out why it happened, and fixes it itself."
     },
     {
       "id": "narr_08",
@@ -145,7 +145,7 @@
       "id": "narr_12",
       "voice": "narrator",
       "phase": "Phase 5b: Expert reviews the simulations",
-      "text": "S.I.A. Voice also picks the calls it's least sure about, and asks me to listen."
+      "text": "Sia Voice also picks the calls it's least sure about, and asks me to listen."
     },
     {
       "id": "agent_06",
@@ -218,7 +218,7 @@
       "id": "narr_10",
       "voice": "narrator",
       "phase": "The loop + close (full screen)",
-      "text": "Every mistake becomes a permanent test, whether S.I.A. Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat."
+      "text": "Every mistake becomes a permanent test, whether Sia Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat."
     },
     {
       "id": "narr_11",

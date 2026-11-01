@@ -117,7 +117,7 @@
     "id": "narr_07",
     "phase": "Phase 4: Simulations",
     "file": "audio/tts/narr_07.mp3",
-    "seconds": 7.52
+    "seconds": 5.8
   },
   {
     "id": "narr_08",
@@ -141,7 +141,7 @@
     "id": "narr_12",
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts/narr_12.mp3",
-    "seconds": 6.22
+    "seconds": 5.33
   },
   {
     "id": "agent_06",
@@ -213,7 +213,7 @@
     "id": "narr_10",
     "phase": "The loop + close (full screen)",
     "file": "audio/tts/narr_10.mp3",
-    "seconds": 13.14
+    "seconds": 14.65
   },
   {
     "id": "narr_11",
