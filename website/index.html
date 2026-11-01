@@ -99,7 +99,7 @@ h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; letter-spacing: -0.
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; counter-reset: s; }
 .step { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
 .step .n { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 16px; background: var(--sia); color: #fff; }
-.step h3 { font-size: 22px; margin: 16px 0 8px; }
+.step h3 { font-size: 21px; margin: 16px 0 8px; }
 .step p { color: var(--ink-2); font-size: 17px; }
 .feedback { margin-top: 28px; padding: 22px 26px; border-radius: 14px; background: var(--night); color: var(--night-text); }
 .feedback strong { color: #fff; }
@@ -213,7 +213,7 @@ footer a { color: var(--night-text); }
             <span class="arrows" aria-hidden="true">⇄</span>
             <span class="who"><span class="d" style="background:var(--sia)"></span>SIA Voice</span>
           </div>
-          <div class="chips"><span class="chip">Interview</span><span class="chip">Test</span><span class="chip">Improve</span><span class="chip">Review</span></div>
+          <div class="chips"><span class="chip">Collect requirements</span><span class="chip">Build agent</span><span class="chip">Run simulation</span><span class="chip">Improve and fine-tune</span><span class="chip">Expert review</span><span class="chip">Live testing</span></div>
           <p class="verdict">No engineer in the loop<small>Our target: hours, not weeks.</small></p>
         </div>
       </div>
@@ -228,23 +228,38 @@ footer a { color: var(--night-text); }
       <div class="steps">
         <div class="step">
           <span class="n">1</span>
-          <h3>Requirements</h3>
-          <p>SIA Voice interviews the expert by voice. It asks the questions an engineer would ask, then writes the spec.</p>
+          <h3>Collect requirements</h3>
+          <p>SIA Voice talks with the expert by voice. It asks the questions an engineer would ask, then writes the spec.</p>
         </div>
         <div class="step">
           <span class="n">2</span>
-          <h3>Evaluation</h3>
-          <p>It writes test scenarios that cover the edge cases and runs them as simulated calls. The expert reviews the results in plain language, not code.</p>
+          <h3>Build agent</h3>
+          <p>It builds the first version of the voice agent from that spec: prompts, tools and conversation logic.</p>
         </div>
         <div class="step">
           <span class="n">3</span>
-          <h3>Self-improvement</h3>
-          <p>Every failure feeds an optimization loop. It improves the prompts, tools and conversation logic, and fine-tunes the model. The goal: higher reliability and lower cost per call.</p>
+          <h3>Run simulation</h3>
+          <p>It writes test scenarios that cover the edge cases and runs them as simulated calls.</p>
+        </div>
+        <div class="step">
+          <span class="n">4</span>
+          <h3>Improve and fine-tune</h3>
+          <p>Every failure feeds an optimization loop. It improves the prompts, tools and conversation logic, and fine-tunes the model.</p>
+        </div>
+        <div class="step">
+          <span class="n">5</span>
+          <h3>Expert review</h3>
+          <p>The expert reviews the calls SIA Voice is least sure about, in plain language, not code.</p>
+        </div>
+        <div class="step">
+          <span class="n">6</span>
+          <h3>Live testing</h3>
+          <p>The expert tries the agent on live calls. Anything it gets wrong becomes a new test.</p>
         </div>
       </div>
       <div class="feedback">
         <p><strong>Every mistake becomes a permanent test.</strong> Feedback comes from three places:</p>
-        <div class="sources"><span>SIA Voice finds it in testing</span><span>The expert hears it in a review</span><span>A live call reveals it</span></div>
+        <div class="sources"><span>SIA Voice finds it in simulation</span><span>The expert catches it in expert review</span><span>Live testing reveals it</span></div>
       </div>
     </div>
   </section>
