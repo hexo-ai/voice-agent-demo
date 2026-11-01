@@ -59,6 +59,58 @@
     </div>
   </section>
 
+  <!-- Phase 2: first version generated -->
+  <section class="scene dual" id="p2">
+    <div class="nurse-side center-col">
+      <div class="ready-card" id="p2-card">
+        <div class="rc-kind">Your agent is ready to test</div>
+        <div class="rc-name">Post-discharge follow-up</div>
+        <div class="rc-version">Version 1, built from your interview</div>
+        <ul class="rc-does">
+          <li>Calls heart failure patients 48 hours after discharge</li>
+          <li>Checks symptoms, medications and the follow-up visit</li>
+          <li>Sends emergencies to 911 or the nurse line</li>
+          <li>Talks about care only with listed caregivers</li>
+        </ul>
+        <div class="rc-next">Next: SIA Voice writes the tests</div>
+      </div>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head"><h2>Agent blueprint</h2><span class="panel-sub" id="p2-sub"></span></div>
+      <div class="p2-grid">
+        <div>
+          <h3 class="blk">Instructions</h3>
+          <pre class="code" id="p2-code"></pre>
+          <h3 class="blk">Tools</h3>
+          <ul class="tools" id="p2-tools"></ul>
+        </div>
+        <div>
+          <h3 class="blk">Conversation flow</h3>
+          <svg id="p2-flow" viewBox="0 0 420 640" width="420" height="640"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phase 3: test scenarios -->
+  <section class="scene dual" id="p3">
+    <div class="nurse-side">
+      <div class="p3-head">
+        <span class="agent-kind">Tests for your agent</span>
+        <span class="agent-name" id="p3-count">0 test scenarios</span>
+        <span class="p3-note">Written from your interview. Nothing for you to set up.</span>
+      </div>
+      <ul class="scen" id="p3-list"></ul>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head"><h2>Coverage</h2><span class="panel-sub" id="p3-sub"></span></div>
+      <div class="cov" id="p3-cov"></div>
+      <div class="cov-legend" id="p3-legend"></div>
+      <h3 class="blk" style="margin-top:34px">Simulated callers</h3>
+      <div class="personas" id="p3-personas"></div>
+    </div>
+  </section>
+
   <!-- Narrator subtitle -->
   <div id="subtitle"></div>
 
@@ -70,6 +122,8 @@
 <script src="engine.js"></script>
 <script src="phases/hook.js"></script>
 <script src="phases/p1.js"></script>
+<script src="phases/p2.js"></script>
+<script src="phases/p3.js"></script>
 <script src="boot.js"></script>
 </body>
 </html>
