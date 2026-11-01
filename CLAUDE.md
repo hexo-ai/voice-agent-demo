@@ -32,6 +32,9 @@ code https://github.com/hexo-ai/sia
   the scripts that regenerate them. The user's own voice recordings in `recordings/` are
   the exception — commit those (they can't be regenerated).
 - Plain, clear language in all on-screen text and narration.
+- **Product name is a variable.** It lives in `content/config.json` (`product_name`, currently
+  "SIA Voice"). Script and prototype use `{{product_name}}`; never hard-code the name.
+- After editing `content/script.md`, run `python3 content/extract_lines.py` to refresh `lines.json`.
 
 ## Layout
 | Path | Contents |

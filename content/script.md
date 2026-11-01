@@ -15,9 +15,10 @@ the first TTS pass shows real timings.
 | Simulated patient (phase 4–5) | `patient_NN` | ElevenLabs, older voice |
 
 Fictional names: **Riverside General** (hospital), **Margaret** (simulated patient).
-Product name on screen: **Hexo** (placeholder — confirm).
+Product name: **{{product_name}}** — set in `content/config.json` (currently "SIA Voice"). Never type the name directly; always use the placeholder.
 
 ## Rules for every frame
+- **Time-elapsed clock** in the top-left corner from phase 1 onward, so viewers can see the "hours, not weeks" claim build up (mocked timeline below).
 - "Illustrative product concept" tag on screen the whole time (top-right corner).
 - Phases 1–6 use the **dual panel**: left = what the nurse sees (plain language),
   right = what happens in the backend (engineering work done automatically).
@@ -32,7 +33,7 @@ Visual: dark screen, simple animation: use case → engineer → weeks of back-a
 >
 > **narr_02:** What if the nurse could just build it?
 
-Title card: **Hexo** — *An agent that builds voice agents.*
+Title card: **{{product_name}}** — *An agent that builds voice agents.*
 
 ---
 
@@ -147,10 +148,11 @@ Visual: a circular loop diagram — Simulate → Fix → Live test → Feedback 
 
 > **narr_10:** Every live call makes the test suite stronger. Simulate, fix, test with people, repeat.
 >
-> **narr_11:** Built by the person who knows the work best. No engineer required.
+> **narr_11:** Built by the person who knows the work best. Hours, not weeks.
 
 End card:
-- **Hexo** — *An agent that builds voice agents.*
+- **{{product_name}}** — *An agent that builds voice agents.*
+- **Use case to production-grade agent: hours, not weeks.**
 - "Built on our research accepted at ICML" + arXiv 2605.27276 *(real — the only non-mocked claim)*
 - Small print: "Illustrative product concept. Product UI, calls and numbers are mocked."
 
@@ -161,10 +163,20 @@ End card:
 |---|---|
 | UI, scenarios, calls, transcripts | Mocked |
 | 31/50 → 94% pass rate, 16 fixes, cost per call drop, "12 minutes" | Mocked, illustrative only |
-| "Weeks" of FDE work per agent | Company's view of the market — not a measured figure; kept vague on purpose |
+| "Weeks" of FDE work per agent | Company's view of the market — not a measured figure |
+| "Hours, not weeks" and the elapsed-time clock | Product target, shown on a mocked timeline — not a measured result |
 | ICML acceptance, arXiv paper, SIA code | Real |
 
+## Mocked timeline (elapsed-time clock)
+| End of phase | Clock shows | Mocked step duration |
+|---|---|---|
+| 1. Interview | 0h 12m | 12 min conversation |
+| 2. v1 generated | 0h 13m | ~1 min |
+| 3. Scenarios | 0h 16m | ~3 min |
+| 4. Simulations | 0h 31m | ~15 min for 50 calls in parallel |
+| 5. Optimization (4 rounds incl. fine-tune) | 2h 41m | ~2h 10m |
+| 6. Live test + feedback | 3h 02m | ~20 min |
+| Close | **3h 02m** → "Hours, not weeks." | — |
+
 ## Open questions for review
-1. Product name on screen: "Hexo" or something else?
-2. Do we want a specific time claim in the close (e.g. "days, not weeks")? Only if we're comfortable defending it as a target.
-3. Clinical check: worth having a real nurse sanity-check the heart failure details (orthopnea as a warning sign, furosemide adherence) before we record.
+None right now.
