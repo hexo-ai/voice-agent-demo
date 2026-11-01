@@ -70,6 +70,8 @@
       const jumpA = U.end("nurse_04") + 0.25, jumpB = U.start("sys_04") - 0.15;
       const afterJump = t >= (jumpA + jumpB) / 2;
       U.fade(jump, t, jumpA, jumpB, 0.35);
+      // first time the split screen appears: explain the two panels once
+      U.fade(document.getElementById("intro"), t, start + 0.7, start + 3.9, 0.35);
       U.text(jump, "12 minutes later");
 
       // clock: real time during the conversation, then the jump to 12 minutes
