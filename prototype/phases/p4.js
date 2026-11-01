@@ -26,7 +26,7 @@
   $("p4-wlist").innerHTML = WRONG.map(([w, n]) => `<li><span>${w}</span><span class="n">${n} calls</span></li>`).join("");
   const wrongItems = [...$("p4-wlist").children];
 
-  const TURNS = [["agent_01", "Agent"], ["patient_01", "Robert"], ["agent_02", "Agent"]];
+  const TURNS = [["agent_01", "Agent"], ["patient_01", "Robert"], ["agent_02", "Agent"]].filter(([u]) => U.has(u));
   $("p4-turns").innerHTML = TURNS.map(([u, who]) => `<div class="turn"><span class="sp">${who}</span><span class="tx">${U.line(u).text}</span></div>`).join("");
   const turnEls = [...$("p4-turns").children];
 
@@ -45,7 +45,7 @@
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 2;
-      const run0 = a + 0.6, runEnd = U.start("agent_01") - 1.6;
+      const run0 = a + 0.6, runEnd = U.start(TURNS[0][0]) - 1.6;
       CHROME.clock = 16 * 60 + U.prog(t, a, runEnd) * 15 * 60 + Math.max(0, t - runEnd) * 2;
 
       // tiles run and finish at staggered times
@@ -81,7 +81,7 @@
         U.cls(el, "done", t >= l.start + l.dur);
         U.css(el, { opacity: t >= l.start - 0.2 ? 1 : 0 });
       });
-      U.cls(turnEls[2], "bad", t >= U.end("agent_02") + 0.2);
+      U.cls(turnEls[turnEls.length - 1], "bad", t >= U.end("agent_02") + 0.2);
       DIAG.forEach(([, f], i) => {
         const ta = U.at("sys_06", f);
         U.css(diagEls[i], { opacity: U.prog(t, ta, ta + 0.35).toFixed(3), transform: `translateY(${(1 - U.ease(U.prog(t, ta, ta + 0.4))) * 12}px)` });

@@ -19,7 +19,7 @@
 
   $("p7-req").innerHTML = `<div class="nr-k">New requirement R25, from Vignesh's live test</div>
     <div class="rule">Patient stopped a medication on their own: <b>ask why, flag for the care team the same day</b></div>
-    <div class="quote">“If a patient stops a medication on their own, ask why.”</div>`;
+    <div class="quote">“If a patient stops a medication… ask why.”</div>`;
   const OPEN = new Set([11, 29, 44]);
 
   SCENES.add({
@@ -29,7 +29,7 @@
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 5;
-      CHROME.clock = (2 * 3600 + 58 * 60 + 34) + (t - a) * 27;
+      CHROME.clock = 10714 + U.prog(t, a, b) * (11760 - 10714); // ends exactly at 3:16:00, matching the end card
 
       const callA = U.start("agent_04") - 0.9, callEnd = U.end("agent_05") + 0.6;
       const st = t < callA ? "Calling…" : t < callEnd ? "On call " + U.fmtClock(t - callA + 74).slice(2) : "Call ended";

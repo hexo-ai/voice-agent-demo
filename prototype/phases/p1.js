@@ -48,6 +48,10 @@
     { q: "Which languages does it need?", after: true },
   ];
 
+  // a shorter cut can drop lines: keep only items whose anchor lines exist
+  const ok = x => [x.at, x.until, x.done].every(a => !a || U.has(a[0])) && (!x.now || U.has(x.now));
+  for (const arr of [REQS, ASKS]) for (let i = arr.length - 1; i >= 0; i--) if (!ok(arr[i]) && !arr[i].after) arr.splice(i, 1);
+
   reqsEl.innerHTML = REQS.map(r =>
     `<li class="req${r.pending ? " pending" : ""}"><div class="rule">${r.id ? `<span class="rid">${r.id}</span>` : ""}${r.rule}${r.pending ? `<span class="flag">needs detail</span>` : ""}</div><div class="quote">“${r.quote}”</div></li>`).join("") +
     GROUPS.map(g => `<li class="req group"><span class="gname">${g.name}</span><span class="gcount">${g.n}</span></li>`).join("");
@@ -63,15 +67,17 @@
       const start = U.start("narr_03") - 0.6;
       const end = U.end("nurse_05") + 3.4;
       const vis = U.fade(root, t, start, end, 0.5);
+      // overlays live outside this scene, so update them even when the scene is hidden
+      const jumpA0 = U.end(U.has("nurse_04") ? "nurse_04" : "nurse_03") + 0.25, jumpB0 = U.start("sys_04") - 0.15;
+      U.fade(jump, t, jumpA0, jumpB0, 0.35);
+      U.fade(document.getElementById("intro"), t, start + 0.7, start + 3.9, 0.35);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 0;
 
-      const jumpA = U.end("nurse_04") + 0.25, jumpB = U.start("sys_04") - 0.15;
+      const jumpA = U.end(U.has("nurse_04") ? "nurse_04" : "nurse_03") + 0.25, jumpB = U.start("sys_04") - 0.15;
       const afterJump = t >= (jumpA + jumpB) / 2;
-      U.fade(jump, t, jumpA, jumpB, 0.35);
-      // first time the split screen appears: explain the two panels once
-      U.fade(document.getElementById("intro"), t, start + 0.7, start + 3.9, 0.35);
+
       U.text(jump, "12 minutes later");
 
       // clock: real time during the conversation, then the jump to 12 minutes

@@ -6,19 +6,21 @@ Outputs: prototype/data/timeline.json   (read by edit/mix_audio.py)
          prototype/data/timeline.js     (same data, loadable from file:// by the prototype)
 Run after any audio change:  python3 prototype/build_timeline.py
 """
-import json
+import json, os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+CUT = os.environ.get("CUT", "")
+SFX = f"_{CUT}" if CUT else ""
 J = lambda p: json.loads((ROOT / p).read_text())
 
 
 def main():
-    lines = J("content/lines.json")["lines"]
+    lines = J(f"content/lines{SFX}.json")["lines"]
     cfg = J("content/config.json")
-    timings = {x["id"]: x for x in J("audio/timings.json")}
-    env = J("audio/envelopes.json")
-    holds = J("prototype/data/holds.json")
+    timings = {x["id"]: x for x in J(f"audio/timings{SFX}.json")}
+    env = J(f"audio/envelopes{SFX}.json")
+    holds = J(f"prototype/data/holds{SFX}.json")
     replays = {r["before"]: r for r in holds.get("replays", [])}
     byid = {l["id"]: l for l in lines}
 
@@ -47,8 +49,8 @@ def main():
             s["text"] = s["text"].replace(cfg["product_name_spoken"], cfg["product_name"])
 
     out = {"config": cfg, "total": round(t + 1.5, 3), "lines": seq}
-    (ROOT / "prototype/data/timeline.json").write_text(json.dumps(out, indent=1) + "\n")
-    (ROOT / "prototype/data/timeline.js").write_text("window.TIMELINE = " + json.dumps(out) + ";\n")
+    (ROOT / f"prototype/data/timeline{SFX}.json").write_text(json.dumps(out, indent=1) + "\n")
+    (ROOT / f"prototype/data/timeline{SFX}.js").write_text("window.TIMELINE = " + json.dumps(out) + ";\n")
     print(f"{len(seq)} clips placed, total {out['total']:.1f}s")
 
 

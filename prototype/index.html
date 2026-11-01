@@ -275,7 +275,7 @@
   <div id="jumpcut"></div>
 </div>
 
-<script src="data/timeline.js"></script>
+<script>document.write('<script src="data/timeline' + (new URLSearchParams(location.search).get("cut") ? "_" + new URLSearchParams(location.search).get("cut") : "") + '.js"><\/script>');</script>
 <script src="engine.js"></script>
 <script src="phases/hook.js"></script>
 <script src="phases/p1.js"></script>

@@ -16,13 +16,13 @@
     `<li class="q"><span class="play"></span><span class="qt">${d}<span class="qs">${c}</span></span><span class="chip">${s}</span><span class="prog"><i></i></span></li>`).join("");
   const rows = [...$("p6-queue").children];
 
-  const TURNS = [["agent_06", "Agent"], ["patient_02", "Patient"], ["agent_07", "Agent"]];
+  const TURNS = [["agent_06", "Agent"], ["patient_02", "Patient"], ["agent_07", "Agent"]].filter(([u]) => U.has(u));
   $("p6-turns").innerHTML = TURNS.map(([u, who]) => `<div class="turn"><span class="sp">${who}</span><span class="tx">${U.line(u).text}</span></div>`).join("");
   const turnEls = [...$("p6-turns").children];
 
   $("p6-req").innerHTML = `<div class="nr-k">New requirement R24, from Vignesh's review</div>
     <div class="rule">Weight up 3 lb or more overnight: <b>ask about swelling, flag for the care team today</b></div>
-    <div class="quote">“Three pounds overnight can mean fluid building up.”</div>`;
+    <div class="quote">“Three pounds overnight can mean fluid…”</div>`;
 
   // suite before review: 47 pass, 3 fail (same 3 still open from the optimization loop)
   const OPEN = new Set([11, 29, 44]);
@@ -34,10 +34,10 @@
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 4;
-      CHROME.clock = (2 * 60 + 41) * 60 + 54 + (t - a) * 25;
+      CHROME.clock = 9714 + U.prog(t, a, b) * (10714 - 9714);   // 2:41:54 -> 2:58:34, whatever the cut's pace
 
       rows.forEach((r, i) => U.css(r, { opacity: U.prog(t, a + 0.5 + i * 0.25, a + 0.8 + i * 0.25).toFixed(3) }));
-      const p0 = U.start("agent_06") - 0.6, p1 = U.end("agent_07");
+      const p0 = U.start(TURNS[0][0]) - 0.6, p1 = U.end("agent_07");
       const row = rows[PLAY];
       U.cls(row, "playing", t >= p0 && t < p1 + 0.3);
       U.cls(row, "heard", t >= p1 + 0.3);
@@ -51,7 +51,7 @@
         U.cls(el, "done", t >= l.start + l.dur);
         U.css(el, { opacity: t >= l.start - 0.2 ? 1 : 0 });
       });
-      U.cls(turnEls[2], "bad", t >= U.at("nurse_08", 0.25));
+      U.cls(turnEls[turnEls.length - 1], "bad", t >= U.at("nurse_08", 0.25));
 
       const rq = U.at("nurse_08", 0.6);
       U.css($("p6-req"), { opacity: U.prog(t, rq, rq + 0.4).toFixed(3) });

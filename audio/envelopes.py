@@ -7,7 +7,7 @@ the audio even though the browser is recorded silently.
 import json, subprocess
 import numpy as np
 from pathlib import Path
-from timings import clip_for, ROOT
+from timings import clip_for, ROOT, SFX
 
 RATE, HOP = 16000, 800  # 50 ms windows
 
@@ -24,9 +24,9 @@ def envelope(path):
 
 
 def main():
-    lines = json.loads((ROOT / "content/lines.json").read_text())["lines"]
+    lines = json.loads((ROOT / f"content/lines{SFX}.json").read_text())["lines"]
     out = {ln["id"]: envelope(clip_for(ln["id"])) for ln in lines}
-    (ROOT / "audio/envelopes.json").write_text(json.dumps(out, separators=(",", ":")) + "\n")
+    (ROOT / f"audio/envelopes{SFX}.json").write_text(json.dumps(out, separators=(",", ":")) + "\n")
     print(f"{len(out)} envelopes")
 
 

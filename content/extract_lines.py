@@ -3,10 +3,12 @@
 Run after editing the script:  python3 content/extract_lines.py
 Placeholders like {{product_name}} are filled from content/config.json.
 """
-import json, re
+import json, os, re
 from pathlib import Path
 
 HERE = Path(__file__).parent
+CUT = os.environ.get("CUT", "")
+SFX = f"_{CUT}" if CUT else ""
 ROLES = {"narr": "narrator", "nurse": "nurse", "sys": "system", "agent": "agent", "patient": "patient"}
 
 
@@ -19,7 +21,7 @@ def main():
     # spoken lines use the pronunciation spelling, if one is set
     cfg["product_name"] = cfg.get("product_name_spoken", cfg["product_name"])
     lines, phase = [], None
-    for row in (HERE / "script.md").read_text().splitlines():
+    for row in (HERE / f"script{SFX}.md").read_text().splitlines():
         m = re.match(r"## (\d:\d\d–\d:\d\d) — (.+)", row)
         if m:
             phase = m.group(2)
@@ -40,8 +42,8 @@ def main():
         lines.append(entry)
     ids = [l["id"] for l in lines]
     assert len(ids) == len(set(ids)), "duplicate line IDs"
-    out = {"version": 1, "source": "content/script.md", "lines": lines}
-    (HERE / "lines.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
+    out = {"version": 1, "source": f"content/script{SFX}.md", "lines": lines}
+    (HERE / f"lines{SFX}.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
     words = sum(len(l["text"].split()) for l in lines)
     print(f"{len(lines)} lines, {words} words, ~{round(words / 155 * 60)} s of speech")
 

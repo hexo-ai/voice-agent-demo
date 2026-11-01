@@ -8,10 +8,11 @@ const arg = (k, d) => { const i = process.argv.indexOf("--" + k); return i > 0 ?
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   page.on("pageerror", e => { console.error("PAGE ERROR:", e.message); process.exit(1); });
-  await page.goto("file://" + path.resolve(__dirname, "../prototype/index.html") + "?mode=capture");
+  const CUT = process.env.CUT || "";
+  await page.goto("file://" + path.resolve(__dirname, "../prototype/index.html") + "?mode=capture" + (CUT ? "&cut=" + CUT : ""));
   await page.evaluate(() => document.fonts.ready);
   const to = arg("to", await page.evaluate(() => window.__total));
-  const dir = path.resolve(__dirname, "../out/frames");
+  const dir = path.resolve(__dirname, "../out/frames" + (CUT ? "_" + CUT : ""));
   fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
   const n = Math.round((to - from) * fps);
   const t0 = Date.now();

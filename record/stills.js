@@ -6,11 +6,12 @@ const path = require("path");
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   page.on("pageerror", e => console.error("PAGE ERROR:", e.message));
-  await page.goto("file://" + path.resolve(__dirname, "../prototype/index.html") + "?mode=capture");
+  const CUT = process.env.CUT || "";
+  await page.goto("file://" + path.resolve(__dirname, "../prototype/index.html") + "?mode=capture" + (CUT ? "&cut=" + CUT : ""));
   await page.evaluate(() => document.fonts.ready);
   for (const t of times) {
     await page.evaluate(t => window.__render(t), t);
-    const f = path.resolve(__dirname, `../out/stills/t${String(t).padStart(6, "0")}.png`);
+    const f = path.resolve(__dirname, `../out/stills/${CUT ? CUT + "_" : ""}t${String(t).padStart(6, "0")}.png`);
     await page.screenshot({ path: f });
     console.log(f);
   }

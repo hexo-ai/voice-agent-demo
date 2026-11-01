@@ -45,18 +45,18 @@
 
   SCENES.add({
     render(t) {
-      const a = U.start("narr_05") - 0.9, b = U.end("narr_05") + 4.5;
+      const a = U.start("narr_05") - 0.9, b = U.start("narr_06") - 0.6;
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 2;
       CHROME.clock = 13 * 60 + 10 + (t - a) * 12;
 
-      const genA = a + 0.6, genB = a + 10;               // all 50 written in ~9 s
+      const genA = a + 0.6, genB = Math.min(a + 10, b - 1.2);               // all 50 written in ~9 s
       const made = Math.floor(U.prog(t, genA, genB) * N);
       U.text(count, `${made} test scenario${made === 1 ? "" : "s"}`);
       scNodes.forEach((n, i) => {
-        const ta = genA + i * 0.55;
+        const ta = genA + i * Math.min(0.55, (genB - genA) / 11);
         U.css(n, { opacity: U.prog(t, ta, ta + 0.3).toFixed(3), transform: `translateX(${(1 - U.ease(U.prog(t, ta, ta + 0.35))) * -16}px)` });
       });
 

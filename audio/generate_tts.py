@@ -14,6 +14,8 @@ import argparse, hashlib, json, os, sys, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+CUT = os.environ.get("CUT", "")
+SFX = f"_{CUT}" if CUT else ""
 
 
 def load_env():
@@ -39,7 +41,7 @@ def main():
     ap.add_argument("--only", nargs="*")
     ap.add_argument("--role", help="limit to one voice role")
     ap.add_argument("--voice", help="use an alternate voice from voices.json 'alternates'")
-    ap.add_argument("--out", default="audio/tts")
+    ap.add_argument("--out", default=f"audio/tts{SFX}")
     a = ap.parse_args()
 
     load_env()
@@ -47,7 +49,7 @@ def main():
     if not key:
         sys.exit("ELEVENLABS_API_KEY missing (put it in .env)")
     cfg = json.loads((ROOT / "audio/voices.json").read_text())
-    lines = json.loads((ROOT / "content/lines.json").read_text())["lines"]
+    lines = json.loads((ROOT / f"content/lines{SFX}.json").read_text())["lines"]
     out = ROOT / a.out
     out.mkdir(parents=True, exist_ok=True)
     mpath = out / "manifest.json"
@@ -62,6 +64,14 @@ def main():
         sig = hashlib.sha1(json.dumps([ln["text"], voice, cfg["model_id"]]).encode()).hexdigest()
         f = out / f"{ln['id']}.mp3"
         if f.exists() and manifest.get(ln["id"]) == sig and not a.force:
+            continue
+        # another cut may already have this exact clip: reuse it instead of paying for it again
+        base = ROOT / "audio/tts"
+        bman = json.loads((base / "manifest.json").read_text()) if (base / "manifest.json").exists() else {}
+        if out != base and bman.get(ln["id"]) == sig and (base / f"{ln['id']}.mp3").exists() and not a.force:
+            f.write_bytes((base / f"{ln['id']}.mp3").read_bytes())
+            manifest[ln["id"]] = sig
+            mpath.write_text(json.dumps(manifest, indent=2))
             continue
         print(f"  {ln['id']:<11} {voice['name'].split(' -')[0]:<8} {ln['text'][:60]}")
         f.write_bytes(tts(ln["text"], voice, cfg, key))

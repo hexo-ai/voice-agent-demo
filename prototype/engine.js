@@ -10,6 +10,7 @@
     prog: (t, a, b) => U.clamp((t - a) / (b - a)),
     ease: x => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2),
     line: uid => byUid[uid],
+    has: uid => !!byUid[uid],
     start: uid => byUid[uid].start,
     end: uid => byUid[uid].start + byUid[uid].dur,
     // time at a fraction of a line (0 = start, 1 = end)

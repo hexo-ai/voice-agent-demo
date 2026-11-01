@@ -28,7 +28,8 @@
   const PASS = [62, 72, 84, 90, 94];
   const COST = [0.41, 0.40, 0.39, 0.21, 0.19];
 
-  const TURNS = [["patient_01_replay", "Robert"], ["agent_03", "Agent"]];
+  const TURNS = [["patient_01_replay", "Robert"], ["agent_03", "Agent"]].filter(([u]) => U.has(u));
+  const RERUN = TURNS[0][0]; // the short cut re-runs straight to the fixed reply
   $("p5-turns").innerHTML = TURNS.map(([u, who]) => `<div class="turn"><span class="sp">${who}</span><span class="tx">${U.line(u).text}</span></div>`).join("");
   const turnEls = [...$("p5-turns").children];
 
@@ -60,7 +61,9 @@
       CHROME.showTopbar = true;
       CHROME.step = 3;
 
-      const r0 = a + 0.6, R = [a + 3.2, a + 6.2, a + 9.6, a + 12.6];
+      // four rounds, compressed if the cut leaves less time before the re-run
+      const r0 = a + 0.6, span = Math.min(12, U.start(RERUN) - 1.0 - r0);
+      const R = [r0 + span * 0.22, r0 + span * 0.47, r0 + span * 0.75, r0 + span];
       const doneRounds = R.filter(x => t >= x).length;
       CHROME.clock = 31 * 60 + U.prog(t, a, R[3]) * 130 * 60 + Math.max(0, t - R[3]) * 3;
 
@@ -77,7 +80,7 @@
 
       // diff: round-0 lines type in during round 1, round-1 lines during round 2
       const html = DIFF.map(([op, txt, rd], i) => {
-        const ta = rd === 0 ? r0 + 0.3 + i * 0.4 : R[0] + 0.5 + (i - 5) * 0.5;
+        const ta = rd === 0 ? r0 + 0.2 + i * Math.min(0.4, span / 30) : R[0] + 0.3 + (i - 5) * Math.min(0.5, span / 24);
         if (t < ta) return "";
         const cls = op === "-" ? "del" : op === "+" ? "add" : "c";
         return `<span class="${cls}">${op} ${esc(txt)}</span>`;
@@ -97,7 +100,7 @@
       U.html($("p5-ftnote"), t >= R[2] - 0.1 ? `<b>Same pass rate, 54% cheaper per call.</b> The smaller model now runs the agent.` : "");
 
       // call 23 runs again and passes
-      const rpA = U.start("patient_01_replay") - 0.6;
+      const rpA = U.start(RERUN) - 0.6;
       U.css($("p5-replay"), { opacity: U.prog(t, rpA, rpA + 0.4).toFixed(3) });
       TURNS.forEach(([u], i) => {
         const l = U.line(u), el = turnEls[i];
@@ -106,7 +109,7 @@
         U.css(el, { opacity: t >= l.start - 0.2 ? 1 : 0.25 });
       });
       const passed = t >= U.end("agent_03") + 0.1;
-      U.cls(turnEls[1], "good", passed);
+      U.cls(turnEls[turnEls.length - 1], "good", passed);
       const badge = $("p5-badge");
       U.text(badge, passed ? "Passed" : "Running");
       U.cls(badge, "pass", passed); U.cls(badge, "run", !passed);
