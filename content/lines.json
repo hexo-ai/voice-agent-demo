@@ -18,13 +18,13 @@
       "id": "narr_03",
       "voice": "narrator",
       "phase": "Phase 1: Requirements (voice interview)",
-      "text": "Meet Vignesh, a nurse at Riverside General. He needs an agent that calls patients after discharge. He just talks to it."
+      "text": "I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it."
     },
     {
       "id": "nurse_01",
       "voice": "nurse",
       "phase": "Phase 1: Requirements (voice interview)",
-      "text": "I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and that their follow-up visit is booked."
+      "text": "I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and their follow-up visit."
     },
     {
       "id": "sys_01",
@@ -67,7 +67,7 @@
       "id": "sys_04",
       "voice": "system",
       "phase": "Phase 1: Requirements (voice interview)",
-      "text": "Here's what I heard. Heart failure patients, 48 hours after discharge. Symptoms, meds, follow-up visit. Chest pain: 911. Breathing trouble: nurse line. Shall I build it?"
+      "text": "Here's what I heard: heart failure patients, 48 hours after discharge. Chest pain, 911. Breathing trouble, nurse line. Shall I build it?"
     },
     {
       "id": "nurse_05",
@@ -133,7 +133,7 @@
       "id": "narr_09",
       "voice": "narrator",
       "phase": "Phase 6: Live test with a human",
-      "text": "Now a real person tests it. Vignesh has the agent call him, and plays a tricky patient."
+      "text": "Now a real person tests it. I have the agent call me, and I play a tricky patient."
     },
     {
       "id": "agent_04",

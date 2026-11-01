@@ -2,14 +2,14 @@
 
 **Product:** agent that builds voice agents for domain experts (illustrative concept).
 **Use case:** post-discharge follow-up calls for heart failure patients.
-**Length target:** ~3:00. Word count is ~450 spoken words (~2:55 of speech at a normal pace), which is tight — we trim after
+**Length target:** ~3:00–3:30 (not a hard limit). Word count is ~450 spoken words (~2:55 of speech at a normal pace), which is tight — we trim after
 the first TTS pass shows real timings.
 
 ## Cast
 | Role | Line IDs | Voice (draft → final) |
 |---|---|---|
-| Narrator | `narr_NN` | ElevenLabs → Vignesh |
-| Nurse Vignesh (builder; also role-plays a patient in phase 6) | `nurse_NN` | ElevenLabs → Vignesh |
+| Narrator (Vignesh, first person) | `narr_NN` | Vignesh's ElevenLabs clone → his own recordings |
+| Nurse Vignesh (builder; also role-plays a patient in phase 6) | `nurse_NN` | Vignesh's ElevenLabs clone → his own recordings |
 | The system (interviewer / builder product) | `sys_NN` | ElevenLabs, calm and warm |
 | Follow-up agent (the agent being built) | `agent_NN` | ElevenLabs, friendly, clearly "phone" |
 | Simulated patient (phase 4–5) | `patient_NN` | ElevenLabs, older voice |
@@ -41,9 +41,9 @@ Title card: **{{product_name}}** — *An agent that builds voice agents.*
 **Left:** voice-mode screen. Animated orb that pulses with whoever is speaking, live captions underneath. No buttons except mute and end.
 **Right:** "Requirements captured" checklist filling in live as Vignesh speaks; a spec document assembling underneath.
 
-> **narr_03:** Meet Vignesh, a nurse at Riverside General. He needs an agent that calls patients after discharge. He just talks to it.
+> **narr_03:** I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it.
 >
-> **nurse_01:** I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and that their follow-up visit is booked.
+> **nurse_01:** I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and their follow-up visit.
 >
 > **sys_01:** Got it. If a patient reports a symptom, what should the agent do?
 >
@@ -63,7 +63,7 @@ Right panel ticks as each answer lands:
 
 Jump cut, caption: **"12 minutes later"**. Checklist now long; counter reads *23 requirements · 6 escalation rules*.
 
-> **sys_04:** Here's what I heard. Heart failure patients, 48 hours after discharge. Symptoms, meds, follow-up visit. Chest pain: 911. Breathing trouble: nurse line. Shall I build it?
+> **sys_04:** Here's what I heard: heart failure patients, 48 hours after discharge. Chest pain, 911. Breathing trouble, nurse line. Shall I build it?
 >
 > **nurse_05:** Yes, go ahead.
 
@@ -125,7 +125,7 @@ Tile turns green.
 **Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"), then voice-mode orb for feedback.
 **Right:** live transcript of the call; then the feedback turning into a new rule plus new scenarios added to the test suite.
 
-> **narr_09:** Now a real person tests it. Vignesh has the agent call him, and plays a tricky patient.
+> **narr_09:** Now a real person tests it. I have the agent call me, and I play a tricky patient.
 >
 > **agent_04:** Are you taking your furosemide, the water pill, every morning?
 >
