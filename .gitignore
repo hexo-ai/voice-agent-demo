@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- voice-agent-demo ---
+.env
+node_modules/
+out/
+audio/tts/*.mp3
+audio/tts/*.wav
+record/*.webm
+*.mp4
