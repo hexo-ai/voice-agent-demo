@@ -1,0 +1,176 @@
+[
+  {
+    "id": "narr_01",
+    "phase": "Hook (full screen)",
+    "file": "audio/tts/narr_01.mp3",
+    "seconds": 6.77
+  },
+  {
+    "id": "narr_02",
+    "phase": "Hook (full screen)",
+    "file": "audio/tts/narr_02.mp3",
+    "seconds": 1.7
+  },
+  {
+    "id": "narr_03",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/narr_03.mp3",
+    "seconds": 7.0
+  },
+  {
+    "id": "nurse_01",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/nurse_01.mp3",
+    "seconds": 8.36
+  },
+  {
+    "id": "sys_01",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/sys_01.mp3",
+    "seconds": 3.58
+  },
+  {
+    "id": "nurse_02",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/nurse_02.mp3",
+    "seconds": 3.16
+  },
+  {
+    "id": "sys_02",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/sys_02.mp3",
+    "seconds": 5.98
+  },
+  {
+    "id": "nurse_03",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/nurse_03.mp3",
+    "seconds": 7.37
+  },
+  {
+    "id": "sys_03",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/sys_03.mp3",
+    "seconds": 5.09
+  },
+  {
+    "id": "nurse_04",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/nurse_04.mp3",
+    "seconds": 5.38
+  },
+  {
+    "id": "sys_04",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/sys_04.mp3",
+    "seconds": 11.83
+  },
+  {
+    "id": "nurse_05",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts/nurse_05.mp3",
+    "seconds": 1.02
+  },
+  {
+    "id": "narr_04",
+    "phase": "Phase 2: First version generated",
+    "file": "audio/tts/narr_04.mp3",
+    "seconds": 2.82
+  },
+  {
+    "id": "narr_05",
+    "phase": "Phase 3: Test scenarios",
+    "file": "audio/tts/narr_05.mp3",
+    "seconds": 7.0
+  },
+  {
+    "id": "narr_06",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts/narr_06.mp3",
+    "seconds": 4.41
+  },
+  {
+    "id": "agent_01",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts/agent_01.mp3",
+    "seconds": 2.32
+  },
+  {
+    "id": "patient_01",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts/patient_01.mp3",
+    "seconds": 6.45
+  },
+  {
+    "id": "agent_02",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts/agent_02.mp3",
+    "seconds": 3.53
+  },
+  {
+    "id": "narr_07",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts/narr_07.mp3",
+    "seconds": 6.03
+  },
+  {
+    "id": "narr_08",
+    "phase": "Phase 5: Optimization loop",
+    "file": "audio/tts/narr_08.mp3",
+    "seconds": 8.62
+  },
+  {
+    "id": "agent_03",
+    "phase": "Phase 5: Optimization loop",
+    "file": "audio/tts/agent_03.mp3",
+    "seconds": 5.43
+  },
+  {
+    "id": "narr_09",
+    "phase": "Phase 6: Live test with a human",
+    "file": "audio/tts/narr_09.mp3",
+    "seconds": 5.46
+  },
+  {
+    "id": "agent_04",
+    "phase": "Phase 6: Live test with a human",
+    "file": "audio/tts/agent_04.mp3",
+    "seconds": 3.16
+  },
+  {
+    "id": "nurse_06",
+    "phase": "Phase 6: Live test with a human",
+    "file": "audio/tts/nurse_06.mp3",
+    "seconds": 2.53
+  },
+  {
+    "id": "agent_05",
+    "phase": "Phase 6: Live test with a human",
+    "file": "audio/tts/agent_05.mp3",
+    "seconds": 4.68
+  },
+  {
+    "id": "nurse_07",
+    "phase": "Phase 6: Live test with a human",
+    "file": "audio/tts/nurse_07.mp3",
+    "seconds": 6.82
+  },
+  {
+    "id": "sys_05",
+    "phase": "Phase 6: Live test with a human",
+    "file": "audio/tts/sys_05.mp3",
+    "seconds": 3.76
+  },
+  {
+    "id": "narr_10",
+    "phase": "The loop + close (full screen)",
+    "file": "audio/tts/narr_10.mp3",
+    "seconds": 5.25
+  },
+  {
+    "id": "narr_11",
+    "phase": "The loop + close (full screen)",
+    "file": "audio/tts/narr_11.mp3",
+    "seconds": 3.53
+  }
+]

@@ -14,7 +14,7 @@ the first TTS pass shows real timings.
 | Follow-up agent (the agent being built) | `agent_NN` | ElevenLabs, friendly, clearly "phone" |
 | Simulated patient (phase 4–5) | `patient_NN` | ElevenLabs, older voice |
 
-Fictional names: **Riverside General** (hospital), **Margaret** (simulated patient).
+Fictional names: **Riverside General** (hospital), **Robert** (simulated patient, older man).
 Product name: **{{product_name}}** — set in `content/config.json` (currently "SIA Voice"). Never type the name directly; always use the placeholder.
 
 ## Rules for every frame

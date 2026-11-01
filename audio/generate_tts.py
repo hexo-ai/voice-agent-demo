@@ -1,0 +1,74 @@
+"""Generate one ElevenLabs clip per line in content/lines.json.
+
+  python3 audio/generate_tts.py                 # generate missing / changed clips
+  python3 audio/generate_tts.py --force         # regenerate everything
+  python3 audio/generate_tts.py --only nurse_03 # one or more line IDs
+  python3 audio/generate_tts.py --role nurse --voice vignesh_clone --out audio/tts_alt
+                                                # try an alternate voice for one role
+
+Clips go to audio/tts/<id>.mp3 (gitignored). A manifest records the text + voice used,
+so a clip is regenerated automatically when its line or voice changes.
+Needs ELEVENLABS_API_KEY in .env.
+"""
+import argparse, hashlib, json, os, sys, urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def load_env():
+    env = ROOT / ".env"
+    if env.exists():
+        for row in env.read_text().splitlines():
+            if "=" in row and not row.lstrip().startswith("#"):
+                k, v = row.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
+
+
+def tts(text, voice, cfg, key):
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice['voice_id']}?output_format={cfg['output_format']}"
+    body = json.dumps({"text": text, "model_id": cfg["model_id"], "voice_settings": voice.get("settings", {})}).encode()
+    req = urllib.request.Request(url, data=body, headers={"xi-api-key": key, "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        return r.read()
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--force", action="store_true")
+    ap.add_argument("--only", nargs="*")
+    ap.add_argument("--role", help="limit to one voice role")
+    ap.add_argument("--voice", help="use an alternate voice from voices.json 'alternates'")
+    ap.add_argument("--out", default="audio/tts")
+    a = ap.parse_args()
+
+    load_env()
+    key = os.environ.get("ELEVENLABS_API_KEY")
+    if not key:
+        sys.exit("ELEVENLABS_API_KEY missing (put it in .env)")
+    cfg = json.loads((ROOT / "audio/voices.json").read_text())
+    lines = json.loads((ROOT / "content/lines.json").read_text())["lines"]
+    out = ROOT / a.out
+    out.mkdir(parents=True, exist_ok=True)
+    mpath = out / "manifest.json"
+    manifest = json.loads(mpath.read_text()) if mpath.exists() else {}
+
+    for ln in lines:
+        if a.only and ln["id"] not in a.only:
+            continue
+        if a.role and ln["voice"] != a.role:
+            continue
+        voice = cfg["alternates"][a.voice] if a.voice else cfg["roles"][ln["voice"]]
+        sig = hashlib.sha1(json.dumps([ln["text"], voice, cfg["model_id"]]).encode()).hexdigest()
+        f = out / f"{ln['id']}.mp3"
+        if f.exists() and manifest.get(ln["id"]) == sig and not a.force:
+            continue
+        print(f"  {ln['id']:<11} {voice['name'].split(' -')[0]:<8} {ln['text'][:60]}")
+        f.write_bytes(tts(ln["text"], voice, cfg, key))
+        manifest[ln["id"]] = sig
+        mpath.write_text(json.dumps(manifest, indent=2))
+    print("done")
+
+
+if __name__ == "__main__":
+    main()

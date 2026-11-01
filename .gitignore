@@ -227,3 +227,5 @@ audio/tts/*.mp3
 audio/tts/*.wav
 record/*.webm
 *.mp4
+audio/tts_alt/
+audio/tts/manifest.json
