@@ -1,0 +1,43 @@
+/* Close — the loop (three feedback sources lit as the narrator names them), then the end card. */
+(function () {
+  const root = document.getElementById("close");
+  const svg = document.getElementById("loop"), nEl = document.getElementById("loop-n"), card = document.getElementById("endcard");
+  const C = 450, RAD = 330;
+  const NODES = [
+    { label: "Simulate calls", ang: -90 },
+    { label: "SIA Voice finds mistakes", ang: -18, src: 0.18 },
+    { label: "Expert reviews calls", ang: 54, src: 0.34 },
+    { label: "Fix and fine-tune", ang: 126 },
+    { label: "Live test with people", ang: 198, src: 0.5 },
+  ];
+  NODES.forEach(n => { n.label = n.label.replace("SIA Voice", TIMELINE.config.product_name); });
+  const pos = ang => [C + RAD * Math.cos(ang * Math.PI / 180), C + RAD * Math.sin(ang * Math.PI / 180)];
+  svg.innerHTML = `<circle cx="${C}" cy="${C}" r="${RAD}" fill="none" stroke="#2A3B50" stroke-width="3"/>
+    <circle id="loop-arc" cx="${C}" cy="${C}" r="${RAD}" fill="none" stroke="#7B7FE8" stroke-width="4" stroke-linecap="round" pathLength="100" stroke-dasharray="12 88" transform="rotate(-90 ${C} ${C})"/>` +
+    NODES.map((n, i) => { const [x, y] = pos(n.ang); return `<g id="ln${i}"><rect x="${x - 175}" y="${y - 34}" width="350" height="68" rx="34" fill="#1E2B3B" stroke="#2A3B50" stroke-width="2"/>
+      <text x="${x}" y="${y + 8}" text-anchor="middle" font-size="23" fill="#D6DEE8">${n.label}</text></g>`; }).join("");
+
+  SCENES.add({
+    render(t) {
+      const a = U.end("sys_05") + 1.7;
+      const vis = U.fade(root, t, a, 1e9, 0.6);
+      if (vis <= 0) return;
+      if (vis < 0.5) CHROME.showTopbar = true;
+      // the highlight travels the loop, speeding up
+      const tt = Math.max(0, t - a);
+      const turns = 0.25 * tt + 0.012 * tt * tt;
+      document.getElementById("loop-arc").setAttribute("stroke-dashoffset", (-(turns * 100) % 100).toFixed(2));
+      NODES.forEach((n, i) => {
+        const g = document.getElementById("ln" + i);
+        const lit = n.src != null && t >= U.at("narr_10", n.src);
+        const r = g.querySelector("rect");
+        r.setAttribute("stroke", lit ? "#7B7FE8" : "#2A3B50");
+        r.setAttribute("fill", lit ? "#232E52" : "#1E2B3B");
+        g.querySelector("text").setAttribute("fill", lit ? "#FFFFFF" : "#D6DEE8");
+      });
+      const n = Math.round(64 + (140 - 64) * U.ease(U.prog(t, U.at("narr_10", 0.6), U.end("narr_10"))));
+      U.text(nEl, String(n));
+      U.fade(card, t, U.start("narr_11") - 0.3, 1e9, 0.6);
+    },
+  });
+})();

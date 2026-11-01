@@ -6,7 +6,7 @@ for domain experts.** All product UI and numbers in the video are mocked and lab
 See [`CLAUDE.md`](CLAUDE.md) for the project overview, rules and folder layout.
 
 ## Status
-Script, audio and screens for phases 1–5 are done. Expert review, live test and close in progress.
+All phases are built (rough cut v1). Next: hook visuals, positioning wording, tightening.
 
 ## Quick start
 ```bash

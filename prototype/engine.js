@@ -85,10 +85,22 @@
   // deterministic pseudo-random in [0,1) from an integer
   U.hash = n => { let x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 
+  // test-suite strip: cells = [{state:"pass"|"fail"|"idle", isNew:bool}]
+  U.suite = function (el, cells) {
+    while (el.children.length < cells.length) el.appendChild(document.createElement("i"));
+    [...el.children].forEach((c, i) => {
+      const d = cells[i];
+      U.css(c, { display: d ? "block" : "none" });
+      if (!d) return;
+      U.cls(c, "pass", d.state === "pass"); U.cls(c, "fail", d.state === "fail"); U.cls(c, "new", !!d.isNew);
+    });
+  };
+
   const scenes = [];
   const SCENES = {
     add(s) { scenes.push(s); },
     render(t) {
+      chrome.showTopbar = false;
       for (const s of scenes) s.render(t);
       renderChrome(t);
     },

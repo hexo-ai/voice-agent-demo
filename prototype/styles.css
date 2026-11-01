@@ -260,3 +260,67 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .runbar.dark { position: static; background: var(--night-line); height: 8px; }
 .ft-note { margin-top: 12px; font-size: 19px; color: var(--night-text); min-height: 25px; }
 .ft-note b { color: #7FE0B8; }
+
+/* ---------- phase 5b: expert review ---------- */
+.queue { position: absolute; top: 230px; left: 56px; right: 56px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.q { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; background: #fff; border: 1px solid var(--paper-2); border-radius: 12px; padding: 12px 16px; }
+.q .play { width: 40px; height: 40px; border-radius: 50%; background: var(--paper-2); display: grid; place-items: center; }
+.q .play::after { content: ""; border-left: 12px solid var(--ink); border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
+.q.playing .play { background: var(--sia); } .q.playing .play::after { border-left-color: #fff; }
+.q .qt { font-size: 21px; } .q .qs { display: block; font-size: 16px; color: var(--ink-2); margin-top: 2px; }
+.q .chip { font-size: 15px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #FBF0DA; color: #8A5A0E; white-space: nowrap; }
+.q.playing { border-color: var(--sia); box-shadow: 0 0 0 3px rgba(91,95,214,.15); }
+.q .prog { grid-column: 2 / 4; height: 6px; border-radius: 999px; background: var(--paper-2); overflow: hidden; display: none; }
+.q.playing .prog, .q.heard .prog { display: block; }
+.q .prog i { display: block; height: 100%; background: var(--sia); width: 0; }
+.conf { display: grid; grid-template-columns: 250px 1fr; gap: 26px; background: var(--night-2); border: 1px solid var(--unsure); border-radius: 12px; padding: 16px 20px; }
+.conf .dk { display: block; font-size: 15px; color: var(--night-mute); }
+.conf-v { display: block; font-size: 48px; font-weight: 700; color: #fff; line-height: 1.1; }
+.conf-s { font-size: 17px; color: var(--unsure); }
+.meter { position: relative; height: 10px; border-radius: 999px; background: var(--night-line); margin: 12px 0 14px; }
+.meter i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--unsure); border-radius: 999px; }
+.meter b { position: absolute; top: -6px; width: 2px; height: 22px; background: #fff; }
+.conf-why { font-size: 18px; line-height: 1.35; color: var(--night-text); }
+.transcript.slim { margin-top: 20px; }
+.transcript.slim .turn { font-size: 19px; }
+.newreq { margin-top: 18px; background: var(--night-2); border: 1px solid var(--sia); border-radius: 12px; padding: 14px 18px; opacity: 0; }
+.newreq .nr-k { font-size: 15px; color: var(--night-mute); }
+.newreq .rule { font-size: 21px; color: #fff; margin-top: 4px; } .newreq .rule b { color: var(--sia-soft); }
+.newreq .quote { margin-top: 8px; font-size: 17px; color: var(--vig-soft); padding-left: 12px; border-left: 2px solid var(--vig); }
+.tests { margin-top: 18px; opacity: 0; }
+.tests-h { display: flex; justify-content: space-between; font-size: 18px; color: var(--night-mute); margin-bottom: 10px; }
+.tests-h span:last-child { color: var(--night-text); font-variant-numeric: tabular-nums; }
+.mini { display: grid; grid-template-columns: repeat(32, 24px); gap: 5px; }
+.mini i { height: 18px; border-radius: 4px; background: var(--night-line); }
+.mini i.pass { background: rgba(63,182,139,.75); } .mini i.fail { background: rgba(229,72,77,.75); }
+.mini i.new { box-shadow: 0 0 0 2px var(--sia-soft); }
+
+/* ---------- phase 6: live test ---------- */
+.roleplay { align-self: flex-start; margin-top: 10px; font-size: 18px; font-weight: 700; color: #8A5A0E; background: #FBF0DA; padding: 6px 14px; border-radius: 999px; }
+.phone { position: absolute; top: 250px; left: 56px; right: 56px; background: #fff; border: 1px solid var(--paper-2); border-radius: 18px; padding: 20px 22px; }
+.ph-top { display: flex; gap: 16px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--paper-2); }
+.ph-av { width: 52px; height: 52px; border-radius: 50%; background: var(--sia); box-shadow: 0 0 0 6px rgba(91,95,214,.15); }
+.ph-name { font-size: 22px; font-weight: 700; } .ph-state { font-size: 18px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.bubbles { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; min-height: 120px; }
+.bub { max-width: 82%; font-size: 21px; line-height: 1.35; padding: 12px 16px; border-radius: 16px; }
+.bub.agent { background: #ECECFB; align-self: flex-start; border-bottom-left-radius: 4px; }
+.bub.me { background: #FBF0DA; align-self: flex-end; border-bottom-right-radius: 4px; }
+.bub .who { display: block; font-size: 14px; color: var(--ink-2); margin-bottom: 2px; }
+.checks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.chk { display: flex; gap: 14px; align-items: center; background: var(--night-2); border: 1px solid var(--night-line); border-radius: 10px; padding: 12px 16px; font-size: 20px; color: var(--night-text); }
+.chk .st { margin-left: auto; font-size: 16px; color: var(--night-mute); white-space: nowrap; }
+.chk.ok .st { color: var(--pass); }
+.chk.gap { border-color: var(--unsure); } .chk.gap .st { color: var(--unsure); }
+
+/* ---------- close ---------- */
+#close { background: var(--night); }
+.loop-wrap { position: absolute; left: 410px; top: 14px; width: 1100px; height: 900px; }
+.loop-center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.lc-n { font-size: 110px; font-weight: 700; color: #fff; line-height: 1; font-variant-numeric: tabular-nums; }
+.lc-l { font-size: 26px; color: var(--night-mute); margin-top: 8px; }
+#loop text { font-family: "Atkinson"; }
+.endcard { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 16px; background: var(--paper); opacity: 0; }
+.ec-claim { font-size: 44px; font-weight: 700; color: var(--ink); margin-top: 34px; }
+.ec-research { font-size: 24px; color: var(--ink-2); margin-top: 20px; }
+.ec-small { font-size: 18px; color: var(--ink-2); margin-top: 6px; }
+.ec-time { font-size: 24px; color: var(--ink); }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>SIA Voice — illustrative demo</title>
+<title>Illustrative demo</title>
 <meta name="viewport" content="width=1920">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -72,7 +72,7 @@
           <li>Sends emergencies to 911 or the nurse line</li>
           <li>Talks about care only with listed caregivers</li>
         </ul>
-        <div class="rc-next">Next: SIA Voice writes the tests</div>
+        <div class="rc-next">Next: <span data-product-name></span> writes the tests</div>
       </div>
     </div>
     <div class="backend-side">
@@ -175,6 +175,68 @@
     </div>
   </section>
 
+  <!-- Phase 5b: expert review -->
+  <section class="scene dual" id="p6">
+    <div class="nurse-side">
+      <div class="p3-head">
+        <span class="agent-kind">Review queue</span>
+        <span class="agent-name">5 calls picked for you</span>
+        <span class="p3-note"><span data-product-name></span> picked the calls it is least sure about.</span>
+      </div>
+      <ul class="queue" id="p6-queue"></ul>
+      <div class="vbar" id="p6-vbar"><canvas width="96" height="96"></canvas><div><div class="vb-who"></div><p class="vb-cap"></p></div></div>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head"><h2>Expert review</h2><span class="panel-sub" id="p6-sub">Call 31</span></div>
+      <div class="conf" id="p6-conf">
+        <div class="conf-l"><span class="dk">Judge score</span><span class="conf-v">0.71</span><span class="conf-s">Passed, low confidence</span></div>
+        <div class="conf-r"><div class="meter"><i style="width:71%"></i><b style="left:85%"></b></div><span class="conf-why">Below the 0.85 confidence bar. No requirement covers weight changes, so the judge had nothing to check against.</span></div>
+      </div>
+      <div class="transcript slim" id="p6-turns"></div>
+      <div class="newreq" id="p6-req"></div>
+      <div class="tests" id="p6-tests"><div class="tests-h"><span>Test suite</span><span id="p6-tc"></span></div><div class="mini" id="p6-mini"></div></div>
+    </div>
+  </section>
+
+  <!-- Phase 6: live test -->
+  <section class="scene dual" id="p7">
+    <div class="nurse-side">
+      <div class="p3-head">
+        <span class="agent-kind">Live test</span>
+        <span class="agent-name">Test call to Vignesh's phone</span>
+        <span class="roleplay">Nurse Vignesh, role-playing a patient</span>
+      </div>
+      <div class="phone" id="p7-phone">
+        <div class="ph-top"><span class="ph-av"></span><div><div class="ph-name">Riverside General follow-up</div><div class="ph-state" id="p7-state"></div></div></div>
+        <div class="bubbles" id="p7-bubbles"></div>
+      </div>
+      <div class="vbar" id="p7-vbar"><canvas width="96" height="96"></canvas><div><div class="vb-who"></div><p class="vb-cap"></p></div></div>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head"><h2>Live call</h2><span class="panel-sub" id="p7-sub"></span></div>
+      <h3 class="blk">Call checks</h3>
+      <ul class="checks" id="p7-checks"></ul>
+      <div class="newreq" id="p7-req"></div>
+      <div class="tests" id="p7-tests"><div class="tests-h"><span>Test suite</span><span id="p7-tc"></span></div><div class="mini" id="p7-mini"></div></div>
+    </div>
+  </section>
+
+  <!-- Close (full screen) -->
+  <section class="scene" id="close">
+    <div class="loop-wrap">
+      <svg id="loop" viewBox="-100 0 1100 900" width="1100" height="900"></svg>
+      <div class="loop-center"><span class="lc-n" id="loop-n">64</span><span class="lc-l">tests and growing</span></div>
+    </div>
+    <div class="endcard" id="endcard">
+      <div class="wordmark big" data-product-name></div>
+      <p class="tagline" data-tagline></p>
+      <p class="ec-claim">Use case to production-grade agent: hours, not weeks.</p>
+      <p class="ec-time">This agent: 3 hours 16 minutes, from first interview to live test.</p>
+      <p class="ec-research">Built on our research accepted at ICML. arXiv 2605.27276</p>
+      <p class="ec-small">Illustrative product concept. Product UI, calls and numbers are mocked.</p>
+    </div>
+  </section>
+
   <!-- Narrator subtitle -->
   <div id="subtitle"></div>
 
@@ -190,6 +252,9 @@
 <script src="phases/p3.js"></script>
 <script src="phases/p4.js"></script>
 <script src="phases/p5.js"></script>
+<script src="phases/p6.js"></script>
+<script src="phases/p7.js"></script>
+<script src="phases/close.js"></script>
 <script src="boot.js"></script>
 </body>
 </html>

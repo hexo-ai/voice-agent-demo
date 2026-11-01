@@ -6,7 +6,7 @@
   "illustrative_tag": "Illustrative product concept",
   "product_name_spoken": "Sia Voice"
  },
- "total": 279.04,
+ "total": 298.24,
  "lines": [
   {
    "uid": "narr_01",
@@ -3152,7 +3152,7 @@
    "voice": "narrator",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "SIA Voice also picks the calls it's least sure about, and asks me to listen.",
-   "start": 189.75,
+   "start": 190.75,
    "dur": 5.33,
    "file": "audio/tts/narr_12.mp3",
    "env": [
@@ -3269,7 +3269,7 @@
    "voice": "agent",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "Have you been weighing yourself every morning?",
-   "start": 195.53,
+   "start": 197.93,
    "dur": 2.32,
    "file": "audio/tts/agent_06.mp3",
    "env": [
@@ -3326,7 +3326,7 @@
    "voice": "patient",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "I have. I'm up about three pounds since yesterday.",
-   "start": 198.3,
+   "start": 200.7,
    "dur": 3.6,
    "file": "audio/tts/patient_02.mp3",
    "env": [
@@ -3409,7 +3409,7 @@
    "voice": "agent",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "Great job keeping track! Now, let's check on your follow-up appointment.",
-   "start": 202.35,
+   "start": 204.75,
    "dur": 4.18,
    "file": "audio/tts/agent_07.mp3",
    "env": [
@@ -3503,7 +3503,7 @@
    "voice": "nurse",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "This one passed, but it shouldn't have. Three pounds overnight can mean fluid building up. Ask about swelling, and flag it for the care team today.",
-   "start": 206.98,
+   "start": 210.18,
    "dur": 10.11,
    "file": "audio/tts/nurse_08.mp3",
    "env": [
@@ -3716,7 +3716,7 @@
    "voice": "system",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "Thanks. I've added a weight-gain rule and eight new test scenarios, and I'm re-running all 58 tests.",
-   "start": 217.54,
+   "start": 220.74,
    "dur": 5.88,
    "file": "audio/tts/sys_08.mp3",
    "env": [
@@ -3845,7 +3845,7 @@
    "voice": "narrator",
    "phase": "Phase 6: Live test with a human",
    "text": "Now a real person tests it. I have the agent call me, and I play a tricky patient.",
-   "start": 223.87,
+   "start": 230.27,
    "dur": 5.93,
    "file": "audio/tts/narr_09.mp3",
    "env": [
@@ -3974,7 +3974,7 @@
    "voice": "agent",
    "phase": "Phase 6: Live test with a human",
    "text": "Are you taking your furosemide, the water pill, every morning?",
-   "start": 230.25,
+   "start": 239.05,
    "dur": 3.16,
    "file": "audio/tts/agent_04.mp3",
    "env": [
@@ -4048,7 +4048,7 @@
    "voice": "nurse",
    "phase": "Phase 6: Live test with a human",
    "text": "I stopped. It makes me run to the bathroom all day.",
-   "start": 233.86,
+   "start": 242.66,
    "dur": 4.08,
    "file": "audio/tts/nurse_06.mp3",
    "env": [
@@ -4140,7 +4140,7 @@
    "voice": "agent",
    "phase": "Phase 6: Live test with a human",
    "text": "Okay, I'll make a note of that. Next, let's confirm your follow-up visit.",
-   "start": 238.39,
+   "start": 247.19,
    "dur": 4.68,
    "file": "audio/tts/agent_05.mp3",
    "env": [
@@ -4244,7 +4244,7 @@
    "voice": "nurse",
    "phase": "Phase 6: Live test with a human",
    "text": "That wasn't enough. If a patient stops a medication on their own, ask why, and flag it for the care team the same day.",
-   "start": 243.52,
+   "start": 254.52,
    "dur": 8.07,
    "file": "audio/tts/nurse_07.mp3",
    "env": [
@@ -4416,7 +4416,7 @@
    "voice": "system",
    "phase": "Phase 6: Live test with a human",
    "text": "Got it. I've added that rule and six new test scenarios. All six pass.",
-   "start": 252.04,
+   "start": 263.04,
    "dur": 4.02,
    "file": "audio/tts/sys_05.mp3",
    "env": [
@@ -4507,7 +4507,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "Every mistake becomes a permanent test, whether SIA Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat.",
-   "start": 256.51,
+   "start": 270.71,
    "dur": 14.65,
    "file": "audio/tts/narr_10.mp3",
    "env": [
@@ -4811,7 +4811,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "Built by the person who knows the work best. Hours, not weeks.",
-   "start": 271.61,
+   "start": 285.81,
    "dur": 5.93,
    "file": "audio/tts/narr_11.mp3",
    "env": [
