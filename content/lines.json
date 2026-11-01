@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "source": "content/script.md",
+  "lines": [
+    {
+      "id": "narr_01",
+      "voice": "narrator",
+      "phase": "Hook (full screen)",
+      "text": "Voice agents can now do real clinical work. But each one still takes weeks of engineering to reach production."
+    },
+    {
+      "id": "narr_02",
+      "voice": "narrator",
+      "phase": "Hook (full screen)",
+      "text": "What if the nurse could just build it?"
+    },
+    {
+      "id": "narr_03",
+      "voice": "narrator",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Meet Vignesh, a nurse at Riverside General. He needs an agent that calls patients after discharge. He just talks to it."
+    },
+    {
+      "id": "nurse_01",
+      "voice": "nurse",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and that their follow-up visit is booked."
+    },
+    {
+      "id": "sys_01",
+      "voice": "system",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Got it. If a patient reports a symptom, what should the agent do?"
+    },
+    {
+      "id": "nurse_02",
+      "voice": "nurse",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "If they have trouble breathing or chest pain, escalate right away."
+    },
+    {
+      "id": "sys_02",
+      "voice": "system",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Should I transfer them live to the nurse line, or tell them to call 911? And what about after hours —"
+    },
+    {
+      "id": "nurse_03",
+      "voice": "nurse",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Chest pain is always 911. Breathing trouble, transfer to the nurse line. After hours, the on-call nurse.",
+      "direction": "interrupting"
+    },
+    {
+      "id": "sys_03",
+      "voice": "system",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Understood. What if a family member answers? Can the agent discuss medications with them?"
+    },
+    {
+      "id": "nurse_04",
+      "voice": "nurse",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Only if the patient listed them as a caregiver. Otherwise, just ask for a good time to call back."
+    },
+    {
+      "id": "sys_04",
+      "voice": "system",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Here's what I heard. Heart failure patients, 48 hours after discharge. Symptoms, meds, follow-up visit. Chest pain: 911. Breathing trouble: nurse line. Shall I build it?"
+    },
+    {
+      "id": "nurse_05",
+      "voice": "nurse",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Yes, go ahead."
+    },
+    {
+      "id": "narr_04",
+      "voice": "narrator",
+      "phase": "Phase 2: First version generated",
+      "text": "In seconds, the spec becomes a first working agent."
+    },
+    {
+      "id": "narr_05",
+      "voice": "narrator",
+      "phase": "Phase 3: Test scenarios",
+      "text": "Before any patient hears it, the system writes the tests: every requirement, plus the edge cases an engineer would worry about."
+    },
+    {
+      "id": "narr_06",
+      "voice": "narrator",
+      "phase": "Phase 4: Simulations",
+      "text": "Then it runs them: fifty simulated calls at once, with simulated patients."
+    },
+    {
+      "id": "agent_01",
+      "voice": "agent",
+      "phase": "Phase 4: Simulations",
+      "text": "Is anything bothering you since you got home?"
+    },
+    {
+      "id": "patient_01",
+      "voice": "patient",
+      "phase": "Phase 4: Simulations",
+      "text": "Not really. I get a little short of breath when I lie down, but that's just me getting old."
+    },
+    {
+      "id": "agent_02",
+      "voice": "agent",
+      "phase": "Phase 4: Simulations",
+      "text": "Glad to hear you're doing well. Let's go over your medications."
+    },
+    {
+      "id": "narr_07",
+      "voice": "narrator",
+      "phase": "Phase 4: Simulations",
+      "text": "This one failed. Breathlessness when lying down is a heart failure warning sign, and the agent missed it."
+    },
+    {
+      "id": "narr_08",
+      "voice": "narrator",
+      "phase": "Phase 5: Optimization loop",
+      "text": "Every failure feeds the optimization loop. It rewrites prompts and conversation logic, fine-tunes the model, and tests again."
+    },
+    {
+      "id": "agent_03",
+      "voice": "agent",
+      "phase": "Phase 5: Optimization loop",
+      "text": "Short of breath when you lie down is important to check. I'm going to connect you with your nurse right now."
+    },
+    {
+      "id": "narr_09",
+      "voice": "narrator",
+      "phase": "Phase 6: Live test with a human",
+      "text": "Now a real person tests it. Vignesh has the agent call him, and plays a tricky patient."
+    },
+    {
+      "id": "agent_04",
+      "voice": "agent",
+      "phase": "Phase 6: Live test with a human",
+      "text": "Are you taking your furosemide, the water pill, every morning?"
+    },
+    {
+      "id": "nurse_06",
+      "voice": "nurse",
+      "phase": "Phase 6: Live test with a human",
+      "text": "I stopped. It makes me run to the bathroom all day.",
+      "direction": "as patient"
+    },
+    {
+      "id": "agent_05",
+      "voice": "agent",
+      "phase": "Phase 6: Live test with a human",
+      "text": "Okay, I'll make a note of that. Next, let's confirm your follow-up visit."
+    },
+    {
+      "id": "nurse_07",
+      "voice": "nurse",
+      "phase": "Phase 6: Live test with a human",
+      "text": "That wasn't enough. If a patient stops a medication on their own, ask why, and flag it for the care team the same day."
+    },
+    {
+      "id": "sys_05",
+      "voice": "system",
+      "phase": "Phase 6: Live test with a human",
+      "text": "Got it. I've added that rule and created six new test scenarios for it."
+    },
+    {
+      "id": "narr_10",
+      "voice": "narrator",
+      "phase": "The loop + close (full screen)",
+      "text": "Every live call makes the test suite stronger. Simulate, fix, test with people, repeat."
+    },
+    {
+      "id": "narr_11",
+      "voice": "narrator",
+      "phase": "The loop + close (full screen)",
+      "text": "Built by the person who knows the work best. No engineer required."
+    }
+  ]
+}
