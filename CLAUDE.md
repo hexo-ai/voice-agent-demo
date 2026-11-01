@@ -55,8 +55,8 @@ code https://github.com/hexo-ai/sia
 
 ## Working across threads
 Each chat thread / machine has its own workspace. Only two things are shared:
-this **GitHub repo** and the claude.ai project doc **`status.md`** (done / next / open
-decisions). Push at the end of every working stage and update `status.md`.
+this **GitHub repo** and the claude.ai project doc **`claude/status.md`** (done / next / open
+decisions). Push at the end of every working stage and update `claude/status.md`.
 
 ## Setup (local PC)
 Requires Python 3.10+, Node 18+, ffmpeg.
