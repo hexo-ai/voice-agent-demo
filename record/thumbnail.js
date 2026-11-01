@@ -6,8 +6,8 @@ const cfg = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../content/confi
 const fonts = "file://" + path.resolve(__dirname, "../prototype/fonts");
 
 const W = 1280, H = 720, C = [640, 350], R = 262;
-const STEPS = ["Collect requirements", "Build agent", "Run simulation", "Improve and fine-tune", "Expert review", "Live testing"];
-const pos = i => { const a = (-90 + i * 60) * Math.PI / 180; return [C[0] + R * Math.cos(a), C[1] + R * Math.sin(a)]; };
+const STEPS = ["Collect requirements", "Build agent", "Run simulation", "Improve and fine-tune", "Live testing"];
+const pos = i => { const a = (-90 + i * 72) * Math.PI / 180; return [C[0] + R * Math.cos(a), C[1] + R * Math.sin(a)]; };
 const pills = STEPS.map((s, i) => {
   const [x, y] = pos(i), w = s.length * 11.5 + 44;
   return `<g><rect x="${x - w / 2}" y="${y - 22}" width="${w}" height="44" rx="22" fill="#1E2B3B" stroke="#33465E" stroke-width="1.5"/>
