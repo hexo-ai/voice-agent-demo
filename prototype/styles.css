@@ -63,8 +63,8 @@ body { font-family: "Atkinson", system-ui, sans-serif; -webkit-font-smoothing: a
 
 /* ---------- dual panel ---------- */
 .dual { display: grid; grid-template-columns: 840px 1080px; padding-top: 76px; }
-.nurse-side { position: relative; background: var(--paper); height: 1004px; }
-.backend-side { position: relative; background: var(--night); color: var(--night-text); height: 1004px; padding: 44px 52px; }
+.nurse-side { position: relative; height: 1004px; }
+.backend-side { position: relative; color: var(--night-text); height: 1004px; padding: 44px 52px; }
 .backend-side::before {
   content: "Behind the scenes"; position: absolute; top: 14px; right: 52px; font-size: 15px; color: var(--night-mute);
 }
@@ -324,3 +324,6 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .ec-research { font-size: 24px; color: var(--ink-2); margin-top: 20px; }
 .ec-small { font-size: 18px; color: var(--ink-2); margin-top: 6px; }
 .ec-time { font-size: 24px; color: var(--ink); }
+
+#bgdual { position: absolute; inset: 0; display: grid; grid-template-columns: 840px 1080px; opacity: 0; }
+#bgdual .bg-l { background: var(--paper); } #bgdual .bg-r { background: var(--night); }

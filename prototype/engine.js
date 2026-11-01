@@ -102,6 +102,18 @@
     render(t) {
       chrome.showTopbar = false;
       for (const s of scenes) s.render(t);
+      // Dual-panel scenes: keep the backdrop steady and dip the content (out, then in)
+      // instead of cross-dissolving two busy layouts on top of each other.
+      let bg = 0;
+      const vis = [...document.querySelectorAll(".scene.dual")].map(el => ({ el, o: Number(el.style.opacity || 0) })).filter(v => v.o > 0);
+      vis.forEach(v => { bg = Math.max(bg, v.o); });
+      if (vis.length >= 2) {
+        bg = 1;
+        // transition driven by the incoming scene: first half fades the old one out, second half fades the new one in
+        const w = vis[vis.length - 1].o;
+        vis.forEach((v, i) => U.css(v.el, { opacity: i === vis.length - 1 ? U.clamp(2 * w - 1).toFixed(3) : i === vis.length - 2 ? U.clamp(1 - 2 * w).toFixed(3) : "0" }));
+      }
+      U.css(document.getElementById("bgdual"), { opacity: bg.toFixed(3) });
       renderChrome(t);
     },
   };
