@@ -45,6 +45,46 @@
     },
   };
 
+  // ---- small voice bar (orb + speaker + live caption) used on the expert side ----
+  const VB_COL = { system: [91, 95, 214], nurse: [217, 147, 43] };
+  const VB_NAME = () => ({ system: TL.config.product_name, nurse: "Vignesh" });
+  U.voiceBar = function (el, t, uids, a = null, b = null) {
+    const lines = uids.map(u => byUid[u]);
+    const first = lines[0], last = lines[lines.length - 1];
+    const A = a ?? first.start - 0.4, B = b ?? last.start + last.dur + 0.8;
+    const o = U.fade(el, t, A, B, 0.3);
+    if (o <= 0) return;
+    // current or most recent line
+    let cur = lines[0];
+    for (const l of lines) if (t >= l.start - 0.05) cur = l;
+    const words = cur.text.split(/\s+/);
+    if (el.__uid !== cur.uid) {
+      el.__uid = cur.uid;
+      el.querySelector(".vb-cap").innerHTML = words.map(w => `<span class="w">${w}</span>`).join(" ");
+      const col = cur.voice === "system" ? "var(--sia)" : "var(--vig)";
+      el.querySelector(".vb-who").innerHTML = `<span style="color:${col}">${VB_NAME()[cur.voice]}</span>`;
+    }
+    const said = t < cur.start ? 0 : U.wordsSaid(cur, t, words.length);
+    [...el.querySelectorAll(".vb-cap .w")].forEach((w, i) => U.cls(w, "said", i < said));
+    // orb
+    const cv = el.querySelector("canvas"), ctx = cv.getContext("2d"), W = cv.width, C = W / 2;
+    const speaking = t >= cur.start && t < cur.start + cur.dur;
+    let amp = 0;
+    if (speaking) { for (let k = -2; k <= 2; k++) amp += U.envAt(cur, t + k * 0.05); amp /= 5; }
+    const [r, g, bb] = VB_COL[cur.voice] || [150, 163, 178];
+    ctx.clearRect(0, 0, W, W);
+    const base = 26 + Math.sin(t * 1.6) * 1.2;
+    for (let k = 2; k >= 1; k--) {
+      ctx.beginPath(); ctx.arc(C, C, base + 7 * k + amp * 8 * k, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r},${g},${bb},${(0.1 + amp * 0.08) / k})`; ctx.fill();
+    }
+    ctx.beginPath(); ctx.arc(C, C, base + amp * 6, 0, Math.PI * 2);
+    ctx.fillStyle = `rgb(${r},${g},${bb})`; ctx.fill();
+  };
+
+  // deterministic pseudo-random in [0,1) from an integer
+  U.hash = n => { let x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+
   const scenes = [];
   const SCENES = {
     add(s) { scenes.push(s); },

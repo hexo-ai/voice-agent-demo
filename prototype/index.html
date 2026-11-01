@@ -111,6 +111,70 @@
     </div>
   </section>
 
+  <!-- Phase 4: simulations -->
+  <section class="scene dual" id="p4">
+    <div class="nurse-side">
+      <div class="p3-head">
+        <span class="agent-kind">Test calls</span>
+        <span class="agent-name" id="p4-title">Running 50 test calls</span>
+      </div>
+      <div class="runbar"><div class="runfill" id="p4-fill"></div></div>
+      <div class="tally">
+        <div class="tal pass"><span class="tn" id="p4-pass">0</span><span class="tl">passed</span></div>
+        <div class="tal fail"><span class="tn" id="p4-fail">0</span><span class="tl">need fixes</span></div>
+      </div>
+      <div class="wrong" id="p4-wrong">
+        <h3 class="lt">What went wrong</h3>
+        <ul id="p4-wlist"></ul>
+      </div>
+      <div class="vbar" id="p4-vbar"><canvas width="96" height="96"></canvas><div><div class="vb-who"></div><p class="vb-cap"></p></div></div>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head"><h2>Simulation run</h2><span class="panel-sub" id="p4-sub">50 calls in parallel</span></div>
+      <div class="tiles" id="p4-tiles"></div>
+      <div class="detail" id="p4-detail">
+        <div class="transcript">
+          <h3 class="blk" id="p4-callhead">Call 23. Simulated caller: Robert, 74</h3>
+          <div id="p4-turns"></div>
+        </div>
+        <div class="diag" id="p4-diag"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phase 5: optimization loop -->
+  <section class="scene dual" id="p5">
+    <div class="nurse-side">
+      <div class="p3-head">
+        <span class="agent-kind">Improving your agent</span>
+        <span class="agent-name" id="p5-title">Round 1 of 4</span>
+      </div>
+      <div class="changes">
+        <h3 class="lt">What changed</h3>
+        <ul id="p5-changes"></ul>
+      </div>
+      <div class="replay" id="p5-replay">
+        <div class="rp-head"><span>Call 23, run again</span><span class="badge" id="p5-badge"></span></div>
+        <div id="p5-turns"></div>
+      </div>
+      <div class="vbar" id="p5-vbar"><canvas width="96" height="96"></canvas><div><div class="vb-who"></div><p class="vb-cap"></p></div></div>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head"><h2>Optimization loop</h2><span class="panel-sub" id="p5-sub"></span></div>
+      <h3 class="blk">Harness changes</h3>
+      <pre class="code diff" id="p5-diff"></pre>
+      <div class="charts">
+        <div class="chart"><div class="ch-t">Pass rate</div><div class="ch-v" id="p5-pr"></div><svg id="p5-c1" width="460" height="190"></svg></div>
+        <div class="chart"><div class="ch-t">Cost per call</div><div class="ch-v" id="p5-cost"></div><svg id="p5-c2" width="460" height="190"></svg></div>
+      </div>
+      <div class="ft" id="p5-ft">
+        <div class="ft-row"><span class="ft-t">Fine-tuning a smaller model</span><span class="ft-s" id="p5-fts"></span></div>
+        <div class="runbar dark"><div class="runfill" id="p5-ftfill"></div></div>
+        <div class="ft-note" id="p5-ftnote"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Narrator subtitle -->
   <div id="subtitle"></div>
 
@@ -124,6 +188,8 @@
 <script src="phases/p1.js"></script>
 <script src="phases/p2.js"></script>
 <script src="phases/p3.js"></script>
+<script src="phases/p4.js"></script>
+<script src="phases/p5.js"></script>
 <script src="boot.js"></script>
 </body>
 </html>

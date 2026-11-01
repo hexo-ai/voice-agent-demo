@@ -188,3 +188,75 @@ h3.blk { font-size: 19px; font-weight: 400; color: var(--night-mute); margin: 0 
 .cov-legend b { color: var(--pass); }
 .personas { display: flex; flex-wrap: wrap; gap: 10px; }
 .persona { font-size: 18px; color: var(--night-text); background: var(--night-2); border: 1px solid var(--night-line); border-radius: 999px; padding: 8px 16px; }
+
+/* ---------- shared: small voice bar on the expert side ---------- */
+.vbar { position: absolute; left: 56px; right: 56px; bottom: 40px; display: grid; grid-template-columns: 96px 1fr; gap: 22px; align-items: center;
+  background: #fff; border: 1px solid var(--paper-2); border-radius: 18px; padding: 18px 26px 18px 18px; opacity: 0; min-height: 150px; }
+.vbar canvas { width: 96px; height: 96px; }
+.vb-who { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+.vb-cap { font-size: 25px; line-height: 1.35; }
+.vb-cap .w { opacity: .22; } .vb-cap .w.said { opacity: 1; }
+h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 14px; }
+
+/* ---------- phase 4 ---------- */
+.runbar { position: absolute; top: 210px; left: 56px; right: 56px; height: 10px; border-radius: 999px; background: var(--paper-2); overflow: hidden; }
+.runfill { height: 100%; width: 0; background: var(--sia); border-radius: 999px; }
+.tally { position: absolute; top: 250px; left: 56px; display: flex; gap: 56px; }
+.tal { display: flex; flex-direction: column; }
+.tal .tn { font-size: 72px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.tal .tl { font-size: 21px; color: var(--ink-2); margin-top: 6px; display: flex; align-items: center; gap: 8px; }
+.tal .tl::before { content: ""; width: 12px; height: 12px; border-radius: 50%; }
+.tal.pass .tl::before { background: var(--pass); }
+.tal.fail .tl::before { background: var(--fail); }
+.wrong { position: absolute; top: 400px; left: 56px; right: 56px; opacity: 0; }
+.wrong ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.wrong li { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--paper-2); border-radius: 12px; padding: 13px 18px; font-size: 21px; }
+.wrong li .n { margin-left: auto; font-size: 17px; color: var(--ink-2); white-space: nowrap; }
+.wrong li.hl { border-color: var(--fail); box-shadow: 0 0 0 3px rgba(229,72,77,.15); }
+.tiles { display: grid; grid-template-columns: repeat(10, 90px); gap: 7px; }
+.tile { height: 62px; border-radius: 8px; background: var(--night-2); border: 1.5px solid var(--night-line); padding: 6px 8px; position: relative; }
+.tile .tid { font-size: 13px; color: var(--night-mute); }
+.tile .wv { position: absolute; left: 8px; right: 8px; bottom: 8px; height: 22px; display: flex; align-items: flex-end; gap: 3px; }
+.tile .wv i { flex: 1; background: #4A5D76; border-radius: 2px; }
+.tile.pass { border-color: var(--pass); } .tile.pass .wv i { background: rgba(63,182,139,.45); }
+.tile.fail { border-color: var(--fail); } .tile.fail .wv i { background: rgba(229,72,77,.5); }
+.tile.focus { box-shadow: 0 0 0 4px rgba(229,72,77,.35); }
+.detail { display: grid; grid-template-columns: 540px 1fr; gap: 26px; margin-top: 30px; opacity: 0; }
+.turn { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--night-line); font-size: 20px; line-height: 1.35; color: var(--night-mute); }
+.turn .sp { font-size: 16px; padding-top: 3px; }
+.turn.now, .turn.done { color: #fff; }
+.turn.now .tx { background: rgba(123,127,232,.16); border-radius: 6px; }
+.turn.bad .tx { text-decoration: underline wavy var(--fail); text-underline-offset: 6px; }
+.dstep { background: var(--night-2); border: 1px solid var(--night-line); border-radius: 10px; padding: 13px 16px; margin-bottom: 12px; font-size: 18.5px; line-height: 1.35; color: var(--night-text); }
+.dstep .dk { display: block; font-size: 15px; color: var(--night-mute); margin-bottom: 3px; }
+.dstep.verdict { border-color: var(--fail); }
+.dstep.verdict b { color: #FF8A8E; }
+.dstep.fix { border-color: var(--sia); }
+
+/* ---------- phase 5 ---------- */
+.changes { position: absolute; top: 200px; left: 56px; right: 56px; }
+.changes ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.changes li { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--paper-2); border-radius: 12px; padding: 13px 18px; font-size: 21px; line-height: 1.3; }
+.changes li::before { content: ""; flex: none; margin-top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--pass); }
+.replay { position: absolute; top: 560px; left: 56px; right: 56px; background: #fff; border: 1px solid var(--paper-2); border-radius: 14px; padding: 16px 20px; opacity: 0; }
+.rp-head { display: flex; justify-content: space-between; align-items: center; font-size: 19px; color: var(--ink-2); margin-bottom: 6px; }
+.badge { font-size: 17px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+.badge.pass { background: #E4F4EE; color: #23795A; }
+.badge.run { background: var(--paper-2); color: var(--ink-2); }
+.replay .turn { color: var(--ink-2); border-top-color: var(--paper-2); font-size: 20px; }
+.replay .turn.now, .replay .turn.done { color: var(--ink); }
+.replay .turn.now .tx { background: #ECECFB; }
+.replay .turn.good .tx { background: #E4F4EE; border-radius: 6px; }
+.diff { height: 196px; margin-bottom: 22px; }
+.diff .del { color: #FF8A8E; } .diff .add { color: #7FE0B8; }
+.charts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.chart { background: var(--night-2); border: 1px solid var(--night-line); border-radius: 12px; padding: 14px 16px 6px; }
+.ch-t { font-size: 18px; color: var(--night-mute); }
+.ch-v { font-size: 38px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.chart svg text { font-family: "Atkinson"; font-size: 14px; fill: var(--night-mute); }
+.ft { margin-top: 22px; background: var(--night-2); border: 1px solid var(--night-line); border-radius: 12px; padding: 16px 18px; opacity: 0; }
+.ft-row { display: flex; justify-content: space-between; font-size: 20px; color: #fff; margin-bottom: 12px; }
+.ft-s { color: var(--night-mute); font-size: 18px; }
+.runbar.dark { position: static; background: var(--night-line); height: 8px; }
+.ft-note { margin-top: 12px; font-size: 19px; color: var(--night-text); min-height: 25px; }
+.ft-note b { color: #7FE0B8; }
