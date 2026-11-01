@@ -1,0 +1,22 @@
+{
+  "_doc": "Extra silence (seconds) added before/after lines, on top of the default gap. Negative = overlap (interruptions). Phase visuals hang off these beats.",
+  "default_gap": 0.45,
+  "start_pad": 0.6,
+  "before": {
+    "narr_03": 1.2,
+    "nurse_01": 0.6,
+    "nurse_03": -0.85,
+    "sys_04": 2.6,
+    "narr_04": 0.8
+  },
+  "after": {
+    "nurse_05": 3.2
+  },
+  "replays": [
+    {
+      "clip": "patient_01",
+      "before": "agent_03",
+      "as": "patient_01_replay"
+    }
+  ]
+}

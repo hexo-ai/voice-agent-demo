@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIA Voice — illustrative demo</title>
+<meta name="viewport" content="width=1920">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="stage">
+
+  <!-- Always on screen -->
+  <div id="tag">Illustrative product concept</div>
+
+  <!-- Hook (full screen) -->
+  <section class="scene" id="hook">
+    <p class="hook-line" id="hook-1"></p>
+    <div class="title-card" id="title-card">
+      <div class="wordmark big" data-product-name></div>
+      <p class="tagline" data-tagline></p>
+    </div>
+  </section>
+
+  <!-- Product chrome for phases 1–6 -->
+  <header id="topbar">
+    <div class="wordmark" data-product-name></div>
+    <ol id="stepper"></ol>
+    <div id="clock"><span class="clock-label">Time spent</span><span id="clock-value">0:00:00</span></div>
+  </header>
+
+  <!-- Phase 1: voice interview -->
+  <section class="scene dual" id="p1">
+    <div class="nurse-side">
+      <div class="agent-title">
+        <span class="agent-kind">New agent</span>
+        <span class="agent-name">Post-discharge follow-up</span>
+      </div>
+      <canvas id="orb" width="520" height="520"></canvas>
+      <div class="speaker" id="p1-speaker"></div>
+      <p class="caption" id="p1-caption"></p>
+      <div class="voice-controls">
+        <span class="vc"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2Z"/></svg></span>
+        <span class="vc end"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+    <div class="backend-side">
+      <div class="panel-head">
+        <h2>Spec</h2>
+        <span class="panel-sub" id="p1-count"></span>
+      </div>
+      <div class="p1-cols">
+        <ol class="reqs" id="p1-reqs"></ol>
+        <div class="asks-wrap">
+          <h3>Questions an engineer would ask</h3>
+          <ul class="asks" id="p1-asks"></ul>
+        </div>
+      </div>
+      <div class="spec-ready" id="p1-ready"></div>
+    </div>
+  </section>
+
+  <!-- Narrator subtitle -->
+  <div id="subtitle"></div>
+
+  <!-- Jump-cut card -->
+  <div id="jumpcut"></div>
+</div>
+
+<script src="data/timeline.js"></script>
+<script src="engine.js"></script>
+<script src="phases/hook.js"></script>
+<script src="phases/p1.js"></script>
+<script src="boot.js"></script>
+</body>
+</html>

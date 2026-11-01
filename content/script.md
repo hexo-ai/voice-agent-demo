@@ -104,7 +104,7 @@ Call tile turns red. {{product_name}} reports to the nurse by voice (left panel:
 > **sys_06:** Vignesh, 19 of 50 calls failed. In this one, the patient said he gets short of breath lying down, and the agent moved on. Your rule says to escalate.
 
 **Right panel — {{product_name}} diagnosing it** (this is what makes "it found the mistake" visible):
-1. *Judge:* requirement R7 "breathing trouble → transfer to nurse line" **violated** at turn 4.
+1. *Judge:* requirement R5 "breathing trouble → transfer to the nurse line" **violated** at turn 4.
 2. *Why:* patient described the symptom indirectly ("short of breath when I lie down"); agent only escalates on direct phrases like "trouble breathing".
 3. *Fix planned:* detect indirect symptom descriptions; add a follow-up question before moving on.
 
