@@ -2,7 +2,7 @@
 
 **Product:** agent that builds voice agents for domain experts (illustrative concept).
 **Use case:** post-discharge follow-up calls for heart failure patients.
-**Length target:** ~3:00–3:30 (not a hard limit). Word count is ~450 spoken words (~2:55 of speech at a normal pace), which is tight — we trim after
+**Length target:** not a hard limit for now — we tighten later. Word count is ~450 spoken words (~2:55 of speech at a normal pace), which is tight — we trim after
 the first TTS pass shows real timings.
 
 ## Cast
@@ -130,7 +130,30 @@ Tile turns green.
 
 ---
 
-## 2:25–2:50 — Phase 6: Live test with a human
+## 2:25–2:55 — Phase 5b: Expert reviews the simulations
+The second kind of feedback. {{product_name}} can only catch mistakes its rules cover, so it also asks the expert. It picks the calls it is **least sure about**, including some that passed.
+**Left:** "Review queue — 5 calls picked for you" with a play button on each; one is marked *Passed · low confidence*. Then the voice orb as Vignesh responds.
+**Right:** why this call was queued — judge score **0.71 (pass, low confidence)**, "no requirement covers weight changes". After Vignesh's feedback: new requirement R24 added to the spec, 8 new scenario tiles appear, all 58 tests re-run.
+
+> **narr_12:** {{product_name}} also picks the calls it's least sure about, and asks me to listen.
+
+Vignesh plays a call that passed (audio plays):
+
+> **agent_06:** Have you been weighing yourself every morning?
+>
+> **patient_02:** I have. I'm up about three pounds since yesterday.
+>
+> **agent_07:** Great job keeping track! Now, let's check on your follow-up appointment.
+
+> **nurse_08:** This one passed, but it shouldn't have. Three pounds overnight can mean fluid building up. Ask about swelling, and flag it for the care team today.
+>
+> **sys_08:** Thanks. I've added a weight-gain rule and eight new test scenarios, and I'm re-running all 58 tests.
+
+Right panel: tiles run; the weight-gain tiles turn green.
+
+---
+
+## 2:55–3:20 — Phase 6: Live test with a human
 **Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"), then voice-mode orb for feedback.
 **Right:** live transcript of the call; then the feedback turning into a new rule plus new scenarios added to the test suite.
 
@@ -152,10 +175,10 @@ Right panel: new rule appears in the spec; six new tiles join the simulation gri
 
 ---
 
-## 2:50–3:10 — The loop + close (full screen)
-Visual: a circular loop diagram — Simulate → Fix → Live test → Feedback → back to Simulate — spinning faster; test count growing (50 → 56 → 80 → 140).
+## 3:20–3:40 — The loop + close (full screen)
+Visual: a circular loop diagram — Simulate → {{product_name}} self-review → Expert review → Fix → Live test → back to Simulate (three feedback sources highlighted) — spinning faster; test count growing (50 → 56 → 80 → 140).
 
-> **narr_10:** Every live call makes the test suite stronger. Simulate, fix, test with people, repeat.
+> **narr_10:** Every mistake becomes a permanent test, whether {{product_name}} finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat.
 >
 > **narr_11:** Built by the person who knows the work best. Hours, not weeks.
 
@@ -170,7 +193,7 @@ End card:
 ## Mocked vs real
 | Item | Status |
 |---|---|
-| UI, scenarios, calls, transcripts | Mocked |
+| UI, scenarios, calls, transcripts, judge scores | Mocked |
 | 31/50 → 47/50 (94%) pass rate, 16 of 19 fixed, cost per call drop, "12 minutes" | Mocked, illustrative only |
 | "Weeks" of FDE work per agent | Company's view of the market — not a measured figure |
 | "Hours, not weeks" and the elapsed-time clock | Product target, shown on a mocked timeline — not a measured result |
@@ -184,8 +207,9 @@ End card:
 | 3. Scenarios | 0h 16m | ~3 min |
 | 4. Simulations | 0h 31m | ~15 min for 50 calls in parallel |
 | 5. Optimization (4 rounds incl. fine-tune) | 2h 41m | ~2h 10m |
-| 6. Live test + feedback | 3h 02m | ~20 min |
-| Close | **3h 02m** → "Hours, not weeks." | — |
+| 5b. Expert review + re-run | 2h 56m | ~15 min |
+| 6. Live test + feedback | 3h 16m | ~20 min |
+| Close | **3h 16m** → "Hours, not weeks." | — |
 
 ## Open questions for review
 None right now.

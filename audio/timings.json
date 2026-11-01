@@ -138,6 +138,42 @@
     "seconds": 6.11
   },
   {
+    "id": "narr_12",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts/narr_12.mp3",
+    "seconds": 6.22
+  },
+  {
+    "id": "agent_06",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts/agent_06.mp3",
+    "seconds": 2.32
+  },
+  {
+    "id": "patient_02",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts/patient_02.mp3",
+    "seconds": 3.6
+  },
+  {
+    "id": "agent_07",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts/agent_07.mp3",
+    "seconds": 4.18
+  },
+  {
+    "id": "nurse_08",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts/nurse_08.mp3",
+    "seconds": 10.11
+  },
+  {
+    "id": "sys_08",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts/sys_08.mp3",
+    "seconds": 5.88
+  },
+  {
     "id": "narr_09",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts/narr_09.mp3",
@@ -177,7 +213,7 @@
     "id": "narr_10",
     "phase": "The loop + close (full screen)",
     "file": "audio/tts/narr_10.mp3",
-    "seconds": 7.52
+    "seconds": 13.14
   },
   {
     "id": "narr_11",

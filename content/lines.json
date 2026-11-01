@@ -142,6 +142,42 @@
       "text": "Fixed. The agent now follows up whenever a patient mentions breathing. 47 of 50 calls pass."
     },
     {
+      "id": "narr_12",
+      "voice": "narrator",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "S.I.A. Voice also picks the calls it's least sure about, and asks me to listen."
+    },
+    {
+      "id": "agent_06",
+      "voice": "agent",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "Have you been weighing yourself every morning?"
+    },
+    {
+      "id": "patient_02",
+      "voice": "patient",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "I have. I'm up about three pounds since yesterday."
+    },
+    {
+      "id": "agent_07",
+      "voice": "agent",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "Great job keeping track! Now, let's check on your follow-up appointment."
+    },
+    {
+      "id": "nurse_08",
+      "voice": "nurse",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "This one passed, but it shouldn't have. Three pounds overnight can mean fluid building up. Ask about swelling, and flag it for the care team today."
+    },
+    {
+      "id": "sys_08",
+      "voice": "system",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "Thanks. I've added a weight-gain rule and eight new test scenarios, and I'm re-running all 58 tests."
+    },
+    {
       "id": "narr_09",
       "voice": "narrator",
       "phase": "Phase 6: Live test with a human",
@@ -182,7 +218,7 @@
       "id": "narr_10",
       "voice": "narrator",
       "phase": "The loop + close (full screen)",
-      "text": "Every live call makes the test suite stronger. Simulate, fix, test with people, repeat."
+      "text": "Every mistake becomes a permanent test, whether S.I.A. Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat."
     },
     {
       "id": "narr_11",
