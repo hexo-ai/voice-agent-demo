@@ -28,7 +28,7 @@
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
-      CHROME.step = 6;
+      CHROME.step = 5;
       CHROME.clock = (2 * 3600 + 58 * 60 + 34) + (t - a) * 27;
 
       const callA = U.start("agent_04") - 0.9, callEnd = U.end("agent_05") + 0.6;

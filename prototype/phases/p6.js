@@ -33,7 +33,7 @@
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
-      CHROME.step = 5;
+      CHROME.step = 4;
       CHROME.clock = (2 * 60 + 41) * 60 + 54 + (t - a) * 25;
 
       rows.forEach((r, i) => U.css(r, { opacity: U.prog(t, a + 0.5 + i * 0.25, a + 0.8 + i * 0.25).toFixed(3) }));

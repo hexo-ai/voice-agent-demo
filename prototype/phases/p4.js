@@ -44,7 +44,7 @@
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
-      CHROME.step = 3;
+      CHROME.step = 2;
       const run0 = a + 0.6, runEnd = U.start("agent_01") - 1.6;
       CHROME.clock = 16 * 60 + U.prog(t, a, runEnd) * 15 * 60 + Math.max(0, t - runEnd) * 2;
 
@@ -68,7 +68,7 @@
       U.css($("p4-fill"), { width: (finished / N * 100).toFixed(1) + "%" });
       U.text($("p4-pass"), String(pass));
       U.text($("p4-fail"), String(fail));
-      U.text($("p4-title"), finished < N ? `Running 50 test calls` : `31 of 50 passed`);
+      U.text($("p4-title"), finished < N ? `Running 50 simulated calls` : `31 of 50 passed`);
       U.css($("p4-wrong"), { opacity: U.prog(t, runEnd + 0.2, runEnd + 0.6).toFixed(3) });
       wrongItems.forEach((li, i) => U.cls(li, "hl", i === 0 && t >= runEnd + 0.3));
       U.text($("p4-sub"), finished < N ? `50 calls in parallel, ${finished} finished` : `50 calls finished`);

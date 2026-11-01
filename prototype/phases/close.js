@@ -4,11 +4,11 @@
   const svg = document.getElementById("loop"), nEl = document.getElementById("loop-n"), card = document.getElementById("endcard");
   const C = 450, RAD = 330;
   const NODES = [
-    { label: "Simulate calls", ang: -90 },
+    { label: "Run simulation", ang: -90 },
     { label: "SIA Voice finds mistakes", ang: -18, src: 0.18 },
-    { label: "Expert reviews calls", ang: 54, src: 0.34 },
-    { label: "Fix and fine-tune", ang: 126 },
-    { label: "Live test with people", ang: 198, src: 0.5 },
+    { label: "Expert review", ang: 54, src: 0.34 },
+    { label: "Improve and fine-tune", ang: 126 },
+    { label: "Live testing", ang: 198, src: 0.5 },
   ];
   NODES.forEach(n => { n.label = n.label.replace("SIA Voice", TIMELINE.config.product_name); });
   const pos = ang => [C + RAD * Math.cos(ang * Math.PI / 180), C + RAD * Math.sin(ang * Math.PI / 180)];

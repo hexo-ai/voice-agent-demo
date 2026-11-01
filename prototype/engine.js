@@ -119,7 +119,7 @@
   };
 
   /* ---------- chrome shared by all phases ---------- */
-  const STEPS = ["Interview", "First version", "Tests", "Simulations", "Improve", "Expert review", "Live test"];
+  const STEPS = ["Collect requirements", "Build agent", "Run simulation", "Improve and fine-tune", "Expert review", "Live testing"];
   const stepper = document.getElementById("stepper");
   stepper.innerHTML = STEPS.map((s, i) => `<li><span class="n">${i + 1}</span>${s}</li>`).join("");
   document.querySelectorAll("[data-product-name]").forEach(e => (e.textContent = TL.config.product_name));

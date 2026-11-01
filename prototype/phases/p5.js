@@ -58,7 +58,7 @@
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
-      CHROME.step = 4;
+      CHROME.step = 3;
 
       const r0 = a + 0.6, R = [a + 3.2, a + 6.2, a + 9.6, a + 12.6];
       const doneRounds = R.filter(x => t >= x).length;
