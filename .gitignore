@@ -229,3 +229,4 @@ record/*.webm
 *.mp4
 audio/tts_alt/
 audio/tts/manifest.json
+audio/tts_*/
