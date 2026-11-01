@@ -112,22 +112,34 @@
       "text": "Glad to hear you're doing well. Let's go over your medications."
     },
     {
+      "id": "sys_06",
+      "voice": "system",
+      "phase": "Phase 4: Simulations",
+      "text": "Vignesh, 19 of 50 calls failed. In this one, the patient said he gets short of breath lying down, and the agent moved on. Your rule says to escalate."
+    },
+    {
       "id": "narr_07",
       "voice": "narrator",
       "phase": "Phase 4: Simulations",
-      "text": "This one failed. Breathlessness when lying down is a heart failure warning sign, and the agent missed it."
+      "text": "S.I.A. Voice catches each failure, works out why it happened, and fixes it itself."
     },
     {
       "id": "narr_08",
       "voice": "narrator",
       "phase": "Phase 5: Optimization loop",
-      "text": "Every failure feeds the optimization loop. It rewrites prompts and conversation logic, fine-tunes the model, and tests again."
+      "text": "It rewrites the prompts and conversation logic, fine-tunes the model, and runs every test again."
     },
     {
       "id": "agent_03",
       "voice": "agent",
       "phase": "Phase 5: Optimization loop",
       "text": "Short of breath when you lie down is important to check. I'm going to connect you with your nurse right now."
+    },
+    {
+      "id": "sys_07",
+      "voice": "system",
+      "phase": "Phase 5: Optimization loop",
+      "text": "Fixed. The agent now follows up whenever a patient mentions breathing. 47 of 50 calls pass."
     },
     {
       "id": "narr_09",
@@ -164,7 +176,7 @@
       "id": "sys_05",
       "voice": "system",
       "phase": "Phase 6: Live test with a human",
-      "text": "Got it. I've added that rule and created six new test scenarios for it."
+      "text": "Got it. I've added that rule and six new test scenarios. All six pass."
     },
     {
       "id": "narr_10",

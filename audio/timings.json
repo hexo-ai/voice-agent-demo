@@ -108,22 +108,34 @@
     "seconds": 3.53
   },
   {
+    "id": "sys_06",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts/sys_06.mp3",
+    "seconds": 9.46
+  },
+  {
     "id": "narr_07",
     "phase": "Phase 4: Simulations",
     "file": "audio/tts/narr_07.mp3",
-    "seconds": 7.6
+    "seconds": 7.52
   },
   {
     "id": "narr_08",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts/narr_08.mp3",
-    "seconds": 9.43
+    "seconds": 6.82
   },
   {
     "id": "agent_03",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts/agent_03.mp3",
     "seconds": 5.43
+  },
+  {
+    "id": "sys_07",
+    "phase": "Phase 5: Optimization loop",
+    "file": "audio/tts/sys_07.mp3",
+    "seconds": 6.11
   },
   {
     "id": "narr_09",
@@ -159,7 +171,7 @@
     "id": "sys_05",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts/sys_05.mp3",
-    "seconds": 3.76
+    "seconds": 4.02
   },
   {
     "id": "narr_10",

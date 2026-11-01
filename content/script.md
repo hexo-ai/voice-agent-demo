@@ -85,13 +85,13 @@ Jump cut, caption: **"12 minutes later"**. Checklist now long; counter reads *23
 
 ---
 
-## 1:30–1:55 — Phase 4: Simulations
+## 1:30–2:00 — Phase 4: Simulations
 **Right:** grid of 50 call tiles running at once, each with a live waveform; tiles turn green or red. One red tile expands with its transcript.
 **Left:** "**31 of 50 passed.** 19 need fixes." with one-line reasons.
 
 > **narr_06:** Then it runs them: fifty simulated calls at once, with simulated patients.
 
-Zoom into the failing call (audio plays):
+Zoom into a failing call (audio plays):
 
 > **agent_01:** Is anything bothering you since you got home?
 >
@@ -99,17 +99,24 @@ Zoom into the failing call (audio plays):
 >
 > **agent_02:** Glad to hear you're doing well. Let's go over your medications.
 
-> **narr_07:** This one failed. Breathlessness when lying down is a heart failure warning sign, and the agent missed it.
+Call tile turns red. {{product_name}} reports to the nurse by voice (left panel: voice orb + captions).
 
-Left panel highlights the reason: *"Patient mentioned breathing trouble indirectly. Agent did not escalate."*
+> **sys_06:** Vignesh, 19 of 50 calls failed. In this one, the patient said he gets short of breath lying down, and the agent moved on. Your rule says to escalate.
+
+**Right panel — {{product_name}} diagnosing it** (this is what makes "it found the mistake" visible):
+1. *Judge:* requirement R7 "breathing trouble → transfer to nurse line" **violated** at turn 4.
+2. *Why:* patient described the symptom indirectly ("short of breath when I lie down"); agent only escalates on direct phrases like "trouble breathing".
+3. *Fix planned:* detect indirect symptom descriptions; add a follow-up question before moving on.
+
+> **narr_07:** {{product_name}} catches each failure, works out why it happened, and fixes it itself.
 
 ---
 
-## 1:55–2:20 — Phase 5: Optimization loop
+## 2:00–2:25 — Phase 5: Optimization loop
 **Right:** the strongest backend moment. Prompt and conversation-logic diffs scrolling; a fine-tuning run with a loss curve; round counter 1 → 4; **pass rate 62% → 94%**; **cost per call** dropping.
-**Left:** calm summary — "We fixed 16 issues. Here's what changed:" then plain-language bullets, e.g. *"The agent now asks a follow-up question whenever a patient mentions breathing, even in passing."*
+**Left:** calm summary — "Fixed 16 of 19 issues. Here's what changed:" then plain-language bullets, e.g. *"The agent now asks a follow-up question whenever a patient mentions breathing, even in passing."*
 
-> **narr_08:** Every failure feeds the optimization loop. It rewrites prompts and conversation logic, fine-tunes the model, and tests again.
+> **narr_08:** It rewrites the prompts and conversation logic, fine-tunes the model, and runs every test again.
 
 Replay of the same call, now passing (reuse `patient_01` audio):
 
@@ -119,9 +126,11 @@ Replay of the same call, now passing (reuse `patient_01` audio):
 
 Tile turns green.
 
+> **sys_07:** Fixed. The agent now follows up whenever a patient mentions breathing. 47 of 50 calls pass.
+
 ---
 
-## 2:20–2:45 — Phase 6: Live test with a human
+## 2:25–2:50 — Phase 6: Live test with a human
 **Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"), then voice-mode orb for feedback.
 **Right:** live transcript of the call; then the feedback turning into a new rule plus new scenarios added to the test suite.
 
@@ -137,13 +146,13 @@ Call ends. Voice mode opens.
 
 > **nurse_07:** That wasn't enough. If a patient stops a medication on their own, ask why, and flag it for the care team the same day.
 >
-> **sys_05:** Got it. I've added that rule and created six new test scenarios for it.
+> **sys_05:** Got it. I've added that rule and six new test scenarios. All six pass.
 
 Right panel: new rule appears in the spec; six new tiles join the simulation grid and run.
 
 ---
 
-## 2:45–3:00 — The loop + close (full screen)
+## 2:50–3:10 — The loop + close (full screen)
 Visual: a circular loop diagram — Simulate → Fix → Live test → Feedback → back to Simulate — spinning faster; test count growing (50 → 56 → 80 → 140).
 
 > **narr_10:** Every live call makes the test suite stronger. Simulate, fix, test with people, repeat.
@@ -162,7 +171,7 @@ End card:
 | Item | Status |
 |---|---|
 | UI, scenarios, calls, transcripts | Mocked |
-| 31/50 → 94% pass rate, 16 fixes, cost per call drop, "12 minutes" | Mocked, illustrative only |
+| 31/50 → 47/50 (94%) pass rate, 16 of 19 fixed, cost per call drop, "12 minutes" | Mocked, illustrative only |
 | "Weeks" of FDE work per agent | Company's view of the market — not a measured figure |
 | "Hours, not weeks" and the elapsed-time clock | Product target, shown on a mocked timeline — not a measured result |
 | ICML acceptance, arXiv paper, SIA code | Real |

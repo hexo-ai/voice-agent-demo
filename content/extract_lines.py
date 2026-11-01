@@ -16,6 +16,8 @@ def fill(text, cfg):
 
 def main():
     cfg = json.loads((HERE / "config.json").read_text())
+    # spoken lines use the pronunciation spelling, if one is set
+    cfg["product_name"] = cfg.get("product_name_spoken", cfg["product_name"])
     lines, phase = [], None
     for row in (HERE / "script.md").read_text().splitlines():
         m = re.match(r"## (\d:\d\d–\d:\d\d) — (.+)", row)
