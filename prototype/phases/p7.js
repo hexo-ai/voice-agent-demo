@@ -35,7 +35,7 @@
       const callA = U.start("agent_04") - 0.9, callEnd = U.end("agent_05") + 0.6;
       const st = t < callA ? "Calling…" : t < callEnd ? "On call " + U.fmtClock(t - callA + 74).slice(2) : "Call ended";
       U.text($("p7-state"), st);
-      U.css($("p7-phone"), { opacity: U.prog(t, a + 2.2, a + 2.6).toFixed(3) });
+      U.css($("p7-phone"), { opacity: U.prog(t, a + 1.7, a + 2.1).toFixed(3) });
       BUB.forEach(([u], i) => U.css(bubs[i], { display: t >= U.start(u) - 0.1 ? "block" : "none" }));
       U.text($("p7-sub"), t < callA ? "Dialing" : t < callEnd ? "Listening to the call" : "Call ended");
 

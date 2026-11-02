@@ -148,9 +148,9 @@
   const pcSteps = document.getElementById("pc-steps");
   pcSteps.innerHTML = STEPS.map((s, i) => `<li>${i ? '<span class="bar"></span>' : ""}<span class="dot">${i + 1}</span></li>`).join("");
   function renderCard(t) {
-    const c = cards.find(c => t >= c.at - 0.3 && t < c.at + 2.3);
+    const c = cards.find(c => t >= c.at - 0.3 && t < c.at + 1.8);
     if (!c) { U.css(pc, { opacity: 0 }); return; }
-    U.fade(pc, t, c.at, c.at + 2.0, 0.3);
+    U.fade(pc, t, c.at, c.at + 1.5, 0.25);   // cards last 1.5 s
     [...pcSteps.children].forEach((li, i) => { U.cls(li, "on", i === c.step); U.cls(li, "done", i < c.step); });
     U.html(document.getElementById("pc-title"), `<span>Step ${c.step + 1} of ${STEPS.length}</span>${STEPS[c.step]}`);
     U.text(document.getElementById("pc-desc"), STEP_DESC[c.step].replace(/SIA_NAME/g, TL.config.product_name));

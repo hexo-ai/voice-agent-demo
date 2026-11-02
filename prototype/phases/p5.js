@@ -68,7 +68,7 @@
       CHROME.step = 3;
 
       // four rounds, compressed if the cut leaves less time before the re-run
-      const r0 = a + 2.2, span = Math.min(12, U.start(RERUN) - 1.0 - r0);
+      const r0 = a + 1.7, span = Math.min(12, U.start(RERUN) - 1.0 - r0);
       const R = [r0 + span * 0.22, r0 + span * 0.47, r0 + span * 0.75, r0 + span];
       const doneRounds = R.filter(x => t >= x).length;
       CHROME.clock = 31 * 60 + U.prog(t, a, R[3]) * 130 * 60 + Math.max(0, t - R[3]) * 3;

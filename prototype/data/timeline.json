@@ -6,7 +6,7 @@
   "illustrative_tag": "Illustrative product concept",
   "product_name_spoken": "Sia Voice"
  },
- "total": 334.89,
+ "total": 331.89,
  "lines": [
   {
    "uid": "narr_01",
@@ -458,7 +458,7 @@
    "voice": "narrator",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Here's one example. I'm Vignesh, playing a nurse at Riverside General. I need an agent that calls patients after discharge. So I just talk to it.",
-   "start": 29.26,
+   "start": 28.76,
    "dur": 12.2,
    "file": "audio/tts/narr_03.mp3",
    "env": [
@@ -713,7 +713,7 @@
    "voice": "nurse",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "I want an agent that calls our heart failure patients two days after discharge. Check symptoms, meds, and their follow-up visit.",
-   "start": 42.51,
+   "start": 42.01,
    "dur": 9.38,
    "file": "audio/tts/nurse_01.mp3",
    "env": [
@@ -911,7 +911,7 @@
    "voice": "system",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Got it. If a patient reports a symptom, what should the agent do?",
-   "start": 52.34,
+   "start": 51.84,
    "dur": 3.58,
    "file": "audio/tts/sys_01.mp3",
    "env": [
@@ -993,7 +993,7 @@
    "voice": "nurse",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "If they have trouble breathing or chest pain, escalate right away.",
-   "start": 56.37,
+   "start": 55.87,
    "dur": 4.26,
    "file": "audio/tts/nurse_02.mp3",
    "env": [
@@ -1089,7 +1089,7 @@
    "voice": "system",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Should I transfer them live to the nurse line, or tell them to call 911? And what about after hours \u2014",
-   "start": 61.08,
+   "start": 60.58,
    "dur": 5.98,
    "file": "audio/tts/sys_02.mp3",
    "env": [
@@ -1219,7 +1219,7 @@
    "voice": "nurse",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Chest pain is always 911. Breathing trouble, transfer to the nurse line. After hours, the on-call nurse.",
-   "start": 66.66,
+   "start": 66.16,
    "dur": 8.54,
    "file": "audio/tts/nurse_03.mp3",
    "env": [
@@ -1400,7 +1400,7 @@
    "voice": "system",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Understood. What if a family member answers? Can the agent discuss medications with them?",
-   "start": 75.65,
+   "start": 75.15,
    "dur": 5.09,
    "file": "audio/tts/sys_03.mp3",
    "env": [
@@ -1513,7 +1513,7 @@
    "voice": "nurse",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Only if the patient listed them as a caregiver. Otherwise, just ask for a good time to call back.",
-   "start": 81.19,
+   "start": 80.69,
    "dur": 6.82,
    "file": "audio/tts/nurse_04.mp3",
    "env": [
@@ -1660,7 +1660,7 @@
    "voice": "system",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Here's what I heard: heart failure patients, 48 hours after discharge. Chest pain, 911. Breathing trouble, nurse line. Shall I build it?",
-   "start": 91.06,
+   "start": 90.56,
    "dur": 9.43,
    "file": "audio/tts/sys_04.mp3",
    "env": [
@@ -1859,7 +1859,7 @@
    "voice": "nurse",
    "phase": "Phase 1: Requirements (voice interview)",
    "text": "Yes, go ahead.",
-   "start": 100.94,
+   "start": 100.44,
    "dur": 1.44,
    "file": "audio/tts/nurse_05.mp3",
    "env": [
@@ -1898,7 +1898,7 @@
    "voice": "narrator",
    "phase": "Phase 2: First version generated",
    "text": "In seconds, the spec becomes a first working agent.",
-   "start": 107.63,
+   "start": 106.63,
    "dur": 3.34,
    "file": "audio/tts/narr_04.mp3",
    "env": [
@@ -1975,7 +1975,7 @@
    "voice": "narrator",
    "phase": "Phase 3: Test scenarios",
    "text": "Before any patient hears it, the system writes the tests: every requirement, plus the edge cases an engineer would worry about.",
-   "start": 118.42,
+   "start": 116.92,
    "dur": 9.14,
    "file": "audio/tts/narr_05.mp3",
    "env": [
@@ -2169,7 +2169,7 @@
    "voice": "narrator",
    "phase": "Phase 4: Simulations",
    "text": "Then it runs them: fifty simulated calls at once, with simulated patients.",
-   "start": 132.81,
+   "start": 131.31,
    "dur": 5.69,
    "file": "audio/tts/narr_06.mp3",
    "env": [
@@ -2294,7 +2294,7 @@
    "voice": "agent",
    "phase": "Phase 4: Simulations",
    "text": "Is anything bothering you since you got home?",
-   "start": 142.15,
+   "start": 140.65,
    "dur": 2.32,
    "file": "audio/tts/agent_01.mp3",
    "env": [
@@ -2351,7 +2351,7 @@
    "voice": "patient",
    "phase": "Phase 4: Simulations",
    "text": "Not really. I get a little short of breath when I lie down, but that's just me getting old.",
-   "start": 144.92,
+   "start": 143.42,
    "dur": 6.45,
    "file": "audio/tts/patient_01.mp3",
    "env": [
@@ -2491,7 +2491,7 @@
    "voice": "agent",
    "phase": "Phase 4: Simulations",
    "text": "Glad to hear you're doing well. Let's go over your medications.",
-   "start": 151.82,
+   "start": 150.32,
    "dur": 3.53,
    "file": "audio/tts/agent_02.mp3",
    "env": [
@@ -2572,7 +2572,7 @@
    "voice": "system",
    "phase": "Phase 4: Simulations",
    "text": "Vignesh, 19 of 50 calls failed. In this one, the patient said he gets short of breath lying down, and the agent moved on. Your rule says to escalate.",
-   "start": 157.0,
+   "start": 155.5,
    "dur": 9.46,
    "file": "audio/tts/sys_06.mp3",
    "env": [
@@ -2772,7 +2772,7 @@
    "voice": "narrator",
    "phase": "Phase 4: Simulations",
    "text": "SIA Voice catches each failure, works out why it happened, and fixes it itself.",
-   "start": 167.51,
+   "start": 166.01,
    "dur": 5.8,
    "file": "audio/tts/narr_07.mp3",
    "env": [
@@ -2899,7 +2899,7 @@
    "voice": "narrator",
    "phase": "Phase 5: Optimization loop",
    "text": "It rewrites the prompts and conversation logic. Rules a prompt can't capture become training data, and it fine-tunes the model on them. Then it runs every test again.",
-   "start": 177.86,
+   "start": 175.86,
    "dur": 12.85,
    "file": "audio/tts/narr_08.mp3",
    "env": [
@@ -3167,7 +3167,7 @@
    "voice": "patient",
    "phase": "Phase 4: Simulations",
    "text": "Not really. I get a little short of breath when I lie down, but that's just me getting old.",
-   "start": 195.66,
+   "start": 193.66,
    "dur": 6.45,
    "file": "audio/tts/patient_01.mp3",
    "env": [
@@ -3307,7 +3307,7 @@
    "voice": "agent",
    "phase": "Phase 5: Optimization loop",
    "text": "Short of breath when you lie down is important to check. I'm going to connect you with your nurse right now.",
-   "start": 202.56,
+   "start": 200.56,
    "dur": 5.43,
    "file": "audio/tts/agent_03.mp3",
    "env": [
@@ -3426,7 +3426,7 @@
    "voice": "system",
    "phase": "Phase 5: Optimization loop",
    "text": "Fixed. The agent now follows up whenever a patient mentions breathing. 47 of 50 calls pass.",
-   "start": 209.24,
+   "start": 207.24,
    "dur": 6.11,
    "file": "audio/tts/sys_07.mp3",
    "env": [
@@ -3559,7 +3559,7 @@
    "voice": "narrator",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "SIA Voice also picks the calls it's least sure about, and asks me to listen.",
-   "start": 219.9,
+   "start": 217.4,
    "dur": 5.33,
    "file": "audio/tts/narr_12.mp3",
    "env": [
@@ -3676,7 +3676,7 @@
    "voice": "agent",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "Have you been weighing yourself every morning?",
-   "start": 227.08,
+   "start": 224.58,
    "dur": 2.32,
    "file": "audio/tts/agent_06.mp3",
    "env": [
@@ -3733,7 +3733,7 @@
    "voice": "patient",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "I have. I'm up about three pounds since yesterday.",
-   "start": 229.85,
+   "start": 227.35,
    "dur": 3.6,
    "file": "audio/tts/patient_02.mp3",
    "env": [
@@ -3816,7 +3816,7 @@
    "voice": "agent",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "Great job keeping track! Now, let's check on your follow-up appointment.",
-   "start": 233.9,
+   "start": 231.4,
    "dur": 4.18,
    "file": "audio/tts/agent_07.mp3",
    "env": [
@@ -3910,7 +3910,7 @@
    "voice": "nurse",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "This one passed, but it shouldn't have. Three pounds overnight can mean fluid building up. Ask about swelling, and flag it for the care team today.",
-   "start": 239.33,
+   "start": 236.83,
    "dur": 10.11,
    "file": "audio/tts/nurse_08.mp3",
    "env": [
@@ -4123,7 +4123,7 @@
    "voice": "system",
    "phase": "Phase 5b: Expert reviews the simulations",
    "text": "Thanks. I've added a weight-gain rule and eight new test scenarios, and I'm re-running all 58 tests.",
-   "start": 249.89,
+   "start": 247.39,
    "dur": 5.88,
    "file": "audio/tts/sys_08.mp3",
    "env": [
@@ -4252,7 +4252,7 @@
    "voice": "narrator",
    "phase": "Phase 6: Live test with a human",
    "text": "Now a real person tests it. I have the agent call me, and I play a tricky patient.",
-   "start": 260.22,
+   "start": 257.22,
    "dur": 5.93,
    "file": "audio/tts/narr_09.mp3",
    "env": [
@@ -4381,7 +4381,7 @@
    "voice": "agent",
    "phase": "Phase 6: Live test with a human",
    "text": "Are you taking your furosemide, the water pill, every morning?",
-   "start": 269.0,
+   "start": 266.0,
    "dur": 3.16,
    "file": "audio/tts/agent_04.mp3",
    "env": [
@@ -4455,7 +4455,7 @@
    "voice": "nurse",
    "phase": "Phase 6: Live test with a human",
    "text": "I stopped. It makes me run to the bathroom all day.",
-   "start": 272.61,
+   "start": 269.61,
    "dur": 4.08,
    "file": "audio/tts/nurse_06.mp3",
    "env": [
@@ -4547,7 +4547,7 @@
    "voice": "agent",
    "phase": "Phase 6: Live test with a human",
    "text": "Okay, I'll make a note of that. Next, let's confirm your follow-up visit.",
-   "start": 277.14,
+   "start": 274.14,
    "dur": 4.68,
    "file": "audio/tts/agent_05.mp3",
    "env": [
@@ -4651,7 +4651,7 @@
    "voice": "nurse",
    "phase": "Phase 6: Live test with a human",
    "text": "That wasn't enough. If a patient stops a medication on their own, ask why, and flag it for the care team the same day.",
-   "start": 284.47,
+   "start": 281.47,
    "dur": 8.07,
    "file": "audio/tts/nurse_07.mp3",
    "env": [
@@ -4823,7 +4823,7 @@
    "voice": "system",
    "phase": "Phase 6: Live test with a human",
    "text": "Got it. I've added that rule and six new test scenarios. All six pass.",
-   "start": 292.99,
+   "start": 289.99,
    "dur": 4.02,
    "file": "audio/tts/sys_05.mp3",
    "env": [
@@ -4914,7 +4914,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "Every mistake becomes a permanent test, whether SIA Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat.",
-   "start": 300.66,
+   "start": 297.66,
    "dur": 14.65,
    "file": "audio/tts/narr_10.mp3",
    "env": [
@@ -5218,7 +5218,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "The same loop works for any expert whose work happens on the phone.",
-   "start": 316.66,
+   "start": 313.66,
    "dur": 4.08,
    "file": "audio/tts/narr_14.mp3",
    "env": [
@@ -5310,7 +5310,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "No engineer in the loop. From use case to production in hours, not weeks.",
-   "start": 322.59,
+   "start": 319.59,
    "dur": 5.8,
    "file": "audio/tts/narr_11.mp3",
    "env": [

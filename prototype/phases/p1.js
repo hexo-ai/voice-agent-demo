@@ -62,16 +62,16 @@
   const T = (a) => U.at(a[0], a[1]);
   let lastCaptionUid = null, words = [];
 
-  U.stepCard(0, U.start("narr_03") - 2.4 + 0.1);
+  U.stepCard(0, U.start("narr_03") - 1.9 + 0.1);
   SCENES.add({
     render(t) {
-      const start = U.start("narr_03") - 2.4;
+      const start = U.start("narr_03") - 1.9;
       const end = U.end("nurse_05") + 3.4;
       const vis = U.fade(root, t, start, end, 0.5);
       // overlays live outside this scene, so update them even when the scene is hidden
       const jumpA0 = U.end(U.has("nurse_04") ? "nurse_04" : "nurse_03") + 0.25, jumpB0 = U.start("sys_04") - 0.15;
       U.fade(jump, t, jumpA0, jumpB0, 0.35);
-      U.fade(document.getElementById("intro"), t, start + 2.4, start + 5.6, 0.35);
+      U.fade(document.getElementById("intro"), t, start + 1.9, start + 5.1, 0.35);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 0;

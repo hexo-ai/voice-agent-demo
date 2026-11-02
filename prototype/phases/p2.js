@@ -71,10 +71,10 @@ Call patients 48 hours after discharge.
   U.stepCard(1, U.end("nurse_05") + 2.9 + 0.1);
   SCENES.add({
     render(t) {
-      const a = U.end("nurse_05") + 2.9, b = U.start("narr_05") - 1.8;
+      const a = U.end("nurse_05") + 2.9, b = U.start("narr_05") - 1.3;
       // compress the build-up if the cut gives this phase less time than the long version
       // the step card covers the first ~2 s, so the build-up starts after it
-      const a0 = a + 2.0, k = Math.min(1, (b - a0 - 0.4) / 7.4), T = x => a0 + (x - a) * k;
+      const a0 = a + 1.5, k = Math.min(1, (b - a0 - 0.4) / 7.4), T = x => a0 + (x - a) * k;
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
