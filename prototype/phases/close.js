@@ -30,7 +30,7 @@
 
   SCENES.add({
     render(t) {
-      const a = U.end("sys_05") + 1.7;
+      const a = U.end(U.has("nurse_09") ? "nurse_09" : "sys_05") + 1.9;
       const vis = U.fade(root, t, a, 1e9, 0.6);
       if (vis <= 0) return;
       if (vis < 0.5) CHROME.showTopbar = true;
@@ -46,7 +46,7 @@
         r.setAttribute("fill", lit ? "#232E52" : "#1E2B3B");
         g.querySelector("text").setAttribute("fill", lit ? "#FFFFFF" : "#D6DEE8");
       });
-      const n = Math.round(64 + (140 - 64) * U.ease(U.prog(t, U.at("narr_10", 0.6), U.end("narr_10"))));
+      const n = Math.round(58 + (140 - 58) * U.ease(U.prog(t, U.at("narr_10", 0.6), U.end("narr_10"))));
       U.text(nEl, String(n));
       const dA = U.start("narr_14") - 0.5;
       U.fade(document.getElementById("domains"), t, dA, 1e9, 0.5);

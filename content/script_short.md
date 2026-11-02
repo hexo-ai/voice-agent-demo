@@ -171,24 +171,26 @@ Right panel: tiles run; the weight-gain tiles turn green.
 ---
 
 ## 2:55–3:20 — Phase 6: Live test with a human
-**Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"), then voice-mode orb for feedback.
-**Right:** live transcript of the call; then the feedback turning into a new rule plus new scenarios added to the test suite.
+**Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"); chat bubbles follow the call.
+**Right:** live call checks ticking green as the agent does each thing.
 
-> **narr_09:** Then a live test. I play a tricky patient.
+> **narr_09:** Then a live test. I play the patient.
 >
-> **agent_04:** Are you taking your water pill every morning?
+> **agent_04:** Have you checked your weight this morning?
 >
-> **nurse_06:** *(as patient)* I stopped. It makes me run to the bathroom all day.
+> **nurse_06:** *(as patient)* I have. I'm up about three pounds since yesterday.
 >
-> **agent_05:** Okay, noted. Now, your follow-up visit.
+> **agent_05:** Thanks. Any swelling in your ankles or legs?
+>
+> **nurse_07:** *(as patient)* A little.
+>
+> **agent_08:** That can mean fluid building up. I'm flagging it for your care team, and a nurse will call you today.
+>
+> **nurse_09:** *(as patient)* Okay, thanks.
 
-Call ends. Voice mode opens.
-
-> **nurse_07:** If a patient stops a medication, ask why and flag it today.
->
-> **sys_05:** Rule added. Six new tests, all passing.
-
-Right panel: new rule appears in the spec; six new tiles join the simulation grid and run.
+The call ends cleanly. Right panel: every call check is green, including "Rule R24 applied, from your expert
+review", then a "Call passed" result. Short pause, then the close. (Vignesh: no mistake in live testing —
+by now the agent should look production-ready; three rounds of mistake-and-fix was too much.)
 
 ---
 

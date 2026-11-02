@@ -168,24 +168,26 @@ Right panel: tiles run; the weight-gain tiles turn green.
 ---
 
 ## 2:55–3:20 — Phase 6: Live test with a human
-**Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"), then voice-mode orb for feedback.
-**Right:** live transcript of the call; then the feedback turning into a new rule plus new scenarios added to the test suite.
+**Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"); chat bubbles follow the call.
+**Right:** live call checks ticking green as the agent does each thing.
 
-> **narr_09:** Now a real person tests it. I have the agent call me, and I play a tricky patient.
+> **narr_09:** Now a real person tests it. The agent calls me, and I play the patient.
 >
-> **agent_04:** Are you taking your furosemide, the water pill, every morning?
+> **agent_04:** Have you checked your weight this morning?
 >
-> **nurse_06:** *(as patient)* I stopped. It makes me run to the bathroom all day.
+> **nurse_06:** *(as patient)* I have. I'm up about three pounds since yesterday.
 >
-> **agent_05:** Okay, I'll make a note of that. Next, let's confirm your follow-up visit.
+> **agent_05:** Thanks for telling me. Have you noticed any swelling in your ankles or legs?
+>
+> **nurse_07:** *(as patient)* A little, yes.
+>
+> **agent_08:** Three pounds overnight with some swelling can mean fluid is building up. I'm flagging this for your care team today, and a nurse will call you this afternoon.
+>
+> **nurse_09:** *(as patient)* Okay, thank you.
 
-Call ends. Voice mode opens.
-
-> **nurse_07:** That wasn't enough. If a patient stops a medication on their own, ask why, and flag it for the care team the same day.
->
-> **sys_05:** Got it. I've added that rule and six new test scenarios. All six pass.
-
-Right panel: new rule appears in the spec; six new tiles join the simulation grid and run.
+The call ends cleanly. Right panel: every call check is green, including "Rule R24 applied, from your expert
+review", then a "Call passed" result. Short pause, then the close. (Vignesh: no mistake in live testing —
+by now the agent should look production-ready; three rounds of mistake-and-fix was too much.)
 
 ---
 

@@ -187,38 +187,46 @@
       "id": "narr_09",
       "voice": "narrator",
       "phase": "Phase 6: Live test with a human",
-      "text": "Now a real person tests it. I have the agent call me, and I play a tricky patient."
+      "text": "Now a real person tests it. The agent calls me, and I play the patient."
     },
     {
       "id": "agent_04",
       "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "Are you taking your furosemide, the water pill, every morning?"
+      "text": "Have you checked your weight this morning?"
     },
     {
       "id": "nurse_06",
       "voice": "nurse",
       "phase": "Phase 6: Live test with a human",
-      "text": "I stopped. It makes me run to the bathroom all day.",
+      "text": "I have. I'm up about three pounds since yesterday.",
       "direction": "as patient"
     },
     {
       "id": "agent_05",
       "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "Okay, I'll make a note of that. Next, let's confirm your follow-up visit."
+      "text": "Thanks for telling me. Have you noticed any swelling in your ankles or legs?"
     },
     {
       "id": "nurse_07",
       "voice": "nurse",
       "phase": "Phase 6: Live test with a human",
-      "text": "That wasn't enough. If a patient stops a medication on their own, ask why, and flag it for the care team the same day."
+      "text": "A little, yes.",
+      "direction": "as patient"
     },
     {
-      "id": "sys_05",
-      "voice": "system",
+      "id": "agent_08",
+      "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "Got it. I've added that rule and six new test scenarios. All six pass."
+      "text": "Three pounds overnight with some swelling can mean fluid is building up. I'm flagging this for your care team today, and a nurse will call you this afternoon."
+    },
+    {
+      "id": "nurse_09",
+      "voice": "nurse",
+      "phase": "Phase 6: Live test with a human",
+      "text": "Okay, thank you.",
+      "direction": "as patient"
     },
     {
       "id": "narr_10",

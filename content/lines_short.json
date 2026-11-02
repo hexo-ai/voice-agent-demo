@@ -163,38 +163,46 @@
       "id": "narr_09",
       "voice": "narrator",
       "phase": "Phase 6: Live test with a human",
-      "text": "Then a live test. I play a tricky patient."
+      "text": "Then a live test. I play the patient."
     },
     {
       "id": "agent_04",
       "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "Are you taking your water pill every morning?"
+      "text": "Have you checked your weight this morning?"
     },
     {
       "id": "nurse_06",
       "voice": "nurse",
       "phase": "Phase 6: Live test with a human",
-      "text": "I stopped. It makes me run to the bathroom all day.",
+      "text": "I have. I'm up about three pounds since yesterday.",
       "direction": "as patient"
     },
     {
       "id": "agent_05",
       "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "Okay, noted. Now, your follow-up visit."
+      "text": "Thanks. Any swelling in your ankles or legs?"
     },
     {
       "id": "nurse_07",
       "voice": "nurse",
       "phase": "Phase 6: Live test with a human",
-      "text": "If a patient stops a medication, ask why and flag it today."
+      "text": "A little.",
+      "direction": "as patient"
     },
     {
-      "id": "sys_05",
-      "voice": "system",
+      "id": "agent_08",
+      "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "Rule added. Six new tests, all passing."
+      "text": "That can mean fluid building up. I'm flagging it for your care team, and a nurse will call you today."
+    },
+    {
+      "id": "nurse_09",
+      "voice": "nurse",
+      "phase": "Phase 6: Live test with a human",
+      "text": "Okay, thanks.",
+      "direction": "as patient"
     },
     {
       "id": "narr_10",

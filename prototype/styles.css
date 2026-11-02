@@ -394,3 +394,8 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .pc-title { font-size: 64px; font-weight: 700; color: #fff; }
 .pc-title span { color: #A9ABF0; font-weight: 400; font-size: 34px; display: block; text-align: center; margin-bottom: 6px; }
 .pc-desc { font-size: 30px; color: #A9B6C6; max-width: 1100px; text-align: center; line-height: 1.35; }
+
+.chk .tag { font-size: 15px; color: #C3C8F5; background: #232E52; border: 1px solid #3A4680; border-radius: 999px; padding: 3px 10px; }
+.chk.learned { border-color: var(--sia); }
+.result { margin-top: 24px; padding: 18px 22px; border-radius: 12px; background: rgba(63,182,139,.12); border: 1px solid var(--pass); color: #fff; font-size: 22px; opacity: 0; }
+.result b { color: var(--pass); }
