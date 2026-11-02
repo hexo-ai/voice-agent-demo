@@ -70,20 +70,21 @@
       const vis = U.fade(root, t, start, end, 0.5);
       // overlays live outside this scene, so update them even when the scene is hidden
       const jumpA0 = U.end(U.has("nurse_04") ? "nurse_04" : "nurse_03") + 0.25, jumpB0 = U.start("sys_04") - 0.15;
-      U.fade(jump, t, jumpA0, jumpB0, 0.35);
+      U.css(jump, { opacity: 0 }); // no overlay: the clock fast-forwards and the spec rolls up instead
       U.fade(document.getElementById("intro"), t, start + 1.9, start + 5.1, 0.35);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 0;
 
       const jumpA = U.end(U.has("nurse_04") ? "nurse_04" : "nurse_03") + 0.25, jumpB = U.start("sys_04") - 0.15;
-      const afterJump = t >= (jumpA + jumpB) / 2;
+      const jumpM = (jumpA + jumpB) / 2, afterJump = t >= jumpM;
 
-      U.text(jump, "12 minutes later");
 
       // clock: real time during the conversation, then the jump to 12 minutes
       const c0 = U.start("nurse_01");
-      CHROME.clock = t < c0 ? 0 : !afterJump ? t - c0 : 12 * 60 + Math.max(0, t - jumpB);
+      // the rest of the interview happens off screen: the clock fast-forwards to 0:12 during the hand-over
+      const pre = jumpA - c0;
+      CHROME.clock = t < c0 ? 0 : t < jumpA ? t - c0 : t < jumpB ? pre + (720 - pre) * U.ease(U.prog(t, jumpA, jumpB)) : 720 + (t - jumpB);
 
       // ---------- voice side ----------
       const cur = U.active(t, l => l.voice === "system" || l.voice === "nurse");
@@ -112,7 +113,7 @@
       // ---------- backend: spec ----------
       REQS.forEach((r, i) => {
         const a = T(r.at), b = r.until ? T(r.until) : (afterJump ? -1 : 1e9);
-        const o = afterJump ? 0 : Math.min(U.prog(t, a, a + 0.35), r.until ? 1 - U.prog(t, b, b + 0.01) : 1);
+        const o = afterJump ? 0 : Math.min(U.prog(t, a, a + 0.35), r.until ? 1 - U.prog(t, b, b + 0.01) : 1, 1 - U.prog(t, jumpA, jumpM));
         const node = reqNodes[i];
         U.css(node, { display: o > 0 ? "block" : "none", opacity: o.toFixed(3), transform: `translateY(${((1 - U.ease(U.prog(t, a, a + 0.35))) * 14).toFixed(1)}px)` });
         // keep the quote only on the most recent items so the list fits
@@ -121,7 +122,7 @@
       });
       GROUPS.forEach((g, i) => {
         const node = groupNodes[i];
-        const a = jumpB - 0.1 + i * 0.06;
+        const a = jumpM + i * 0.06;
         U.css(node, { display: afterJump ? "flex" : "none", opacity: U.prog(t, a, a + 0.3).toFixed(3) });
         const hl = g.hl && t >= U.at("sys_04", g.hl[0]) && t < U.at("sys_04", g.hl[1]);
         U.cls(node, "hl", hl);

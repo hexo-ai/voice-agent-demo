@@ -7,7 +7,7 @@
   "product_name_spoken": "Seeya Voice",
   "_pronunciation_note": "product_name_spoken is a phonetic spelling for the voice model only. 'Seeya Voice' reliably sounds like 'Sia' (the singer); plain 'Sia Voice' sometimes came out as 'Saya' or spelled out. generate_tts.py checks every take that says the name."
  },
- "total": 213.85,
+ "total": 211.45,
  "lines": [
   {
    "uid": "narr_01",
@@ -3159,7 +3159,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "The same loop works for any expert whose work happens on the phone.",
-   "start": 197.92,
+   "start": 195.52,
    "dur": 4.08,
    "file": "audio/tts_short/narr_14.mp3",
    "env": [
@@ -3251,7 +3251,7 @@
    "voice": "narrator",
    "phase": "The loop + close (full screen)",
    "text": "No engineer in the loop. From use case to production in hours, not weeks.",
-   "start": 203.35,
+   "start": 200.95,
    "dur": 5.8,
    "file": "audio/tts_short/narr_11.mp3",
    "env": [

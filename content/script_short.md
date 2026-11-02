@@ -80,7 +80,7 @@ Right panel ticks as each answer lands:
 ✓ Patients: heart failure, 48 h after discharge · ✓ Check: symptoms, medications, follow-up visit ·
 ✓ Chest pain → 911 · ✓ Breathing trouble → nurse line (after hours: on-call) · ✓ Only listed caregivers
 
-Jump cut, caption: **"12 minutes later"**. Checklist now long; counter reads *23 requirements · 6 escalation rules*.
+Hand-over (no caption card): the clock fast-forwards to 0:12 while the spec rolls up into grouped requirements. Checklist now long; counter reads *23 requirements · 6 escalation rules*.
 
 > **sys_04:** Got it. Shall I build it?
 >

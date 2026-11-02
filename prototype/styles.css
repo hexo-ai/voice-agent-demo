@@ -399,3 +399,15 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .chk.learned { border-color: var(--sia); }
 .result { margin-top: 24px; padding: 18px 22px; border-radius: 12px; background: rgba(63,182,139,.12); border: 1px solid var(--pass); color: #fff; font-size: 22px; opacity: 0; }
 .result b { color: var(--pass); }
+
+/* ---------- end card: SIA Voice inside the loop ---------- */
+.endcard { background: var(--night); place-content: start center; padding-top: 30px; gap: 8px; }
+.ec-ring { position: relative; width: 1200px; height: 600px; margin: 0 auto; }
+#ec-loop { position: absolute; inset: 0; } #ec-loop text { font-family: "Atkinson"; }
+.ec-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.ec-mark { color: #fff; font-size: 84px; }
+.ec-tag { color: #A9B6C6; font-size: 28px; }
+.endcard .ec-claim { color: #fff; margin-top: 14px; font-size: 42px; }
+.endcard .ec-time { color: #D6DEE8; }
+.endcard .ec-research, .endcard .ec-small { color: #A9B6C6; }
+.endcard .ec-research { margin-top: 10px; }

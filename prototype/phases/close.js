@@ -28,6 +28,16 @@
   grid.innerHTML = DOMAINS.map(([r, c, tag]) => `<div class="dm${tag ? " this" : ""}"><span class="dm-r">${r}</span><span class="dm-c">${c}</span><span class="dm-t">${tag}</span></div>`).join("");
   const dms = [...grid.children];
 
+  // end card: the product at the centre of its six-step loop (echoes the thumbnail)
+  const EC = [600, 300], ER = 255;
+  const ESTEPS = ["Collect requirements", "Build agent", "Run simulation", "Improve and fine-tune", "Expert review", "Live testing"];
+  const epos = i => { const a = (-90 + i * 60) * Math.PI / 180; return [EC[0] + ER * 1.45 * Math.cos(a), EC[1] + ER * Math.sin(a)]; };
+  document.getElementById("ec-loop").innerHTML =
+    `<ellipse cx="${EC[0]}" cy="${EC[1]}" rx="${ER * 1.45}" ry="${ER}" fill="none" stroke="#3A4C63" stroke-width="3"/>
+     <ellipse id="ec-arc" cx="${EC[0]}" cy="${EC[1]}" rx="${ER * 1.45}" ry="${ER}" fill="none" stroke="#7B7FE8" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="22 78" transform="rotate(-90 ${EC[0]} ${EC[1]})"/>` +
+    ESTEPS.map((s, i) => { const [x, y] = epos(i), w = s.length * 11 + 44;
+      return `<g id="es${i}" opacity="0"><rect x="${x - w / 2}" y="${y - 23}" width="${w}" height="46" rx="23" fill="#1E2B3B" stroke="#3A4680" stroke-width="1.5"/><text x="${x}" y="${y + 7}" text-anchor="middle" font-size="19" fill="#D6DEE8">${s}</text></g>`; }).join("");
+
   const recap = U.has("narr_10"); // the short cut keeps the loop on screen without the spoken recap
   SCENES.add({
     render(t) {
@@ -35,6 +45,7 @@
       const vis = U.fade(root, t, a, 1e9, 0.6);
       if (vis <= 0) return;
       if (vis < 0.5) CHROME.showTopbar = true;
+      U.css(document.querySelector("#close .loop-wrap"), { display: recap ? "block" : "none" });
       // the highlight travels the loop, speeding up
       const tt = Math.max(0, t - a);
       const turns = 0.25 * tt + 0.012 * tt * tt;
@@ -49,10 +60,13 @@
       });
       const n = Math.round(58 + (140 - 58) * U.ease(recap ? U.prog(t, U.at("narr_10", 0.6), U.end("narr_10")) : U.prog(t, a + 1.2, a + 2.6)));
       U.text(nEl, String(n));
-      const dA = U.start("narr_14") - 0.5;
+      const dA = recap ? U.start("narr_14") - 0.5 : a; // short cut: straight to the domains, no silent loop
       U.fade(document.getElementById("domains"), t, dA, 1e9, 0.5);
       dms.forEach((d, i) => U.css(d, { opacity: U.prog(t, dA + 0.3 + i * 0.25, dA + 0.6 + i * 0.25).toFixed(3), transform: `translateY(${(1 - U.ease(U.prog(t, dA + 0.3 + i * 0.25, dA + 0.7 + i * 0.25))) * 14}px)` }));
-      U.fade(card, t, U.start("narr_11") - 0.3, 1e9, 0.6);
+      const cA = U.start("narr_11") - 0.3;
+      U.fade(card, t, cA, 1e9, 0.6);
+      ESTEPS.forEach((_, i) => document.getElementById("es" + i).setAttribute("opacity", U.prog(t, cA + 0.3 + i * 0.15, cA + 0.6 + i * 0.15).toFixed(3)));
+      document.getElementById("ec-arc").setAttribute("stroke-dashoffset", (-(Math.max(0, t - cA) * 14) % 100).toFixed(2));
     },
   });
 })();
