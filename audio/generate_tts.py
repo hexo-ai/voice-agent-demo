@@ -10,7 +10,7 @@ Clips go to audio/tts/<id>.mp3 (gitignored). A manifest records the text + voice
 so a clip is regenerated automatically when its line or voice changes.
 Needs ELEVENLABS_API_KEY in .env.
 """
-import argparse, hashlib, json, os, sys, urllib.request
+import argparse, hashlib, json, os, re, subprocess, sys, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -33,6 +33,21 @@ def tts(text, voice, cfg, key):
     req = urllib.request.Request(url, data=body, headers={"xi-api-key": key, "Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=120) as r:
         return r.read()
+
+
+# Takes that say the product name are transcribed and regenerated if the name comes out wrong
+# (the voice model sometimes spells it out or says "Saya"). Accepted: "Sia" said as one word.
+NAME_OK = re.compile(r"\b(sia|see ?a|seeya|sea)[ .,-]*voice", re.I)
+
+
+def transcribe(path, key):
+    out = subprocess.run(["curl", "-s", "-m", "90", "-H", f"xi-api-key: {key}", "-F", "model_id=scribe_v1",
+                          "-F", f"file=@{path}", "https://api.elevenlabs.io/v1/speech-to-text"],
+                         capture_output=True, text=True).stdout
+    try:
+        return json.loads(out).get("text", "")
+    except ValueError:
+        return ""
 
 
 def main():
@@ -74,7 +89,17 @@ def main():
             mpath.write_text(json.dumps(manifest, indent=2))
             continue
         print(f"  {ln['id']:<11} {voice['name'].split(' -')[0]:<8} {ln['text'][:60]}")
-        f.write_bytes(tts(ln["text"], voice, cfg, key))
+        spoken = json.loads((ROOT / "content/config.json").read_text()).get("product_name_spoken", "")
+        for attempt in range(5):
+            f.write_bytes(tts(ln["text"], voice, cfg, key))
+            if not spoken or spoken not in ln["text"]:
+                break
+            heard = transcribe(f, key)
+            # capital "SIA" / "S.I.A." in the transcript means it was spelled out letter by letter
+            spelled = re.search(r"\bSIA\b|\bS\.? ?I\.? ?A\b", heard)
+            if NAME_OK.search(heard) and not spelled:
+                break
+            print(f"    name mispronounced (heard: {heard[:40]!r}), retrying")
         manifest[ln["id"]] = sig
         mpath.write_text(json.dumps(manifest, indent=2))
     print("done")

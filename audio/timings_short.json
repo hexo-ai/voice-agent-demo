@@ -15,7 +15,7 @@
     "id": "narr_13",
     "phase": "Hook: the problem (full screen)",
     "file": "audio/tts_short/narr_13.mp3",
-    "seconds": 5.38
+    "seconds": 6.27
   },
   {
     "id": "narr_03",
@@ -105,7 +105,7 @@
     "id": "narr_07",
     "phase": "Phase 4: Simulations",
     "file": "audio/tts_short/narr_07.mp3",
-    "seconds": 10.03
+    "seconds": 9.64
   },
   {
     "id": "agent_03",
@@ -195,7 +195,7 @@
     "id": "narr_10",
     "phase": "The loop + close (full screen)",
     "file": "audio/tts_short/narr_10.mp3",
-    "seconds": 7.18
+    "seconds": 8.2
   },
   {
     "id": "narr_14",

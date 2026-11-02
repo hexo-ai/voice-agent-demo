@@ -3,5 +3,6 @@
   "tagline": "Production voice agents, built by domain experts.",
   "hospital_name": "Riverside General",
   "illustrative_tag": "Illustrative product concept",
-  "product_name_spoken": "Sia Voice"
+  "product_name_spoken": "Seeya Voice",
+  "_pronunciation_note": "product_name_spoken is a phonetic spelling for the voice model only. 'Seeya Voice' reliably sounds like 'Sia' (the singer); plain 'Sia Voice' sometimes came out as 'Saya' or spelled out. generate_tts.py checks every take that says the name."
 }

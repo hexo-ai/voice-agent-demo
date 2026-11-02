@@ -18,7 +18,7 @@
       "id": "narr_13",
       "voice": "narrator",
       "phase": "Hook: the problem (full screen)",
-      "text": "Sia Voice takes the engineer out of that loop. The expert works with it directly."
+      "text": "Seeya Voice takes the engineer out of that loop. The expert works with it directly."
     },
     {
       "id": "narr_03",
@@ -127,7 +127,7 @@
       "id": "narr_07",
       "voice": "narrator",
       "phase": "Phase 4: Simulations",
-      "text": "Sia Voice catches each failure, works out why it happened, and fixes it itself."
+      "text": "Seeya Voice catches each failure, works out why it happened, and fixes it itself."
     },
     {
       "id": "narr_08",
@@ -151,7 +151,7 @@
       "id": "narr_12",
       "voice": "narrator",
       "phase": "Phase 5b: Expert reviews the simulations",
-      "text": "Sia Voice also picks the calls it's least sure about, and asks me to listen."
+      "text": "Seeya Voice also picks the calls it's least sure about, and asks me to listen."
     },
     {
       "id": "agent_06",
@@ -224,7 +224,7 @@
       "id": "narr_10",
       "voice": "narrator",
       "phase": "The loop + close (full screen)",
-      "text": "Every mistake becomes a permanent test, whether Sia Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat."
+      "text": "Every mistake becomes a permanent test, whether Seeya Voice finds it, the expert hears it, or a live call reveals it. Simulate, fix, test with people, repeat."
     },
     {
       "id": "narr_14",
