@@ -34,7 +34,7 @@
   const epos = i => { const a = (-90 + i * 60) * Math.PI / 180; return [EC[0] + ER * 1.45 * Math.cos(a), EC[1] + ER * Math.sin(a)]; };
   document.getElementById("ec-loop").innerHTML =
     `<ellipse cx="${EC[0]}" cy="${EC[1]}" rx="${ER * 1.45}" ry="${ER}" fill="none" stroke="#3A4C63" stroke-width="3"/>
-     <ellipse id="ec-arc" cx="${EC[0]}" cy="${EC[1]}" rx="${ER * 1.45}" ry="${ER}" fill="none" stroke="#7B7FE8" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="22 78" transform="rotate(-90 ${EC[0]} ${EC[1]})"/>` +
+     <ellipse id="ec-arc" cx="${EC[0]}" cy="${EC[1]}" rx="${ER * 1.45}" ry="${ER}" fill="none" stroke="#7B7FE8" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="22 78"/>` +
     ESTEPS.map((s, i) => { const [x, y] = epos(i), w = s.length * 11 + 44;
       return `<g id="es${i}" opacity="0"><rect x="${x - w / 2}" y="${y - 23}" width="${w}" height="46" rx="23" fill="#1E2B3B" stroke="#3A4680" stroke-width="1.5"/><text x="${x}" y="${y + 7}" text-anchor="middle" font-size="19" fill="#D6DEE8">${s}</text></g>`; }).join("");
 
@@ -66,7 +66,8 @@
       const cA = U.start("narr_11") - 0.3;
       U.fade(card, t, cA, 1e9, 0.6);
       ESTEPS.forEach((_, i) => document.getElementById("es" + i).setAttribute("opacity", U.prog(t, cA + 0.3 + i * 0.15, cA + 0.6 + i * 0.15).toFixed(3)));
-      document.getElementById("ec-arc").setAttribute("stroke-dashoffset", (-(Math.max(0, t - cA) * 14) % 100).toFixed(2));
+      // an ellipse path starts at 3 o'clock; +25 moves the start to 12 o'clock, then travel clockwise
+      document.getElementById("ec-arc").setAttribute("stroke-dashoffset", (25 - (Math.max(0, t - cA) * 14) % 100).toFixed(2));
     },
   });
 })();
