@@ -28,6 +28,7 @@
   grid.innerHTML = DOMAINS.map(([r, c, tag]) => `<div class="dm${tag ? " this" : ""}"><span class="dm-r">${r}</span><span class="dm-c">${c}</span><span class="dm-t">${tag}</span></div>`).join("");
   const dms = [...grid.children];
 
+  const recap = U.has("narr_10"); // the short cut keeps the loop on screen without the spoken recap
   SCENES.add({
     render(t) {
       const a = U.end(U.has("nurse_09") ? "nurse_09" : "sys_05") + 1.9;
@@ -40,13 +41,13 @@
       document.getElementById("loop-arc").setAttribute("stroke-dashoffset", (-(turns * 100) % 100).toFixed(2));
       NODES.forEach((n, i) => {
         const g = document.getElementById("ln" + i);
-        const lit = n.src != null && t >= U.at("narr_10", n.src);
+        const lit = n.src != null && t >= (recap ? U.at("narr_10", n.src) : a + 0.4 + n.src * 2.2);
         const r = g.querySelector("rect");
         r.setAttribute("stroke", lit ? "#7B7FE8" : "#2A3B50");
         r.setAttribute("fill", lit ? "#232E52" : "#1E2B3B");
         g.querySelector("text").setAttribute("fill", lit ? "#FFFFFF" : "#D6DEE8");
       });
-      const n = Math.round(58 + (140 - 58) * U.ease(U.prog(t, U.at("narr_10", 0.6), U.end("narr_10"))));
+      const n = Math.round(58 + (140 - 58) * U.ease(recap ? U.prog(t, U.at("narr_10", 0.6), U.end("narr_10")) : U.prog(t, a + 1.2, a + 2.6)));
       U.text(nEl, String(n));
       const dA = U.start("narr_14") - 0.5;
       U.fade(document.getElementById("domains"), t, dA, 1e9, 0.5);

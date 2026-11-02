@@ -21,7 +21,7 @@
     "id": "narr_03",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts_short/narr_03.mp3",
-    "seconds": 7.47
+    "seconds": 4.02
   },
   {
     "id": "nurse_01",
@@ -174,34 +174,16 @@
     "seconds": 4.49
   },
   {
-    "id": "agent_05",
-    "phase": "Phase 6: Live test with a human",
-    "file": "audio/tts_short/agent_05.mp3",
-    "seconds": 2.82
-  },
-  {
-    "id": "nurse_07",
-    "phase": "Phase 6: Live test with a human",
-    "file": "audio/tts_short/nurse_07.mp3",
-    "seconds": 0.84
-  },
-  {
     "id": "agent_08",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/agent_08.mp3",
-    "seconds": 5.43
+    "seconds": 6.22
   },
   {
     "id": "nurse_09",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/nurse_09.mp3",
     "seconds": 1.28
-  },
-  {
-    "id": "narr_10",
-    "phase": "The loop + close (full screen)",
-    "file": "audio/tts_short/narr_10.mp3",
-    "seconds": 8.2
   },
   {
     "id": "narr_14",

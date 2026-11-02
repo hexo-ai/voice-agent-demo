@@ -3,7 +3,9 @@
 Short version of `script.md`. Same screens and engine; tighter lines. Line IDs match the long
 script; changed lines get regenerated audio, unchanged ones reuse it. Dropped: sys_03, nurse_04
 (caregiver exchange), narr_04, narr_08 and the patient replay. The agent's questions
-(agent_01, agent_06) stay so the patient lines answer something. Build with `CUT=short ./build.sh`.
+(agent_01, agent_06) stay so the patient lines answer something. Also dropped in the short cut: the
+swelling exchange on the live call (agent_05, nurse_07; R24 here is just 'flag it today', matching what
+Vignesh says) and the spoken loop recap (narr_10; the loop stays on screen ~2.5 s). Build with `CUT=short ./build.sh`.
 
 **Product:** agent that builds voice agents for domain experts (illustrative concept).
 **Use case:** post-discharge follow-up calls for heart failure patients.
@@ -60,7 +62,7 @@ On-screen tag at the start: "Example: a nurse building a hospital follow-up agen
 **Left:** voice-mode screen. Animated orb that pulses with whoever is speaking, live captions underneath. No buttons except mute and end.
 **Right:** "Requirements captured" checklist filling in live as Vignesh speaks; a spec document assembling underneath.
 
-> **narr_03:** Here's one example. I'm Vignesh, playing a nurse. I need an agent that calls patients after discharge.
+> **narr_03:** Here's one example. I'm Vignesh, playing a nurse.
 >
 > **nurse_01:** I need an agent that calls heart failure patients two days after discharge, to check symptoms, meds and their follow-up visit.
 >
@@ -180,11 +182,7 @@ Right panel: tiles run; the weight-gain tiles turn green.
 >
 > **nurse_06:** *(as patient)* I have. I'm up about three pounds since yesterday.
 >
-> **agent_05:** Thanks. Any swelling in your ankles or legs?
->
-> **nurse_07:** *(as patient)* A little.
->
-> **agent_08:** That can mean fluid building up. I'm flagging it for your care team, and a nurse will call you today.
+> **agent_08:** Three pounds overnight can mean fluid building up. I'm flagging it for your care team, and a nurse will call you today.
 >
 > **nurse_09:** *(as patient)* Okay, thanks.
 
@@ -196,8 +194,6 @@ by now the agent should look production-ready; three rounds of mistake-and-fix w
 
 ## 3:20–3:40 — The loop + close (full screen)
 Visual: a circular loop diagram — Simulate → {{product_name}} self-review → Expert review → Fix → Live test → back to Simulate (three feedback sources highlighted) — spinning faster; test count growing (50 → 56 → 80 → 140).
-
-> **narr_10:** Every mistake becomes a permanent test, whether {{product_name}}, the expert, or a live call finds it.
 
 Visual: the loop gives way to five experts the same loop works for — Nurses (post-discharge follow-up,
 "this demo"), Claims adjusters (first notice of loss), Recruiters (candidate screening), Field-service

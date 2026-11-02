@@ -24,7 +24,7 @@
       "id": "narr_03",
       "voice": "narrator",
       "phase": "Phase 1: Requirements (voice interview)",
-      "text": "Here's one example. I'm Vignesh, playing a nurse. I need an agent that calls patients after discharge."
+      "text": "Here's one example. I'm Vignesh, playing a nurse."
     },
     {
       "id": "nurse_01",
@@ -179,23 +179,10 @@
       "direction": "as patient"
     },
     {
-      "id": "agent_05",
-      "voice": "agent",
-      "phase": "Phase 6: Live test with a human",
-      "text": "Thanks. Any swelling in your ankles or legs?"
-    },
-    {
-      "id": "nurse_07",
-      "voice": "nurse",
-      "phase": "Phase 6: Live test with a human",
-      "text": "A little.",
-      "direction": "as patient"
-    },
-    {
       "id": "agent_08",
       "voice": "agent",
       "phase": "Phase 6: Live test with a human",
-      "text": "That can mean fluid building up. I'm flagging it for your care team, and a nurse will call you today."
+      "text": "Three pounds overnight can mean fluid building up. I'm flagging it for your care team, and a nurse will call you today."
     },
     {
       "id": "nurse_09",
@@ -203,12 +190,6 @@
       "phase": "Phase 6: Live test with a human",
       "text": "Okay, thanks.",
       "direction": "as patient"
-    },
-    {
-      "id": "narr_10",
-      "voice": "narrator",
-      "phase": "The loop + close (full screen)",
-      "text": "Every mistake becomes a permanent test, whether Seeya Voice, the expert, or a live call finds it."
     },
     {
       "id": "narr_14",

@@ -12,12 +12,15 @@
   const LAST = BUB[BUB.length - 1][0];
 
   // [label, when it ticks, optional tag]
+  const R24 = "Rule R24 applied, from your expert review";
   const CHECKS = [
     ["Confirmed identity", () => U.start("agent_04") - 1.2],
     ["Asked about symptoms", () => U.start("agent_04") - 0.6],
     ["Asked about weight", () => U.start("agent_04") + 0.6],
-    ["Weight up 3 lb overnight: asked about swelling", () => U.start("agent_05") + 0.8, "Rule R24 applied, from your expert review"],
-    ["Flagged for the care team today", () => U.at("agent_08", 0.6)],
+    ...(U.has("agent_05")
+      ? [["Weight up 3 lb overnight: asked about swelling", () => U.start("agent_05") + 0.8, R24],
+         ["Flagged for the care team today", () => U.at("agent_08", 0.6)]]
+      : [["Weight up 3 lb overnight: flagged for the care team today", () => U.at("agent_08", 0.55), R24]]),
   ];
   $("p7-checks").innerHTML = CHECKS.map(([c, , tag]) => `<li class="chk${tag ? " learned" : ""}"><span>${c}</span>${tag ? `<span class="tag">${tag}</span>` : ""}<span class="st"></span></li>`).join("");
   const chks = [...$("p7-checks").children];

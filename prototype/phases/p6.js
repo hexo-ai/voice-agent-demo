@@ -21,7 +21,7 @@
   const turnEls = [...$("p6-turns").children];
 
   $("p6-req").innerHTML = `<div class="nr-k">New requirement R24, from Vignesh's review</div>
-    <div class="rule">Weight up 3 lb or more overnight: <b>ask about swelling, flag for the care team today</b></div>
+    <div class="rule">Weight up 3 lb or more overnight: <b>${U.has("agent_05") ? "ask about swelling, flag for the care team today" : "flag for the care team today"}</b></div>
     <div class="quote">“Three pounds overnight can mean fluid…”</div>`;
 
   // suite before review: 47 pass, 3 fail (same 3 still open from the optimization loop)
