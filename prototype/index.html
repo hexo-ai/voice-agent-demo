@@ -195,7 +195,8 @@
         <div class="chart"><div class="ch-t">Cost per call</div><div class="ch-v" id="p5-cost"></div><svg id="p5-c2" width="460" height="190"></svg></div>
       </div>
       <div class="ft" id="p5-ft">
-        <div class="ft-row"><span class="ft-t">Fine-tuning a smaller model</span><span class="ft-s" id="p5-fts"></span></div>
+        <div class="ft-row"><span class="ft-t">Fine-tuning: rules a prompt can't capture become training data</span><span class="ft-s" id="p5-fts"></span></div>
+        <div class="ft-rules" id="p5-ftrules"></div>
         <div class="runbar dark"><div class="runfill" id="p5-ftfill"></div></div>
         <div class="ft-note" id="p5-ftnote"></div>
       </div>
@@ -267,6 +268,13 @@
       <p class="ec-small">Illustrative product concept. Product UI, calls and numbers are mocked.</p>
     </div>
   </section>
+
+  <!-- Step transition card: shown for ~2 s at the start of each phase -->
+  <div id="phasecard">
+    <ol class="pc-steps" id="pc-steps"></ol>
+    <div class="pc-title" id="pc-title"></div>
+    <p class="pc-desc" id="pc-desc"></p>
+  </div>
 
   <!-- Narrator subtitle -->
   <div id="subtitle"></div>

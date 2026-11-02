@@ -127,10 +127,10 @@ Call tile turns red. {{product_name}} reports to the nurse by voice (left panel:
 ---
 
 ## 2:00–2:25 — Phase 5: Optimization loop
-**Right:** the strongest backend moment. Prompt and conversation-logic diffs scrolling; a fine-tuning run with a loss curve; round counter 1 → 4; **pass rate 62% → 94%**; **cost per call** dropping.
+**Right:** the strongest backend moment. Prompt and conversation-logic diffs scrolling; a fine-tuning run that turns rules a prompt can't capture into training data (e.g. spotting symptoms described indirectly); round counter 1 → 4; **pass rate 62% → 94%**; **cost per call** dropping.
 **Left:** calm summary — "Fixed 16 of 19 issues. Here's what changed:" then plain-language bullets, e.g. *"The agent now asks a follow-up question whenever a patient mentions breathing, even in passing."*
 
-> **narr_08:** It rewrites the prompts and conversation logic, fine-tunes the model, and runs every test again.
+> **narr_08:** It rewrites the prompts and conversation logic. Rules a prompt can't capture become training data, and it fine-tunes the model on them. Then it runs every test again.
 
 Replay of the same call, now passing (reuse `patient_01` audio):
 

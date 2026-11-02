@@ -43,16 +43,17 @@
   personasEl.innerHTML = PERSONAS.map(p => `<span class="persona">${p}</span>`).join("");
   const personaNodes = [...personasEl.children];
 
+  U.stepCard(2, U.start("narr_05") - 2.3 + 0.1);
   SCENES.add({
     render(t) {
-      const a = U.start("narr_05") - 0.9, b = U.start("narr_06") - 0.6;
+      const a = U.start("narr_05") - 2.3, b = U.start("narr_06") - 0.6;
       const vis = U.fade(root, t, a, b + 0.5, 0.5);
       if (vis <= 0) return;
       CHROME.showTopbar = true;
       CHROME.step = 2;
       CHROME.clock = 13 * 60 + 10 + (t - a) * 12;
 
-      const genA = a + 0.6, genB = Math.min(a + 10, b - 1.2);               // all 50 written in ~9 s
+      const genA = a + 2.2, genB = Math.min(a + 10, b - 1.2);               // all 50 written in ~9 s
       const made = Math.floor(U.prog(t, genA, genB) * N);
       U.text(count, `${made} test scenario${made === 1 ? "" : "s"}`);
       scNodes.forEach((n, i) => {
@@ -70,7 +71,7 @@
       U.html(legend, done ? `<b>All 23 requirements covered.</b> Each one is tested by at least 3 scenarios.` : "");
       U.css(legend, { opacity: U.prog(t, genB + 0.3, genB + 0.7).toFixed(3) });
 
-      personaNodes.forEach((n, i) => { const ta = a + 3 + i * 0.35; U.css(n, { opacity: U.prog(t, ta, ta + 0.3).toFixed(3) }); });
+      personaNodes.forEach((n, i) => { const ta = genA + 2 + i * 0.25; U.css(n, { opacity: U.prog(t, ta, ta + 0.3).toFixed(3) }); });
     },
   });
 })();

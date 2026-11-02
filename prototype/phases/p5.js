@@ -25,6 +25,11 @@
   ];
   const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
+  // behaviours that are hard to pin down in a prompt; they are learned from corrected calls instead
+  const FT_RULES = ["Spot symptoms described indirectly", "Slow down for hard-of-hearing callers", "Tell a caregiver from the patient"];
+  $("p5-ftrules").innerHTML = FT_RULES.map(r => `<span class="ft-rule">${r}</span>`).join("");
+  const ftRuleEls = [...$("p5-ftrules").children];
+
   const PASS = [62, 72, 84, 90, 94];
   const COST = [0.41, 0.40, 0.39, 0.21, 0.19];
 
@@ -53,6 +58,7 @@
     return cur;
   }
 
+  U.stepCard(3, U.end("narr_07") + 2.0 + 0.1);
   SCENES.add({
     render(t) {
       const a = U.end("narr_07") + 2.0, b = U.end("sys_07") + 2.5;
@@ -62,7 +68,7 @@
       CHROME.step = 3;
 
       // four rounds, compressed if the cut leaves less time before the re-run
-      const r0 = a + 0.6, span = Math.min(12, U.start(RERUN) - 1.0 - r0);
+      const r0 = a + 2.2, span = Math.min(12, U.start(RERUN) - 1.0 - r0);
       const R = [r0 + span * 0.22, r0 + span * 0.47, r0 + span * 0.75, r0 + span];
       const doneRounds = R.filter(x => t >= x).length;
       CHROME.clock = 31 * 60 + U.prog(t, a, R[3]) * 130 * 60 + Math.max(0, t - R[3]) * 3;
@@ -96,8 +102,9 @@
       U.css($("p5-ft"), { opacity: U.prog(t, R[1] - 0.2, R[1] + 0.2).toFixed(3) });
       const fp = U.prog(t, R[1], R[2] - 0.2);
       U.css($("p5-ftfill"), { width: (fp * 100).toFixed(1) + "%" });
-      U.text($("p5-fts"), fp < 1 ? `Training on 1,240 corrected call turns` : "Done");
-      U.html($("p5-ftnote"), t >= R[2] - 0.1 ? `<b>Same pass rate, 54% cheaper per call.</b> The smaller model now runs the agent.` : "");
+      U.text($("p5-fts"), fp < 1 ? `1,240 corrected call turns` : "Done");
+      ftRuleEls.forEach((el, i) => U.css(el, { opacity: U.prog(t, R[1] + i * 0.3, R[1] + 0.3 + i * 0.3).toFixed(3) }));
+      U.html($("p5-ftnote"), t >= R[2] - 0.1 ? `<b>The model learned what prompts couldn't teach.</b> Bonus: a smaller model, 54% cheaper per call.` : "");
 
       // call 23 runs again and passes
       const rpA = U.start(RERUN) - 0.6;

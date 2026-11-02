@@ -82,6 +82,12 @@
       "text": "Then it runs them as simulated calls."
     },
     {
+      "id": "agent_01",
+      "voice": "agent",
+      "phase": "Phase 4: Simulations",
+      "text": "Is anything bothering you since you got home?"
+    },
+    {
       "id": "patient_01",
       "voice": "patient",
       "phase": "Phase 4: Simulations",
@@ -103,7 +109,7 @@
       "id": "narr_07",
       "voice": "narrator",
       "phase": "Phase 4: Simulations",
-      "text": "Sia Voice works out why, fixes the agent, and fine-tunes the model."
+      "text": "Sia Voice works out why and fixes the prompts. Rules a prompt can't capture become training data, and it fine-tunes the model on them."
     },
     {
       "id": "agent_03",
@@ -122,6 +128,12 @@
       "voice": "narrator",
       "phase": "Phase 5b: Expert reviews the simulations",
       "text": "It also asks me to review the calls it's least sure about."
+    },
+    {
+      "id": "agent_06",
+      "voice": "agent",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "Have you been weighing yourself every morning?"
     },
     {
       "id": "patient_02",

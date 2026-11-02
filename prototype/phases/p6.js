@@ -27,6 +27,7 @@
   // suite before review: 47 pass, 3 fail (same 3 still open from the optimization loop)
   const OPEN = new Set([11, 29, 44]);
 
+  U.stepCard(4, U.end("sys_07") + 2.0 + 0.1);
   SCENES.add({
     render(t) {
       const a = U.end("sys_07") + 2.0, b = U.end("sys_08") + 2.6;
@@ -36,14 +37,14 @@
       CHROME.step = 4;
       CHROME.clock = 9714 + U.prog(t, a, b) * (10714 - 9714);   // 2:41:54 -> 2:58:34, whatever the cut's pace
 
-      rows.forEach((r, i) => U.css(r, { opacity: U.prog(t, a + 0.5 + i * 0.25, a + 0.8 + i * 0.25).toFixed(3) }));
+      rows.forEach((r, i) => U.css(r, { opacity: U.prog(t, a + 2.2 + i * 0.2, a + 2.5 + i * 0.2).toFixed(3) }));
       const p0 = U.start(TURNS[0][0]) - 0.6, p1 = U.end("agent_07");
       const row = rows[PLAY];
       U.cls(row, "playing", t >= p0 && t < p1 + 0.3);
       U.cls(row, "heard", t >= p1 + 0.3);
       U.css(row.querySelector(".prog i"), { width: (U.prog(t, p0, p1) * 100).toFixed(1) + "%" });
 
-      U.css($("p6-conf"), { opacity: U.prog(t, a + 1.2, a + 1.6).toFixed(3) });
+      U.css($("p6-conf"), { opacity: U.prog(t, a + 2.4, a + 2.8).toFixed(3) });
       U.text($("p6-sub"), "Call 31, picked for review");
       TURNS.forEach(([u], i) => {
         const l = U.line(u), el = turnEls[i];

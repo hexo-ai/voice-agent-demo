@@ -133,7 +133,7 @@
       "id": "narr_08",
       "voice": "narrator",
       "phase": "Phase 5: Optimization loop",
-      "text": "It rewrites the prompts and conversation logic, fine-tunes the model, and runs every test again."
+      "text": "It rewrites the prompts and conversation logic. Rules a prompt can't capture become training data, and it fine-tunes the model on them. Then it runs every test again."
     },
     {
       "id": "agent_03",

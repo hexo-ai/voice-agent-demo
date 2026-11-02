@@ -78,6 +78,12 @@
     "seconds": 2.69
   },
   {
+    "id": "agent_01",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts_short/agent_01.mp3",
+    "seconds": 2.32
+  },
+  {
     "id": "patient_01",
     "phase": "Phase 4: Simulations",
     "file": "audio/tts_short/patient_01.mp3",
@@ -99,7 +105,7 @@
     "id": "narr_07",
     "phase": "Phase 4: Simulations",
     "file": "audio/tts_short/narr_07.mp3",
-    "seconds": 4.62
+    "seconds": 10.03
   },
   {
     "id": "agent_03",
@@ -118,6 +124,12 @@
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts_short/narr_12.mp3",
     "seconds": 3.42
+  },
+  {
+    "id": "agent_06",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts_short/agent_06.mp3",
+    "seconds": 2.32
   },
   {
     "id": "patient_02",

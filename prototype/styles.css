@@ -258,6 +258,8 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .ft-row { display: flex; justify-content: space-between; font-size: 20px; color: #fff; margin-bottom: 12px; }
 .ft-s { color: var(--night-mute); font-size: 18px; }
 .runbar.dark { position: static; background: var(--night-line); height: 8px; }
+.ft-rules { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.ft-rule { font-size: 16px; color: var(--night-text); background: #232E52; border: 1px solid #3A4680; border-radius: 999px; padding: 5px 12px; }
 .ft-note { margin-top: 12px; font-size: 19px; color: var(--night-text); min-height: 25px; }
 .ft-note b { color: #7FE0B8; }
 
@@ -379,3 +381,16 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 #intro h1 { font-size: 60px; font-weight: 700; } #intro p { font-size: 28px; line-height: 1.35; max-width: 680px; }
 #intro .x h1 { color: var(--ink); } #intro .x p { color: var(--ink-2); }
 #intro .y h1 { color: #fff; } #intro .y p { color: #A9B6C6; }
+
+/* ---------- step transition card ---------- */
+#phasecard { position: absolute; z-index: 38; inset: 76px 0 0 0; background: rgba(22,33,46,.97); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; opacity: 0; }
+.pc-steps { list-style: none; display: flex; align-items: center; gap: 0; margin-bottom: 18px; }
+.pc-steps li { display: flex; align-items: center; }
+.pc-steps .dot { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; font-weight: 700; border: 2px solid #33465E; color: var(--night-mute); background: var(--night-2); }
+.pc-steps .bar { width: 120px; height: 3px; background: #33465E; }
+.pc-steps li.done .dot { background: var(--pass); border-color: var(--pass); color: #fff; }
+.pc-steps li.done .bar, .pc-steps li.done + li .bar.in { background: var(--pass); }
+.pc-steps li.on .dot { background: var(--sia); border-color: #A9ABF0; color: #fff; box-shadow: 0 0 0 10px rgba(91,95,214,.25); transform: scale(1.12); }
+.pc-title { font-size: 64px; font-weight: 700; color: #fff; }
+.pc-title span { color: #A9ABF0; font-weight: 400; font-size: 34px; display: block; text-align: center; margin-bottom: 6px; }
+.pc-desc { font-size: 30px; color: #A9B6C6; max-width: 1100px; text-align: center; line-height: 1.35; }

@@ -2,7 +2,8 @@
 
 Short version of `script.md`. Same screens and engine; tighter lines. Line IDs match the long
 script; changed lines get regenerated audio, unchanged ones reuse it. Dropped: sys_03, nurse_04
-(caregiver exchange), narr_04, agent_01, narr_08, agent_06. Build with `CUT=short ./build.sh`.
+(caregiver exchange), narr_04, narr_08 and the patient replay. The agent's questions
+(agent_01, agent_06) stay so the patient lines answer something. Build with `CUT=short ./build.sh`.
 
 **Product:** agent that builds voice agents for domain experts (illustrative concept).
 **Use case:** post-discharge follow-up calls for heart failure patients.
@@ -109,6 +110,8 @@ Jump cut, caption: **"12 minutes later"**. Checklist now long; counter reads *23
 Zoom into a failing call (audio plays):
 
 >
+> **agent_01:** Is anything bothering you since you got home?
+>
 > **patient_01:** Not really. I get a little short of breath when I lie down, but that's just me getting old.
 >
 > **agent_02:** Glad to hear you're doing well. Let's go over your medications.
@@ -122,7 +125,7 @@ Call tile turns red. {{product_name}} reports to the nurse by voice (left panel:
 2. *Why:* patient described the symptom indirectly ("short of breath when I lie down"); agent only escalates on direct phrases like "trouble breathing".
 3. *Fix planned:* detect indirect symptom descriptions; add a follow-up question before moving on.
 
-> **narr_07:** {{product_name}} works out why, fixes the agent, and fine-tunes the model.
+> **narr_07:** {{product_name}} works out why and fixes the prompts. Rules a prompt can't capture become training data, and it fine-tunes the model on them.
 
 ---
 
@@ -152,6 +155,8 @@ The second kind of feedback. {{product_name}} can only catch mistakes its rules 
 
 Vignesh plays a call that passed (audio plays):
 
+>
+> **agent_06:** Have you been weighing yourself every morning?
 >
 > **patient_02:** I have. I'm up about three pounds since yesterday.
 >

@@ -97,6 +97,18 @@
     });
   };
 
+  // step transition cards: phases register when their step starts
+  const STEP_DESC = [
+    "The expert describes the job by voice. SIA_NAME asks what an engineer would ask.",
+    "SIA_NAME turns the spec into a working first version.",
+    "Tests for every requirement and edge case, run as simulated calls.",
+    "Fix the prompts and logic. Fine-tune the model on what prompts can't capture.",
+    "The expert listens to the calls SIA_NAME is least sure about.",
+    "A real call with a real person. Feedback becomes new tests.",
+  ];
+  const cards = [];
+  U.stepCard = (step, at) => cards.push({ step, at });
+
   const scenes = [];
   const SCENES = {
     add(s) { scenes.push(s); },
@@ -115,6 +127,7 @@
         vis.forEach((v, i) => U.css(v.el, { opacity: i === vis.length - 1 ? U.clamp(2 * w - 1).toFixed(3) : i === vis.length - 2 ? U.clamp(1 - 2 * w).toFixed(3) : "0" }));
       }
       U.css(document.getElementById("bgdual"), { opacity: bg.toFixed(3) });
+      renderCard(t);
       renderChrome(t);
     },
   };
@@ -130,6 +143,18 @@
   const chrome = { step: -1, clock: null, showTopbar: false };
   const subtitle = document.getElementById("subtitle");
   const topbar = document.getElementById("topbar");
+
+  const pc = document.getElementById("phasecard");
+  const pcSteps = document.getElementById("pc-steps");
+  pcSteps.innerHTML = STEPS.map((s, i) => `<li>${i ? '<span class="bar"></span>' : ""}<span class="dot">${i + 1}</span></li>`).join("");
+  function renderCard(t) {
+    const c = cards.find(c => t >= c.at - 0.3 && t < c.at + 2.3);
+    if (!c) { U.css(pc, { opacity: 0 }); return; }
+    U.fade(pc, t, c.at, c.at + 2.0, 0.3);
+    [...pcSteps.children].forEach((li, i) => { U.cls(li, "on", i === c.step); U.cls(li, "done", i < c.step); });
+    U.html(document.getElementById("pc-title"), `<span>Step ${c.step + 1} of ${STEPS.length}</span>${STEPS[c.step]}`);
+    U.text(document.getElementById("pc-desc"), STEP_DESC[c.step].replace(/SIA_NAME/g, TL.config.product_name));
+  }
 
   function renderChrome(t) {
     U.css(topbar, { opacity: chrome.showTopbar ? 1 : 0 });
