@@ -1,6 +1,6 @@
 # Demo script — SHORT cut (~3:10)
 
-Short version of `script.md`. Same screens and engine; tighter lines. Line IDs match the long
+Short version of `script.md`. **White-label positioning (2026-11-03):** hook, title card, example tag, top bar (vendor brand "AcmeVoice", powered by SIA Voice), domain header and end card come from `content/config_short.json`. Same screens and engine; tighter lines. Line IDs match the long
 script; changed lines get regenerated audio, unchanged ones reuse it. Dropped: sys_03, nurse_04
 (caregiver exchange), narr_04, narr_08 and the patient replay. The agent's questions
 (agent_01, agent_06) stay so the patient lines answer something. Also dropped in the short cut: the
@@ -46,12 +46,12 @@ Visual 2 (narr_02): the expert ↔ engineer loop. Inside: "Domain expert, knows 
 "Engineer, builds the agent". Around them: Requirements → Build → Test → Feedback → Fix, a highlight
 travelling the loop; the week counter ticks each lap.
 
-> **narr_02:** Production takes testing, and weeks of back-and-forth between the expert who knows the rules and the engineer who builds the agent.
+> **narr_02:** At a voice agent company, every new agent means weeks of back-and-forth between the customer's expert, who knows the rules, and an engineer who builds it.
 
 Visual 3 (narr_13): the engineer fades out; {{product_name}} takes their place. The loop speeds up and
 the week counter becomes "Hours".
 
-> **narr_13:** {{product_name}} takes the engineer out of that loop. The expert works with it directly.
+> **narr_13:** {{product_name}} takes the engineer out of that loop. It's the agent builder you give your customers, under your brand.
 
 Title card: **{{product_name}}** — *{{tagline}}*
 
@@ -201,7 +201,7 @@ dispatchers (appointment scheduling), Loan officers (document follow-up).
 
 > **narr_14:** The same loop works for any expert whose work happens on the phone.
 >
-> **narr_11:** No engineer in the loop. From use case to production in hours, not weeks.
+> **narr_11:** The voice agent builder you give your customers, under your brand. From use case to production in hours, not weeks.
 
 End card:
 - **{{product_name}}** — *{{tagline}}*

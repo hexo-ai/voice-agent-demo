@@ -139,6 +139,22 @@
   document.querySelectorAll("[data-product-name]").forEach(e => (e.textContent = TL.config.product_name));
   document.querySelectorAll("[data-tagline]").forEach(e => (e.textContent = TL.config.tagline));
   document.getElementById("tag").textContent = TL.config.illustrative_tag;
+  // optional per-cut overrides (white-label short cut); without them every element keeps its default text
+  const CFG = TL.config, setText = (sel, v) => { const el = document.querySelector(sel); if (el && v) el.textContent = v; };
+  if (CFG.topbar_brand) document.getElementById("stage").classList.add("wl"); // white-label cut: layout tweaks below
+  if (CFG.topbar_brand) {
+    const tb = document.querySelector("#topbar .wordmark");
+    tb.classList.add("vendor");
+    tb.innerHTML = `${CFG.topbar_brand}<span class="powered">powered by ${CFG.product_name}</span>`;
+  }
+  setText(".hp.expert .hp-n", CFG.hook_expert_label);
+  setText("#hook-eng .hp-n", CFG.hook_engineer_label);
+  setText("#p1-example", CFG.example_tag);
+  setText(".dm-h", CFG.domains_heading);
+  if (CFG.endcard_stack_line) {
+    const p = document.createElement("p"); p.className = "ec-stack"; p.textContent = CFG.endcard_stack_line;
+    document.querySelector(".ec-claim").insertAdjacentElement("afterend", p); // under the claim, outside the ring
+  }
 
   const chrome = { step: -1, clock: null, showTopbar: false };
   const subtitle = document.getElementById("subtitle");

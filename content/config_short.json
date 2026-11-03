@@ -1,0 +1,11 @@
+{
+  "_doc": "Short-cut overrides, merged over config.json by prototype/build_timeline.py when CUT=short. White-label positioning (2026-11-03). Keys not set here fall back to config.json / today's long-cut text.",
+  "tagline": "The voice agent builder you give your customers. Under your brand.",
+  "vendor_name": "AcmeVoice",
+  "topbar_brand": "AcmeVoice",
+  "hook_expert_label": "Your customer's expert",
+  "hook_engineer_label": "Your engineer",
+  "example_tag": "Example: a hospital nurse builds an agent in AcmeVoice, their voice agent vendor's app, powered by SIA Voice",
+  "domains_heading": "Your customers' experts, in any field that runs on the phone",
+  "endcard_stack_line": "Built, tested and improved by SIA Voice. Runs on your stack."
+}
