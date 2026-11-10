@@ -127,14 +127,15 @@ Call tile turns red. {{product_name}} reports to the nurse by voice (left panel:
 2. *Why:* patient described the symptom indirectly ("short of breath when I lie down"); agent only escalates on direct phrases like "trouble breathing".
 3. *Fix planned:* detect indirect symptom descriptions; add a follow-up question before moving on.
 
-> **narr_07:** {{product_name}} works out why and fixes the prompts. Rules a prompt can't capture become training data, and it fine-tunes the model on them.
+> **narr_07:** {{product_name}} works out why. The patient said it indirectly, and the agent missed it. Now it searches for a fix.
 
 ---
 
 ## 2:00–2:25 — Phase 5: Optimization loop
-**Right:** the strongest backend moment. Prompt and conversation-logic diffs scrolling; a fine-tuning run with a loss curve; round counter 1 → 4; **pass rate 62% → 94%**; **cost per call** dropping.
-**Left:** calm summary — "Fixed 16 of 19 issues. Here's what changed:" then plain-language bullets, e.g. *"The agent now asks a follow-up question whenever a patient mentions breathing, even in passing."*
+**Right:** a search over versions of the agent (mocked product behaviour, not the paper's method). Root "Agent v1 · 31/50". Each box is one version; each branch is one kind of change (escalation rules, follow-up questions, conversation flow, tool-use instructions, pacing and tone). A strip shows the four steps it repeats: pick a promising version → try one change → score it on 50 calls → pass the score up (branches that score well get tried more). First three rounds slow, then fast. On the best branch, prompt changes stall at 43/50; the search then tries **fine-tuning** (1,240 corrected call turns, smaller model) → 46/50, then pacing and tone → 47/50. The best path lights up: 31 → 38 → 42 → 43 → 46 → 47.
+**Left:** "Tries many fixes, keeps what works": versions tried, best so far (31 → 47 of 50), cost per call ($0.41 → $0.19, drops when the fine-tuned smaller model wins). "What changed" bullets appear as each best-path version locks in.
 
+> **narr_15:** It tries many fixes, scores each one on all 50 calls, and keeps what works. When prompt changes stop helping, it fine-tunes the model.
 
 Replay of the same call, now passing (reuse `patient_01` audio):
 

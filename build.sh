@@ -7,6 +7,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 python3 content/extract_lines.py
+# short cut: reuse clips still in git history before paying for new ones
+if [ "${CUT:-}" = short ]; then python3 audio/restore_short_clips.py; fi
 python3 audio/generate_tts.py
 python3 audio/timings.py
 (cd audio && python3 envelopes.py)

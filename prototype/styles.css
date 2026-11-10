@@ -411,3 +411,22 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .endcard .ec-time { color: #D6DEE8; }
 .endcard .ec-research, .endcard .ec-small { color: #A9B6C6; }
 .endcard .ec-research { margin-top: 10px; }
+
+/* ---------- phase 5: search over agent versions ---------- */
+.p5-stats { position: absolute; top: 150px; left: 56px; right: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.p5-stats .st { background: #fff; border: 1px solid var(--paper-2); border-radius: 12px; padding: 12px 16px; }
+.p5-stats .st-t { font-size: 17px; color: var(--ink-2); }
+.p5-stats .st-v { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.p5-stats .st-v small { font-size: 17px; font-weight: 400; color: var(--ink-2); margin-left: 6px; }
+.p5-stats .st.good .st-v { color: #23795A; }
+.changes.p5ch { top: 258px; }
+.changes.p5ch ul { gap: 8px; }
+.changes.p5ch li { font-size: 19px; padding: 10px 16px; }
+#p5 .replay { top: 590px; }
+.s4 { list-style: none; display: flex; gap: 10px; margin: -6px 0 14px; }
+.s4 li { display: flex; align-items: center; gap: 8px; font-size: 17px; color: var(--night-mute); padding: 7px 13px 7px 8px; border-radius: 999px; border: 1px solid var(--night-line); }
+.s4 li .n { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; border: 1.5px solid var(--night-line); }
+.s4 li.on { background: var(--sia); border-color: var(--sia); color: #fff; }
+.s4 li.on .n { border-color: #fff; }
+#p5-tree text { font-family: "Atkinson"; }
+.tree-key { font-size: 16px; color: var(--night-mute); margin-top: 4px; }

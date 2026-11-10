@@ -102,7 +102,7 @@
     "The expert describes the job by voice. SIA_NAME asks what an engineer would ask.",
     "SIA_NAME turns the spec into a working first version.",
     "Tests for every requirement and edge case, run as simulated calls.",
-    "Fix the prompts and logic. Fine-tune the model on what prompts can't capture.",
+    "Tries many fixes and keeps what works. Fine-tunes where prompts fall short.",
     "The expert listens to the calls SIA_NAME is least sure about.",
     "A real call with a real person. Feedback becomes new tests.",
   ];

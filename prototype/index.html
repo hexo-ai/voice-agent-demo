@@ -174,9 +174,14 @@
     <div class="nurse-side">
       <div class="p3-head">
         <span class="agent-kind">Improving your agent</span>
-        <span class="agent-name" id="p5-title">Round 1 of 4</span>
+        <span class="agent-name" id="p5-title">Tries many fixes, keeps what works</span>
       </div>
-      <div class="changes">
+      <div class="p5-stats">
+        <div class="st"><div class="st-t">Versions tried</div><div class="st-v" id="p5-tried"></div></div>
+        <div class="st"><div class="st-t">Best so far</div><div class="st-v" id="p5-best"></div></div>
+        <div class="st"><div class="st-t">Cost per call</div><div class="st-v" id="p5-cost"></div></div>
+      </div>
+      <div class="changes p5ch">
         <h3 class="lt">What changed</h3>
         <ul id="p5-changes"></ul>
       </div>
@@ -187,19 +192,15 @@
       <div class="vbar" id="p5-vbar"><canvas width="96" height="96"></canvas><div><div class="vb-who"></div><p class="vb-cap"></p></div></div>
     </div>
     <div class="backend-side">
-      <div class="panel-head"><h2>Optimization loop</h2><span class="panel-sub" id="p5-sub"></span></div>
-      <h3 class="blk">Harness changes</h3>
-      <pre class="code diff" id="p5-diff"></pre>
-      <div class="charts">
-        <div class="chart"><div class="ch-t">Pass rate</div><div class="ch-v" id="p5-pr"></div><svg id="p5-c1" width="460" height="190"></svg></div>
-        <div class="chart"><div class="ch-t">Cost per call</div><div class="ch-v" id="p5-cost"></div><svg id="p5-c2" width="460" height="190"></svg></div>
-      </div>
-      <div class="ft" id="p5-ft">
-        <div class="ft-row"><span class="ft-t">Fine-tuning: rules a prompt can't capture become training data</span><span class="ft-s" id="p5-fts"></span></div>
-        <div class="ft-rules" id="p5-ftrules"></div>
-        <div class="runbar dark"><div class="runfill" id="p5-ftfill"></div></div>
-        <div class="ft-note" id="p5-ftnote"></div>
-      </div>
+      <div class="panel-head"><h2>Searching for a better agent</h2><span class="panel-sub" id="p5-sub"></span></div>
+      <ol class="s4" id="p5-steps">
+        <li><span class="n">1</span>Pick a promising version</li>
+        <li><span class="n">2</span>Try one change</li>
+        <li><span class="n">3</span>Score it on 50 calls</li>
+        <li><span class="n">4</span>Pass the score up</li>
+      </ol>
+      <svg id="p5-tree" width="976" height="610"></svg>
+      <p class="tree-key">Each box is one version of your agent, scored on 50 simulated calls. Thicker lines: tried more often.</p>
     </div>
   </section>
 

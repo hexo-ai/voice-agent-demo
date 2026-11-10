@@ -109,7 +109,13 @@
       "id": "narr_07",
       "voice": "narrator",
       "phase": "Phase 4: Simulations",
-      "text": "Seeya Voice works out why and fixes the prompts. Rules a prompt can't capture become training data, and it fine-tunes the model on them."
+      "text": "Seeya Voice works out why. The patient said it indirectly, and the agent missed it. Now it searches for a fix."
+    },
+    {
+      "id": "narr_15",
+      "voice": "narrator",
+      "phase": "Phase 5: Optimization loop",
+      "text": "It tries many fixes, scores each one on all 50 calls, and keeps what works. When prompt changes stop helping, it fine-tunes the model."
     },
     {
       "id": "agent_03",
