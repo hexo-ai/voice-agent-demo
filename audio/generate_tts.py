@@ -29,7 +29,7 @@ def load_env():
 
 def tts(text, voice, cfg, key):
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice['voice_id']}?output_format={cfg['output_format']}"
-    body = json.dumps({"text": text, "model_id": cfg["model_id"], "voice_settings": voice.get("settings", {})}).encode()
+    body = json.dumps({"text": text, "model_id": voice.get("model_id", cfg["model_id"]), "voice_settings": voice.get("settings", {})}).encode()
     req = urllib.request.Request(url, data=body, headers={"xi-api-key": key, "Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=120) as r:
         return r.read()

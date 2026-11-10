@@ -3,22 +3,24 @@
   "output_format": "mp3_44100_128",
   "roles": {
     "narrator": {
-      "voice_id": "GlIHwU7OhT0J7lbgBL6U",
-      "name": "Vignesh (professional clone) \u2014 narrator",
+      "voice_id": "QIbjfTILJmBvWa89D9kx",
+      "name": "Vignesh (professional clone) — narrator",
       "settings": {
         "stability": 0.5,
         "similarity_boost": 0.8,
         "style": 0.2
-      }
+      },
+      "model_id": "eleven_v4"
     },
     "nurse": {
-      "voice_id": "GlIHwU7OhT0J7lbgBL6U",
-      "name": "Vignesh (professional clone) \u2014 nurse",
+      "voice_id": "QIbjfTILJmBvWa89D9kx",
+      "name": "Vignesh (professional clone) — nurse",
       "settings": {
         "stability": 0.5,
         "similarity_boost": 0.8,
         "style": 0.2
-      }
+      },
+      "model_id": "eleven_v4"
     },
     "system": {
       "voice_id": "SAz9YHcvj6GT2YYXdXww",
@@ -50,7 +52,7 @@
   },
   "alternates": {
     "vignesh_clone": {
-      "voice_id": "GlIHwU7OhT0J7lbgBL6U",
+      "voice_id": "QIbjfTILJmBvWa89D9kx",
       "name": "Vignesh (professional clone in the account)",
       "settings": {
         "stability": 0.5,
