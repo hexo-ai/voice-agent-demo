@@ -18,10 +18,6 @@ J = lambda p: json.loads((ROOT / p).read_text())
 def main():
     lines = J(f"content/lines{SFX}.json")["lines"]
     cfg = J("content/config.json")
-    # per-cut overrides (e.g. content/config_short.json); only the keys present are replaced
-    over = ROOT / f"content/config{SFX}.json"
-    if SFX and over.exists():
-        cfg.update({k: v for k, v in json.loads(over.read_text()).items() if not k.startswith("_")})
     timings = {x["id"]: x for x in J(f"audio/timings{SFX}.json")}
     env = J(f"audio/envelopes{SFX}.json")
     holds = J(f"prototype/data/holds{SFX}.json")

@@ -12,13 +12,13 @@
       "id": "narr_02",
       "voice": "narrator",
       "phase": "Hook: the problem (full screen)",
-      "text": "At a voice agent company, every new agent means weeks of back-and-forth between the customer's expert, who knows the rules, and an engineer who builds it."
+      "text": "Production takes testing, and weeks of back-and-forth between the expert who knows the rules and the engineer who builds the agent."
     },
     {
       "id": "narr_13",
       "voice": "narrator",
       "phase": "Hook: the problem (full screen)",
-      "text": "Seeya Voice takes the engineer out of that loop. It's the agent builder you give your customers, under your brand."
+      "text": "Seeya Voice takes the engineer out of that loop. The expert works with it directly."
     },
     {
       "id": "narr_03",
@@ -201,7 +201,7 @@
       "id": "narr_11",
       "voice": "narrator",
       "phase": "The loop + close (full screen)",
-      "text": "The voice agent builder you give your customers, under your brand. From use case to production in hours, not weeks."
+      "text": "No engineer in the loop. From use case to production in hours, not weeks."
     }
   ]
 }

@@ -9,13 +9,13 @@
     "id": "narr_02",
     "phase": "Hook: the problem (full screen)",
     "file": "audio/tts_short/narr_02.mp3",
-    "seconds": 10.45
+    "seconds": 7.97
   },
   {
     "id": "narr_13",
     "phase": "Hook: the problem (full screen)",
     "file": "audio/tts_short/narr_13.mp3",
-    "seconds": 7.65
+    "seconds": 6.27
   },
   {
     "id": "narr_03",
@@ -195,6 +195,6 @@
     "id": "narr_11",
     "phase": "The loop + close (full screen)",
     "file": "audio/tts_short/narr_11.mp3",
-    "seconds": 8.18
+    "seconds": 5.8
   }
 ]
