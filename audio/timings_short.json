@@ -111,7 +111,13 @@
     "id": "narr_15",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts_short/narr_15.mp3",
-    "seconds": 9.72
+    "seconds": 10.45
+  },
+  {
+    "id": "narr_16",
+    "phase": "Phase 5: Optimization loop",
+    "file": "audio/tts_short/narr_16.mp3",
+    "seconds": 7.16
   },
   {
     "id": "agent_03",

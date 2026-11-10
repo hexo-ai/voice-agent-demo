@@ -115,7 +115,13 @@
       "id": "narr_15",
       "voice": "narrator",
       "phase": "Phase 5: Optimization loop",
-      "text": "It tries many fixes, scores each one on all 50 calls, and keeps what works. When prompt changes stop helping, it fine-tunes the model."
+      "text": "It tries many fixes, scores each one on all 50 calls, and keeps what works. Most fixes are prompt changes, like a clearer escalation rule."
+    },
+    {
+      "id": "narr_16",
+      "voice": "narrator",
+      "phase": "Phase 5: Optimization loop",
+      "text": "When prompt changes stop helping, it fine-tunes the model on corrected calls. The best agent uses both."
     },
     {
       "id": "agent_03",

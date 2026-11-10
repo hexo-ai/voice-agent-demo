@@ -67,7 +67,7 @@
       U.fade(card, t, cA, 1e9, 0.6);
       ESTEPS.forEach((_, i) => document.getElementById("es" + i).setAttribute("opacity", U.prog(t, cA + 0.3 + i * 0.15, cA + 0.6 + i * 0.15).toFixed(3)));
       // an ellipse path starts at 3 o'clock; +25 moves the start to 12 o'clock, then travel clockwise
-      document.getElementById("ec-arc").setAttribute("stroke-dashoffset", (25 - (Math.max(0, t - cA) * 14) % 100).toFixed(2));
+      document.getElementById("ec-arc").setAttribute("stroke-dashoffset", (25 - (Math.max(0, t - cA) * 108) % 100).toFixed(2));
     },
   });
 })();

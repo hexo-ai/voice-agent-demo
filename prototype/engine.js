@@ -114,6 +114,7 @@
     add(s) { scenes.push(s); },
     render(t) {
       chrome.showTopbar = false;
+      chrome.subLeft = false;
       for (const s of scenes) s.render(t);
       // Dual-panel scenes: keep the backdrop steady and dip the content (out, then in)
       // instead of cross-dissolving two busy layouts on top of each other.
@@ -166,6 +167,7 @@
 
     // narrator subtitles, everywhere except the hook (hook shows its words full size)
     const n = U.active(t, l => l.voice === "narrator");
+    U.cls(subtitle, "left", !!chrome.subLeft); // a scene can park subtitles over the expert side
     if (n) {
       U.text(subtitle, n.text);
       U.fade(subtitle, t, n.start - 0.15, n.start + n.dur + 0.35, 0.25);
