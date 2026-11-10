@@ -336,10 +336,21 @@ footer a { color: var(--night-text); }
 
 <script>
 /* ---- Settings ---- */
-const YOUTUBE_ID = "NaotJXOYHik";     // e.g. "dQw4w9WgXcQ" from the unlisted YouTube link
+const VIDEO_SRC = "sia-voice-demo-2026-11-10.mp4"; // self-hosted MP4 next to index.html (not in git; see README). Empty = use YouTube
+const YOUTUBE_ID = "NaotJXOYHik";     // fallback: the ID from an unlisted YouTube link
 
-/* video: load YouTube only when someone presses play */
+/* video: load it only when someone presses play */
 document.getElementById("play").addEventListener("click", () => {
+  if (VIDEO_SRC) {
+    const v = document.createElement("video");
+    v.src = VIDEO_SRC; v.controls = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
+    v.setAttribute("title", "SIA Voice demo");
+    v.style.cssText = "position:absolute;inset:0;width:100%;height:100%;background:#16212E";
+    const frame = document.getElementById("frame");
+    frame.innerHTML = ""; frame.appendChild(v);
+    v.play().catch(() => {});
+    return;
+  }
   if (!YOUTUBE_ID) {
     const s = document.getElementById("soon");
     s.classList.add("on"); setTimeout(() => s.classList.remove("on"), 2200);

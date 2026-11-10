@@ -2,8 +2,9 @@
 
 One static page: `index.html` plus `fonts/`. No build step.
 
-## Before launch: two settings
+## Settings
 At the bottom of `index.html`:
+- `VIDEO_SRC`: file name of the self-hosted demo MP4 (served from the site itself). It is **not in git** (no MP4s in the repo): before each deploy, copy `out/demo_short.mp4` into the deploy folder under that name (`ffmpeg -i out/demo_short.mp4 -c copy -movflags +faststart <deploy>/<VIDEO_SRC>`). Use a new file name for each new cut so browsers don't serve a cached old one. Cloudflare Pages allows up to 25 MiB per file. Empty = use YouTube.
 - `YOUTUBE_ID`: the ID from the unlisted YouTube link (the part after `v=`). Empty shows "Video coming soon".
 - `FORM_ENDPOINT`: the form service URL (e.g. Formspree `https://formspree.io/f/xxxx`). Empty = preview mode (shows the thank-you message, sends nothing).
   - Web3Forms also needs a hidden field: `<input type="hidden" name="access_key" value="...">` inside the form.
