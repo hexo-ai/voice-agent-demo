@@ -55,6 +55,11 @@
   </div>
 
   <!-- Phase 1: voice interview -->
+  <section class="scene" id="overview">
+    <h1 class="ov-h" id="ov-h"></h1>
+    <ol class="ov-row" id="ov-row"></ol>
+  </section>
+
   <section class="scene dual" id="p1">
     <div class="nurse-side">
       <div class="example-tag" id="p1-example">Example: a nurse building a hospital follow-up agent</div>
@@ -288,6 +293,7 @@
 <script>document.write('<script src="data/timeline' + (new URLSearchParams(location.search).get("cut") ? "_" + new URLSearchParams(location.search).get("cut") : "") + '.js"><\/script>');</script>
 <script src="engine.js"></script>
 <script src="phases/hook.js"></script>
+<script src="phases/overview.js"></script>
 <script src="phases/p1.js"></script>
 <script src="phases/p2.js"></script>
 <script src="phases/p3.js"></script>

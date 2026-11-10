@@ -62,7 +62,7 @@
   const T = (a) => U.at(a[0], a[1]);
   let lastCaptionUid = null, words = [];
 
-  U.stepCard(0, U.start("narr_03") - 1.9 + 0.1);
+  U.stepCard(0, U.start("narr_03") - 1.9 + 0.1, "narr_21");
   SCENES.add({
     render(t) {
       const start = U.start("narr_03") - 1.9;

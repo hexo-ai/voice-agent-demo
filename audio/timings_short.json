@@ -18,6 +18,18 @@
     "seconds": 5.64
   },
   {
+    "id": "narr_20",
+    "phase": "Hook: the problem (full screen)",
+    "file": "audio/tts_short/narr_20.mp3",
+    "seconds": 16.2
+  },
+  {
+    "id": "narr_21",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts_short/narr_21.mp3",
+    "seconds": 3.4
+  },
+  {
     "id": "narr_03",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts_short/narr_03.mp3",
@@ -66,10 +78,22 @@
     "seconds": 1.41
   },
   {
+    "id": "narr_22",
+    "phase": "Phase 1: Requirements (voice interview)",
+    "file": "audio/tts_short/narr_22.mp3",
+    "seconds": 2.85
+  },
+  {
+    "id": "narr_23",
+    "phase": "Phase 3: Test scenarios",
+    "file": "audio/tts_short/narr_23.mp3",
+    "seconds": 4.21
+  },
+  {
     "id": "narr_05",
     "phase": "Phase 3: Test scenarios",
     "file": "audio/tts_short/narr_05.mp3",
-    "seconds": 4.68
+    "seconds": 3.32
   },
   {
     "id": "narr_06",
@@ -108,6 +132,12 @@
     "seconds": 7.71
   },
   {
+    "id": "narr_24",
+    "phase": "Phase 4: Simulations",
+    "file": "audio/tts_short/narr_24.mp3",
+    "seconds": 3.16
+  },
+  {
     "id": "narr_15",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts_short/narr_15.mp3",
@@ -132,10 +162,16 @@
     "seconds": 2.51
   },
   {
+    "id": "narr_25",
+    "phase": "Phase 5: Optimization loop",
+    "file": "audio/tts_short/narr_25.mp3",
+    "seconds": 3.97
+  },
+  {
     "id": "narr_12",
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts_short/narr_12.mp3",
-    "seconds": 3.97
+    "seconds": 3.63
   },
   {
     "id": "agent_06",
@@ -168,10 +204,16 @@
     "seconds": 2.4
   },
   {
+    "id": "narr_26",
+    "phase": "Phase 5b: Expert reviews the simulations",
+    "file": "audio/tts_short/narr_26.mp3",
+    "seconds": 2.93
+  },
+  {
     "id": "narr_09",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/narr_09.mp3",
-    "seconds": 3.08
+    "seconds": 2.27
   },
   {
     "id": "agent_04",

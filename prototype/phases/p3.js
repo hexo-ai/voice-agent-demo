@@ -43,7 +43,7 @@
   personasEl.innerHTML = PERSONAS.map(p => `<span class="persona">${p}</span>`).join("");
   const personaNodes = [...personasEl.children];
 
-  U.stepCard(2, U.start("narr_05") - 1.8 + 0.1);
+  U.stepCard(2, U.start("narr_05") - 1.8 + 0.1, "narr_23");
   SCENES.add({
     render(t) {
       const a = U.start("narr_05") - 1.8, b = U.start("narr_06") - 0.6;
@@ -53,7 +53,7 @@
       CHROME.step = 2;
       CHROME.clock = 13 * 60 + 10 + (t - a) * 12;
 
-      const genA = a + 1.7, genB = Math.min(a + 10, b - 1.2);               // all 50 written in ~9 s
+      const genA = Math.max(a + 1.7, U.cardEnd(2) + 0.2), genB = Math.min(a + 10, b - 1.2);               // all 50 written in ~9 s
       const made = Math.floor(U.prog(t, genA, genB) * N);
       U.text(count, `${made} test scenario${made === 1 ? "" : "s"}`);
       scNodes.forEach((n, i) => {

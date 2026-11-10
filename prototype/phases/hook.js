@@ -12,7 +12,7 @@
 
   SCENES.add({
     render(t) {
-      const end = U.start("narr_03") - 1.9;
+      const end = U.has("narr_20") ? U.start("narr_20") - 0.5 : U.start("narr_03") - 1.9;
       const vis = U.fade(el, t, -1, end, 0.6);
       if (vis <= 0) return;
 

@@ -25,6 +25,7 @@
   $("p7-checks").innerHTML = CHECKS.map(([c, , tag]) => `<li class="chk${tag ? " learned" : ""}"><span>${c}</span>${tag ? `<span class="tag">${tag}</span>` : ""}<span class="st"></span></li>`).join("");
   const chks = [...$("p7-checks").children];
 
+  U.stepCard(5, U.end("sys_08") + 2.0 + 0.1, "narr_26");
   SCENES.add({
     render(t) {
       const a = U.end("sys_08") + 2.1, b = U.end(LAST) + 2.4;
@@ -36,7 +37,7 @@
 
       const callA = U.start("agent_04") - 0.9, callEnd = U.end(LAST) + 0.4;
       U.text($("p7-state"), t < callA ? "Calling…" : t < callEnd ? "On call " + U.fmtClock(t - callA + 74).slice(2) : "Call ended");
-      U.css($("p7-phone"), { opacity: U.prog(t, a + 1.7, a + 2.1).toFixed(3) });
+      U.css($("p7-phone"), { opacity: U.prog(t, Math.max(a + 1.7, U.cardEnd(5) + 0.2), Math.max(a + 2.1, U.cardEnd(5) + 0.6)).toFixed(3) });
       // keep the four most recent bubbles so the card never overflows
       const shown = BUB.map(([u], i) => t >= U.start(u) - 0.1 ? i : -1).filter(i => i >= 0);
       const keep = new Set(shown.slice(-4));

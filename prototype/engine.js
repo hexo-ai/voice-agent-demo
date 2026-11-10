@@ -107,7 +107,12 @@
     "A real call with a real person. Feedback becomes new tests.",
   ];
   const cards = [];
-  U.stepCard = (step, at) => cards.push({ step, at });
+  // A card lasts 1.5 s, or, when the cut has a voiceover line for it, as long as that line (+ padding).
+  U.stepCard = (step, at, vo) => {
+    if (vo && U.has(vo)) { const l = U.line(vo); cards.push({ step, at: l.start - 0.35, dur: l.dur + 0.7 }); }
+    else cards.push({ step, at, dur: 1.5 });
+  };
+  U.cardEnd = step => { const c = cards.find(c => c.step === step); return c ? c.at + c.dur : -1e9; };
 
   const scenes = [];
   const SCENES = {
@@ -135,6 +140,7 @@
 
   /* ---------- chrome shared by all phases ---------- */
   const STEPS = ["Collect requirements", "Build agent", "Run simulation", "Improve and fine-tune", "Expert review", "Live testing"];
+  U.STEPS = STEPS;
   const stepper = document.getElementById("stepper");
   stepper.innerHTML = STEPS.map((s, i) => `<li><span class="n">${i + 1}</span>${s}</li>`).join("");
   document.querySelectorAll("[data-product-name]").forEach(e => (e.textContent = TL.config.product_name));
@@ -149,9 +155,9 @@
   const pcSteps = document.getElementById("pc-steps");
   pcSteps.innerHTML = STEPS.map((s, i) => `<li>${i ? '<span class="bar"></span>' : ""}<span class="dot">${i + 1}</span></li>`).join("");
   function renderCard(t) {
-    const c = cards.find(c => t >= c.at - 0.3 && t < c.at + 1.8);
+    const c = cards.find(c => t >= c.at - 0.3 && t < c.at + c.dur + 0.3);
     if (!c) { U.css(pc, { opacity: 0 }); return; }
-    U.fade(pc, t, c.at, c.at + 1.5, 0.25);   // cards last 1.5 s
+    U.fade(pc, t, c.at, c.at + c.dur, 0.25);
     [...pcSteps.children].forEach((li, i) => { U.cls(li, "on", i === c.step); U.cls(li, "done", i < c.step); });
     U.html(document.getElementById("pc-title"), `<span>Step ${c.step + 1} of ${STEPS.length}</span>${STEPS[c.step]}`);
     U.text(document.getElementById("pc-desc"), STEP_DESC[c.step].replace(/SIA_NAME/g, TL.config.product_name));
@@ -168,7 +174,8 @@
     // narrator subtitles, everywhere except the hook (hook shows its words full size)
     const n = U.active(t, l => l.voice === "narrator");
     U.cls(subtitle, "left", !!chrome.subLeft); // a scene can park subtitles over the expert side
-    if (n) {
+    const onCard = cards.some(c => t >= c.at && t < c.at + c.dur); // the card itself explains the step
+    if (n && !onCard) {
       U.text(subtitle, n.text);
       U.fade(subtitle, t, n.start - 0.15, n.start + n.dur + 0.35, 0.25);
     } else U.css(subtitle, { opacity: 0 });

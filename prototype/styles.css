@@ -464,3 +464,18 @@ h3.lt { font-size: 19px; font-weight: 400; color: var(--ink-2); margin-bottom: 1
 .insp .i-both .i-box div { margin: 1px 0; }
 .insp .i-both .i-box .i-t { margin-bottom: 4px; }
 .insp .i-warn { font-size: 18px; color: #E8B04A; line-height: 1.45; }
+
+/* overview: the six steps, lit one by one as the narrator names them */
+#overview { background: var(--night); }
+.ov-h { position: absolute; top: 230px; left: 0; right: 0; text-align: center; font-size: 56px; font-weight: 700; color: #fff; }
+.ov-row { position: absolute; top: 380px; left: 80px; right: 80px; list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); gap: 26px; }
+.ov-row li { position: relative; background: #1E2B3B; border: 2px solid #2A3B50; border-radius: 18px; padding: 24px 22px; min-height: 250px; transition: none; }
+.ov-row li .n { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; font-weight: 700; color: #9AA8B8; border: 2px solid #3A4C63; margin-bottom: 18px; }
+.ov-row li .nm { font-size: 27px; font-weight: 700; color: #D6DEE8; line-height: 1.2; margin-bottom: 10px; }
+.ov-row li .ds { font-size: 21px; color: #9AA8B8; line-height: 1.35; }
+.ov-row li.on { border-color: #7B7FE8; background: #262F5C; }
+.ov-row li.on .n { background: #5B5FD6; border-color: #5B5FD6; color: #fff; }
+.ov-row li.on .nm { color: #fff; }
+.ov-row li.on .ds { color: #C9D3DE; }
+.ov-row li + li::before { content: "›"; position: absolute; left: -21px; top: 50%; transform: translateY(-50%); font-size: 30px; color: #3A4C63; }
+.ov-row li.on + li::before { color: #7B7FE8; }

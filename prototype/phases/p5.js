@@ -87,7 +87,7 @@
     });
   };
 
-  U.stepCard(3, U.end("narr_07") + 2.0 + 0.1);
+  U.stepCard(3, U.end("narr_07") + 2.0 + 0.1, "narr_24");
   SCENES.add({
     render(t) {
       const a = U.end("narr_07") + 2.0, b = U.end("sys_07") + 2.5;

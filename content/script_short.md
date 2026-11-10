@@ -57,11 +57,20 @@ Title card: **{{product_name}}** — *{{tagline}}*
 
 ---
 
+## Overview: how it works (full screen)
+After the title card. Heading "How {{product_name}} works". The six steps in a row, each with a short plain description; each lights up as the narrator names it.
+
+> **narr_20:** Here's how it works, in six steps. It collects requirements from the expert, builds the agent, and tests it on simulated calls. Then it improves and fine-tunes the agent. The expert reviews the hardest calls, and a live call tests it end to end.
+
+---
+
 ## 0:25–1:10 — Phase 1: Requirements (voice interview)
 On-screen tag at the start: "Example: a nurse building a hospital follow-up agent".
 **Left:** voice-mode screen. Animated orb that pulses with whoever is speaking, live captions underneath. No buttons except mute and end.
 **Right:** "Requirements captured" checklist filling in live as Vignesh speaks; a spec document assembling underneath.
 
+> **narr_21:** Step one: the expert explains the job.
+>
 > **narr_03:** Here's one example. I'm Vignesh, playing a nurse.
 >
 > **nurse_01:** I need an agent that calls heart failure patients two days after discharge, to check symptoms, meds and their follow-up visit.
@@ -85,6 +94,8 @@ Hand-over (no caption card): the clock fast-forwards to 0:12 while the spec roll
 > **sys_04:** Got it. Shall I build it?
 >
 > **nurse_05:** Yes, go ahead.
+>
+> **narr_22:** Step two: it builds the agent.
 
 ---
 
@@ -99,7 +110,9 @@ Hand-over (no caption card): the clock fast-forwards to 0:12 while the spec roll
 **Left:** plain-language list growing to **50 test scenarios** — "Patient's daughter answers", "Patient hasn't picked up meds", "Patient mentions a symptom in passing", "Wrong number", "Patient is hard of hearing"…
 **Right:** coverage map — requirements down the side, scenarios across the top, cells filling in until every requirement is covered.
 
-> **narr_05:** It builds the agent, then writes fifty tests, edge cases included.
+> **narr_23:** Step three: it tests the agent on simulated calls.
+
+> **narr_05:** It writes fifty tests, edge cases included.
 
 ---
 
@@ -129,6 +142,8 @@ Call tile turns red. {{product_name}} reports to the nurse by voice (left panel:
 
 > **narr_07:** {{product_name}} works out why. The patient said it indirectly, and the agent missed it. Now it searches for a fix.
 
+> **narr_24:** Step four: it fixes what failed.
+
 ---
 
 ## 2:00–2:25 — Phase 5: Optimization loop
@@ -149,6 +164,8 @@ Tile turns green.
 
 > **sys_07:** Fixed. 47 of 50 calls pass now.
 
+> **narr_25:** Step five: the expert reviews the hardest calls.
+
 ---
 
 ## 2:25–2:55 — Phase 5b: Expert reviews the simulations
@@ -156,7 +173,7 @@ The second kind of feedback. {{product_name}} can only catch mistakes its rules 
 **Left:** "Review queue — 5 calls picked for you" with a play button on each; one is marked *Passed · low confidence*. Then the voice orb as Vignesh responds.
 **Right:** why this call was queued — judge score **0.71 (pass, low confidence)**, "no requirement covers weight changes". After Vignesh's feedback: new requirement R24 added to the spec, 8 new scenario tiles appear, all 58 tests re-run.
 
-> **narr_12:** It also asks me to review the calls it's least sure about.
+> **narr_12:** It picks the calls it's least sure about, for me to check.
 
 Vignesh plays a call that passed (audio plays):
 
@@ -171,6 +188,8 @@ Vignesh plays a call that passed (audio plays):
 >
 > **sys_08:** Added a weight-gain rule and eight new tests.
 
+> **narr_26:** Step six: a real test call.
+
 Right panel: tiles run; the weight-gain tiles turn green.
 
 ---
@@ -179,7 +198,7 @@ Right panel: tiles run; the weight-gain tiles turn green.
 **Left:** phone-call screen ("Test call — Nurse Vignesh, role-playing a patient"); chat bubbles follow the call.
 **Right:** live call checks ticking green as the agent does each thing.
 
-> **narr_09:** Then a live test. I play the patient.
+> **narr_09:** This time, I play the patient.
 >
 > **agent_04:** Have you checked your weight this morning?
 >

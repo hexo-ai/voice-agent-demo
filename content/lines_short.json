@@ -21,6 +21,18 @@
       "text": "Seeya Voice takes the engineer out of that loop. The expert works with it directly."
     },
     {
+      "id": "narr_20",
+      "voice": "narrator",
+      "phase": "Hook: the problem (full screen)",
+      "text": "Here's how it works, in six steps. It collects requirements from the expert, builds the agent, and tests it on simulated calls. Then it improves and fine-tunes the agent. The expert reviews the hardest calls, and a live call tests it end to end."
+    },
+    {
+      "id": "narr_21",
+      "voice": "narrator",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Step one: the expert explains the job."
+    },
+    {
       "id": "narr_03",
       "voice": "narrator",
       "phase": "Phase 1: Requirements (voice interview)",
@@ -70,10 +82,22 @@
       "text": "Yes, go ahead."
     },
     {
+      "id": "narr_22",
+      "voice": "narrator",
+      "phase": "Phase 1: Requirements (voice interview)",
+      "text": "Step two: it builds the agent."
+    },
+    {
+      "id": "narr_23",
+      "voice": "narrator",
+      "phase": "Phase 3: Test scenarios",
+      "text": "Step three: it tests the agent on simulated calls."
+    },
+    {
       "id": "narr_05",
       "voice": "narrator",
       "phase": "Phase 3: Test scenarios",
-      "text": "It builds the agent, then writes fifty tests, edge cases included."
+      "text": "It writes fifty tests, edge cases included."
     },
     {
       "id": "narr_06",
@@ -112,6 +136,12 @@
       "text": "Seeya Voice works out why. The patient said it indirectly, and the agent missed it. Now it searches for a fix."
     },
     {
+      "id": "narr_24",
+      "voice": "narrator",
+      "phase": "Phase 4: Simulations",
+      "text": "Step four: it fixes what failed."
+    },
+    {
       "id": "narr_15",
       "voice": "narrator",
       "phase": "Phase 5: Optimization loop",
@@ -136,10 +166,16 @@
       "text": "Fixed. 47 of 50 calls pass now."
     },
     {
+      "id": "narr_25",
+      "voice": "narrator",
+      "phase": "Phase 5: Optimization loop",
+      "text": "Step five: the expert reviews the hardest calls."
+    },
+    {
       "id": "narr_12",
       "voice": "narrator",
       "phase": "Phase 5b: Expert reviews the simulations",
-      "text": "It also asks me to review the calls it's least sure about."
+      "text": "It picks the calls it's least sure about, for me to check."
     },
     {
       "id": "agent_06",
@@ -172,10 +208,16 @@
       "text": "Added a weight-gain rule and eight new tests."
     },
     {
+      "id": "narr_26",
+      "voice": "narrator",
+      "phase": "Phase 5b: Expert reviews the simulations",
+      "text": "Step six: a real test call."
+    },
+    {
       "id": "narr_09",
       "voice": "narrator",
       "phase": "Phase 6: Live test with a human",
-      "text": "Then a live test. I play the patient."
+      "text": "This time, I play the patient."
     },
     {
       "id": "agent_04",
