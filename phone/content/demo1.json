@@ -17,37 +17,37 @@
    "at": "e1_01"
   },
   {
-   "line": "e1_02",
+   "line": "e1_02c",
    "role": "narrator",
-   "text": "But the moment I leave my desk, they're stuck. Claude Code has a question, and it just waits."
+   "text": "But every one of them needs me at a screen, reading. The moment I leave my desk, it piles up. Claude Code has a question. Slack is filling up. My inbox has news. And everything waits."
   },
   {
    "cue": "h2",
-   "at": "e1_02"
+   "at": "e1_02c"
   },
   {
    "hold": 0.6
   },
   {
-   "line": "h1_03",
+   "line": "e1_03c",
    "role": "narrator",
-   "text": "Today, all it can do is send a notification. I see it an hour later, and the work just sat there."
+   "text": "On my phone, all I get are notifications. To act on them, I'd have to stop, open each app, and read. Not while I'm driving."
   },
   {
    "cue": "h3",
-   "at": "h1_03"
+   "at": "e1_03c"
   },
   {
    "hold": 0.6
   },
   {
-   "line": "e1_04",
+   "line": "e1_04c",
    "role": "narrator",
-   "text": "I need one number that runs all my agents, and calls me when they need me."
+   "text": "I don't want to read. I want to just talk, and get things done, without looking at a screen."
   },
   {
    "cue": "h4",
-   "at": "e1_04"
+   "at": "e1_04c"
   },
   {
    "hold": 0.3
@@ -59,9 +59,9 @@
    "hold": 0.5
   },
   {
-   "line": "e1_05",
+   "line": "e1_05c",
    "role": "narrator",
-   "text": "{{product}} is my own agent, with one phone number. It runs the agents I already use."
+   "text": "{{product}} is my own agent, with one phone number. I talk. It runs the agents I already use."
   },
   {
    "hold": 1.0
@@ -87,42 +87,65 @@
    "hold": 0.5
   },
   {
-   "line": "e1_06",
+   "line": "e1_06c",
    "role": "narrator",
-   "text": "Here's tonight. I'm in a car to the airport, and my phone rings."
+   "text": "Here's tonight. I'm driving to the airport. Eyes on the road, I call my {{product}}."
   },
   {
-   "cue": "incoming",
-   "sfx": "ring"
+   "cue": "dial",
+   "sfx": "ringback"
   },
   {
-   "hold": 2.4
+   "hold": 2.6
   },
   {
-   "cue": "answered"
+   "cue": "connected"
   },
   {
    "hold": 0.3
   },
   {
-   "line": "s_01",
-   "role": "coder",
-   "text": "Hi Vignesh, it's {{product}}. Claude Code needs a decision. Refunds use the same code as checkout. Should it fix them too?"
+   "line": "v_10",
+   "role": "vignesh",
+   "text": "Hey. What's waiting for me?"
   },
   {
-   "line": "v_01",
+   "cue": "ask_all",
+   "at": "v_10"
+  },
+  {
+   "hold": 0.8
+  },
+  {
+   "line": "s_10",
+   "role": "coder",
+   "text": "Three things. Claude Code needs a decision on the checkout fix. Northwind posted in Slack. And Gemini found a problem with your flight. Start with Claude Code?"
+  },
+  {
+   "line": "v_11",
    "role": "vignesh",
-   "text": "Yes, but don't merge. While I have you, what's the latest from Northwind in Slack?"
+   "text": "Yes."
+  },
+  {
+   "line": "s_11",
+   "role": "coder",
+   "text": "Refunds use the same code as checkout. Should it fix them too?"
+  },
+  {
+   "line": "v_12",
+   "role": "vignesh",
+   "text": "Yes, but don't merge. What did Northwind say?"
   },
   {
    "cue": "route_cc",
-   "at": "v_01"
+   "at": "v_12"
   },
   {
-   "cue": "ask_slack"
+   "cue": "ask_slack",
+   "at": "v_12"
   },
   {
-   "hold": 1.2
+   "hold": 0.4
   },
   {
    "line": "s_02",
@@ -134,20 +157,21 @@
    "at": "s_02"
   },
   {
-   "line": "v_02",
+   "line": "v_13",
    "role": "vignesh",
-   "text": "Good thing we're fixing them."
+   "text": "Good thing we're fixing them. And the flight?"
   },
   {
-   "cue": "gemini"
+   "cue": "gemini",
+   "at": "v_13"
   },
   {
-   "hold": 0.8
+   "hold": 0.3
   },
   {
-   "line": "s_03",
+   "line": "s_13",
    "role": "coder",
-   "text": "One more thing. Gemini saw your flight is delayed ninety minutes, so you'll miss dinner with Dana at seven. Should I move it to breakfast at eight?"
+   "text": "It's delayed ninety minutes, so you'll miss dinner with Dana at seven. Should I move it to breakfast at eight?"
   },
   {
    "line": "v_03",
@@ -158,12 +182,12 @@
    "cue": "move"
   },
   {
-   "hold": 1.0
+   "hold": 0.8
   },
   {
-   "line": "s_04",
+   "line": "s_14",
    "role": "coder",
-   "text": "Done. Dana accepted. Safe travels."
+   "text": "Done. Dana accepted. I'll call you when Claude Code is finished."
   },
   {
    "cue": "hangup",
@@ -218,9 +242,9 @@
    "hold": 0.6
   },
   {
-   "line": "e1_08",
+   "line": "e1_08c",
    "role": "narrator",
-   "text": "Three agents, one call. I never opened my laptop."
+   "text": "I called my agents, and they called me back. Three agents, one number, and I never looked at a screen."
   },
   {
    "scene": "end"
@@ -229,9 +253,9 @@
    "hold": 0.3
   },
   {
-   "line": "e1_09",
+   "line": "e1_09c",
    "role": "narrator",
-   "text": "One number. All your agents."
+   "text": "Just talk. Your agents do the rest."
   },
   {
    "hold": 3.0

@@ -67,9 +67,17 @@ Sources: [1] crm/accounts/northwind-retail ·
   const readScreen = md => `<div class="rs"><div class="lab">VOICE MODE · READING ALOUD</div><div class="md2 mono">${tokenize(md)}</div>
     <div class="bars">${"<b></b>".repeat(16)}</div><div class="x">✕ Stopped listening</div></div>`;
   const hookHTML = isD1 ? `
-    <div class="agrow"><div class="arow"><b>Claude Code</b><span>fixing the checkout bug</span></div><div class="arow"><b>ChatGPT</b><span>connected to Slack</span></div><div class="arow"><b>Gemini</b><span>Gmail and Calendar</span></div><div class="ademo">Tomorrow 9:00 AM · Demo to Northwind, New York</div></div>
-    <div class="term"><div class="tb"><i></i><i></i><i></i><span>Terminal · shop-app · cloud session</span><div class="tbadge" id="tbadge"></div></div>
-      <div class="body mono" id="termBody"></div></div>
+    <div class="w3head">Tomorrow 9:00 AM · Demo to Northwind, New York</div>
+    <div class="wins">
+      <div class="w3 dark"><div class="w3h"><b>Claude Code</b><i class="wb" id="wb0"></i></div>
+        <div class="w3b mono" id="termBody"></div></div>
+      <div class="w3"><div class="w3h"><b>ChatGPT</b><span>connected to Slack</span><i class="wb" id="wb1"></i></div>
+        <div class="w3b"><div class="u3">Watch #northwind-shared and tell me what matters.</div><div class="a3">On it. I'll keep an eye on the channel.</div>
+        <div class="n3" id="n31"><b>#northwind-shared</b>14 new messages</div></div></div>
+      <div class="w3"><div class="w3h"><b>Gemini</b><span>Gmail and Calendar</span><i class="wb" id="wb2"></i></div>
+        <div class="w3b"><div class="c3"><small>TONIGHT</small>7:00 PM · Dinner with Dana<br>8:40 PM · Flight to JFK</div><div class="c3"><small>TOMORROW</small>9:00 AM · Demo to Northwind</div>
+        <div class="n3" id="n32"><b>New email</b>Your flight is delayed 90 minutes</div></div></div>
+    </div>
     <div class="bigclock" id="bigclock"></div>
     <div class="hline" id="hline"><div class="bar"></div><div class="pill">${LOGO(22)}${P}</div></div>
     <div class="hright">
@@ -77,9 +85,12 @@ Sources: [1] crm/accounts/northwind-retail ·
       <div class="hv" id="hvPhone"><div class="hphone"><div class="scr">
         <div class="sbar"><span>6:41</span><span>●●● 5G</span></div>
         <div id="hRead"><div class="lock"><div class="lt">6:41</div><div class="ld">Tuesday, November 10</div>
-          <div class="ncard"><div class="nh"><b>Claude Code</b><span>47 min ago</span></div><div class="nb">Needs your input: refunds use the same rounding code. Fix them too? (y/n)</div><div class="nf">Open on your computer to reply</div></div></div></div>
-        <div id="hCall" class="cs" style="opacity:0"><div class="av" style="background:#17A673;border:none">${LOGO(70)}</div><div class="nm">${P}</div><div class="st">calling…</div>
-          <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="hAns">${CALL}</div></div></div>
+          <div class="ncard"><div class="nh"><b>Claude Code</b><span>47 min ago</span></div><div class="nb">Needs your input: fix refunds too? (y/n)</div><div class="nf">Open on your computer to reply</div></div>
+          <div class="ncard"><div class="nh"><b>ChatGPT</b><span>32 min ago</span></div><div class="nb">14 new messages in #northwind-shared</div></div>
+          <div class="ncard"><div class="nh"><b>Gemini</b><span>12 min ago</span></div><div class="nb">Your flight is delayed 90 minutes</div></div>
+          <div class="todo" id="todo">To act: unlock · open 3 apps · read · type</div></div></div>
+        <div id="hCall" class="cs" style="opacity:0"><div class="av" style="background:#17A673;border:none">${LOGO(70)}</div><div class="nm">${P}</div><div class="st">my agent · one number</div>
+          <div class="btns" style="gap:0"><div class="btn g" id="hAns">${CALL}</div></div></div>
       </div></div></div>
     </div>` : `
     <div class="agrid" id="agrid">
@@ -116,14 +127,15 @@ Sources: [1] crm/accounts/northwind-retail ·
     return pool[(i * 7) % pool.length];
   }).join("\n");
   const FEED = isD1 ? [
-    { at: "incoming", dt: -2.2, cls: "in term2", h: `Claude Code → ${AL} · question`, b: "Refunds use the same rounding code as checkout. Fix them too? (y/n)" },
-    { at: "incoming", dt: -1.2, cls: "dec", h: AL + " · decision needed", b: "Only Vignesh can answer. Call him now." },
+    { at: "ask_all", cls: "out", h: `${AL} → Claude Code · ChatGPT · Gemini`, b: "Vignesh is on the line. What's waiting for him?" },
+    { at: "ask_all", dt: 1.0, cls: "in term2", h: `Claude Code → ${AL} · question`, b: "Refunds use the same rounding code as checkout. Fix them too? (y/n)" },
+    { at: "ask_all", dt: 1.7, cls: "in", h: `ChatGPT → ${AL} · Slack`, b: "14 new messages in #northwind-shared." },
+    { at: "ask_all", dt: 2.4, cls: "in", h: `Gemini → ${AL} · Gmail`, b: "Tonight's 8:40 PM flight to JFK is delayed 90 min. Clashes with dinner with Dana, 7:00 PM." },
+    { at: "ask_all", dt: 3.2, cls: "stat", b: "3 agents → 3 things, spoken in order", s: "Most urgent first. Asks before doing anything." },
     { at: "route_cc", cls: "out", h: `${AL} → Claude Code`, b: "y. Fix refunds too.", pin: "Rule from the call: do not merge" },
-    { at: "ask_slack", cls: "out", h: `${AL} → ChatGPT · Slack`, b: "Latest from Northwind in the shared channel?" },
-    { at: "slack_ans", dt: -0.6, cls: "in", h: `ChatGPT → ${AL} · 14 new messages`, b: "Maria (Northwind CTO) joined #northwind-shared 1 h ago: “Can we see refunds in tomorrow's demo?”" },
-    { at: "gemini", cls: "in", h: `Gemini → ${AL} · Gmail`, b: "Tonight's 8:40 PM flight to JFK is delayed 90 min. Clashes with dinner with Dana at 7:00 PM." },
+    { at: "slack_ans", dt: -1.2, cls: "in", h: `ChatGPT → ${AL} · summary`, b: "Maria (Northwind CTO) joined 1 h ago: “Can we see refunds in tomorrow's demo?”" },
     { at: "move", cls: "out", h: `${AL} → Gemini · Calendar`, b: "Move dinner with Dana to breakfast tomorrow, 8:00 AM." },
-    { at: "move", dt: 0.8, cls: "in", h: `Gemini → ${AL}`, b: "Dana accepted." },
+    { at: "move", dt: 0.6, cls: "in", h: `Gemini → ${AL}`, b: "Dana accepted." },
     { at: "hangup", cls: "sys", b: "Call ended. Claude Code keeps working." },
     { at: "work", cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.6], ["214 of 214 tests pass", 2.0], ["Opened pull request #482 (not merged)", 3.4]] },
     { at: "incoming2", dt: -1.0, cls: "dec", h: AL + " · done", b: "Call Vignesh with the result." },
@@ -192,7 +204,7 @@ Sources: [1] crm/accounts/northwind-retail ·
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
         <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · ${P}</b>Claude Code: pull request #482 is open, "Fix rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
-      <div class="where" id="where"></div>
+      <div class="where" id="where"></div>${isD1 ? `<div class="eyes" id="eyes">Eyes on the road · screen time <b>0:00</b></div>` : ""}
     </div>
     <div class="R"><div class="plab">Behind the scenes</div>
       <div class="chain">
@@ -208,7 +220,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     <div class="tagline">${C.tagline}</div>
     <div class="sub2">${isD1 ? "One number that runs all your agents." : C.subtag}</div>
     ${lined("You", isD1 ? "Claude Code · ChatGPT · Gemini" : "Any text agent")}
-    <div class="endsub">${isD1 ? "One number. All your agents." : "Support, sales, internal knowledge: any text agent, three lines of code."}</div>
+    <div class="endsub">${isD1 ? "Just talk. Your agents do the rest." : "Support, sales, internal knowledge: any text agent, three lines of code."}</div>
     <div class="small">${isD1 ? C.small_print_demo1 : C.small_print}</div>
   </div>`;
 
@@ -245,7 +257,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     $("#top .tag").style.color = (dark || split) ? "#E9EEF4" : "var(--ink)";
 
     const exStart = isD1 ? scene("call1") : scene("setup");
-    $("#exTag").textContent = isD1 ? "Tonight: one call, three agents" : "Example: one text agent, Acme's internal assistant";
+    $("#exTag").textContent = isD1 ? "Tonight: eyes on the road, just talking" : "Example: one text agent, Acme's internal assistant";
     $("#exTag").style.opacity = clamp(fade(t, exStart + .3) - fade(t, exStart + 7.5, .6));
 
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
@@ -280,22 +292,26 @@ Sources: [1] crm/accounts/northwind-retail ·
   function renderHook(t) {
     const h1 = cue("h1"), h2 = cue("h2"), h3 = cue("h3"), h4 = cue("h4"), cut = cue("read_cut");
     if (isD1) {
+      $$(".ncard").forEach((n, i) => { const o = fade(t, h3 + .8 + i * .7, .35); n.style.opacity = o; n.style.transform = `translateY(${(1 - o) * -16}px)`; });
+      const st2 = t >= h2 + 1.6; $("#n31").style.opacity = fade(t, W("e1_02c", "Slack"), .3); $("#n32").style.opacity = fade(t, W("e1_02c", "inbox"), .3);
+      [["wb0", st2 ? "Waiting for you" : "Working", st2], ["wb1", t >= W("e1_02c", "Slack") ? "14 unread" : "Watching", t >= W("e1_02c", "Slack")], ["wb2", t >= W("e1_02c", "inbox") ? "1 new alert" : "Up to date", t >= W("e1_02c", "inbox")]]
+        .forEach(([id, txt, warn]) => { const el = $("#" + id); el.textContent = txt; el.className = "wb " + (warn ? "warn" : "ok"); });
       $("#termBody").innerHTML = TERM.filter(r => t >= cue(r[0]) + r[1]).map(r => r[2]).join("\n").replace('<span class="cur">▌</span>', Math.floor(t * 2) % 2 ? "▌" : " ");
-      const b = $("#tbadge"), clk = $("#bigclock");
+      const b = $("#tbadge") || document.createElement("i"), clk = $("#bigclock");
       const waitT0 = h2 + 1.6, waitEnd = h3 + .8;
       if (t < waitT0) { b.className = "tbadge ok"; b.textContent = "Working · 2 h " + (14 + Math.floor(clamp((t - h1) / 6) * 3)) + " min"; clk.style.opacity = 0; }
       else if (t < h4 + 1.2) {
         const w = clamp((t - waitT0) / (waitEnd - waitT0)); const mins = ease(w) * 47.2;
         b.className = "tbadge warn"; b.textContent = "Waiting for you"; clk.style.opacity = fade(t, waitT0, .3) * (1 - fade(t, h4 + .8, .4));
         clk.innerHTML = `Waiting for you: ${Math.floor(mins)} min <span>The agent can't continue without an answer.</span>`;
-      } else { b.className = "tbadge ok"; b.textContent = P + " is calling you"; clk.style.opacity = 0; }
+      } else { b.className = "tbadge ok"; b.textContent = "Reachable through " + P; clk.style.opacity = 0; }
       show($("#hvMe"), 1 - fade(t, h3, .35));
       const away = t >= h2 + .3; $("#mecard").classList.toggle("away", away);
       $("#meT1").textContent = away ? "Me, away from my desk" : "Me, at my desk"; $("#meT2").textContent = away ? "Walking, driving, in a meeting" : "Watching the agent work";
       show($("#hvPhone"), fade(t, h3, .4));
-      const rd = $("#hRead"); rd.style.opacity = 1 - fade(t, h4 + .6, .35); $(".ncard", rd).style.opacity = fade(t, h3 + .8, .4); $(".ncard", rd).style.transform = `translateY(${(1 - fade(t, h3 + .8, .4)) * -20}px)`;
+      const rd = $("#hRead"); rd.style.opacity = 1 - fade(t, h4 + .6, .35); $("#todo").style.opacity = fade(t, W("e1_03c", "open each app"), .35);
       $("#hCall").style.opacity = fade(t, h4 + .6, .35);
-      $("#hAns").style.transform = `scale(${1 + .08 * Math.sin(t * 8)})`;
+      $("#hAns").style.transform = `scale(${1 + .05 * Math.sin(t * 5)})`;
       const hl = $("#hline"); hl.style.opacity = fade(t, h4 + 1.0, .5);
       $(".bar", hl).style.background = `linear-gradient(90deg, #3FD39A ${((t * 80) % 100)}%, #A8EBCB ${((t * 80) % 100) + 8}%, #3FD39A ${((t * 80) % 100) + 16}%)`;
     } else {
@@ -354,8 +370,9 @@ Sources: [1] crm/accounts/northwind-retail ·
     orb.style.background = human ? "radial-gradient(circle at 40% 35%, #F2C27A, #D9932B 60%, #9A6418)" : "";
     orb.style.boxShadow = `0 0 0 ${18 * amp}px ${human ? "rgba(217,147,43,.25)" : "rgba(123,127,232,.28)"}`;
     // phone clock: time passes while the agent works
-    $("#clk").textContent = isD1 ? (t >= cue("incoming2") ? "7:34" : "6:52") : (t >= cue("incoming") ? "1:44" : "1:42");
+    $("#clk").textContent = isD1 ? (t >= cue("incoming2") ? "7:21" : "6:52") : (t >= cue("incoming") ? "1:44" : "1:42");
     show($("#notif"), fade(t, cue("sms"), .35));
+    if (isD1) $("#eyes").style.opacity = fade(t, cue("connected"), .4) * (1 - fade(t, cue("hangup2") + 1.2, .4));
     const where = isD1 ? (t >= hang && t < inc ? "I'm still walking. The agent is still working." : "") : (t < hang ? "Maya is at home, hands busy." : "");
     $("#where").textContent = where;
 
