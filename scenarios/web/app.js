@@ -23,7 +23,7 @@
     ["Explore with calls", "A tree search over scenarios, like a human tester"],
     ["Expert review", "Asks for a label when it's unsure"],
     ["Map the risks", "Risky zones, with the calls that prove them"],
-    ["Fix and recheck", "Prompt edits, rerun on the risky scenarios"],
+    ["Fix and recheck", "Prompt and model changes, rechecked every time"],
   ];
   const PROMPT = `You are the refill line for Northgate Pharmacy.
 Verify the patient: full name and date of birth. If either doesn't match, explain and end the call.
@@ -178,18 +178,19 @@ Never give medical advice or change a dose.`;
   </div>
 
   <div class="scene" id="s-fix">
-    <div class="L"><div class="plab">Suggested prompt edits</div>
+    <div class="L"><div class="plab">Suggested fixes · prompt and model</div>
       <div class="edits">
         <div class="ed"><div class="h">Fixes <b>Side effect mentioned late</b> and <b>Vague symptoms</b> · from 9 failed calls</div>
           <div class="old">Ask about new side effects. If the patient reports any, transfer to a pharmacist.</div>
           <div class="new">If the patient mentions any side effect or symptom, even a vague one like "feeling off", at any point in the call, stop and transfer to a pharmacist.</div></div>
-        <div class="ed"><div class="h">Fixes <b>Questions about doses</b> · from 3 failed calls</div>
-          <div class="old">Never give medical advice or change a dose.</div>
-          <div class="new">Never comment on doses or how to take a medicine. If asked, offer to transfer to a pharmacist.</div></div>
+        <div class="ed"><div class="h">Fixes <b>Questions about doses</b> · <span class="mc">model change</span></div>
+          <div class="tried">Prompt edit tried first: still 2 of 11 calls failed</div>
+          <div class="new">Fine-tune the agent's model on 41 corrected turns from the failed calls</div>
+          <div class="why">A rule the prompt can't hold becomes training data.</div></div>
         <div class="ed"><div class="h">Fixes <b>Refill exactly one week early</b> · from the expert's answer</div>
           <div class="new">A refill exactly one week before it runs out is allowed.</div></div>
       </div></div>
-    <div class="R"><div class="plab">Recheck with the edited prompt</div>
+    <div class="R"><div class="plab">Recheck · prompt v15 + fine-tuned model</div>
       <div class="rc"><div class="hd"><span>Scenarios</span><span>Before</span><span>After</span></div>
         <div class="r"><span>Side effect mentioned late</span><span class="bad">5 of 7 failed</span><span class="ok">0 of 7 failed</span></div>
         <div class="r"><span>Vague symptoms</span><span class="bad">4 of 9 failed</span><span class="ok">0 of 9 failed</span></div>
@@ -197,6 +198,7 @@ Never give medical advice or change a dose.`;
         <div class="r"><span>Refill exactly one week early</span><span class="bad">2 of 5 failed</span><span class="ok">0 of 5 failed</span></div>
         <div class="r"><span>Everything that passed before</span><span>0 of 96 failed</span><span class="ok">0 of 96 failed</span></div>
         <div class="done">✓ All risky zones fixed. No new failures.</div>
+        <div class="rerun">Reruns automatically on every prompt or model change.</div>
         <div class="jiracard" id="jira"><span class="ic jira">J</span><div><b>New Jira complaint · PHM-231</b><small>"It wouldn't let me pick up for my mother."</small></div><span class="arrow">→ 3 new scenarios queued</span></div></div></div>
   </div>
 
@@ -406,9 +408,13 @@ Never give medical advice or change a dose.`;
 
   function renderFix(t) {
     const r0 = cue("recheck"), j0 = cue("jira");
-    $$("#s-fix .ed").forEach((e, i) => e.style.opacity = fade(t, L("c6_01").start + .3 + i * 1.1, .4));
+    const edAt = [L("c6_01").start + .3, W("c6_01", "When a prompt edit") - .3, lend("c6_01") - .2];
+    $$("#s-fix .ed").forEach((e, i) => e.style.opacity = fade(t, edAt[i], .4));
     $$("#s-fix .rc .r").forEach((r, i) => r.style.opacity = fade(t, r0 + .4 + i * .6, .35));
-    $("#s-fix .rc .done").style.opacity = fade(t, W("c6_02", "so a fix"), .4);
+    $("#s-fix .rc .done").style.opacity = fade(t, W("c6_02", "So a fix"), .4);
+    $("#s-fix .rc .rerun").style.opacity = fade(t, W("c6_02", "whenever the prompt"), .4);
+    $("#s-fix .ed .tried").style.opacity = fade(t, W("c6_01", "When a prompt edit"), .3);
+    $$("#s-fix .ed")[1].querySelectorAll(".new,.why").forEach(e => e.style.opacity = fade(t, W("c6_01", "a model change"), .3));
     $("#s-fix .rc .hd").style.opacity = fade(t, r0, .3);
     $("#jira").style.opacity = fade(t, W("c6_03", "new complaint") - .2, .4);
     $("#jira .arrow").style.opacity = fade(t, W("c6_03", "becomes new scenarios"), .4);
