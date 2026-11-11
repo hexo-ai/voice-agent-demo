@@ -1,0 +1,14 @@
+[
+  {"scene": "hook"},
+  {"cue": "hook_read"},
+  {"hold": 0.6},
+  {"line": "read_01", "role": "robot", "maxdur": 7.6, "text": "Here's a summary. Hash, test results. Two hundred twelve passed, two failed. Failed tests. Bullet. Test underscore checkout underscore currency, line forty-two, assertion error, expected nineteen point nine nine, got nineteen point nine eight. Bullet. Test underscore"},
+  {"cue": "read_cut"},
+  {"hold": 0.4},
+  {"line": "narr_01", "role": "narrator", "text": "Most agents speak text. Voice mode just reads that text aloud, every symbol and every line."},
+  {"cue": "hook_split"},
+  {"line": "narr_02", "role": "narrator", "text": "A real voice is different. It listens, it summarises, it asks before it acts, and it calls you back when the work is done."},
+  {"line": "narr_03", "role": "narrator", "text": "{{product}} gives every text agent a real voice, and a phone number."},
+  {"scene": "title"},
+  {"hold": 2.4}
+]

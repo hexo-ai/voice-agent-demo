@@ -1,0 +1,12 @@
+{
+  "model_id": "eleven_multilingual_v2",
+  "output_format": "mp3_44100_128",
+  "roles": {
+    "narrator": {"voice_id": "QIbjfTILJmBvWa89D9kx", "model_id": "eleven_v4", "label": "Vignesh", "settings": {"stability": 0.5, "similarity_boost": 0.8, "style": 0.2}},
+    "vignesh":  {"voice_id": "QIbjfTILJmBvWa89D9kx", "model_id": "eleven_v4", "label": "Me, on the phone", "phone": true, "settings": {"stability": 0.45, "similarity_boost": 0.8, "style": 0.3}},
+    "robot":    {"voice_id": "SAz9YHcvj6GT2YYXdXww", "label": "Voice mode today: read aloud", "settings": {"stability": 0.95, "similarity_boost": 0.6, "style": 0.0}},
+    "coder":    {"voice_id": "XrExE9yKIg1WjnnlVkGX", "label": "My coding agent · voice by {{product}}", "phone": true, "settings": {"stability": 0.5, "similarity_boost": 0.75, "style": 0.2}},
+    "fixit":    {"voice_id": "hpp4J3VqNfWAUOO0d1Us", "label": "Fixit assistant · voice by {{product}}", "phone": true, "settings": {"stability": 0.5, "similarity_boost": 0.75, "style": 0.2}},
+    "maya":     {"voice_id": "cgSgspJ2msm6clMCkdW9", "label": "Maya, a customer", "phone": true, "settings": {"stability": 0.4, "similarity_boost": 0.75, "style": 0.35}}
+  }
+}
