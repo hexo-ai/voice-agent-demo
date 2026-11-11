@@ -5,5 +5,6 @@
   "illustrative_tag": "Illustrative product concept",
   "small_print": "Illustrative product concept. The product, screens, calls and numbers shown are mocked. Claude Code is a product of Anthropic; SIA Phone is not affiliated with it.",
   "_note": "Product name (Vignesh, 2026-11-10). Say SIA as one word, like the singer Sia; product_name_spoken is the phonetic spelling for the voice model. Change it here; the script uses {{product}} everywhere.",
-  "subtag": "A real voice and a phone number for any text agent."
+  "subtag": "A real voice and a phone number for any text agent.",
+  "small_print_demo1": "Illustrative product concept. The product, screens, calls and numbers shown are mocked. Claude Code, ChatGPT, Gemini and Slack belong to their owners; SIA Phone is not affiliated with Anthropic, OpenAI, Google or Slack."
 }

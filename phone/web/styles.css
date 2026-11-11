@@ -254,3 +254,10 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--
 .agq { margin-left: auto; width: fit-content; background: #ECEAF8; border-radius: 16px 16px 4px 16px; padding: 10px 16px; font-size: 20px; margin-bottom: 16px; }
 .aga { font-size: 20px; color: #4A5562; line-height: 1.45; }
 .agl { grid-column: 1 / -1; text-align: center; font-size: 30px; color: var(--muted); margin-top: 40px; }
+
+.agrow { position: absolute; left: 100px; top: 140px; width: 960px; display: flex; gap: 14px; flex-wrap: wrap; }
+.agrow .arow { flex: 1; background: #fff; border: 2px solid #E1E5EA; border-radius: 14px; padding: 12px 16px; }
+.agrow .arow b { display: block; font-size: 21px; color: var(--ink); } .agrow .arow span { font-size: 17px; color: var(--muted); }
+.agrow .ademo { width: 100%; font-size: 21px; font-weight: 700; color: var(--amber); }
+#s-hook .term { top: 300px; height: 500px; }
+#s-hook .bigclock { top: 820px; }

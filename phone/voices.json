@@ -32,7 +32,7 @@
     },
     "coder": {
       "voice_id": "XrExE9yKIg1WjnnlVkGX",
-      "label": "Claude Code \u00b7 voice by {{product}}",
+      "label": "{{product}} \u00b7 my agent",
       "phone": true,
       "settings": {
         "stability": 0.5,

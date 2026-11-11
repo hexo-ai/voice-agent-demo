@@ -13,8 +13,8 @@
   const show = (el, o) => { el.style.opacity = o; el.style.display = o <= 0.001 ? "none" : ""; };
   const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
   const isD1 = D === "demo1";
-  const AGENT = isD1 ? "Claude Code" : "Atlas";
-  const NUM = isD1 ? "+1 (650) 555-0142" : "Ext. 4400 · +1 (415) 555-0137";
+  const AGENT = isD1 ? P : "Atlas";
+  const NUM = isD1 ? "+1 (650) 555-0142 · my SIA Phone number" : "Ext. 4400 · +1 (415) 555-0137";
   const LOGO = (s = 28) => `<svg viewBox="0 0 32 32" width="${s}" height="${s}"><rect width="32" height="32" rx="8" fill="#17A673"/><path d="M4 16h5l2.5-6 4 12 3-8 1.8 2H28" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const CALL = '<svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>';
   const tokenize = md => md.split(/(\s+)/).map(w => /\s/.test(w) ? w : `<span class="tok">${w.replace(/</g, "&lt;")}</span>`).join("");
@@ -42,7 +42,7 @@ Sources: [1] crm/accounts/northwind-retail ·
 [4] #44790 · [5] dashboards/volume/q4`;
   const TERM = [
     ["h1", 0.3, '<span class="pr">~/shop-app $</span> claude'],
-    ["h1", 1.0, '<span class="dim">&gt;</span> Refactor the payments module and update the checkout tests'],
+    ["h1", 1.0, '<span class="dim">&gt;</span> Fix the checkout bug before tomorrow\'s demo'],
     ["h1", 1.8, '  <span class="dim">Reading 42 files…</span>'],
     ["h1", 2.6, '  <span class="ok">✓</span> Refactored payments/currency.py'],
     ["h1", 3.3, '  <span class="ok">✓</span> Updated tests/checkout/test_checkout.py'],
@@ -67,6 +67,7 @@ Sources: [1] crm/accounts/northwind-retail ·
   const readScreen = md => `<div class="rs"><div class="lab">VOICE MODE · READING ALOUD</div><div class="md2 mono">${tokenize(md)}</div>
     <div class="bars">${"<b></b>".repeat(16)}</div><div class="x">✕ Stopped listening</div></div>`;
   const hookHTML = isD1 ? `
+    <div class="agrow"><div class="arow"><b>Claude Code</b><span>fixing the checkout bug</span></div><div class="arow"><b>ChatGPT</b><span>connected to Slack</span></div><div class="arow"><b>Gemini</b><span>Gmail and Calendar</span></div><div class="ademo">Tomorrow 9:00 AM · Demo to Northwind, New York</div></div>
     <div class="term"><div class="tb"><i></i><i></i><i></i><span>Terminal · shop-app · cloud session</span><div class="tbadge" id="tbadge"></div></div>
       <div class="body mono" id="termBody"></div></div>
     <div class="bigclock" id="bigclock"></div>
@@ -74,10 +75,10 @@ Sources: [1] crm/accounts/northwind-retail ·
     <div class="hright">
       <div class="hv" id="hvMe"><div class="mecard" id="mecard"><div class="av">V</div><div><div class="t1" id="meT1">Me, at my desk</div><div class="t2" id="meT2">Watching the agent work</div></div></div></div>
       <div class="hv" id="hvPhone"><div class="hphone"><div class="scr">
-        <div class="sbar"><span>10:28</span><span>●●● 5G</span></div>
-        <div id="hRead"><div class="lock"><div class="lt">10:28</div><div class="ld">Tuesday, November 10</div>
+        <div class="sbar"><span>6:41</span><span>●●● 5G</span></div>
+        <div id="hRead"><div class="lock"><div class="lt">6:41</div><div class="ld">Tuesday, November 10</div>
           <div class="ncard"><div class="nh"><b>Claude Code</b><span>47 min ago</span></div><div class="nb">Needs your input: refunds use the same rounding code. Fix them too? (y/n)</div><div class="nf">Open on your computer to reply</div></div></div></div>
-        <div id="hCall" class="cs" style="opacity:0"><div class="av">C</div><div class="nm">Claude Code</div><div class="st">calling via ${P}…</div>
+        <div id="hCall" class="cs" style="opacity:0"><div class="av" style="background:#17A673;border:none">${LOGO(70)}</div><div class="nm">${P}</div><div class="st">calling…</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="hAns">${CALL}</div></div></div>
       </div></div></div>
     </div>` : `
@@ -115,17 +116,18 @@ Sources: [1] crm/accounts/northwind-retail ·
     return pool[(i * 7) % pool.length];
   }).join("\n");
   const FEED = isD1 ? [
-    { at: "ask_agent", cls: "out", h: `${AL} → Claude Code`, b: "Get the results of last night's test run." },
-    { at: "agent_log", cls: "in term2", h: `Claude Code → ${AL} · 1,840 lines`, log: true },
-    { at: "compress", cls: "stat", b: "1,840 lines → 3 spoken sentences", s: "Kept short for a phone call. Ends with a question." },
-    { at: "task", cls: "out", h: `${AL} → Claude Code · new task`, b: "Fix the 2 failing checkout tests. Open a pull request.", pin: "Rule from the call: do not merge" },
-    { at: "hangup", cls: "sys", b: "Call ended. Claude Code keeps working in the cloud." },
-    { at: "work", cls: "in term2", h: "Claude Code · working", items: [["Reading the two failures", 0.4], ["Found a rounding bug in currency.py", 1.6], ["Fixed the rounding: both tests pass", 3.0], ["Checking other code that uses it", 4.4, "run"]] },
-    { at: "question", cls: "in term2", h: `Claude Code → ${AL} · question`, b: "Refunds use the same rounding code. Fix them too? (y/n)" },
-    { at: "question", dt: 0.9, cls: "dec", h: AL + " · decision", b: "This needs Vignesh. Call him now." },
-    { at: "approve", cls: "out", h: `${AL} → Claude Code`, b: "y. Fix refunds too." },
-    { at: "approve", dt: 0.5, cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.3], ["214 of 214 tests pass", 1.4], ["Opened pull request #482 (not merged)", 2.6]] },
-    { at: "sms", cls: "sys", b: "Texted the pull request link to Vignesh." },
+    { at: "incoming", dt: -2.2, cls: "in term2", h: `Claude Code → ${AL} · question`, b: "Refunds use the same rounding code as checkout. Fix them too? (y/n)" },
+    { at: "incoming", dt: -1.2, cls: "dec", h: AL + " · decision needed", b: "Only Vignesh can answer. Call him now." },
+    { at: "route_cc", cls: "out", h: `${AL} → Claude Code`, b: "y. Fix refunds too.", pin: "Rule from the call: do not merge" },
+    { at: "ask_slack", cls: "out", h: `${AL} → ChatGPT · Slack`, b: "Latest from Northwind in the shared channel?" },
+    { at: "slack_ans", dt: -0.6, cls: "in", h: `ChatGPT → ${AL} · 14 new messages`, b: "Maria (Northwind CTO) joined #northwind-shared 1 h ago: “Can we see refunds in tomorrow's demo?”" },
+    { at: "gemini", cls: "in", h: `Gemini → ${AL} · Gmail`, b: "Tonight's 8:40 PM flight to JFK is delayed 90 min. Clashes with dinner with Dana at 7:00 PM." },
+    { at: "move", cls: "out", h: `${AL} → Gemini · Calendar`, b: "Move dinner with Dana to breakfast tomorrow, 8:00 AM." },
+    { at: "move", dt: 0.8, cls: "in", h: `Gemini → ${AL}`, b: "Dana accepted." },
+    { at: "hangup", cls: "sys", b: "Call ended. Claude Code keeps working." },
+    { at: "work", cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.6], ["214 of 214 tests pass", 2.0], ["Opened pull request #482 (not merged)", 3.4]] },
+    { at: "incoming2", dt: -1.0, cls: "dec", h: AL + " · done", b: "Call Vignesh with the result." },
+    { at: "sms", cls: "sys", b: "Texted Vignesh the pull request link." },
   ] : [
     { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Pierre (account manager, verified): brief me on Northwind Retail, meeting in 20 minutes." },
     { at: "answer_text", cls: "in", h: `Atlas → ${AL} · text answer`, txt: "Northwind Retail: renewal Mar 12 [1] · 3 open tickets [2] · #44812 settlement delay, P2, since Nov 3 [3] · #44790 webhook retries [4] · volume +18% QoQ [5] · contact Dan Ortiz [1] · Sources: crm/accounts/northwind-retail, support/tickets?acct=northwind, dashboards/volume/q4" },
@@ -140,8 +142,8 @@ Sources: [1] crm/accounts/northwind-retail ·
 
   // ---------- DOM ----------
   const OV = [
-    ["listens", "Listens", "Understands you, even mid-sentence."],
-    ["short", "Keeps it short", isD1 ? "1,840 lines of output become three sentences." : "Long answers become a few sentences. Links and sources go by text."],
+    ["listens", "Listens", isD1 ? "Picks the right agent for each request, or the one you name." : "Understands you, even mid-sentence."],
+    ["short", "Keeps it short", isD1 ? "A Slack thread or an inbox becomes two sentences. Links go by text." : "Long answers become a few sentences. Links and sources go by text."],
     ["asks", "Asks before it acts", "Decisions come to you. No guessing."],
     ["calls back", "Calls back", "When the work is done, or when it's stuck."],
   ];
@@ -154,12 +156,12 @@ Sources: [1] crm/accounts/northwind-retail ·
   <div class="scene" id="s-title">
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
-    <div class="sub2">${C.subtag}</div>
-    ${lined("You", "Any text agent")}
+    <div class="sub2">${isD1 ? "One number that runs all your agents." : C.subtag}</div>
+    ${lined("You", isD1 ? "Your agents" : "Any text agent")}
   </div>
   <div class="scene" id="s-overview">
     <h2>How ${P} works</h2>
-    ${lined(isD1 ? "Me" : "People", isD1 ? "Claude Code" : "Any text agent")}
+    ${lined(isD1 ? "Me" : "People", isD1 ? "Claude Code · ChatGPT · Gemini" : "Any text agent")}
     <div class="ovc">${OV.map(o => `<div data-w="${o[0]}"><i>${o[1] === "Listens" ? "1" : o[1] === "Keeps it short" ? "2" : o[1] === "Asks before it acts" ? "3" : "4"}</i><b>${o[1]}</b><span>${o[2]}</span></div>`).join("")}</div>
   </div>
   <div class="scene" id="s-setup">
@@ -181,14 +183,14 @@ Sources: [1] crm/accounts/northwind-retail ·
     <div class="L"><div class="plab">${isD1 ? "My phone" : "Pierre's phone"}</div>
       <div class="phone"><div class="scr">
         <div class="sbar"><span id="clk">9:41</span><span>●●● 5G</span></div>
-        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "Contact" : "Acme · internal assistant"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
+        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "My agent" : "Acme · internal assistant"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
           <div class="btns" style="gap:0"><div class="btn g">${CALL}</div></div></div>
-        <div class="pv" id="pvCall"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="callSt">Calling…</div>
+        <div class="pv" id="pvCall"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="callSt">Calling…</div>
           <div class="orb" id="orb"></div><div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div></div></div>
-        <div class="pv" id="pvEnd"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="endSt">Call ended</div></div>
-        <div class="pv" id="pvIn"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st">calling via ${P}</div>
+        <div class="pv" id="pvEnd"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="endSt">Call ended</div></div>
+        <div class="pv" id="pvIn"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st">${isD1 ? "calling…" : "calling via " + P}</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
-        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · Claude Code via ${P}</b>Pull request #482 is open: "Fix currency rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
+        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · ${P}</b>Claude Code: pull request #482 is open, "Fix rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
       <div class="where" id="where"></div>
     </div>
@@ -196,7 +198,7 @@ Sources: [1] crm/accounts/northwind-retail ·
       <div class="chain">
         <div class="n">${isD1 ? "Me" : "Pierre"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
         <div class="n al">${P}<small>the voice</small></div><div class="lk" id="lk2"><b></b><em>text</em></div>
-        <div class="n">${isD1 ? "Claude Code" : "Atlas"}<small>${isD1 ? "running in the cloud" : "knowledge assistant, unchanged"}</small></div>
+        <div class="n">${isD1 ? "My agents" : "Atlas"}<small>${isD1 ? "Claude Code · ChatGPT · Gemini" : "knowledge assistant, unchanged"}</small></div>
       </div>
       <div class="feed" id="feed"></div>
     </div>
@@ -204,10 +206,10 @@ Sources: [1] crm/accounts/northwind-retail ·
   <div class="scene" id="s-end">
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
-    <div class="sub2">${C.subtag}</div>
-    ${lined("You", isD1 ? "Claude Code, or any agent" : "Any text agent")}
-    <div class="endsub">${isD1 ? "Call your agents. Let them call you." : "Support, sales, internal knowledge: any text agent, three lines of code."}</div>
-    <div class="small">${C.small_print}</div>
+    <div class="sub2">${isD1 ? "One number that runs all your agents." : C.subtag}</div>
+    ${lined("You", isD1 ? "Claude Code · ChatGPT · Gemini" : "Any text agent")}
+    <div class="endsub">${isD1 ? "One number. All your agents." : "Support, sales, internal knowledge: any text agent, three lines of code."}</div>
+    <div class="small">${isD1 ? C.small_print_demo1 : C.small_print}</div>
   </div>`;
 
   const feed = $("#feed");
@@ -243,7 +245,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     $("#top .tag").style.color = (dark || split) ? "#E9EEF4" : "var(--ink)";
 
     const exStart = isD1 ? scene("call1") : scene("setup");
-    $("#exTag").textContent = isD1 ? "Example 1: I call my Claude Code" : "Example: one text agent, Acme's internal assistant";
+    $("#exTag").textContent = isD1 ? "Tonight: one call, three agents" : "Example: one text agent, Acme's internal assistant";
     $("#exTag").style.opacity = clamp(fade(t, exStart + .3) - fade(t, exStart + 7.5, .6));
 
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
@@ -286,7 +288,7 @@ Sources: [1] crm/accounts/northwind-retail ·
         const w = clamp((t - waitT0) / (waitEnd - waitT0)); const mins = ease(w) * 47.2;
         b.className = "tbadge warn"; b.textContent = "Waiting for you"; clk.style.opacity = fade(t, waitT0, .3) * (1 - fade(t, h4 + .8, .4));
         clk.innerHTML = `Waiting for you: ${Math.floor(mins)} min <span>The agent can't continue without an answer.</span>`;
-      } else { b.className = "tbadge ok"; b.textContent = "Calling you via " + P; clk.style.opacity = 0; }
+      } else { b.className = "tbadge ok"; b.textContent = P + " is calling you"; clk.style.opacity = 0; }
       show($("#hvMe"), 1 - fade(t, h3, .35));
       const away = t >= h2 + .3; $("#mecard").classList.toggle("away", away);
       $("#meT1").textContent = away ? "Me, away from my desk" : "Me, at my desk"; $("#meT2").textContent = away ? "Walking, driving, in a meeting" : "Watching the agent work";
@@ -329,19 +331,19 @@ Sources: [1] crm/accounts/northwind-retail ·
   }
 
   function renderCall(t) {
-    const dial = cue("dial"), con = cue("connected"), hang = cue("hangup"), inc = cue("incoming"), ans = cue("answered"), hang2 = cue("hangup2");
-    // which phone view
-    let view = "home";
-    if (t >= dial) view = "call";
-    if (t >= hang) view = "end";
-    if (t >= inc) view = "in";
-    if (t >= ans) view = "call";
-    if (t >= hang2) view = "end";
-    const vt = { home: 0, call: t >= ans ? ans : dial, end: t >= hang2 ? hang2 : hang, in: inc }[view];
+    const EV = [["dial", "call"], ["hangup", "end"], ["incoming", "in"], ["answered", "call"], ["hangup2", "end"], ["incoming2", "in"], ["answered2", "call"], ["hangup3", "end"]]
+      .map(([c, v]) => [cue(c), v, c]).filter(e => e[0] < Infinity).sort((x, y) => x[0] - y[0]);
+    let view = "home", vt = 0, callStart = 0, lastLen = 0, outgoing = false;
+    for (const [tc, v, c] of EV) {
+      if (t < tc) break;
+      if (v === "end") lastLen = tc - callStart;
+      view = v; vt = tc;
+      if (c === "dial") { outgoing = true; callStart = cue("connected"); } else if (v === "call") { outgoing = false; callStart = tc; }
+    }
     ["home", "call", "end", "in"].forEach(v => show($("#pv" + v[0].toUpperCase() + v.slice(1)), v === view ? fade(t, vt, .3) : 0));
-    const live0 = t >= ans ? ans : con;
-    $("#callSt").textContent = t < con ? "Calling…" : mmss(t - live0);
-    $("#endSt").textContent = "Call ended · " + mmss((t >= hang2 ? hang2 - ans : hang - con));
+    $("#callSt").textContent = outgoing && t < cue("connected") ? "Calling…" : mmss(Math.max(0, t - callStart));
+    $("#endSt").textContent = "Call ended · " + mmss(lastLen);
+    const hang = cue("hangup"), inc = cue("incoming");
     $("#ansBtn").style.transform = `scale(${1 + .08 * Math.sin(t * 8)})`;
     // orb pulses with whoever speaks on the phone
     const ln = TL.lines.find(l => l.phone && t >= l.start && t < l.start + l.dur);
@@ -352,7 +354,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     orb.style.background = human ? "radial-gradient(circle at 40% 35%, #F2C27A, #D9932B 60%, #9A6418)" : "";
     orb.style.boxShadow = `0 0 0 ${18 * amp}px ${human ? "rgba(217,147,43,.25)" : "rgba(123,127,232,.28)"}`;
     // phone clock: time passes while the agent works
-    $("#clk").textContent = isD1 ? (t >= cue("question") ? "9:48" : t >= cue("work") + 1.5 ? "9:45" : "9:41") : (t >= cue("incoming") ? "1:44" : "1:42");
+    $("#clk").textContent = isD1 ? (t >= cue("incoming2") ? "7:34" : "6:52") : (t >= cue("incoming") ? "1:44" : "1:42");
     show($("#notif"), fade(t, cue("sms"), .35));
     const where = isD1 ? (t >= hang && t < inc ? "I'm still walking. The agent is still working." : "") : (t < hang ? "Maya is at home, hands busy." : "");
     $("#where").textContent = where;
@@ -360,7 +362,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     // link activity in the chain
     const pulse = (el, on, ph) => { const b = $("b", el); b.style.opacity = on ? 1 : 0; b.style.left = ((t * 0.9 + ph) % 1) * 80 + "%"; };
     const humanOn = !!ln;
-    const agentOn = FEED.some(f => (f.cls === "out" || f.cls === "in") && t >= f.t0 && t < f.t0 + 1.4) || (t >= cue("work") && t < (isD1 ? cue("question") + 1 : cue("incoming")));
+    const agentOn = FEED.some(f => (f.cls === "out" || f.cls === "in") && t >= f.t0 && t < f.t0 + 1.4) || (t >= cue("work") && t < (isD1 ? cue("incoming2") : cue("incoming")));
     pulse($("#lk1"), humanOn, 0); pulse($("#lk2"), agentOn, .4);
 
     // feed

@@ -1,5 +1,5 @@
 {
- "title": "Call your coding agent",
+ "title": "One number for all your agents",
  "steps": [
   {
    "scene": "hook"
@@ -8,22 +8,22 @@
    "hold": 0.4
   },
   {
-   "line": "h1_01",
+   "line": "e1_01",
    "role": "narrator",
-   "text": "Coding agents like Claude Code now work for hours on their own."
+   "text": "Tomorrow at nine, I demo to Northwind, our biggest prospect. Tonight, I fly to New York. Three agents are working for me: Claude Code on a checkout bug, ChatGPT on our Slack, and Gemini on my email and calendar."
   },
   {
    "cue": "h1",
-   "at": "h1_01"
+   "at": "e1_01"
   },
   {
-   "line": "h1_02",
+   "line": "e1_02",
    "role": "narrator",
-   "text": "But they still need me. When I step away from my screen, the agent stops, and waits."
+   "text": "But the moment I leave my desk, they're stuck. Claude Code has a question, and it just waits."
   },
   {
    "cue": "h2",
-   "at": "h1_02"
+   "at": "e1_02"
   },
   {
    "hold": 0.6
@@ -41,13 +41,13 @@
    "hold": 0.6
   },
   {
-   "line": "h1_04",
+   "line": "e1_04",
    "role": "narrator",
-   "text": "What I need is simple. My agent should be able to call me, and I should be able to call it."
+   "text": "I need one number that runs all my agents, and calls me when they need me."
   },
   {
    "cue": "h4",
-   "at": "h1_04"
+   "at": "e1_04"
   },
   {
    "hold": 0.3
@@ -59,9 +59,9 @@
    "hold": 0.5
   },
   {
-   "line": "narr_03",
+   "line": "e1_05",
    "role": "narrator",
-   "text": "{{product}} gives any text agent a real voice, and a phone number."
+   "text": "{{product}} is my own agent, with one phone number. It runs the agents I already use."
   },
   {
    "hold": 1.0
@@ -73,9 +73,9 @@
    "hold": 0.4
   },
   {
-   "line": "ov_01",
+   "line": "e1_ov",
    "role": "narrator",
-   "text": "It sits between people and their agents. It listens, keeps answers short, asks before it acts, and calls back when there's news."
+   "text": "It picks the right agent for each request. It listens, keeps answers short, asks before it acts, and calls back when there's news."
   },
   {
    "hold": 0.6
@@ -87,85 +87,9 @@
    "hold": 0.5
   },
   {
-   "line": "narr_04",
+   "line": "e1_06",
    "role": "narrator",
-   "text": "Here's how it works with my Claude Code, running in the cloud. I'm out for a walk, so I call it."
-  },
-  {
-   "cue": "dial",
-   "sfx": "ringback"
-  },
-  {
-   "hold": 2.6
-  },
-  {
-   "cue": "connected"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "v_01",
-   "role": "vignesh",
-   "text": "Hey. Did last night's test run pass?"
-  },
-  {
-   "cue": "ask_agent"
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "cue": "agent_log"
-  },
-  {
-   "hold": 1.1
-  },
-  {
-   "line": "ag_01",
-   "role": "coder",
-   "text": "Mostly. Two hundred twelve of two hundred fourteen tests passed. Two checkout tests failed after yesterday's payment change. Want me to look into it?"
-  },
-  {
-   "cue": "compress",
-   "at": "ag_01"
-  },
-  {
-   "line": "v_02",
-   "role": "vignesh",
-   "text": "Yes. Fix them and open a pull request. But don't merge."
-  },
-  {
-   "cue": "task"
-  },
-  {
-   "line": "ag_02",
-   "role": "coder",
-   "text": "Got it. I'll fix both tests and open a pull request, without merging. It'll take a few minutes. I'll call you back."
-  },
-  {
-   "cue": "hangup",
-   "sfx": "hangup"
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "cue": "work"
-  },
-  {
-   "line": "narr_05",
-   "role": "narrator",
-   "text": "I hang up. The agent keeps working in the cloud."
-  },
-  {
-   "hold": 2.2
-  },
-  {
-   "cue": "question"
-  },
-  {
-   "hold": 2.0
+   "text": "Here's tonight. I'm in a car to the airport, and my phone rings."
   },
   {
    "cue": "incoming",
@@ -181,25 +105,106 @@
    "hold": 0.3
   },
   {
-   "line": "ag_03",
+   "line": "s_01",
    "role": "coder",
-   "text": "Hi, it's Claude Code. I found it: a rounding bug in the new currency code. Both tests pass now. One question first. Refunds use the same code. Should I fix them too?"
+   "text": "Hi Vignesh, it's {{product}}. Claude Code needs a decision. Refunds use the same code as checkout. Should it fix them too?"
+  },
+  {
+   "line": "v_01",
+   "role": "vignesh",
+   "text": "Yes, but don't merge. While I have you, what's the latest from Northwind in Slack?"
+  },
+  {
+   "cue": "route_cc",
+   "at": "v_01"
+  },
+  {
+   "cue": "ask_slack"
+  },
+  {
+   "hold": 1.2
+  },
+  {
+   "line": "s_02",
+   "role": "coder",
+   "text": "Their CTO, Maria, joined the shared channel an hour ago. She wants to see refunds in tomorrow's demo."
+  },
+  {
+   "cue": "slack_ans",
+   "at": "s_02"
+  },
+  {
+   "line": "v_02",
+   "role": "vignesh",
+   "text": "Good thing we're fixing them."
+  },
+  {
+   "cue": "gemini"
+  },
+  {
+   "hold": 0.8
+  },
+  {
+   "line": "s_03",
+   "role": "coder",
+   "text": "One more thing. Gemini saw your flight is delayed ninety minutes, so you'll miss dinner with Dana at seven. Should I move it to breakfast at eight?"
   },
   {
    "line": "v_03",
    "role": "vignesh",
-   "text": "Yes, fix refunds too."
+   "text": "Yes, please."
   },
   {
-   "cue": "approve"
+   "cue": "move"
   },
   {
-   "hold": 0.4
+   "hold": 1.0
   },
   {
-   "line": "ag_04",
+   "line": "s_04",
    "role": "coder",
-   "text": "Done. All two hundred fourteen tests pass, and the pull request is open. I've texted you the link."
+   "text": "Done. Dana accepted. Safe travels."
+  },
+  {
+   "cue": "hangup",
+   "sfx": "hangup"
+  },
+  {
+   "hold": 0.5
+  },
+  {
+   "cue": "work"
+  },
+  {
+   "line": "e1_07",
+   "role": "narrator",
+   "text": "I hang up. Claude Code keeps working."
+  },
+  {
+   "hold": 3.0
+  },
+  {
+   "cue": "incoming2",
+   "sfx": "ring"
+  },
+  {
+   "hold": 2.4
+  },
+  {
+   "cue": "answered2"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "line": "s_05",
+   "role": "coder",
+   "text": "Hi Vignesh. Claude Code is done. Checkout and refunds both pass, all two hundred fourteen tests. The pull request is open, not merged. The link is in your texts. Good luck with Northwind."
+  },
+  {
+   "line": "v_04",
+   "role": "vignesh",
+   "text": "Thanks!"
   },
   {
    "cue": "hangup2",
@@ -213,9 +218,9 @@
    "hold": 0.6
   },
   {
-   "line": "narr_06",
+   "line": "e1_08",
    "role": "narrator",
-   "text": "Claude Code did the work. {{product}} did the talking. It kept it short, it asked before deciding, and it called me back."
+   "text": "Three agents, one call. I never opened my laptop."
   },
   {
    "scene": "end"
@@ -224,9 +229,9 @@
    "hold": 0.3
   },
   {
-   "line": "narr_07",
+   "line": "e1_09",
    "role": "narrator",
-   "text": "Your agent, on the line."
+   "text": "One number. All your agents."
   },
   {
    "hold": 3.0
