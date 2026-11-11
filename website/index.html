@@ -463,7 +463,7 @@ document.querySelectorAll("[data-video]").forEach(box => {
   });
 });
 
-/* shareable section links: "Copy link" copies the section URL */
+/* shareable section links: "Copy link" copies the product's share page (siavoice.com/<anchor>), which has its own link preview and opens this section */
 (function () {
   const go = () => {
     const h = decodeURIComponent(location.hash.slice(1));
@@ -473,7 +473,7 @@ document.querySelectorAll("[data-video]").forEach(box => {
   // the video players are added by script, so jump again once the page has its final height
   go(); window.addEventListener("load", go); window.addEventListener("hashchange", go);
   document.querySelectorAll(".copylink").forEach(btn => btn.addEventListener("click", () => {
-    const url = location.origin + location.pathname + "#" + btn.dataset.anchor;
+    const url = "https://siavoice.com/" + btn.dataset.anchor;  // share page with its own link preview; it opens this section
     const done = () => { btn.classList.add("done"); btn.textContent = "Link copied"; setTimeout(() => { btn.classList.remove("done"); btn.textContent = "Copy link"; }, 2000); };
     (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(done).catch(() => { window.prompt("Copy this link:", url); });
   }));
