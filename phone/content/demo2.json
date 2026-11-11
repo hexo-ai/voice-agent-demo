@@ -2,61 +2,67 @@
  "title": "Give your agent a voice and a phone number",
  "steps": [
   {
-   "scene": "problem"
+   "scene": "hook"
   },
   {
-   "hold": 0.5
+   "hold": 0.4
   },
   {
-   "line": "p2_01",
+   "line": "h2_01",
    "role": "narrator",
-   "text": "I'm a developer. I built a text assistant that helps people fix home appliances. It looks up manuals, checks warranties and books technicians."
+   "text": "I built a text assistant that helps people fix home appliances. It looks up manuals, checks warranties, and books technicians."
   },
   {
-   "cue": "r1",
-   "at": "p2_01"
+   "cue": "h1",
+   "at": "h2_01"
   },
   {
-   "line": "p2_02",
+   "line": "h2_02",
    "role": "narrator",
-   "text": "Here's the problem. My users need help when their hands are busy, standing in front of a broken dishwasher. They want to call, not type."
+   "text": "But my users often need help when they can't type. Standing at a broken dishwasher, hands wet, they want to call."
   },
   {
-   "cue": "r2",
-   "at": "p2_02"
+   "cue": "h2",
+   "at": "h2_02"
   },
   {
-   "line": "p2_03",
+   "line": "h2_03",
    "role": "narrator",
-   "text": "But a phone version is a second product: speech, phone lines, turn-taking, and answers rewritten for the ear. That's weeks of work."
+   "text": "A phone version is a second product: speech, phone numbers, turn-taking. That's weeks of work."
   },
   {
-   "cue": "r3",
-   "at": "p2_03"
+   "cue": "h3",
+   "at": "h2_03"
   },
   {
-   "line": "p2_04",
+   "hold": 0.4
+  },
+  {
+   "line": "h2_04",
    "role": "narrator",
-   "text": "And a simple voice wrapper just reads my text answer aloud, all six steps at once."
+   "text": "And a simple voice wrapper just reads my answer aloud, all six steps at once."
   },
   {
-   "cue": "r4",
-   "at": "p2_04"
+   "cue": "h4",
+   "at": "h2_04"
   },
   {
-   "cue": "read_vis"
-  },
-  {
-   "hold": 0.3
+   "hold": 0.2
   },
   {
    "line": "read_02",
    "role": "robot",
-   "maxdur": 6.8,
+   "maxdur": 6.4,
    "text": "E24 is a drain error. Try these steps. One. Turn off the dishwasher. Two. Remove the bottom rack. Three. Twist the filter counterclockwise and lift it out. Four. Rinse the filter under the tap. Five."
   },
   {
    "cue": "read_cut"
+  },
+  {
+   "hold": 0.6
+  },
+  {
+   "scene": "title"
   },
   {
    "hold": 0.5
@@ -64,17 +70,24 @@
   {
    "line": "narr_03",
    "role": "narrator",
-   "text": "{{product}} gives every text agent a real voice, and a phone number."
+   "text": "{{product}} gives any text agent a real voice, and a phone number."
   },
   {
-   "cue": "r5",
-   "at": "narr_03"
+   "hold": 1.0
   },
   {
-   "scene": "title"
+   "scene": "overview"
   },
   {
-   "hold": 2.4
+   "hold": 0.4
+  },
+  {
+   "line": "ov_01",
+   "role": "narrator",
+   "text": "It sits between people and their agents. It listens, keeps answers short, asks before it acts, and calls back when there's news."
+  },
+  {
+   "hold": 0.6
   },
   {
    "scene": "setup"
@@ -211,7 +224,7 @@
   {
    "line": "narr_14",
    "role": "narrator",
-   "text": "Any text agent can have a real voice, and a phone number."
+   "text": "Your agent, on the line."
   },
   {
    "hold": 3.0

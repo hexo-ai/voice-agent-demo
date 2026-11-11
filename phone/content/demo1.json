@@ -2,48 +2,48 @@
  "title": "Call your coding agent",
  "steps": [
   {
-   "scene": "problem"
+   "scene": "hook"
   },
   {
-   "hold": 0.5
+   "hold": 0.4
   },
   {
-   "line": "p1_01",
+   "line": "h1_01",
    "role": "narrator",
-   "text": "I'm a developer. Like a lot of developers, I now hand work to coding agents that run in the cloud for hours."
+   "text": "Coding agents like Claude Code now work for hours on their own."
   },
   {
-   "cue": "r1",
-   "at": "p1_01"
+   "cue": "h1",
+   "at": "h1_01"
   },
   {
-   "line": "p1_02",
+   "line": "h1_02",
    "role": "narrator",
-   "text": "Here's the problem. To check on them, or give them direction, I need to be at a screen. When I step away, the agent either waits for me, or it guesses."
+   "text": "But they still need me. When I step away from my screen, the agent stops, and waits."
   },
   {
-   "cue": "r2",
-   "at": "p1_02"
+   "cue": "h2",
+   "at": "h1_02"
   },
   {
-   "line": "p1_03",
+   "hold": 0.6
+  },
+  {
+   "line": "h1_03",
    "role": "narrator",
-   "text": "And voice mode doesn't fix it. It just reads the text aloud."
+   "text": "Voice mode doesn't help. It just reads the text aloud."
   },
   {
-   "cue": "r3",
-   "at": "p1_03"
+   "cue": "h3",
+   "at": "h1_03"
   },
   {
-   "cue": "read_vis"
-  },
-  {
-   "hold": 0.3
+   "hold": 0.2
   },
   {
    "line": "read_01",
    "role": "robot",
-   "maxdur": 6.8,
+   "maxdur": 6.4,
    "text": "Here's a summary. Hash, test results. Two hundred twelve passed, two failed. Failed tests. Bullet. Test underscore checkout underscore currency, line forty-two, assertion error, expected nineteen point nine nine, got nineteen point nine eight."
   },
   {
@@ -53,24 +53,44 @@
    "hold": 0.5
   },
   {
-   "line": "p1_04",
+   "line": "h1_04",
    "role": "narrator",
-   "text": "What I need is a real voice. One that listens, summarises, asks before it acts, and calls me back when the work is done."
+   "text": "I don't need my agent read aloud. I need it to talk with me, and to call me when it needs me."
   },
   {
-   "cue": "r4",
-   "at": "p1_04"
+   "cue": "h4",
+   "at": "h1_04"
   },
   {
-   "line": "narr_03",
-   "role": "narrator",
-   "text": "{{product}} gives every text agent a real voice, and a phone number."
+   "hold": 0.3
   },
   {
    "scene": "title"
   },
   {
-   "hold": 2.4
+   "hold": 0.5
+  },
+  {
+   "line": "narr_03",
+   "role": "narrator",
+   "text": "{{product}} gives any text agent a real voice, and a phone number."
+  },
+  {
+   "hold": 1.0
+  },
+  {
+   "scene": "overview"
+  },
+  {
+   "hold": 0.4
+  },
+  {
+   "line": "ov_01",
+   "role": "narrator",
+   "text": "It sits between people and their agents. It listens, keeps answers short, asks before it acts, and calls back when there's news."
+  },
+  {
+   "hold": 0.6
   },
   {
    "scene": "call1"
@@ -81,7 +101,7 @@
   {
    "line": "narr_04",
    "role": "narrator",
-   "text": "Here's my coding agent. It runs in the cloud, and now it has a phone number. I'm out for a walk, so I call it."
+   "text": "Here's how it works with my Claude Code, running in the cloud. I'm out for a walk, so I call it."
   },
   {
    "cue": "dial",
@@ -175,7 +195,7 @@
   {
    "line": "ag_03",
    "role": "coder",
-   "text": "Hi, it's your coding agent. I found it: a rounding bug in the new currency code. Both tests pass now. One question first. Refunds use the same code. Should I fix them too?"
+   "text": "Hi, it's Claude Code. I found it: a rounding bug in the new currency code. Both tests pass now. One question first. Refunds use the same code. Should I fix them too?"
   },
   {
    "line": "v_03",
@@ -207,7 +227,7 @@
   {
    "line": "narr_06",
    "role": "narrator",
-   "text": "The agent did the work. {{product}} did the talking. It summarised, it asked before deciding, and it called me back."
+   "text": "Claude Code did the work. {{product}} did the talking. It kept it short, it asked before deciding, and it called me back."
   },
   {
    "scene": "end"
@@ -218,7 +238,7 @@
   {
    "line": "narr_07",
    "role": "narrator",
-   "text": "Any agent that runs in the cloud can have a real voice, and a phone number."
+   "text": "Your agent, on the line."
   },
   {
    "hold": 3.0
