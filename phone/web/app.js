@@ -140,7 +140,11 @@ Sources: [1] crm/accounts/northwind-retail ·
     { at: "hangup", cls: "sys", b: "Call ended. Claude Code keeps working." },
     { at: "work", cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.6], ["214 of 214 tests pass", 2.0], ["Opened pull request #482 (not merged)", 3.4]] },
     { at: "work", dt: 2.6, cls: "in", h: `Gemini → ${AL}`, b: "Dana replied: breakfast at 8:00 AM works. Calendar updated." },
-    { at: "incoming2", dt: -1.0, cls: "dec", h: AL + " · news", b: "Claude Code is done, and Dana replied. Call Vignesh." },
+    { at: "m_dial", dt: 0.6, cls: "in", h: "Incoming call to Vignesh's AI", b: "Monica · Vignesh's wife" },
+    { at: "m_check", cls: "dec", h: AL + " · needs Vignesh's OK", b: "Monica asks for his flight details. Not allowed yet, so ask Vignesh first." },
+    { at: "m_hang", cls: "sys", b: "Call ended. Ask Vignesh on the next call." },
+    { at: "incoming2", dt: -1.0, cls: "dec", h: AL + " · news", b: "Claude Code is done, Dana replied, Monica is waiting. Call Vignesh." },
+    { at: "m_ok", cls: "out", h: `${AL} → Monica · text`, b: "Vignesh's flight: JFK, delayed, now lands 11:40 PM." },
     { at: "sms", cls: "sys", b: "Texted Vignesh the pull request link and the new invite." },
   ] : [
     { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Pierre (account manager, verified): brief me on Northwind Retail, meeting in 20 minutes." },
@@ -178,7 +182,7 @@ Sources: [1] crm/accounts/northwind-retail ·
   <div class="scene" id="s-title">
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
-    <div class="sub2">${isD1 ? "One number that runs all your agents." : C.subtag}</div>
+    <div class="sub2">${isD1 ? "Your AI gets a phone number." : C.subtag}</div>
     ${lined("You", isD1 ? "Your agents" : "Any text agent")}
   </div>
   <div class="scene" id="s-overview">
@@ -205,20 +209,20 @@ Sources: [1] crm/accounts/northwind-retail ·
     <div class="L"><div class="plab">${isD1 ? "My phone" : "Pierre's phone"}</div>
       <div class="phone"><div class="scr">
         <div class="sbar"><span id="clk">9:41</span><span>●●● 5G</span></div>
-        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "My agent" : "Acme · internal assistant"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
+        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "My AI" : "Acme · internal assistant"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
           <div class="btns" style="gap:0"><div class="btn g">${CALL}</div></div></div>
         <div class="pv" id="pvCall"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="callSt">Calling…</div>
           <div class="orb" id="orb"></div><div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div></div></div>
         <div class="pv" id="pvEnd"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="endSt">Call ended</div></div>
         <div class="pv" id="pvIn"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st">${isD1 ? "calling…" : "calling via " + P}</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
-        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · ${P}</b>Claude Code: pull request #482 is open, 214 of 214 tests pass, not merged. Dana accepted breakfast, 8:00 AM.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
+        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · Vignesh's AI</b>Claude Code: pull request #482 is open, 214 of 214 tests pass, not merged. Dana accepted breakfast, 8:00 AM. Flight details sent to Monica.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
       <div class="where" id="where"></div>${isD1 ? `<div class="eyes" id="eyes">Phone in my pocket · screen time <b>0:00</b></div>` : ""}
     </div>
     <div class="R"><div class="plab">Behind the scenes</div>
       <div class="chain">
-        <div class="n">${isD1 ? "Me" : "Pierre"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
+        <div class="n"><span id="whoN">${isD1 ? "Me" : "Pierre"}</span><small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
         <div class="n al">${P}<small>the voice</small></div><div class="lk" id="lk2"><b></b><em>text</em></div>
         <div class="n">${isD1 ? "My agents" : "Atlas"}<small>${isD1 ? "Claude Code · ChatGPT · Gemini" : "knowledge assistant, unchanged"}</small></div>
       </div>
@@ -228,7 +232,7 @@ Sources: [1] crm/accounts/northwind-retail ·
   <div class="scene" id="s-end">
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
-    <div class="sub2">${isD1 ? "One number that runs all your agents." : C.subtag}</div>
+    <div class="sub2">${isD1 ? "Your AI gets a phone number." : C.subtag}</div>
     ${lined("You", isD1 ? "Claude Code · ChatGPT · Gemini" : "Any text agent")}
     <div class="endsub">${isD1 ? "Just talk. Your agents do the rest." : "Support, sales, internal knowledge: any text agent, three lines of code."}</div>
     <div class="small">${isD1 ? C.small_print_demo1 : C.small_print}</div>
@@ -267,7 +271,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     $("#top .tag").style.color = (dark || split) ? "#E9EEF4" : "var(--ink)";
 
     const exStart = isD1 ? scene("call1") : scene("setup");
-    $("#exTag").textContent = isD1 ? "Tonight: out for a walk, just talking" : "Example: one text agent, Acme's internal assistant";
+    $("#exTag").textContent = isD1 ? "Tonight: out for a walk. My AI has a number." : "Example: one text agent, Acme's internal assistant";
     $("#exTag").style.opacity = clamp(fade(t, exStart + .3) - fade(t, exStart + 7.5, .6));
 
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
@@ -275,7 +279,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     if (ln && sc !== "title" && sc !== "end") {
       sub.style.opacity = 1; $(".who", sub).textContent = ln.who;
       $(".txt", sub).textContent = ln.full > ln.dur + .05 ? ln.text.slice(0, Math.round(ln.text.length * clamp((t - ln.start) / ln.full))).replace(/\s\S*$/, "") + "…" : ln.text;
-      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "pierre" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
+      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "pierre" || ln.role === "monica" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
     } else sub.style.opacity = 0;
 
     if (vis.hook) renderHook(t);
@@ -364,32 +368,34 @@ Sources: [1] crm/accounts/northwind-retail ·
   }
 
   function renderCall(t) {
-    const EV = [["dial", "call"], ["hangup", "end"], ["incoming", "in"], ["answered", "call"], ["hangup2", "end"], ["incoming2", "in"], ["answered2", "call"], ["hangup3", "end"]]
+    const EV = [["dial", "call"], ["hangup", "end"], ["incoming", "in"], ["answered", "call"], ["hangup2", "end"], ["incoming2", "in"], ["answered2", "call"], ["hangup3", "end"], ["m_dial", "call"], ["m_hang", "end"]]
       .map(([c, v]) => [cue(c), v, c]).filter(e => e[0] < Infinity).sort((x, y) => x[0] - y[0]);
     let view = "home", vt = 0, callStart = 0, lastLen = 0, outgoing = false;
     for (const [tc, v, c] of EV) {
       if (t < tc) break;
       if (v === "end") lastLen = tc - callStart;
       view = v; vt = tc;
-      if (c === "dial") { outgoing = true; callStart = cue("connected"); } else if (v === "call") { outgoing = false; callStart = tc; }
+      if (c === "dial") { outgoing = true; callStart = cue("connected"); } else if (c === "m_dial") { outgoing = true; callStart = cue("m_conn"); } else if (v === "call") { outgoing = false; callStart = tc; }
     }
     ["home", "call", "end", "in"].forEach(v => show($("#pv" + v[0].toUpperCase() + v.slice(1)), v === view ? fade(t, vt, .3) : 0));
-    $("#callSt").textContent = outgoing && t < cue("connected") ? "Calling…" : mmss(Math.max(0, t - callStart));
+    const mon = t >= cue("m_dial") && t < cue("m_hang") + 1.4;
+    $("#callSt").textContent = outgoing && (t < cue("connected") || (mon && t < cue("m_conn"))) ? "Calling…" : mmss(Math.max(0, t - callStart));
+    if (isD1) { $("#whoN").textContent = mon ? "Monica" : "Me"; $("#pvCall .nm").textContent = mon ? "Vignesh's AI" : AGENT; $("#pvEnd .nm").textContent = mon ? "Vignesh's AI" : AGENT; $("#s-call .L .plab").textContent = mon ? "Monica's phone" : "My phone"; }
     $("#endSt").textContent = "Call ended · " + mmss(lastLen);
     const hang = cue("hangup"), inc = cue("incoming");
     $("#ansBtn").style.transform = `scale(${1 + .08 * Math.sin(t * 8)})`;
     // orb pulses with whoever speaks on the phone
     const ln = TL.lines.find(l => l.phone && t >= l.start && t < l.start + l.dur);
     const amp = ln ? .5 + .5 * Math.abs(Math.sin(t * 7.3) * Math.sin(t * 2.9 + 1)) : 0;
-    const human = ln && (ln.role === "vignesh" || ln.role === "pierre");
+    const human = ln && (ln.role === "vignesh" || ln.role === "pierre" || ln.role === "monica");
     const orb = $("#orb");
     orb.style.transform = `scale(${1 + .12 * amp})`;
     orb.style.background = human ? "radial-gradient(circle at 40% 35%, #F2C27A, #D9932B 60%, #9A6418)" : "";
     orb.style.boxShadow = `0 0 0 ${18 * amp}px ${human ? "rgba(217,147,43,.25)" : "rgba(123,127,232,.28)"}`;
     // phone clock: time passes while the agent works
-    $("#clk").textContent = isD1 ? (t >= cue("incoming2") ? "7:21" : "6:52") : (t >= cue("incoming") ? "1:44" : "1:42");
+    $("#clk").textContent = isD1 ? (t >= cue("incoming2") ? "7:21" : t >= cue("m_dial") ? "7:09" : "6:52") : (t >= cue("incoming") ? "1:44" : "1:42");
     show($("#notif"), fade(t, cue("sms"), .35));
-    if (isD1) $("#eyes").style.opacity = fade(t, cue("connected"), .4) * (1 - fade(t, cue("hangup2") + 1.2, .4));
+    if (isD1) $("#eyes").style.opacity = (t >= cue("m_dial") - .5 && t < cue("m_hang") + 1.4) ? 0 : fade(t, cue("connected"), .4) * (1 - fade(t, cue("hangup2") + 1.2, .4));
     const where = isD1 ? (t >= hang && t < inc ? "I'm still walking. The agent is still working." : "") : (t < hang ? "Maya is at home, hands busy." : "");
     $("#where").textContent = where;
 

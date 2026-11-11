@@ -8,13 +8,13 @@
    "hold": 0.4
   },
   {
-   "line": "e1_01",
+   "line": "e1_01b",
    "role": "narrator",
-   "text": "Tomorrow at nine, I demo to Northwind, our biggest prospect. Tonight, I fly to New York. Three agents are working for me: Claude Code on a checkout bug, ChatGPT on our Slack, and Gemini on my email and calendar."
+   "text": "Tomorrow at nine, I demo to Northwind, our biggest prospect. Tonight, I fly to New York. Claude Code, ChatGPT and Gemini are all working for me."
   },
   {
    "cue": "h1",
-   "at": "e1_01"
+   "at": "e1_01b"
   },
   {
    "line": "e1_02c",
@@ -86,9 +86,9 @@
    "hold": 0.5
   },
   {
-   "line": "e1_05e",
+   "line": "e1_05f",
    "role": "narrator",
-   "text": "{{product}} fills that first gap: one phone number for all my agents. I can call it, and it calls me back."
+   "text": "{{product}} gives my AI a real phone number. I can call it, it calls me back, and the people I choose can call it too."
   },
   {
    "hold": 1.0
@@ -221,7 +221,54 @@
    "text": "I hang up. Claude Code keeps working."
   },
   {
-   "hold": 3.0
+   "hold": 0.4
+  },
+  {
+   "line": "e1_10",
+   "role": "narrator",
+   "text": "Meanwhile, someone else calls my AI. My wife, Monica."
+  },
+  {
+   "cue": "m_dial",
+   "sfx": "ringback"
+  },
+  {
+   "hold": 2.4
+  },
+  {
+   "cue": "m_conn"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "line": "m_10",
+   "role": "monica",
+   "text": "Hi, it's Monica. Can you send me Vignesh's flight details? I want to track his flight."
+  },
+  {
+   "cue": "m_check",
+   "at": "m_10"
+  },
+  {
+   "hold": 0.6
+  },
+  {
+   "line": "s_40",
+   "role": "coder",
+   "text": "Hi Monica. No worries. I don't have his permission to share that yet, so I'll check with Vignesh and get back to you."
+  },
+  {
+   "line": "m_11",
+   "role": "monica",
+   "text": "Sure. Thanks!"
+  },
+  {
+   "cue": "m_hang",
+   "sfx": "hangup"
+  },
+  {
+   "hold": 1.6
   },
   {
    "cue": "incoming2",
@@ -237,9 +284,23 @@
    "hold": 0.3
   },
   {
-   "line": "s_24",
+   "line": "s_41",
    "role": "coder",
-   "text": "Hi Vignesh. Claude Code is done. Checkout and refunds both pass, all two hundred fourteen tests. The pull request is open, not merged. And Dana replied: breakfast at eight works. The links are in your texts."
+   "text": "Hi Vignesh. Claude Code is done. Checkout and refunds both pass, and the pull request is open, not merged. Dana replied: breakfast at eight works. And Monica called. She'd like your flight details. Can I share them with her?"
+  },
+  {
+   "line": "v_40",
+   "role": "vignesh",
+   "text": "Yes, of course."
+  },
+  {
+   "cue": "m_ok",
+   "at": "v_40"
+  },
+  {
+   "line": "s_42",
+   "role": "coder",
+   "text": "Done. I've texted them to her. Good luck tomorrow."
   },
   {
    "line": "v_04",
@@ -258,9 +319,9 @@
    "hold": 0.6
   },
   {
-   "line": "e1_08c",
+   "line": "e1_08d",
    "role": "narrator",
-   "text": "I called my agents, and they called me back. Three agents, one number, and I never looked at a screen."
+   "text": "I called my AI, it called me back, and my wife reached it too. One number, and I never looked at a screen."
   },
   {
    "scene": "end"

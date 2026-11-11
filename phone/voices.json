@@ -32,7 +32,7 @@
     },
     "coder": {
       "voice_id": "XrExE9yKIg1WjnnlVkGX",
-      "label": "{{product}} \u00b7 my agent",
+      "label": "Vignesh's AI \u00b7 {{product}}",
       "phone": true,
       "settings": {
         "stability": 0.5,
@@ -57,6 +57,16 @@
       "settings": {
         "stability": 0.5,
         "similarity_boost": 0.9,
+        "style": 0.3
+      }
+    },
+    "monica": {
+      "voice_id": "EXAVITQu4vr4xnSDxMaL",
+      "label": "Monica, my wife",
+      "phone": true,
+      "settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.75,
         "style": 0.3
       }
     }
