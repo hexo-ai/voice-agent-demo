@@ -3,7 +3,7 @@
     "id": "narr_01",
     "phase": "Hook: the problem (full screen)",
     "file": "audio/tts_short/narr_01.mp3",
-    "seconds": 5.72
+    "seconds": 5.8
   },
   {
     "id": "narr_02",
@@ -15,13 +15,13 @@
     "id": "narr_13",
     "phase": "Hook: the problem (full screen)",
     "file": "audio/tts_short/narr_13.mp3",
-    "seconds": 5.64
+    "seconds": 5.41
   },
   {
     "id": "narr_20",
     "phase": "Hook: the problem (full screen)",
     "file": "audio/tts_short/narr_20.mp3",
-    "seconds": 16.2
+    "seconds": 16.27
   },
   {
     "id": "narr_21",
@@ -33,13 +33,13 @@
     "id": "narr_03",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts_short/narr_03.mp3",
-    "seconds": 3.55
+    "seconds": 3.63
   },
   {
     "id": "nurse_01",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts_short/nurse_01.mp3",
-    "seconds": 7.39
+    "seconds": 7.47
   },
   {
     "id": "sys_01",
@@ -51,7 +51,7 @@
     "id": "nurse_02",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts_short/nurse_02.mp3",
-    "seconds": 4.36
+    "seconds": 4.28
   },
   {
     "id": "sys_02",
@@ -63,7 +63,7 @@
     "id": "nurse_03",
     "phase": "Phase 1: Requirements (voice interview)",
     "file": "audio/tts_short/nurse_03.mp3",
-    "seconds": 7.89
+    "seconds": 8.05
   },
   {
     "id": "sys_04",
@@ -135,19 +135,19 @@
     "id": "narr_24",
     "phase": "Phase 4: Simulations",
     "file": "audio/tts_short/narr_24.mp3",
-    "seconds": 3.16
+    "seconds": 3.24
   },
   {
     "id": "narr_15",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts_short/narr_15.mp3",
-    "seconds": 10.45
+    "seconds": 10.37
   },
   {
     "id": "narr_16",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts_short/narr_16.mp3",
-    "seconds": 7.16
+    "seconds": 7.24
   },
   {
     "id": "agent_03",
@@ -165,19 +165,19 @@
     "id": "narr_25",
     "phase": "Phase 5: Optimization loop",
     "file": "audio/tts_short/narr_25.mp3",
-    "seconds": 3.97
+    "seconds": 4.13
   },
   {
     "id": "narr_12",
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts_short/narr_12.mp3",
-    "seconds": 3.63
+    "seconds": 3.55
   },
   {
     "id": "agent_06",
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts_short/agent_06.mp3",
-    "seconds": 2.27
+    "seconds": 2.22
   },
   {
     "id": "patient_02",
@@ -195,7 +195,7 @@
     "id": "nurse_08",
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts_short/nurse_08.mp3",
-    "seconds": 5.33
+    "seconds": 5.25
   },
   {
     "id": "sys_08",
@@ -207,7 +207,7 @@
     "id": "narr_26",
     "phase": "Phase 5b: Expert reviews the simulations",
     "file": "audio/tts_short/narr_26.mp3",
-    "seconds": 2.93
+    "seconds": 2.85
   },
   {
     "id": "narr_09",
@@ -219,25 +219,25 @@
     "id": "agent_04",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/agent_04.mp3",
-    "seconds": 1.91
+    "seconds": 1.85
   },
   {
     "id": "nurse_06",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/nurse_06.mp3",
-    "seconds": 3.55
+    "seconds": 3.71
   },
   {
     "id": "agent_08",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/agent_08.mp3",
-    "seconds": 6.3
+    "seconds": 6.11
   },
   {
     "id": "nurse_09",
     "phase": "Phase 6: Live test with a human",
     "file": "audio/tts_short/nurse_09.mp3",
-    "seconds": 1.57
+    "seconds": 1.49
   },
   {
     "id": "narr_14",
@@ -249,6 +249,6 @@
     "id": "narr_11",
     "phase": "The loop + close (full screen)",
     "file": "audio/tts_short/narr_11.mp3",
-    "seconds": 5.56
+    "seconds": 5.41
   }
 ]
