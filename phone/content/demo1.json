@@ -29,13 +29,13 @@
    "hold": 0.6
   },
   {
-   "line": "e1_03c",
+   "line": "e1_03d",
    "role": "narrator",
-   "text": "On my phone, all I get are notifications. To act on them, I'd have to stop, open each app, and read. Not while I'm driving."
+   "text": "On my phone, all I get are notifications. To act on them, I'd have to stop, open each app, and read. Sometimes it's just easier to talk."
   },
   {
    "cue": "h3",
-   "at": "e1_03c"
+   "at": "e1_03d"
   },
   {
    "hold": 0.6
@@ -53,15 +53,42 @@
    "hold": 0.3
   },
   {
+   "scene": "modes"
+  },
+  {
+   "hold": 0.4
+  },
+  {
+   "line": "e1_m1",
+   "role": "narrator",
+   "text": "Think about how I work with people. Sometimes I email. Sometimes I chat. Sometimes we meet on video. And sometimes I just pick up the phone."
+  },
+  {
+   "cue": "m1",
+   "at": "e1_m1"
+  },
+  {
+   "line": "e1_m2",
+   "role": "narrator",
+   "text": "My agents give me one way in: a screen I have to read. The phone is the missing piece."
+  },
+  {
+   "cue": "m2",
+   "at": "e1_m2"
+  },
+  {
+   "hold": 0.6
+  },
+  {
    "scene": "title"
   },
   {
    "hold": 0.5
   },
   {
-   "line": "e1_05c",
+   "line": "e1_05d",
    "role": "narrator",
-   "text": "{{product}} is my own agent, with one phone number. I talk. It runs the agents I already use."
+   "text": "{{product}} gives my agents that missing piece: one phone number I can call, and that calls me back."
   },
   {
    "hold": 1.0
@@ -87,9 +114,9 @@
    "hold": 0.5
   },
   {
-   "line": "e1_06c",
+   "line": "e1_06d",
    "role": "narrator",
-   "text": "Here's tonight. I'm driving to the airport. Eyes on the road, I call my {{product}}."
+   "text": "Here's tonight. Before my flight, I'm out for a walk. Phone in my pocket, I call my {{product}}."
   },
   {
    "cue": "dial",

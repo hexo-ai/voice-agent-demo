@@ -165,6 +165,14 @@ Sources: [1] crm/accounts/northwind-retail ·
   <div id="exTag"></div>
   <div id="sub"><div class="box"><div class="who"></div><div class="txt"></div></div></div>
   <div class="scene" id="s-hook">${hookHTML}</div>
+  <div class="scene" id="s-modes">
+    <div class="mgrid">
+      <div class="mlab">People</div>
+      <div class="mc" data-w="email">Email</div><div class="mc" data-w="chat">Chat</div><div class="mc" data-w="video">Video call</div><div class="mc" data-w="phone">Phone call</div>
+      <div class="mlab">My agents</div>
+      <div class="mc a on">Chat on a screen</div><div class="mc a off">Email</div><div class="mc a off">Video call</div><div class="mc a miss" id="miss">Phone call<small>missing</small></div>
+    </div>
+  </div>
   <div class="scene" id="s-title">
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
@@ -204,7 +212,7 @@ Sources: [1] crm/accounts/northwind-retail ·
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
         <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · ${P}</b>Claude Code: pull request #482 is open, "Fix rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
-      <div class="where" id="where"></div>${isD1 ? `<div class="eyes" id="eyes">Eyes on the road · screen time <b>0:00</b></div>` : ""}
+      <div class="where" id="where"></div>${isD1 ? `<div class="eyes" id="eyes">Phone in my pocket · screen time <b>0:00</b></div>` : ""}
     </div>
     <div class="R"><div class="plab">Behind the scenes</div>
       <div class="chain">
@@ -248,7 +256,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     window.__t = t;
     if (!measured) { $$(".scene").forEach(s => s.style.display = ""); $("#s-call").style.opacity = 1; heights(); measured = true; }
     const sc = sceneAt(t), callScene = isD1 ? "call1" : "call2";
-    const vis = { hook: sc === "hook", title: sc === "title", overview: sc === "overview", setup: sc === "setup", call: sc === callScene, end: sc === "end" };
+    const vis = { modes: sc === "modes", hook: sc === "hook", title: sc === "title", overview: sc === "overview", setup: sc === "setup", call: sc === callScene, end: sc === "end" };
     for (const k in vis) show($("#s-" + k), vis[k] ? fade(t, scene(k === "call" ? callScene : k)) : 0);
     const dark = sc === "title" || sc === "end" || sc === "overview", split = sc === callScene || sc === "setup";
     $("#top").className = dark ? "dark" : "light";
@@ -257,7 +265,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     $("#top .tag").style.color = (dark || split) ? "#E9EEF4" : "var(--ink)";
 
     const exStart = isD1 ? scene("call1") : scene("setup");
-    $("#exTag").textContent = isD1 ? "Tonight: eyes on the road, just talking" : "Example: one text agent, Acme's internal assistant";
+    $("#exTag").textContent = isD1 ? "Tonight: out for a walk, just talking" : "Example: one text agent, Acme's internal assistant";
     $("#exTag").style.opacity = clamp(fade(t, exStart + .3) - fade(t, exStart + 7.5, .6));
 
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
@@ -269,6 +277,13 @@ Sources: [1] crm/accounts/northwind-retail ·
     } else sub.style.opacity = 0;
 
     if (vis.hook) renderHook(t);
+    if (vis.modes) {
+      $$("#s-modes .mc:not(.a)").forEach(c => c.classList.toggle("on", t >= W("e1_m1", c.dataset.w)));
+      $$("#s-modes .mc.a, #s-modes .mlab").forEach((c, i) => c.style.opacity = 1);
+      $$("#s-modes .mc.a").forEach(c => c.style.opacity = fade(t, cue("m2"), .4));
+      $$("#s-modes .mlab")[1].style.opacity = fade(t, cue("m2"), .4);
+      $("#miss").classList.toggle("hot", t >= W("e1_m2", "phone"));
+    }
     if (vis.title || vis.end) renderLined(t, vis.title ? "#s-title" : "#s-end", scene(vis.title ? "title" : "end"));
     if (vis.overview) { renderLined(t, "#s-overview", scene("overview")); $$(".ovc div").forEach(d => d.classList.toggle("on", t >= W("ov_01", d.dataset.w))); }
     if (vis.setup) renderSetup(t);
@@ -307,9 +322,9 @@ Sources: [1] crm/accounts/northwind-retail ·
       } else { b.className = "tbadge ok"; b.textContent = "Reachable through " + P; clk.style.opacity = 0; }
       show($("#hvMe"), 1 - fade(t, h3, .35));
       const away = t >= h2 + .3; $("#mecard").classList.toggle("away", away);
-      $("#meT1").textContent = away ? "Me, away from my desk" : "Me, at my desk"; $("#meT2").textContent = away ? "Walking, driving, in a meeting" : "Watching the agent work";
+      $("#meT1").textContent = away ? "Me, away from my desk" : "Me, at my desk"; $("#meT2").textContent = away ? "On a walk, out and about, between meetings" : "Watching the agent work";
       show($("#hvPhone"), fade(t, h3, .4));
-      const rd = $("#hRead"); rd.style.opacity = 1 - fade(t, h4 + .6, .35); $("#todo").style.opacity = fade(t, W("e1_03c", "open each app"), .35);
+      const rd = $("#hRead"); rd.style.opacity = 1 - fade(t, h4 + .6, .35); $("#todo").style.opacity = fade(t, W("e1_03d", "open each app"), .35);
       $("#hCall").style.opacity = fade(t, h4 + .6, .35);
       $("#hAns").style.transform = `scale(${1 + .05 * Math.sin(t * 5)})`;
       const hl = $("#hline"); hl.style.opacity = fade(t, h4 + 1.0, .5);

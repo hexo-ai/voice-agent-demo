@@ -287,3 +287,13 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--
 .todo { margin-top: 16px; font-size: 16px; font-weight: 700; color: #F2C27A; text-align: center; opacity: 0; }
 .eyes { position: absolute; left: 140px; top: 920px; width: 480px; text-align: center; font-size: 22px; color: var(--ink); background: #E7F7F0; border: 2px solid #3FD39A; border-radius: 999px; padding: 10px 0; opacity: 0; }
 .eyes b { color: #128A5E; }
+
+#s-modes { background: var(--paper); color: var(--ink); }
+.mgrid { position: absolute; left: 160px; right: 160px; top: 270px; display: grid; grid-template-columns: 230px repeat(4, 1fr); gap: 22px; align-items: center; }
+.mlab { font-size: 26px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.mc { height: 150px; border-radius: 20px; background: #fff; border: 2px solid #E1E5EA; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 30px; font-weight: 700; color: #B4BDC7; }
+.mc.on { color: var(--ink); border-color: var(--ink); }
+.mc.a.off { background: #F1F3F5; border-style: dashed; color: #C5CCD4; }
+.mc.miss { border: 3px dashed #C5CCD4; background: transparent; color: #B4BDC7; }
+.mc.miss small { font-size: 20px; font-weight: 700; margin-top: 6px; }
+.mc.miss.hot { border-color: var(--warn); color: #A86A10; background: #FFF6E5; }
