@@ -37,7 +37,7 @@ def tts(text, voice, cfg, key):
 
 # Takes that say the product name are transcribed and regenerated if the name comes out wrong
 # (the voice model sometimes spells it out or says "Saya"). Accepted: "Sia" said as one word.
-NAME_OK = re.compile(r"\b(sia|see ?a|seeya|sea)[ .,-]*voice", re.I)
+NAME_OK = re.compile(r"\b(sia|see ?a|seeya|sea)[ .,-]*(voice|build)", re.I)
 
 
 def transcribe(path, key):
