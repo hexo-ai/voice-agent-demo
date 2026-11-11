@@ -9,13 +9,15 @@
 - **Who:** teams that ship voice agents (voice-agent companies, enterprises running agents). They test before every launch and after every prompt change.
 - **What hurts:** the dangerous failures hide in calls nobody thought to write down: a caller who changes an answer after the agent has moved on, asks too early, or pushes back. Good human testers find these by calling, watching and pushing harder where the agent slips, but that takes weeks per agent. Scripted test lists follow the easy path.
 
-## 3. How it works
+## 3. How it works (six phases, mirroring SIA Voice)
 | Step | What happens |
 |---|---|
-| **1. Connect your agent** | The only inputs: the agent's endpoint (phone number, WebSocket or HTTP API) and its prompt. It reads the prompt to learn the agent's steps and rules, and marks the rules where a mistake could hurt someone (high risk). |
-| **2. Explore with calls** | Monte Carlo tree search over scenarios. Each node is a scenario that was actually called. One iteration: pick a promising scenario → change one thing (a different answer, a late correction, pushback) → call the agent → score what happened. New or risky behaviour scores high; the score flows back up the tree, so the search digs where the agent slips and leaves behind branches that teach nothing. |
-| **3. Map the risks** | Groups failing and inconsistent calls into **risky zones**, each with severity, failure rate and the calls that prove it. Risk by step of the call. Where the prompt is silent (agent behaves inconsistently and no rule decides), it sends the question to the domain expert instead of guessing. |
-| **4. Fix and recheck** | Suggests a prompt edit per risky zone, based on the failed calls. Reruns the risky scenarios and everything that passed before, so a fix never quietly breaks something else. |
+| **1. Connect** | Inputs: the agent's endpoint (phone number, WebSocket or HTTP API) and its prompt. Optional but powerful: **Jira** (real customer complaints) and the team's **manual test calls** (recordings). It learns the agent's rules from the prompt, clusters complaints into trouble spots real callers already hit, and turns manual test calls into starting scenarios for the search. |
+| **2. Interview the expert** | A short voice interview with the domain expert (here, a pharmacist): which mistakes would worry you most, what must the agent never do. Answers become high-risk rules, cross-referenced with complaints, and the search spends most of its calls on them. |
+| **3. Explore with calls** | Monte Carlo tree search over scenarios, seeded with complaints, test calls and interview rules. Each node is a scenario that was actually called. One iteration: pick a promising scenario → change one thing → call the agent → score what happened; new or risky behaviour scores high and the score flows back up the tree. |
+| **4. Expert review** | When the judge isn't sure (a vague symptom, a rule the prompt doesn't cover), it asks the expert for a label instead of guessing. Each label becomes a rule; the search goes back to test it, and the judge's agreement with the expert's labels goes up. |
+| **5. Map the risks** | Risky zones with severity, failure rate, the calls that prove them, and the Jira complaints they explain. |
+| **6. Fix and recheck** | A prompt edit per zone, based on the failed calls; reruns the risky scenarios and everything that passed before. New Jira complaints keep turning into new scenarios, so the next prompt change is tested against them. |
 
 ## 4. Versus Coval, Cekura, Hamming
 Their pages (vendor-stated, via search snippets in the brief; recheck before using) describe scenario generation from an agent description, simulated calls with voices and noise, LLM judges, monitoring and CI. The intended difference:
@@ -29,11 +31,13 @@ Their pages (vendor-stated, via search snippets in the brief; recheck before usi
 - **Not built:** placing calls to an agent endpoint, the tree search, judging calls, risky-zone clustering, prompt edits for the *agent*, rechecks. The MCTS page in the repo is a hand-made concept with made-up numbers.
 - The video is an illustrative concept: tag on every frame, small print on the end card, all numbers mocked.
 
-## 6. Demo (first SIA Scenarios cut, 3:00)
-- Problem first (who / problem / human testers / scripted tests / what's needed), then title + 4-step overview, then a voiced card per step.
-- Invented example: Northgate Pharmacy refill agent, phone number +1 (415) 555-0142 (fictional 555 number).
-- Hero: call #118, "mentions the side effect late": agent books the pickup instead of transferring → failed, high risk → the search digs into that branch (3 more variants, all fail).
-- Mocked numbers: 214 calls, 61 scenarios, tree shows 14; zones: side effect mentioned late 5/7 failed (high), dose questions 3/11 (high), refill exactly one week early inconsistent 3 allowed / 2 refused (medium, question to pharmacist), wrong DOB then corrected 1/9 (low), safe 0/96. After edits: 0/7, 0/11, 0/96 still passing.
+## 6. Demo (six-phase cut, 4:23)
+- Problem first, then title + six-step overview, then a voiced card per step.
+- Invented example: Northgate Pharmacy refill agent, +1 (415) 555-0142 (fictional). Jira project "Refill line", 38 tickets; 12 manual test calls.
+- Interview: SIA Scenarios (River voice) asks; Vignesh plays the pharmacist. Rules: any side effect at any point → pharmacist; never advise on doses.
+- Hero: call #118, side effect mentioned late → agent books pickup → failed, high risk → the search digs in.
+- Expert review: call #142 "feeling a bit off" → expert: yes, a side effect; refill exactly one week early → allowed. +14 scenarios queued; agreement with expert labels 82% → 96%.
+- Mocked numbers: 268 calls, 75 scenarios; zones: late side effect 5/7 (explains 6 complaints), vague symptoms 4/9 (found after the label), dose questions 3/11, one week early refused 2/5 (explains 4 complaints), safe 0/96. After edits all 0. New Jira complaint PHM-231 → 3 scenarios queued.
 
 ## 7. Open questions
 1. Endpoint types to show: phone number only, or phone + WebSocket + HTTP API (current)?
