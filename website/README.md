@@ -3,11 +3,11 @@
 One static page: `index.html` plus `fonts/`. No build step.
 
 ## Settings
-At the bottom of `index.html`:
-- `VIDEO_SRC`: file name of the self-hosted demo MP4 (served from the site itself). It is **not in git** (no MP4s in the repo): before each deploy, copy `out/demo_short.mp4` into the deploy folder under that name (`ffmpeg -i out/demo_short.mp4 -c copy -movflags +faststart <deploy>/<VIDEO_SRC>`). Use a new file name for each new cut so browsers don't serve a cached old one. Cloudflare Pages allows up to 25 MiB per file. Empty = use YouTube.
-- `YOUTUBE_ID`: the ID from the unlisted YouTube link (the part after `v=`). Empty shows "Video coming soon".
-- `FORM_ENDPOINT`: the form service URL (e.g. Formspree `https://formspree.io/f/xxxx`). Empty = preview mode (shows the thank-you message, sends nothing).
-  - Web3Forms also needs a hidden field: `<input type="hidden" name="access_key" value="...">` inside the form.
+- Demo videos: the `VIDEOS` table at the bottom of `index.html` (file, poster still, length, title for each of the four use cases).
+- The MP4s and poster JPGs are **not in git** (no media in the repo). Before each deploy, put all four MP4s and four posters in the deploy folder next to `index.html` (pull the live copies from `https://siavoice.com/<file>` if you don't have them). A Pages deploy replaces the whole site, so a missing file disappears.
+  - Make each MP4 stream-friendly first: `ffmpeg -i in.mp4 -c copy -movflags +faststart out.mp4`.
+  - Poster: `ffmpeg -ss <sec> -i video.mp4 -frames:v 1 -vf scale=1280:-1 -q:v 4 poster-<id>.jpg`.
+  - Use a new file name for each new cut (browser caching). Cloudflare Pages allows 25 MiB per file.
 
 ## Deploy (recommended: Cloudflare)
 1. Buy siavoice.com with Cloudflare Registrar.

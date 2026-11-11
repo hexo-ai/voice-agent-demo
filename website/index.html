@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIA Voice — Production voice agents, built by domain experts</title>
-<meta name="description" content="SIA Voice is being built so domain experts can build, test and improve production-grade voice agents without an engineer in the loop. Now looking for design partners.">
-<meta property="og:title" content="SIA Voice">
-<meta property="og:description" content="Production voice agents, built by domain experts. Now looking for design partners.">
+<title>SIA — Voice for AI agents</title>
+<meta name="description" content="SIA is a voice layer between people and AI agents. Build a voice agent by talking, test it with generated calls, call your coding agent, and give any text agent a phone number. Watch the four demos.">
+<meta property="og:title" content="SIA — Voice for AI agents">
+<meta property="og:description" content="Build agents by talking. Test them with generated calls. Give any text agent a real voice and a phone number.">
 <meta name="theme-color" content="#F7F8F6">
 <style>
 @font-face { font-family: "Atkinson"; src: url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
@@ -17,9 +17,8 @@
   --ink: #1C2A39; --ink-2: #5A6878;
   --night: #16212E; --night-2: #1E2B3B; --night-line: #2A3B50; --night-text: #D6DEE8; --night-mute: #7D8DA1;
   --sia: #5B5FD6; --sia-dark: #4A4EC4; --sia-soft: #A9ABF0; --sia-tint: #ECEDFB;
+  --phone: #17A673; --phone-dark: #0F8A5E; --phone-soft: #3FD39A; --phone-tint: #E3F6EE;
   --vig: #D9932B; --vig-tint: #FBF1E1;
-  --eng: #7D8DA1;
-  --pass: #3FB68B;
   --wrap: 1080px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,89 +29,98 @@ a { color: var(--sia-dark); }
 
 /* nav */
 nav { position: sticky; top: 0; z-index: 10; background: rgba(247,248,246,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--paper-2); }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
 .wordmark { font-weight: 700; font-size: 21px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
 .wordmark::before { content: ""; display: inline-block; width: 11px; height: 11px; margin-right: 10px; border-radius: 50%; background: var(--sia); box-shadow: 0 0 0 4px rgba(91,95,214,.18); vertical-align: 1px; }
+.navlinks { display: flex; align-items: center; gap: 22px; }
+.navlinks a:not(.btn) { color: var(--ink-2); text-decoration: none; font-size: 16px; }
+.navlinks a:not(.btn):hover { color: var(--ink); }
 
 .btn { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; text-decoration: none; cursor: pointer; border: 0; border-radius: 999px; padding: 13px 24px; background: var(--sia); color: #fff; transition: background .15s; }
 .btn:hover { background: var(--sia-dark); }
-.btn:focus-visible, .play:focus-visible { outline: 3px solid var(--sia-soft); outline-offset: 2px; }
+.btn:focus-visible, .play:focus-visible, .uc-card:focus-visible { outline: 3px solid var(--sia-soft); outline-offset: 2px; }
 .btn.small { font-size: 15px; padding: 9px 18px; }
 .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px #B9C2CC; }
 .btn.ghost:hover { background: var(--paper-2); }
 
 /* hero */
-.hero { padding: 72px 0 40px; }
+.hero { padding: 72px 0 56px; }
 .eyebrow { font-size: 15px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--sia-dark); margin-bottom: 18px; }
-h1 { font-size: clamp(36px, 5.6vw, 60px); line-height: 1.08; letter-spacing: -0.02em; max-width: 15ch; }
+h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.06; letter-spacing: -0.02em; max-width: 16ch; }
 h1 .soft { color: var(--ink-2); }
 .sub { font-size: clamp(19px, 2.1vw, 22px); color: var(--ink-2); max-width: 40em; margin-top: 22px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; align-items: center; }
-.status-note { font-size: 15px; color: var(--ink-2); margin-top: 18px; }
-.status-note::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--vig); margin-right: 8px; vertical-align: 1px; }
 
-/* video */
-.video { margin-top: 48px; border-radius: 16px; overflow: hidden; background: var(--night); box-shadow: 0 20px 50px -24px rgba(22,33,46,.55); }
-.video-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 16px; background: var(--night-2); border-bottom: 1px solid var(--night-line); color: var(--night-text); font-size: 15px; }
-.tag { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #fff; }
-.tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--vig); }
-.video-bar .len { color: var(--night-mute); white-space: nowrap; }
-.frame { position: relative; aspect-ratio: 16 / 9; }
-.frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.poster { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; color: var(--night-text); }
-.poster .half { display: flex; flex-direction: column; justify-content: flex-end; padding: 6% 7%; gap: 6px; }
-.poster .light { background: var(--paper); color: var(--ink); }
-.poster .k { font-size: clamp(11px, 1.3vw, 15px); color: var(--ink-2); }
-.poster .dark .k { color: var(--night-mute); }
-.poster .big { font-size: clamp(18px, 3vw, 34px); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
-.play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 84px; height: 84px; border-radius: 50%; border: 0; cursor: pointer; background: var(--sia); box-shadow: 0 0 0 10px rgba(91,95,214,.25); display: grid; place-items: center; transition: transform .15s; }
-.play:hover { transform: translate(-50%,-50%) scale(1.06); }
-.play svg { width: 30px; height: 30px; margin-left: 5px; fill: #fff; }
-.soon { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); font-size: 14px; color: #fff; background: rgba(22,33,46,.85); padding: 6px 14px; border-radius: 999px; white-space: nowrap; opacity: 0; transition: opacity .2s; }
-.soon.on { opacity: 1; }
-.video-note { font-size: 15px; color: var(--ink-2); margin-top: 12px; }
+/* use-case overview cards */
+.uc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 52px; }
+.uc-card { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 18px; transition: border-color .15s, transform .15s; }
+.uc-card:hover { border-color: var(--sia-soft); transform: translateY(-2px); }
+.uc-card .num { font-size: 14px; font-weight: 700; color: var(--ink-2); }
+.uc-card b { font-size: 20px; line-height: 1.2; }
+.uc-card .for { font-size: 15px; color: var(--ink-2); line-height: 1.4; }
+.uc-card .meta { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: var(--ink-2); }
+.pill { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--sia-tint); color: var(--sia-dark); white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sia); }
+.pill.phone { background: var(--phone-tint); color: var(--phone-dark); }
+.pill.phone::before { background: var(--phone); }
 
 /* sections */
-section { padding: 72px 0; }
+section { padding: 80px 0; }
 section + section { border-top: 1px solid var(--paper-2); }
-h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; letter-spacing: -0.015em; max-width: 26ch; }
+h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.12; letter-spacing: -0.015em; max-width: 24ch; }
 .lead { font-size: 20px; color: var(--ink-2); max-width: 38em; margin-top: 16px; }
 
-/* loop comparison */
-.loops { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-.loop { border-radius: 14px; padding: 26px; border: 1px solid var(--line); background: #fff; }
-.loop.after { border-color: #C9CBF3; background: var(--sia-tint); }
-.loop h3 { font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
-.loop.after h3 { color: var(--sia-dark); }
-.pair { display: flex; align-items: center; gap: 10px; margin: 18px 0 16px; flex-wrap: wrap; }
-.who { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; padding: 8px 14px; border-radius: 999px; background: var(--paper); }
-.who .d { width: 10px; height: 10px; border-radius: 50%; }
-.arrows { color: var(--ink-2); font-size: 22px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { font-size: 14px; padding: 4px 11px; border-radius: 999px; background: var(--paper); color: var(--ink-2); }
-.loop.after .chip { background: #fff; }
-.verdict { margin-top: 18px; font-weight: 700; font-size: 19px; }
-.verdict small { display: block; font-weight: 400; font-size: 15px; color: var(--ink-2); margin-top: 2px; }
-.cap { margin-top: 28px; font-size: 19px; max-width: 38em; }
+/* why */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+.why { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+.why h3 { font-size: 21px; line-height: 1.25; margin-bottom: 10px; }
+.why p { color: var(--ink-2); font-size: 17px; }
+.layer { margin-top: 28px; padding: 28px 30px; border-radius: 16px; background: var(--night); color: var(--night-text); display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+.layer h3 { color: #fff; font-size: 24px; line-height: 1.25; }
+.layer p { margin-top: 10px; font-size: 17px; }
+.flow { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.node { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--night-line); background: var(--night-2); font-weight: 700; color: #fff; text-align: center; font-size: 16px; }
+.node small { display: block; font-weight: 400; font-size: 13px; color: var(--night-mute); }
+.node.sia { border-color: var(--sia); background: #262F5C; }
+.flow .ar { color: var(--night-mute); font-size: 20px; }
+.traits { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.traits li { font-size: 15px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--night-line); }
 
-/* steps */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; counter-reset: s; }
-.step { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
-.step .n { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 16px; background: var(--sia); color: #fff; }
-.step h3 { font-size: 21px; margin: 16px 0 8px; }
-.step p { color: var(--ink-2); font-size: 17px; }
-.feedback { margin-top: 28px; padding: 22px 26px; border-radius: 14px; background: var(--night); color: var(--night-text); }
-.feedback strong { color: #fff; }
-.sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.sources span { font-size: 15px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--night-line); }
+/* use-case sections */
+.uc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+.uc-head .num { font-size: 15px; font-weight: 700; color: var(--ink-2); letter-spacing: .04em; text-transform: uppercase; }
+.uc-who { font-size: 16px; color: var(--ink-2); margin-top: 10px; }
+.uc-who b { color: var(--ink); }
+.uc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+.box { border-radius: 14px; padding: 24px 26px; border: 1px solid var(--line); background: #fff; }
+.box h3 { font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 10px; }
+.box p { font-size: 17px; }
+.box p + p { margin-top: 10px; }
+.box.how { background: var(--sia-tint); border-color: #C9CBF3; }
+.box.how h3 { color: var(--sia-dark); }
+.phone-uc .box.how { background: var(--phone-tint); border-color: #BDE6D4; }
+.phone-uc .box.how h3 { color: var(--phone-dark); }
+.box ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.box li { font-size: 17px; padding-left: 20px; position: relative; }
+.box li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--sia); }
+.phone-uc .box li::before { background: var(--phone); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.chip { font-size: 14px; padding: 4px 11px; border-radius: 999px; background: #fff; color: var(--ink-2); }
+.chip b { color: var(--sia-dark); margin-right: 4px; }
 
-/* domains */
-.domains { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 36px; }
-.domains li { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 16px; }
-.domains b { display: block; font-size: 18px; }
-.domains span { display: block; font-size: 15px; line-height: 1.4; color: var(--ink-2); margin-top: 4px; }
-.domains .ex { border-color: var(--vig); background: var(--vig-tint); }
-.domains .ex em { display: inline-block; font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #8F5C12; margin-top: 8px; }
+/* video */
+.video { margin-top: 28px; border-radius: 16px; overflow: hidden; background: var(--night); box-shadow: 0 20px 50px -24px rgba(22,33,46,.55); }
+.video-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 16px; background: var(--night-2); border-bottom: 1px solid var(--night-line); color: var(--night-text); font-size: 15px; }
+.video-bar .t { font-weight: 700; color: #fff; }
+.video-bar .len { color: var(--night-mute); white-space: nowrap; }
+.frame { position: relative; aspect-ratio: 16 / 9; background: var(--night) center / cover no-repeat; }
+.frame::after { content: ""; position: absolute; inset: 0; background: rgba(22,33,46,.28); }
+.frame.playing::after { display: none; }
+.frame video { position: absolute; inset: 0; width: 100%; height: 100%; background: var(--night); }
+.play { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 84px; height: 84px; border-radius: 50%; border: 0; cursor: pointer; background: var(--sia); box-shadow: 0 0 0 10px rgba(91,95,214,.25); display: grid; place-items: center; transition: transform .15s; }
+.phone-uc .play { background: var(--phone); box-shadow: 0 0 0 10px rgba(23,166,115,.25); }
+.play:hover { transform: translate(-50%,-50%) scale(1.06); }
+.play svg { width: 30px; height: 30px; margin-left: 5px; fill: #fff; }
 
 /* research */
 .research { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: start; }
@@ -120,7 +128,6 @@ h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; letter-spacing: -0.
 .links a { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-weight: 700; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
 .links a:hover { border-color: var(--sia-soft); }
 .links a span { font-weight: 400; font-size: 15px; color: var(--ink-2); }
-.real-note { font-size: 15px; color: var(--ink-2); margin-top: 16px; max-width: 34em; }
 
 /* form */
 #partner { background: var(--night); color: var(--night-text); border-top: 0; }
@@ -132,17 +139,21 @@ h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; letter-spacing: -0.
 footer { background: var(--night); color: var(--night-mute); font-size: 15px; border-top: 1px solid var(--night-line); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 26px; padding-bottom: 30px; }
 footer a { color: var(--night-text); }
-.fine { flex-basis: 100%; font-size: 13px; }
 
+@media (max-width: 960px) {
+  .uc-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 820px) {
   .hero { padding-top: 48px; }
-  .loops, .steps, .research { grid-template-columns: 1fr; }
+  .why-grid, .uc-cols, .research, .layer { grid-template-columns: 1fr; }
   .tally { margin-left: -20px; margin-right: -20px; }
   section { padding: 56px 0; }
   .play { width: 64px; height: 64px; }
   .play svg { width: 24px; height: 24px; }
+  .navlinks a:not(.btn) { display: none; }
 }
 @media (max-width: 520px) {
+  .uc-grid { grid-template-columns: 1fr; }
   nav .btn.small { padding: 8px 14px; font-size: 14px; }
   .video-bar .len { display: none; }
 }
@@ -153,128 +164,184 @@ footer a { color: var(--night-text); }
 
 <nav>
   <div class="wrap">
-    <a class="wordmark" href="#top">SIA Voice</a>
-    <a class="btn small" href="#partner">Become a design partner</a>
+    <a class="wordmark" href="#top">SIA</a>
+    <div class="navlinks">
+      <a href="#use-cases">Use cases</a>
+      <a href="#why">Why voice</a>
+      <a class="btn small" href="#partner">Become a design partner</a>
+    </div>
   </div>
 </nav>
 
 <main id="top">
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">For companies that build voice agents</p>
-      <h1>Take every voice agent to production. <span class="soft">Without an engineer on each one.</span></h1>
-      <p class="sub">SIA Voice lets your domain experts build, test and improve production-grade voice agents themselves. The goal: every new use case reaches production in hours, not weeks.</p>
+      <p class="eyebrow">For people who build AI agents</p>
+      <h1>Voice for AI agents. <span class="soft">Build them, test them, talk to them.</span></h1>
+      <p class="sub">Agents can do real work now, but we still reach them through a text box. SIA is a voice layer between people and agents. Build a voice agent just by talking. Let SIA call your agent to test it. Give your coding agent, or any text agent, a real voice and a phone number.</p>
       <div class="actions">
-        <a class="btn" href="#partner">Become a design partner</a>
-        <a class="btn ghost" href="#demo">Watch the demo</a>
+        <a class="btn" href="#use-cases">Watch the four demos</a>
+        <a class="btn ghost" href="#partner">Become a design partner</a>
       </div>
 
-      <div class="video" id="demo">
-        <div class="frame" id="frame">
-          <div class="poster" aria-hidden="true">
-            <div class="half light">
-              <span class="k">A voice agent demo</span>
-              <span class="big">takes an afternoon.</span>
-            </div>
-            <div class="half dark">
-              <span class="k">Getting it into production</span>
-              <span class="big">takes weeks.</span>
-            </div>
-          </div>
-          <button class="play" id="play" aria-label="Play the demo video">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>
-          </button>
-          <span class="soon" id="soon">Video coming soon</span>
-        </div>
+      <div class="uc-grid" id="use-cases">
+        <a class="uc-card" href="#build">
+          <span class="num">01</span>
+          <b>Build a voice agent by talking</b>
+          <span class="for">For teams that build voice agents</span>
+          <span class="meta"><span class="pill">SIA Voice</span><span data-len="build"></span></span>
+        </a>
+        <a class="uc-card" href="#test">
+          <span class="num">02</span>
+          <b>Find the risky calls before launch</b>
+          <span class="for">For teams that ship voice agents</span>
+          <span class="meta"><span class="pill">SIA Scenarios</span><span data-len="test"></span></span>
+        </a>
+        <a class="uc-card" href="#code">
+          <span class="num">03</span>
+          <b>Call your coding agent</b>
+          <span class="for">For any developer</span>
+          <span class="meta"><span class="pill phone">SIA Phone</span><span data-len="code"></span></span>
+        </a>
+        <a class="uc-card" href="#any">
+          <span class="num">04</span>
+          <b>Give any text agent a phone number</b>
+          <span class="for">For teams that build text agents</span>
+          <span class="meta"><span class="pill phone">SIA Phone</span><span data-len="any"></span></span>
+        </a>
       </div>
     </div>
   </header>
 
-  <section id="problem">
+  <section id="why">
     <div class="wrap">
-      <h2>A demo is easy. Production is hard.</h2>
-      <p class="lead">Your team can get a voice agent demo working in an afternoon. Getting it into production takes weeks of back-and-forth between the domain expert, who knows the rules, and the engineer, who builds the agent.</p>
-
-      <div class="loops">
-        <div class="loop">
-          <h3>Today</h3>
-          <div class="pair">
-            <span class="who"><span class="d" style="background:var(--vig)"></span>Domain expert</span>
-            <span class="arrows" aria-hidden="true">⇄</span>
-            <span class="who"><span class="d" style="background:var(--eng)"></span>Engineer</span>
-          </div>
-          <div class="chips"><span class="chip">Requirements</span><span class="chip">Build</span><span class="chip">Test</span><span class="chip">Feedback</span><span class="chip">Fix</span><span class="chip">Repeat</span></div>
-          <p class="verdict">Weeks per agent<small>and an engineer tied up for each one.</small></p>
+      <h2>Agents are learning to work. We still have to type to them.</h2>
+      <p class="lead">The people who use agents are often away from a keyboard. And the people who build voice agents spend weeks getting each one right. Voice fixes both, if it's done properly.</p>
+      <div class="why-grid">
+        <div class="why">
+          <h3>Agents work for hours. You can't sit and watch.</h3>
+          <p>A coding agent or a research agent can run on its own for a long time. When it needs a decision, it sends a notification and waits until you're back at your desk.</p>
         </div>
-        <div class="loop after">
-          <h3>With SIA Voice</h3>
-          <div class="pair">
-            <span class="who"><span class="d" style="background:var(--vig)"></span>Domain expert</span>
-            <span class="arrows" aria-hidden="true">⇄</span>
-            <span class="who"><span class="d" style="background:var(--sia)"></span>SIA Voice</span>
-          </div>
-          <div class="chips"><span class="chip">Collect requirements</span><span class="chip">Build agent</span><span class="chip">Run simulation</span><span class="chip">Improve and fine-tune</span><span class="chip">Expert review</span><span class="chip">Live testing</span></div>
-          <p class="verdict">No engineer in the loop<small>Our target: hours, not weeks.</small></p>
+        <div class="why">
+          <h3>Much of the world still runs on the phone.</h3>
+          <p>Patients, customers and field teams call. Voice agents can take those calls, but building and testing each one takes weeks of back-and-forth between an expert and an engineer.</p>
+        </div>
+        <div class="why">
+          <h3>Reading text aloud isn't a voice.</h3>
+          <p>A real voice means a conversation. Short answers instead of long text. Asking before acting. Calling you back when there's news. Sending the links and details by text.</p>
         </div>
       </div>
-      <p class="cap">That loop doesn't scale. Every new agent needs an engineer for weeks, so your growth is capped by how many forward-deployed engineers you can hire.</p>
-    </div>
-  </section>
 
-  <section id="how">
-    <div class="wrap">
-      <h2>How it works</h2>
-      <p class="lead">Your domain experts do this themselves. No engineer, no code.</p>
-      <div class="steps">
-        <div class="step">
-          <span class="n">1</span>
-          <h3>Collect requirements</h3>
-          <p>SIA Voice talks with the expert by voice. It asks the questions an engineer would ask, then writes the spec.</p>
+      <div class="layer">
+        <div>
+          <h3>One layer between people and agents</h3>
+          <p>SIA sits in the middle. It listens, keeps answers short, asks before the agent acts, and calls back when there's news or when the agent is stuck. The same layer helps at every stage of an agent's life: while you build it, while you test it, and while people use it.</p>
+          <ul class="traits"><li>Listens</li><li>Keeps it short</li><li>Asks before acting</li><li>Calls back</li><li>Texts the details</li></ul>
         </div>
-        <div class="step">
-          <span class="n">2</span>
-          <h3>Build agent</h3>
-          <p>It builds the first version of the voice agent from that spec: prompts, tools and conversation logic.</p>
+        <div class="flow" aria-hidden="true">
+          <span class="node">A person<small>on the phone</small></span>
+          <span class="ar">⇄</span>
+          <span class="node sia">SIA<small>the voice layer</small></span>
+          <span class="ar">⇄</span>
+          <span class="node">Your agent<small>unchanged</small></span>
         </div>
-        <div class="step">
-          <span class="n">3</span>
-          <h3>Run simulation</h3>
-          <p>It writes test scenarios that cover the edge cases and runs them as simulated calls.</p>
-        </div>
-        <div class="step">
-          <span class="n">4</span>
-          <h3>Improve and fine-tune</h3>
-          <p>Every failure feeds an optimization loop. It improves the prompts, tools and conversation logic, and fine-tunes the model.</p>
-        </div>
-        <div class="step">
-          <span class="n">5</span>
-          <h3>Expert review</h3>
-          <p>The expert reviews the calls SIA Voice is least sure about, in plain language, not code.</p>
-        </div>
-        <div class="step">
-          <span class="n">6</span>
-          <h3>Live testing</h3>
-          <p>The expert tries the agent on live calls. Anything it gets wrong becomes a new test.</p>
-        </div>
-      </div>
-      <div class="feedback">
-        <p><strong>Every mistake becomes a permanent test.</strong> Feedback comes from three places:</p>
-        <div class="sources"><span>SIA Voice finds it in simulation</span><span>The expert catches it in expert review</span><span>Live testing reveals it</span></div>
       </div>
     </div>
   </section>
 
-  <section id="domains">
+  <section id="build">
     <div class="wrap">
-      <h2>For any expert whose work happens on the phone</h2>
-      <p class="lead">The nurse in the demo is one example. The same loop works wherever an expert knows exactly what a call should do.</p>
-      <ul class="domains">
-        <li class="ex"><b>Nurses</b><span>Post-discharge follow-up</span><em>In the demo</em></li>
-        <li><b>Claims adjusters</b><span>First notice of loss</span></li>
-        <li><b>Recruiters</b><span>Candidate screening</span></li>
-        <li><b>Field-service dispatchers</b><span>Scheduling</span></li>
-        <li><b>Loan officers</b><span>Document follow-up</span></li>
-      </ul>
+      <div class="uc-head"><span class="num">Use case 01</span><span class="pill">SIA Voice</span></div>
+      <h2>Build a voice agent just by talking.</h2>
+      <p class="uc-who"><b>For:</b> teams that build voice agents, and the domain experts who know what each agent should do.</p>
+      <div class="uc-cols">
+        <div class="box">
+          <h3>The problem</h3>
+          <p>A voice agent demo takes an afternoon. Getting it into production takes weeks.</p>
+          <p>The domain expert knows the rules. The engineer builds the agent. They go back and forth, test after test, for every new agent. Growth is capped by how many engineers you can hire.</p>
+        </div>
+        <div class="box how">
+          <h3>How SIA Voice helps</h3>
+          <p>The expert talks to SIA Voice. It asks the questions an engineer would ask, builds the agent, tests it on simulated calls, and improves it. The expert only reviews the hardest calls. No engineer in the loop. Our goal: hours, not weeks.</p>
+          <div class="chips"><span class="chip"><b>1</b>Collect requirements</span><span class="chip"><b>2</b>Build agent</span><span class="chip"><b>3</b>Run simulation</span><span class="chip"><b>4</b>Improve and fine-tune</span><span class="chip"><b>5</b>Expert review</span><span class="chip"><b>6</b>Live testing</span></div>
+        </div>
+      </div>
+      <div class="video" data-video="build"></div>
+    </div>
+  </section>
+
+  <section id="test">
+    <div class="wrap">
+      <div class="uc-head"><span class="num">Use case 02</span><span class="pill">SIA Scenarios</span></div>
+      <h2>Find the risky calls before your callers do.</h2>
+      <p class="uc-who"><b>For:</b> teams that ship voice agents and test them before every launch and every prompt change.</p>
+      <div class="uc-cols">
+        <div class="box">
+          <h3>The problem</h3>
+          <p>The dangerous failures hide in calls nobody thought to write down. A caller changes an answer, asks too early, or pushes back.</p>
+          <p>Good human testers find these, but it takes weeks per agent. Scripted test lists follow the easy path.</p>
+        </div>
+        <div class="box how">
+          <h3>How SIA Scenarios helps</h3>
+          <ul>
+            <li>You give it your agent's endpoint and its prompt.</li>
+            <li>It calls your agent and explores like a skilled tester, digging wherever the agent slips.</li>
+            <li>It asks your expert when it's unsure. Real complaints and your team's test calls make it sharper.</li>
+            <li>It maps the risky zones and suggests fixes: prompt edits, or fine-tuning when a prompt isn't enough. Then it checks again after every change.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="video" data-video="test"></div>
+    </div>
+  </section>
+
+  <section id="code" class="phone-uc">
+    <div class="wrap">
+      <div class="uc-head"><span class="num">Use case 03</span><span class="pill phone">SIA Phone</span></div>
+      <h2>Call your coding agent.</h2>
+      <p class="uc-who"><b>For:</b> any developer who works with a coding agent.</p>
+      <div class="uc-cols">
+        <div class="box">
+          <h3>The problem</h3>
+          <p>Your coding agent works in the cloud for an hour. Then it hits a question and stops.</p>
+          <p>All it can do is send a notification and wait until you're back at your laptop. You lose the time, and it loses the context of what you wanted.</p>
+        </div>
+        <div class="box how">
+          <h3>How SIA Phone helps</h3>
+          <ul>
+            <li>Call your agent from anywhere: a walk, the car, a queue.</li>
+            <li>Pages of output become a few spoken sentences.</li>
+            <li>Tell it what to do next. It asks before it does anything you didn't ask for.</li>
+            <li>It keeps working, calls you back if it's stuck, and texts you the link when it's done.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="video" data-video="code"></div>
+    </div>
+  </section>
+
+  <section id="any" class="phone-uc">
+    <div class="wrap">
+      <div class="uc-head"><span class="num">Use case 04</span><span class="pill phone">SIA Phone</span></div>
+      <h2>Give any text agent a phone number.</h2>
+      <p class="uc-who"><b>For:</b> teams that build text agents: support, sales, internal assistants.</p>
+      <div class="uc-cols">
+        <div class="box">
+          <h3>The problem</h3>
+          <p>Most agents are text only. Your users are often not at a screen: driving to a customer, on a job site, between meetings.</p>
+          <p>Building a separate voice agent means a second product to build, test and keep in sync.</p>
+        </div>
+        <div class="box how">
+          <h3>How SIA Phone helps</h3>
+          <ul>
+            <li>Add about three lines of code. Your agent gets a real voice and a phone number.</li>
+            <li>Same agent, same tools, same data. Nothing to rebuild.</li>
+            <li>It answers calls in a few clear sentences and asks before it acts.</li>
+            <li>It calls back with results and texts the charts and links.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="video" data-video="any"></div>
     </div>
   </section>
 
@@ -282,7 +349,7 @@ footer a { color: var(--night-text); }
     <div class="wrap research">
       <div>
         <h2>Built on our research</h2>
-        <p class="lead">The self-improvement loop builds on SIA, our research on self-improving agents, accepted at ICML.</p>
+        <p class="lead">The way SIA improves agents, with prompt changes and fine-tuning, builds on SIA, our research on self-improving agents, accepted at ICML.</p>
       </div>
       <div class="links">
         <a href="https://arxiv.org/abs/2605.27276" target="_blank" rel="noopener">Read the paper <span>arXiv ↗</span></a>
@@ -294,8 +361,7 @@ footer a { color: var(--night-text); }
   <section id="partner">
     <div class="wrap">
       <h2>Become a design partner</h2>
-      <p class="lead">We're working with a small group of voice agent companies to shape SIA Voice. Tell us about the agents you're building.</p>
-
+      <p class="lead">We're working with a small group of teams that build agents. Tell us what you're building and which use case you'd try first.</p>
       <div class="tally">
         <iframe data-tally-src="https://tally.so/embed/yXMvYW?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="560" frameborder="0" marginheight="0" marginwidth="0" title="Become a design partner"></iframe>
       </div>
@@ -305,41 +371,40 @@ footer a { color: var(--night-text); }
 
 <footer>
   <div class="wrap">
-    <span>© 2026 SIA Voice</span>
+    <span>© 2026 SIA</span>
     <span>Contact: <a href="mailto:info@siavoice.com">info@siavoice.com</a></span>
   </div>
 </footer>
 
 <script>
-/* ---- Settings ---- */
-const VIDEO_SRC = "sia-voice-demo-2026-11-10.mp4"; // self-hosted MP4 next to index.html (not in git; see README). Empty = use YouTube
-const YOUTUBE_ID = "NaotJXOYHik";     // fallback: the ID from an unlisted YouTube link
+/* ---- Demo videos ----
+ * Self-hosted MP4s next to index.html (not in git; see README). Use a new file name for each new cut.
+ * poster = a still from the video (JPG, next to index.html). len = shown on the card and the video bar. */
+const VIDEOS = {
+  build: { src: "sia-voice-demo-2026-11-10.mp4",            poster: "poster-build.jpg", len: "4:11", title: "SIA Voice: build a voice agent by talking" },
+  test:  { src: "sia-scenarios-demo-2026-11-10.mp4",        poster: "poster-test.jpg",  len: "4:48", title: "SIA Scenarios: find the risky calls" },
+  code:  { src: "sia-phone-claude-code-2026-11-10.mp4",     poster: "poster-code.jpg",  len: "2:09", title: "SIA Phone: call your coding agent" },
+  any:   { src: "sia-phone-any-text-agent-2026-11-10.mp4",  poster: "poster-any.jpg",   len: "2:56", title: "SIA Phone: give any text agent a phone number" },
+};
 
-/* video: load it only when someone presses play */
-document.getElementById("play").addEventListener("click", () => {
-  if (VIDEO_SRC) {
-    const v = document.createElement("video");
-    v.src = VIDEO_SRC; v.controls = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
-    v.setAttribute("title", "SIA Voice demo");
-    v.style.cssText = "position:absolute;inset:0;width:100%;height:100%;background:#16212E";
-    const frame = document.getElementById("frame");
-    frame.innerHTML = ""; frame.appendChild(v);
-    v.play().catch(() => {});
-    return;
-  }
-  if (!YOUTUBE_ID) {
-    const s = document.getElementById("soon");
-    s.classList.add("on"); setTimeout(() => s.classList.remove("on"), 2200);
-    return;
-  }
-  const f = document.createElement("iframe");
-  f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(YOUTUBE_ID) + "?autoplay=1&rel=0&modestbranding=1";
-  f.title = "SIA Voice demo";
-  f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-  f.allowFullscreen = true;
-  f.referrerPolicy = "strict-origin-when-cross-origin";
-  const frame = document.getElementById("frame");
-  frame.innerHTML = ""; frame.appendChild(f);
+document.querySelectorAll("[data-len]").forEach(el => { const v = VIDEOS[el.dataset.len]; if (v) el.textContent = v.len; });
+
+document.querySelectorAll("[data-video]").forEach(box => {
+  const v = VIDEOS[box.dataset.video];
+  box.innerHTML = `<div class="video-bar"><span class="t"></span><span class="len">${v.len}</span></div>
+    <div class="frame" style="background-image:url('${v.poster}')"><button class="play" aria-label="Play the video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></button></div>`;
+  box.querySelector(".t").textContent = v.title;
+  const frame = box.querySelector(".frame");
+  box.querySelector(".play").addEventListener("click", () => {
+    // only one video plays at a time
+    document.querySelectorAll(".frame video").forEach(o => o.pause());
+    const el = document.createElement("video");
+    el.src = v.src; el.controls = true; el.autoplay = true; el.playsInline = true; el.preload = "auto"; el.poster = v.poster;
+    el.setAttribute("title", v.title);
+    el.addEventListener("play", () => document.querySelectorAll(".frame video").forEach(o => { if (o !== el) o.pause(); }));
+    frame.innerHTML = ""; frame.classList.add("playing"); frame.appendChild(el);
+    el.play().catch(() => {});
+  });
 });
 
 /* design partner form (Tally) */
