@@ -1,9 +1,9 @@
 {
-  "product_name": "AgentLine",
-  "product_name_spoken": "AgentLine",
+  "product_name": "AgentPhone",
+  "product_name_spoken": "AgentPhone",
   "tagline": "Your agent, on the line.",
   "illustrative_tag": "Illustrative product concept",
-  "small_print": "Illustrative product concept. The product, screens, calls and numbers shown are mocked. Claude Code is a product of Anthropic; AgentLine is not affiliated with it.",
-  "_note": "AgentLine is a placeholder name. Change it here; the script uses {{product}} everywhere.",
+  "small_print": "Illustrative product concept. The product, screens, calls and numbers shown are mocked. Claude Code is a product of Anthropic; AgentPhone is not affiliated with it.",
+  "_note": "AgentPhone is a placeholder name. Change it here; the script uses {{product}} everywhere.",
   "subtag": "A real voice and a phone number for any text agent."
 }

@@ -1,4 +1,4 @@
-"""Build pipeline for the AgentLine demos.
+"""Build pipeline for the AgentPhone demos.
 
   python3 build.py demo1 tts        # ElevenLabs clips for changed lines (cached in tts/)
   python3 build.py demo1 timeline   # web/timeline_demo1.js from clip lengths
