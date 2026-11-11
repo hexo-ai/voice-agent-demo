@@ -148,7 +148,7 @@
   },
   {
    "line": "p_01",
-   "role": "megan",
+   "role": "pierre",
    "text": "Hi Atlas. I'm meeting Northwind Retail in twenty minutes. Anything I should know?"
   },
   {
@@ -174,7 +174,7 @@
   },
   {
    "line": "p_02",
-   "role": "megan",
+   "role": "pierre",
    "text": "Yes. Is it fixed?"
   },
   {
@@ -187,7 +187,7 @@
   },
   {
    "line": "p_03",
-   "role": "megan",
+   "role": "pierre",
    "text": "Okay. Can you get me their volume by region? I want it for the meeting."
   },
   {
@@ -227,11 +227,11 @@
   {
    "line": "at_04",
    "role": "atlas",
-   "text": "Hi Megan, it's Atlas. West is up thirty-one percent, and it's driving most of the growth. The other regions are flat. I've texted you the chart and the sources."
+   "text": "Hi Pierre, it's Atlas. West is up thirty-one percent, and it's driving most of the growth. The other regions are flat. I've texted you the chart and the sources."
   },
   {
    "line": "p_04",
-   "role": "megan",
+   "role": "pierre",
    "text": "Perfect. Thanks!"
   },
   {

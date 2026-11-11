@@ -50,14 +50,14 @@
         "style": 0.2
       }
     },
-    "megan": {
-      "voice_id": "cgSgspJ2msm6clMCkdW9",
-      "label": "Megan, account manager",
+    "pierre": {
+      "voice_id": "1a6onbE6zC5AwIN3pEp0",
+      "label": "Pierre, account manager",
       "phone": true,
       "settings": {
-        "stability": 0.4,
-        "similarity_boost": 0.75,
-        "style": 0.35
+        "stability": 0.5,
+        "similarity_boost": 0.9,
+        "style": 0.3
       }
     }
   }

@@ -89,7 +89,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     </div>
     <div class="chatw">${atlasChat("Brief me on Northwind Retail before my meeting.", true)}</div>
     <div class="hright">
-      <div class="hv" id="hvMaya"><div class="mecard"><div class="av">M</div><div><div class="t1">Megan, account manager</div><div class="t2">Driving to a customer meeting.<br>Needs a briefing. Can't read a screen.</div></div></div></div>
+      <div class="hv" id="hvMaya"><div class="mecard"><div class="av">P</div><div><div class="t1">Pierre, account manager</div><div class="t2">Driving to a customer meeting.<br>Needs a briefing. Can't read a screen.</div></div></div></div>
       <div class="hv" id="hvBuild"><div class="buildc"><h3>A phone version, built by hand</h3><div class="sm">A second product to build and run:</div>
         <div class="it">Speech in and out</div><div class="it">Phone numbers and calls</div><div class="it">Checking who's calling</div><div class="it">Answers rewritten for the ear</div>
         <div class="weeks" id="weeks">Week 1</div></div></div>
@@ -127,15 +127,15 @@ Sources: [1] crm/accounts/northwind-retail ·
     { at: "approve", dt: 0.5, cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.3], ["214 of 214 tests pass", 1.4], ["Opened pull request #482 (not merged)", 2.6]] },
     { at: "sms", cls: "sys", b: "Texted the pull request link to Vignesh." },
   ] : [
-    { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Megan (account manager, verified): brief me on Northwind Retail, meeting in 20 minutes." },
+    { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Pierre (account manager, verified): brief me on Northwind Retail, meeting in 20 minutes." },
     { at: "answer_text", cls: "in", h: `Atlas → ${AL} · text answer`, txt: "Northwind Retail: renewal Mar 12 [1] · 3 open tickets [2] · #44812 settlement delay, P2, since Nov 3 [3] · #44790 webhook retries [4] · volume +18% QoQ [5] · contact Dan Ortiz [1] · Sources: crm/accounts/northwind-retail, support/tickets?acct=northwind, dashboards/volume/q4" },
-    { at: "compress", cls: "stat", b: "6 facts and 5 citations → 3 things, then a question", s: "Sources go to her phone by text, not read aloud." },
+    { at: "compress", cls: "stat", b: "6 facts and 5 citations → 3 things, then a question", s: "Sources go to his phone by text, not read aloud." },
     { at: "lookup2", cls: "out", h: `${AL} → Atlas`, b: "Status of ticket #44812?" },
     { at: "task", cls: "out", h: `${AL} → Atlas · query_metrics`, b: "Northwind Retail payment volume by region, this quarter vs last." },
     { at: "hangup", cls: "sys", b: "Call ended. The query keeps running." },
     { at: "work", cls: "in", h: "Atlas · working", items: [["Querying the volume dashboard", 0.3], ["Scanned 1.4 million payments", 1.4], ["Built a chart by region", 2.5]] },
-    { at: "work", dt: 3.0, cls: "dec", h: AL + " · result ready", b: "Call Megan back now." },
-    { at: "sms", cls: "sys", b: "Texted Megan the chart and the 5 sources." },
+    { at: "work", dt: 3.0, cls: "dec", h: AL + " · result ready", b: "Call Pierre back now." },
+    { at: "sms", cls: "sys", b: "Texted Pierre the chart and the 5 sources." },
   ];
 
   // ---------- DOM ----------
@@ -178,7 +178,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     </div>
   </div>
   <div class="scene" id="s-call">
-    <div class="L"><div class="plab">${isD1 ? "My phone" : "Megan's phone"}</div>
+    <div class="L"><div class="plab">${isD1 ? "My phone" : "Pierre's phone"}</div>
       <div class="phone"><div class="scr">
         <div class="sbar"><span id="clk">9:41</span><span>●●● 5G</span></div>
         <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "Contact" : "Acme · internal assistant"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
@@ -194,7 +194,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     </div>
     <div class="R"><div class="plab">Behind the scenes</div>
       <div class="chain">
-        <div class="n">${isD1 ? "Me" : "Megan"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
+        <div class="n">${isD1 ? "Me" : "Pierre"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
         <div class="n al">${P}<small>the voice</small></div><div class="lk" id="lk2"><b></b><em>text</em></div>
         <div class="n">${isD1 ? "Claude Code" : "Atlas"}<small>${isD1 ? "running in the cloud" : "knowledge assistant, unchanged"}</small></div>
       </div>
@@ -251,7 +251,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     if (ln && sc !== "title" && sc !== "end") {
       sub.style.opacity = 1; $(".who", sub).textContent = ln.who;
       $(".txt", sub).textContent = ln.full > ln.dur + .05 ? ln.text.slice(0, Math.round(ln.text.length * clamp((t - ln.start) / ln.full))).replace(/\s\S*$/, "") + "…" : ln.text;
-      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "megan" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
+      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "pierre" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
     } else sub.style.opacity = 0;
 
     if (vis.hook) renderHook(t);
@@ -346,7 +346,7 @@ Sources: [1] crm/accounts/northwind-retail ·
     // orb pulses with whoever speaks on the phone
     const ln = TL.lines.find(l => l.phone && t >= l.start && t < l.start + l.dur);
     const amp = ln ? .5 + .5 * Math.abs(Math.sin(t * 7.3) * Math.sin(t * 2.9 + 1)) : 0;
-    const human = ln && (ln.role === "vignesh" || ln.role === "megan");
+    const human = ln && (ln.role === "vignesh" || ln.role === "pierre");
     const orb = $("#orb");
     orb.style.transform = `scale(${1 + .12 * amp})`;
     orb.style.background = human ? "radial-gradient(circle at 40% 35%, #F2C27A, #D9932B 60%, #9A6418)" : "";
