@@ -1,4 +1,4 @@
-// AgentPhone demos. Every frame is a pure function of time: window.__render(t).
+// SIA Phone demos. Every frame is a pure function of time: window.__render(t).
 (() => {
   const TL = window.TL, C = TL.config, P = C.product_name, D = TL.demo;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -75,7 +75,7 @@ _Warranty: covered until March 2027._`;
 
   // ---------- code typed in demo 2 ----------
   const CODE = [
-    ['<span class="k">from</span> agentphone <span class="k">import</span> Voice', "from agentphone import Voice"],
+    ['<span class="k">from</span> siaphone <span class="k">import</span> Voice', "from siaphone import Voice"],
     ["", ""],
     ['<span class="c"># my existing agent, unchanged</span>', "# my existing agent, unchanged"],
     ['voice = <span class="f">Voice</span>(agent=fixit_agent)', "voice = Voice(agent=fixit_agent)"],
