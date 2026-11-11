@@ -26,23 +26,9 @@
   <div id="exTag"></div>
   <div id="sub"><div class="box"><div class="who"></div><div class="txt"></div></div></div>
 
-  <div class="scene" id="s-hook">
-    <div class="hk" id="hkL"><div class="cutX">Stopped listening</div>
-      <h3>Voice mode today</h3><div class="sm">It reads the agent's text aloud, word for word.</div>
-      <div class="md mono" id="md"></div>
-      <div class="spk"><div class="bars" id="bars">${"<b></b>".repeat(14)}</div><span>Reading 1,840 lines aloud…</span></div>
-    </div>
-    <div class="hk" id="hkR">
-      <h3>A real voice</h3><div class="sm">A conversation, not a read-out.</div>
-      <div class="bub you">Did last night's tests pass?</div>
-      <div class="bub ag">Mostly. Two checkout tests failed. Want me to look into it?</div>
-      <div class="chips">
-        <div class="chip" data-w="listens"><span class="d"></span>Listens</div>
-        <div class="chip" data-w="summarises"><span class="d"></span>Summarises</div>
-        <div class="chip" data-w="asks"><span class="d"></span>Asks before it acts</div>
-        <div class="chip" data-w="calls you back"><span class="d"></span>Calls you back</div>
-      </div>
-    </div>
+  <div class="scene" id="s-problem">
+    <div class="prows" id="prows"></div>
+    <div class="pvis" id="pvis"></div>
   </div>
 
   <div class="scene" id="s-title">
@@ -111,8 +97,8 @@ Your warranty covers repairs until March 2027.</div></div></div>
     <div class="small">${C.small_print}</div>
   </div>`;
 
-  // markdown read-aloud block (tokens light up as the robot voice reads)
-  const MD = `## Test results
+  // ---------- problem section: rows on the left, one visual at a time on the right ----------
+  const MD1 = `## Test results
 - 212 passed, 2 failed
 ### Failed tests
 - \`test_checkout_currency\` (line 42)
@@ -122,8 +108,69 @@ Your warranty covers repairs until March 2027.</div></div></div>
   AssertionError: expected 4.13,
   got 4.12
 ... 1,831 more lines`;
-  $("#md").innerHTML = MD.split(/(\s+)/).map(w => /\s/.test(w) ? w : `<span class="tok">${w.replace(/</g, "&lt;")}</span>`).join("");
-  const toks = $$("#md .tok");
+  const MD2 = `**E24 is a drain error.** Try these steps:
+1. Turn off the dishwasher.
+2. Remove the bottom rack.
+3. Twist the filter counterclockwise
+   and lift it out.
+4. Rinse the filter under the tap.
+5. Refit the filter and run a rinse cycle.
+6. If E24 comes back, book a technician.
+_Warranty: covered until March 2027._`;
+  const tokenize = md => md.split(/(\s+)/).map(w => /\s/.test(w) ? w : `<span class="tok">${w.replace(/</g, "&lt;")}</span>`).join("");
+  const readCard = (md, lines) => `<div class="vcard light"><div class="cutX">Stopped listening</div>
+      <h3>Voice mode today</h3><div class="sm">It reads the agent's text aloud, word for word.</div>
+      <div class="md mono">${tokenize(md)}</div>
+      <div class="spk"><div class="bars">${"<b></b>".repeat(14)}</div><span>${lines}</span></div></div>`;
+  const realCard = `<div class="vcard dark">
+      <h3>A real voice</h3><div class="sm">A conversation, not a read-out.</div>
+      <div class="bub you">${isD1 ? "Did last night's tests pass?" : "My dishwasher is flashing E24."}</div>
+      <div class="bub ag">${isD1 ? "Mostly. Two checkout tests failed. Want me to look into it?" : "That usually means it isn't draining. Is there water at the bottom?"}</div>
+      <div class="chips">
+        <div class="chip" data-w="listens"><span class="d"></span>Listens</div>
+        <div class="chip" data-w="summarises"><span class="d"></span>Summarises</div>
+        <div class="chip" data-w="asks"><span class="d"></span>Asks before it acts</div>
+        <div class="chip" data-w="calls me back"><span class="d"></span>Calls you back</div>
+      </div></div>`;
+  const ROWS = isD1 ? [
+    ["r1", "Who", "Developers who hand work to coding agents in the cloud"],
+    ["r2", "The problem", "Steering an agent needs a screen. Step away, and it waits for you or guesses."],
+    ["r3", "Voice mode today", "Reads the agent's text aloud, symbol by symbol"],
+    ["r4", "What's needed", "A real voice, and a phone number"],
+  ] : [
+    ["r1", "Who", "Developers who build text agents, like a support assistant"],
+    ["r2", "The problem", "Their users often can't type: hands busy, on the move. They want to call."],
+    ["r3", "Building voice", "Speech, phone lines, turn-taking, answers for the ear. Weeks of work."],
+    ["r4", "Voice wrappers today", "Read the text answer aloud, all six steps at once"],
+    ["r5", "What's needed", "A real voice, and a phone number, for the agent I already have"],
+  ];
+  const VIS = isD1 ? [
+    ["r1", `<div class="vcard dark"><div class="sess"><div class="sh">Coding agent · cloud session</div>
+        <div class="si on">Refactor the payments module</div><div class="si on">Update the checkout tests</div><div class="si run">Running 214 tests</div>
+        <div class="badge ok">Working · 2 h 14 min</div></div></div>`],
+    ["r2", `<div class="vcard dark"><div class="sess"><div class="sh">Coding agent · cloud session</div>
+        <div class="si on">Refactor the payments module</div><div class="si on">Update the checkout tests</div><div class="si wait">Needs a decision: fix refunds too?</div>
+        <div class="badge warn">Waiting for you · 47 min</div></div>
+        <div class="away"><b>Me</b> Away from my desk. Walking, driving, in a meeting.</div></div>`],
+    ["read_vis", readCard(MD1, "Reading 1,840 lines aloud…")],
+    ["r4", realCard],
+  ] : [
+    ["r1", `<div class="vcard light"><div class="win2"><div class="tb"><i></i><i></i><i></i><span>Fixit · home appliance help</span></div>
+        <div class="chat"><div class="q">My dishwasher shows E24</div><div class="a">E24 is a drain error. Try these steps:
+1. Turn off the dishwasher.
+2. Remove the bottom rack.
+3. Twist the filter counterclockwise…</div></div></div></div>`],
+    ["r2", `<div class="vcard light"><div class="persona"><div class="pav">M</div><div><div class="pn">Maya, at a broken dishwasher</div>
+        <div class="pl">Hands wet and busy</div><div class="pl">Can't scroll through six steps</div><div class="pl">Wants to call, not type</div></div></div></div>`],
+    ["r3", `<div class="vcard dark"><h3>A phone version of my agent</h3><div class="sm">Everything I'd have to build myself:</div>
+        <div class="blist"><div>Speech in and out</div><div>Phone numbers and calls</div><div>Turn-taking and interruptions</div><div>Answers rewritten for the ear</div></div>
+        <div class="badge warn">Weeks of work</div></div>`],
+    ["read_vis", readCard(MD2, "Reading the whole answer aloud…")],
+    ["r5", realCard],
+  ];
+  $("#prows").innerHTML = ROWS.map(r => `<div class="prow"><div class="pk">${r[1]}</div><div class="pt">${r[2]}</div></div>`).join("");
+  $("#pvis").innerHTML = VIS.map(v => `<div class="pv2">${v[1]}</div>`).join("");
+  const robot = TL.lines.find(l => l.role === "robot");
 
   // code typed in demo 2
   const CODE = [
@@ -188,7 +235,7 @@ Your warranty covers repairs until March 2027.</div></div></div>
     if (!measured) { $$(".scene").forEach(s => s.style.display = ""); $("#s-call").style.opacity = 1; heights(); measured = true; }
     const sc = sceneAt(t);
     const callScene = isD1 ? "call1" : "call2";
-    const vis = { hook: sc === "hook", title: sc === "title", setup: sc === "setup", call: sc === callScene, end: sc === "end" };
+    const vis = { problem: sc === "problem", title: sc === "title", setup: sc === "setup", call: sc === callScene, end: sc === "end" };
     const sceneStart = n => scene(n === "call" ? callScene : n);
     for (const k in vis) show($("#s-" + k), vis[k] ? fade(t, sceneStart(k)) : 0);
     const dark = sc === "title" || sc === "end";
@@ -205,11 +252,11 @@ Your warranty covers repairs until March 2027.</div></div></div>
     // subtitles
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
     const sub = $("#sub");
-    if (ln && !dark) { sub.style.opacity = 1; $(".who", sub).textContent = ln.who; $(".txt", sub).textContent = ln.text;
+    if (ln && !dark) { sub.style.opacity = 1; $(".who", sub).textContent = ln.who; $(".txt", sub).textContent = ln.full > ln.dur + .05 ? ln.text.slice(0, Math.round(ln.text.length * clamp((t - ln.start) / ln.full))).replace(/\s\S*$/, "") + "…" : ln.text;
       $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "maya" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#B9BDF5";
     } else sub.style.opacity = 0;
 
-    if (vis.hook) renderHook(t);
+    if (vis.problem) renderProblem(t);
     if (vis.setup) renderSetup(t);
     if (vis.call) renderCall(t);
     if (vis.end || vis.title) {
@@ -218,18 +265,27 @@ Your warranty covers repairs until March 2027.</div></div></div>
     }
   }
 
-  function renderHook(t) {
-    const r = L("read_01"), p = clamp((t - r.start) / (r.dur * 1.05));
-    const k = Math.floor(p * toks.length * 0.62); // the read-out gets about this far before it is cut
-    toks.forEach((el, i) => { el.className = "tok" + (t < r.start ? "" : i < k ? " done" : i === k && t < cue("read_cut") ? " on" : ""); });
-    const reading = t >= r.start && t < cue("read_cut");
-    $$("#bars b").forEach((b, i) => { b.style.height = (reading ? 8 + 30 * Math.abs(Math.sin(t * 9 + i * 1.7)) * (0.5 + 0.5 * Math.sin(t * 3.1 + i)) : 6) + "px"; });
-    $(".cutX").style.opacity = fade(t, cue("read_cut"), .3);
-    const sp = cue("hook_split");
-    $("#hkL").style.opacity = 1 - 0.35 * fade(t, sp);
-    $("#hkR").style.opacity = fade(t, sp, .5);
-    $("#hkR").style.transform = `translateY(${20 * (1 - fade(t, sp, .5))}px)`;
-    $$("#hkR .chip").forEach(c => c.classList.toggle("on", t >= W("narr_02", c.dataset.w)));
+  function renderProblem(t) {
+    $$("#prows .prow").forEach((r, i) => { const c = cue(ROWS[i][0]); const o = fade(t, c, .4);
+      r.style.opacity = o; r.style.transform = `translateX(${(1 - o) * -24}px)`;
+      const next = i + 1 < ROWS.length ? cue(ROWS[i + 1][0]) : Infinity;
+      r.classList.toggle("cur", t >= c && t < next); });
+    let k = -1; VIS.forEach((v, i) => { if (t >= cue(v[0])) k = i; });
+    $$("#pvis .pv2").forEach((el, i) => { const c = cue(VIS[i][0]);
+      const o = i === k ? fade(t, c, .45) : (i === k - 1 ? 1 - fade(t, cue(VIS[k][0]), .3) : 0);
+      el.style.opacity = o; el.style.display = o <= 0.001 ? "none" : ""; el.style.transform = `translateY(${(1 - Math.min(1, o * 1.2)) * 16}px)`; });
+    // read-aloud tokens and bars
+    const el = $$("#pvis .pv2")[VIS.findIndex(v => v[0] === "read_vis")];
+    if (el && robot) {
+      const toks = $$(".tok", el), p = clamp((t - robot.start) / robot.dur), cut = cue("read_cut");
+      const n = Math.floor(p * toks.length * 0.55);
+      toks.forEach((tk, i) => { tk.className = "tok" + (t < robot.start ? "" : i < n ? " done" : i === n && t < cut ? " on" : ""); });
+      const reading = t >= robot.start && t < cut;
+      $$(".bars b", el).forEach((b, i) => { b.style.height = (reading ? 8 + 30 * Math.abs(Math.sin(t * 9 + i * 1.7)) * (0.5 + 0.5 * Math.sin(t * 3.1 + i)) : 6) + "px"; });
+      $(".cutX", el).style.opacity = fade(t, cut, .3);
+    }
+    const chipLine = isD1 ? "p1_04" : "narr_03";
+    $$("#pvis .chip").forEach(c => c.classList.toggle("on", isD1 ? t >= W(chipLine, c.dataset.w) : t >= L(chipLine).start + .4 + ["listens", "summarises", "asks", "calls me back"].indexOf(c.dataset.w) * .5));
   }
 
   function renderSetup(t) {

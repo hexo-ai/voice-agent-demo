@@ -1,45 +1,220 @@
 {
-  "title": "Give your agent a voice and a phone number",
-  "steps": [
-    {"include": "hook"},
-    {"scene": "setup"},
-    {"hold": 0.5},
-    {"cue": "chat"},
-    {"line": "narr_10", "role": "narrator", "text": "Say I'm a developer. I built a text assistant that helps people fix home appliances. It looks up manuals, checks warranties and books technicians."},
-    {"line": "narr_11", "role": "narrator", "text": "To give it a voice and a phone number, I add three lines of code. My agent doesn't change."},
-    {"cue": "code", "at": "narr_11"},
-    {"cue": "connect"},
-    {"hold": 3.2},
-    {"line": "narr_12", "role": "narrator", "text": "It reads what my agent can do, and speaks for it. Now anyone can call it."},
-    {"scene": "call2"},
-    {"hold": 0.4},
-    {"cue": "dial", "sfx": "ringback"},
-    {"hold": 2.4},
-    {"cue": "connected"},
-    {"hold": 0.3},
-    {"line": "c_01", "role": "maya", "text": "Hi. My dishwasher stopped mid-cycle, and it's flashing E24."},
-    {"cue": "lookup"},
-    {"hold": 0.5},
-    {"cue": "answer_text"},
-    {"hold": 1.0},
-    {"line": "as_01", "role": "fixit", "text": "Sorry about that. E24 usually means it isn't draining. Is there water at the bottom?"},
-    {"cue": "onestep", "at": "as_01"},
-    {"line": "c_02", "role": "maya", "text": "Yes, a few inches."},
-    {"cue": "step1"},
-    {"line": "as_02", "role": "fixit", "text": "Okay. Turn the dishwasher off. Then pull out the bottom rack, and twist the filter to the left. Tell me when it's out."},
-    {"hold": 1.2},
-    {"line": "c_03", "role": "maya", "text": "Okay, it's out. Ugh, it's full of gunk."},
-    {"cue": "warranty"},
-    {"hold": 0.3},
-    {"cue": "step2"},
-    {"line": "as_03", "role": "fixit", "text": "That's probably the problem. Rinse it, put it back, and run a rinse cycle. If E24 comes back, I can book a technician. Your warranty covers it until March."},
-    {"line": "c_04", "role": "maya", "text": "Perfect. Thanks!"},
-    {"cue": "hangup", "sfx": "hangup"},
-    {"hold": 0.6},
-    {"line": "narr_13", "role": "narrator", "text": "Same agent, same code. My text assistant now answers the phone, and talks like a person, one step at a time."},
-    {"scene": "end"},
-    {"hold": 0.3},
-    {"line": "narr_14", "role": "narrator", "text": "Any text agent can have a real voice, and a phone number."},
-    {"hold": 3.0}
-  ]
+ "title": "Give your agent a voice and a phone number",
+ "steps": [
+  {
+   "scene": "problem"
+  },
+  {
+   "hold": 0.5
+  },
+  {
+   "line": "p2_01",
+   "role": "narrator",
+   "text": "I'm a developer. I built a text assistant that helps people fix home appliances. It looks up manuals, checks warranties and books technicians."
+  },
+  {
+   "cue": "r1",
+   "at": "p2_01"
+  },
+  {
+   "line": "p2_02",
+   "role": "narrator",
+   "text": "Here's the problem. My users need help when their hands are busy, standing in front of a broken dishwasher. They want to call, not type."
+  },
+  {
+   "cue": "r2",
+   "at": "p2_02"
+  },
+  {
+   "line": "p2_03",
+   "role": "narrator",
+   "text": "But a phone version is a second product: speech, phone lines, turn-taking, and answers rewritten for the ear. That's weeks of work."
+  },
+  {
+   "cue": "r3",
+   "at": "p2_03"
+  },
+  {
+   "line": "p2_04",
+   "role": "narrator",
+   "text": "And a simple voice wrapper just reads my text answer aloud, all six steps at once."
+  },
+  {
+   "cue": "r4",
+   "at": "p2_04"
+  },
+  {
+   "cue": "read_vis"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "line": "read_02",
+   "role": "robot",
+   "maxdur": 6.8,
+   "text": "E24 is a drain error. Try these steps. One. Turn off the dishwasher. Two. Remove the bottom rack. Three. Twist the filter counterclockwise and lift it out. Four. Rinse the filter under the tap. Five."
+  },
+  {
+   "cue": "read_cut"
+  },
+  {
+   "hold": 0.5
+  },
+  {
+   "line": "narr_03",
+   "role": "narrator",
+   "text": "{{product}} gives every text agent a real voice, and a phone number."
+  },
+  {
+   "cue": "r5",
+   "at": "narr_03"
+  },
+  {
+   "scene": "title"
+  },
+  {
+   "hold": 2.4
+  },
+  {
+   "scene": "setup"
+  },
+  {
+   "hold": 0.5
+  },
+  {
+   "cue": "chat"
+  },
+  {
+   "line": "narr_11",
+   "role": "narrator",
+   "text": "To give it a voice and a phone number, I add three lines of code. My agent doesn't change."
+  },
+  {
+   "cue": "code",
+   "at": "narr_11"
+  },
+  {
+   "cue": "connect"
+  },
+  {
+   "hold": 3.2
+  },
+  {
+   "line": "narr_12",
+   "role": "narrator",
+   "text": "It reads what my agent can do, and speaks for it. Now anyone can call it."
+  },
+  {
+   "scene": "call2"
+  },
+  {
+   "hold": 0.4
+  },
+  {
+   "cue": "dial",
+   "sfx": "ringback"
+  },
+  {
+   "hold": 2.4
+  },
+  {
+   "cue": "connected"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "line": "c_01",
+   "role": "maya",
+   "text": "Hi. My dishwasher stopped mid-cycle, and it's flashing E24."
+  },
+  {
+   "cue": "lookup"
+  },
+  {
+   "hold": 0.5
+  },
+  {
+   "cue": "answer_text"
+  },
+  {
+   "hold": 1.0
+  },
+  {
+   "line": "as_01",
+   "role": "fixit",
+   "text": "Sorry about that. E24 usually means it isn't draining. Is there water at the bottom?"
+  },
+  {
+   "cue": "onestep",
+   "at": "as_01"
+  },
+  {
+   "line": "c_02",
+   "role": "maya",
+   "text": "Yes, a few inches."
+  },
+  {
+   "cue": "step1"
+  },
+  {
+   "line": "as_02",
+   "role": "fixit",
+   "text": "Okay. Turn the dishwasher off. Then pull out the bottom rack, and twist the filter to the left. Tell me when it's out."
+  },
+  {
+   "hold": 1.2
+  },
+  {
+   "line": "c_03",
+   "role": "maya",
+   "text": "Okay, it's out. Ugh, it's full of gunk."
+  },
+  {
+   "cue": "warranty"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "cue": "step2"
+  },
+  {
+   "line": "as_03",
+   "role": "fixit",
+   "text": "That's probably the problem. Rinse it, put it back, and run a rinse cycle. If E24 comes back, I can book a technician. Your warranty covers it until March."
+  },
+  {
+   "line": "c_04",
+   "role": "maya",
+   "text": "Perfect. Thanks!"
+  },
+  {
+   "cue": "hangup",
+   "sfx": "hangup"
+  },
+  {
+   "hold": 0.6
+  },
+  {
+   "line": "narr_13",
+   "role": "narrator",
+   "text": "Same agent, same code. My text assistant now answers the phone, and talks like a person, one step at a time."
+  },
+  {
+   "scene": "end"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "line": "narr_14",
+   "role": "narrator",
+   "text": "Any text agent can have a real voice, and a phone number."
+  },
+  {
+   "hold": 3.0
+  }
+ ]
 }

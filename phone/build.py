@@ -88,10 +88,11 @@ def timeline(demo):
             if "sfx" in st:
                 sfx.append({"name": st["sfx"], "t": round(at, 3)})
         elif "line" in st:
-            d = min(dur(TTS / f"{st['line']}.mp3"), st.get("maxdur", 1e9))
+            full = dur(TTS / f"{st['line']}.mp3")
+            d = min(full, st.get("maxdur", 1e9))
             v = VOICES["roles"][st["role"]]
             lines.append({"id": st["line"], "role": st["role"], "who": sub(v["label"]), "phone": bool(v.get("phone")),
-                          "text": sub(st["text"]), "start": round(t, 3), "dur": round(d, 3)})
+                          "text": sub(st["text"]), "start": round(t, 3), "dur": round(d, 3), "full": round(full, 3)})
             t += d + st.get("gap", GAP)
     tl = {"demo": demo, "title": src["title"], "total": round(t, 3), "cues": cues, "lines": lines, "scenes": scenes,
           "sfx": sfx, "config": CFG}
@@ -123,7 +124,7 @@ def mix(demo):
     for i, (t, f, phone, d) in enumerate(events):
         inputs += ["-i", str(f)]
         cut = f"atrim=0:{d},afade=t=out:st={max(d - 0.25, 0)}:d=0.25," if d else ""
-        filt = cut + "highpass=f=300,lowpass=f=3400,acompressor=threshold=0.2:ratio=3,volume=1.1," if phone else ""
+        filt = cut + ("highpass=f=300,lowpass=f=3400,acompressor=threshold=0.2:ratio=3,volume=1.1," if phone else "")
         chains.append(f"[{i}:a]aresample=44100,aformat=channel_layouts=mono,{filt}adelay={int(t * 1000)}:all=1[a{i}]")
     graph = ";".join(chains) + ";" + "".join(f"[a{i}]" for i in range(len(events))) + \
         f"amix=inputs={len(events)}:normalize=0,atrim=0:{tl['total']},alimiter=limit=0.89,apad=whole_dur={tl["total"]}[out]"
