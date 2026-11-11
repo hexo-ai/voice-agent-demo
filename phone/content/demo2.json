@@ -1,5 +1,5 @@
 {
- "title": "Give your company's knowledge assistant a phone number",
+ "title": "Give any text agent a phone number (example: a company's internal assistant)",
  "steps": [
   {
    "scene": "hook"
@@ -8,9 +8,18 @@
    "hold": 0.4
   },
   {
+   "line": "k2_00",
+   "role": "narrator",
+   "text": "Companies now build text agents for everything: support, sales, internal knowledge. They all live in a chat window."
+  },
+  {
+   "cue": "h0",
+   "at": "k2_00"
+  },
+  {
    "line": "k2_01",
    "role": "narrator",
-   "text": "Most companies now have an internal knowledge assistant. Ours is called Atlas. It answers questions from our docs, tickets and dashboards."
+   "text": "Take one example. Acme, a payments company, has an internal assistant called Atlas. Employees type questions, and it answers from the company's docs, tickets and dashboards."
   },
   {
    "cue": "h1",
@@ -19,7 +28,7 @@
   {
    "line": "k2_02",
    "role": "narrator",
-   "text": "But our people often need answers away from a screen. Driving to a customer, or walking into a meeting."
+   "text": "But Acme's people often need answers away from a screen. Driving to a customer, or walking into a meeting."
   },
   {
    "cue": "h2",
@@ -28,7 +37,7 @@
   {
    "line": "k2_03",
    "role": "narrator",
-   "text": "A phone version is a second product: speech, phone numbers, checking who's calling. That's weeks of work."
+   "text": "Giving an agent a phone is a second product: speech, phone numbers, checking who's calling. That's weeks of work, for every agent."
   },
   {
    "cue": "h3",
@@ -40,7 +49,7 @@
   {
    "line": "k2_04",
    "role": "narrator",
-   "text": "And a simple voice wrapper just reads the answer aloud, citations and all."
+   "text": "And a simple voice wrapper just reads the agent's answer aloud, citations and all."
   },
   {
    "cue": "h4",
@@ -53,7 +62,7 @@
    "line": "read_03",
    "role": "robot",
    "maxdur": 6.6,
-   "text": "Here's what I found. Acme Retail. Renewal date, March twelfth. Source one, open bracket, C R M slash accounts slash acme dash retail, close bracket. Open tickets, three. Ticket four four eight one two."
+   "text": "Here's what I found. Northwind Retail. Renewal date, March twelfth. Source one, open bracket, C R M slash accounts slash northwind dash retail, close bracket. Open tickets, three. Ticket four four eight one two."
   },
   {
    "cue": "read_cut"
@@ -101,7 +110,7 @@
   {
    "line": "k2_11",
    "role": "narrator",
-   "text": "To give Atlas a voice and a phone number, I add three lines of code. Atlas doesn't change."
+   "text": "With {{product}}, any text agent gets a voice and a phone number with three lines of code. For Atlas, that's all Acme's developers add. Atlas doesn't change."
   },
   {
    "cue": "code",
@@ -116,7 +125,7 @@
   {
    "line": "k2_12",
    "role": "narrator",
-   "text": "It reads what Atlas can do, checks who's calling, and speaks for it. Now anyone at the company can call it."
+   "text": "{{product}} reads what the agent can do, checks who's calling, and speaks for it. Now anyone at Acme can call Atlas."
   },
   {
    "scene": "call2"
@@ -139,8 +148,8 @@
   },
   {
    "line": "p_01",
-   "role": "priya",
-   "text": "Hi Atlas. I'm meeting Acme Retail in twenty minutes. Anything I should know?"
+   "role": "megan",
+   "text": "Hi Atlas. I'm meeting Northwind Retail in twenty minutes. Anything I should know?"
   },
   {
    "cue": "lookup"
@@ -165,7 +174,7 @@
   },
   {
    "line": "p_02",
-   "role": "priya",
+   "role": "megan",
    "text": "Yes. Is it fixed?"
   },
   {
@@ -178,7 +187,7 @@
   },
   {
    "line": "p_03",
-   "role": "priya",
+   "role": "megan",
    "text": "Okay. Can you get me their volume by region? I want it for the meeting."
   },
   {
@@ -218,11 +227,11 @@
   {
    "line": "at_04",
    "role": "atlas",
-   "text": "Hi Priya, it's Atlas. West is up thirty-one percent, and it's driving most of the growth. The other regions are flat. I've texted you the chart and the sources."
+   "text": "Hi Megan, it's Atlas. West is up thirty-one percent, and it's driving most of the growth. The other regions are flat. I've texted you the chart and the sources."
   },
   {
    "line": "p_04",
-   "role": "priya",
+   "role": "megan",
    "text": "Perfect. Thanks!"
   },
   {
@@ -239,7 +248,7 @@
   {
    "line": "k2_13",
    "role": "narrator",
-   "text": "Same Atlas, same code. Now everyone can call their company's knowledge, from anywhere."
+   "text": "Same agent, same code. Atlas is just one example. A support agent, a sales agent, any text agent can get a phone the same way."
   },
   {
    "scene": "end"

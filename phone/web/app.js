@@ -29,7 +29,7 @@
 - \`test_checkout_tax_rounding\` (line 88)
   AssertionError: expected 4.13, got 4.12
 ... 1,831 more lines`;
-  const MD2 = `**Acme Retail: account briefing**
+  const MD2 = `**Northwind Retail: account briefing**
 - Renewal: **March 12** [1]
 - Open tickets: **3** [2]
   - #44812 Settlement delay, P2, since Nov 3 [3]
@@ -37,8 +37,8 @@
 - Volume this quarter: **+18%** [5]
 - Contact: Dan Ortiz, Head of Payments [1]
 
-Sources: [1] crm/accounts/acme-retail ·
-[2] support/tickets?acct=acme · [3] #44812 ·
+Sources: [1] crm/accounts/northwind-retail ·
+[2] support/tickets?acct=northwind · [3] #44812 ·
 [4] #44790 · [5] dashboards/volume/q4`;
   const TERM = [
     ["h1", 0.3, '<span class="pr">~/shop-app $</span> claude'],
@@ -50,6 +50,20 @@ Sources: [1] crm/accounts/acme-retail ·
     ["h2", 1.6, '  <span class="q">?</span> Refunds use the same rounding code.'],
     ["h2", 1.6, '    Fix them too? <span class="dim">(y/n)</span> <span class="cur">▌</span>'],
   ];
+  const atlasChat = (q, big) => `<div class="aic${big ? " wide" : ""}">
+    <div class="aside"><div class="abrand"><i>A</i>Atlas</div><div class="anew">+ New chat</div>
+      <div class="arec">Recent</div><div class="ait on">Northwind Retail briefing</div><div class="ait">Q3 refund policy</div><div class="ait">Settlement SLA for EU</div><div class="ait">Who owns webhooks?</div>
+      <div class="afoot">Acme · internal</div></div>
+    <div class="amain"><div class="ahead">Atlas <span>· answers from Acme's docs, tickets and dashboards</span></div>
+      <div class="umsg">${q}</div>
+      <div class="amsg"><div class="aav">A</div><div class="abody" id="${big ? "chatA" : "chatA2"}">
+        <div class="ah">Northwind Retail: account briefing</div>
+        <ul><li>Renewal: <b>March 12</b> <s>1</s></li><li>Open tickets: <b>3</b> <s>2</s></li>
+        <li>#44812 Settlement delay, P2, open since Nov 3 <s>3</s></li><li>#44790 Webhook retries, P3 <s>4</s></li>
+        <li>Volume this quarter: <b>+18%</b> <s>5</s></li><li>Contact: Dan Ortiz, Head of Payments <s>1</s></li></ul>
+        <div class="asrc"><span>1 crm/accounts/northwind-retail</span><span>2 support/tickets</span><span>3 #44812</span><span>4 #44790</span><span>5 dashboards/volume</span></div>
+      </div></div>
+      <div class="ainput">Ask Atlas anything…<i>↑</i></div></div></div>`;
   const readScreen = md => `<div class="rs"><div class="lab">VOICE MODE · READING ALOUD</div><div class="md2 mono">${tokenize(md)}</div>
     <div class="bars">${"<b></b>".repeat(16)}</div><div class="x">✕ Stopped listening</div></div>`;
   const hookHTML = isD1 ? `
@@ -67,10 +81,15 @@ Sources: [1] crm/accounts/acme-retail ·
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="hAns">${CALL}</div></div></div>
       </div></div></div>
     </div>` : `
-    <div class="chatw"><div class="tb"><i></i><i></i><i></i><span>Atlas · Lumen Pay's internal knowledge assistant</span></div>
-      <div class="chat"><div class="q">Brief me on Acme Retail before my meeting.</div><div class="a" id="chatA">${MD2.replace(/\*\*/g, "")}</div></div></div>
+    <div class="agrid" id="agrid">
+      <div class="ag"><div class="agh"><i style="background:#2F80ED">S</i>Support agent</div><div class="agq">Where is my refund?</div><div class="aga">Your refund was issued on Nov 6. It can take 3–5 business days…</div></div>
+      <div class="ag"><div class="agh"><i style="background:#E07A2F">S</i>Sales agent</div><div class="agq">Which plan fits a 40-person team?</div><div class="aga">For 40 seats, the Growth plan includes SSO and…</div></div>
+      <div class="ag ex"><div class="agh"><i style="background:#6E56CF">A</i>Internal assistant</div><div class="agq">Brief me on Northwind Retail.</div><div class="aga">Renewal: March 12 · 3 open tickets · volume +18%…</div></div>
+      <div class="agl">Every one of them is text only.</div>
+    </div>
+    <div class="chatw">${atlasChat("Brief me on Northwind Retail before my meeting.", true)}</div>
     <div class="hright">
-      <div class="hv" id="hvMaya"><div class="mecard"><div class="av">P</div><div><div class="t1">Priya, account manager</div><div class="t2">Driving to a customer meeting.<br>Needs a briefing. Can't read a screen.</div></div></div></div>
+      <div class="hv" id="hvMaya"><div class="mecard"><div class="av">M</div><div><div class="t1">Megan, account manager</div><div class="t2">Driving to a customer meeting.<br>Needs a briefing. Can't read a screen.</div></div></div></div>
       <div class="hv" id="hvBuild"><div class="buildc"><h3>A phone version, built by hand</h3><div class="sm">A second product to build and run:</div>
         <div class="it">Speech in and out</div><div class="it">Phone numbers and calls</div><div class="it">Checking who's calling</div><div class="it">Answers rewritten for the ear</div>
         <div class="weeks" id="weeks">Week 1</div></div></div>
@@ -108,21 +127,21 @@ Sources: [1] crm/accounts/acme-retail ·
     { at: "approve", dt: 0.5, cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.3], ["214 of 214 tests pass", 1.4], ["Opened pull request #482 (not merged)", 2.6]] },
     { at: "sms", cls: "sys", b: "Texted the pull request link to Vignesh." },
   ] : [
-    { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Priya (account manager, verified): brief me on Acme Retail, meeting in 20 minutes." },
-    { at: "answer_text", cls: "in", h: `Atlas → ${AL} · text answer`, txt: "Acme Retail: renewal Mar 12 [1] · 3 open tickets [2] · #44812 settlement delay, P2, since Nov 3 [3] · #44790 webhook retries [4] · volume +18% QoQ [5] · contact Dan Ortiz [1] · Sources: crm/accounts/acme-retail, support/tickets?acct=acme, dashboards/volume/q4" },
+    { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Megan (account manager, verified): brief me on Northwind Retail, meeting in 20 minutes." },
+    { at: "answer_text", cls: "in", h: `Atlas → ${AL} · text answer`, txt: "Northwind Retail: renewal Mar 12 [1] · 3 open tickets [2] · #44812 settlement delay, P2, since Nov 3 [3] · #44790 webhook retries [4] · volume +18% QoQ [5] · contact Dan Ortiz [1] · Sources: crm/accounts/northwind-retail, support/tickets?acct=northwind, dashboards/volume/q4" },
     { at: "compress", cls: "stat", b: "6 facts and 5 citations → 3 things, then a question", s: "Sources go to her phone by text, not read aloud." },
     { at: "lookup2", cls: "out", h: `${AL} → Atlas`, b: "Status of ticket #44812?" },
-    { at: "task", cls: "out", h: `${AL} → Atlas · query_metrics`, b: "Acme Retail payment volume by region, this quarter vs last." },
+    { at: "task", cls: "out", h: `${AL} → Atlas · query_metrics`, b: "Northwind Retail payment volume by region, this quarter vs last." },
     { at: "hangup", cls: "sys", b: "Call ended. The query keeps running." },
     { at: "work", cls: "in", h: "Atlas · working", items: [["Querying the volume dashboard", 0.3], ["Scanned 1.4 million payments", 1.4], ["Built a chart by region", 2.5]] },
-    { at: "work", dt: 3.0, cls: "dec", h: AL + " · result ready", b: "Call Priya back now." },
-    { at: "sms", cls: "sys", b: "Texted Priya the chart and the 5 sources." },
+    { at: "work", dt: 3.0, cls: "dec", h: AL + " · result ready", b: "Call Megan back now." },
+    { at: "sms", cls: "sys", b: "Texted Megan the chart and the 5 sources." },
   ];
 
   // ---------- DOM ----------
   const OV = [
     ["listens", "Listens", "Understands you, even mid-sentence."],
-    ["short", "Keeps it short", isD1 ? "1,840 lines of output become three sentences." : "Long answers and citations become three sentences. Sources go by text."],
+    ["short", "Keeps it short", isD1 ? "1,840 lines of output become three sentences." : "Long answers become a few sentences. Links and sources go by text."],
     ["asks", "Asks before it acts", "Decisions come to you. No guessing."],
     ["calls back", "Calls back", "When the work is done, or when it's stuck."],
   ];
@@ -140,13 +159,12 @@ Sources: [1] crm/accounts/acme-retail ·
   </div>
   <div class="scene" id="s-overview">
     <h2>How ${P} works</h2>
-    ${lined(isD1 ? "Me" : "Employees", isD1 ? "Claude Code" : "Atlas")}
+    ${lined(isD1 ? "Me" : "People", isD1 ? "Claude Code" : "Any text agent")}
     <div class="ovc">${OV.map(o => `<div data-w="${o[0]}"><i>${o[1] === "Listens" ? "1" : o[1] === "Keeps it short" ? "2" : o[1] === "Asks before it acts" ? "3" : "4"}</i><b>${o[1]}</b><span>${o[2]}</span></div>`).join("")}</div>
   </div>
   <div class="scene" id="s-setup">
     <div class="L"><div class="plab" style="top:160px">My text assistant</div>
-      <div class="win" id="chatWin"><div class="tb"><i></i><i></i><i></i><span>Atlas · internal knowledge assistant</span></div>
-        <div class="chat"><div class="q">Brief me on Acme Retail</div><div class="a">${MD2.replace(/\*\*/g, "")}</div></div></div>
+      <div class="win" id="chatWin" style="width:680px;left:40px">${atlasChat("Brief me on Northwind Retail", false)}</div>
       <div class="win" id="codeWin" style="top:260px"><div class="tb"><i></i><i></i><i></i><span>atlas/app.py</span></div><div class="code mono" id="code"></div></div>
     </div>
     <div class="R"><div class="plab" style="top:160px">${P} setup</div>
@@ -160,23 +178,23 @@ Sources: [1] crm/accounts/acme-retail ·
     </div>
   </div>
   <div class="scene" id="s-call">
-    <div class="L"><div class="plab">${isD1 ? "My phone" : "Priya's phone"}</div>
+    <div class="L"><div class="plab">${isD1 ? "My phone" : "Megan's phone"}</div>
       <div class="phone"><div class="scr">
         <div class="sbar"><span id="clk">9:41</span><span>●●● 5G</span></div>
-        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "Contact" : "Lumen Pay · company knowledge"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
+        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "Contact" : "Acme · internal assistant"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
           <div class="btns" style="gap:0"><div class="btn g">${CALL}</div></div></div>
         <div class="pv" id="pvCall"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="callSt">Calling…</div>
           <div class="orb" id="orb"></div><div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div></div></div>
         <div class="pv" id="pvEnd"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="endSt">Call ended</div></div>
         <div class="pv" id="pvIn"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st">calling via ${P}</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
-        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · Claude Code via ${P}</b>Pull request #482 is open: "Fix currency rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Acme Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
+        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · Claude Code via ${P}</b>Pull request #482 is open: "Fix currency rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
       <div class="where" id="where"></div>
     </div>
     <div class="R"><div class="plab">Behind the scenes</div>
       <div class="chain">
-        <div class="n">${isD1 ? "Me" : "Priya"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
+        <div class="n">${isD1 ? "Me" : "Megan"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
         <div class="n al">${P}<small>the voice</small></div><div class="lk" id="lk2"><b></b><em>text</em></div>
         <div class="n">${isD1 ? "Claude Code" : "Atlas"}<small>${isD1 ? "running in the cloud" : "knowledge assistant, unchanged"}</small></div>
       </div>
@@ -187,8 +205,8 @@ Sources: [1] crm/accounts/acme-retail ·
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
     <div class="sub2">${C.subtag}</div>
-    ${lined("You", isD1 ? "Claude Code, or any agent" : "Your company's assistant")}
-    <div class="endsub">${isD1 ? "Call your agents. Let them call you." : "Three lines of code. Your agent stays the same."}</div>
+    ${lined("You", isD1 ? "Claude Code, or any agent" : "Any text agent")}
+    <div class="endsub">${isD1 ? "Call your agents. Let them call you." : "Support, sales, internal knowledge: any text agent, three lines of code."}</div>
     <div class="small">${C.small_print}</div>
   </div>`;
 
@@ -225,7 +243,7 @@ Sources: [1] crm/accounts/acme-retail ·
     $("#top .tag").style.color = (dark || split) ? "#E9EEF4" : "var(--ink)";
 
     const exStart = isD1 ? scene("call1") : scene("setup");
-    $("#exTag").textContent = isD1 ? "Example 1: I call my Claude Code" : "Example 2: our company's knowledge assistant gets a phone number";
+    $("#exTag").textContent = isD1 ? "Example 1: I call my Claude Code" : "Example: one text agent, Acme's internal assistant";
     $("#exTag").style.opacity = clamp(fade(t, exStart + .3) - fade(t, exStart + 7.5, .6));
 
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
@@ -233,7 +251,7 @@ Sources: [1] crm/accounts/acme-retail ·
     if (ln && sc !== "title" && sc !== "end") {
       sub.style.opacity = 1; $(".who", sub).textContent = ln.who;
       $(".txt", sub).textContent = ln.full > ln.dur + .05 ? ln.text.slice(0, Math.round(ln.text.length * clamp((t - ln.start) / ln.full))).replace(/\s\S*$/, "") + "…" : ln.text;
-      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "priya" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
+      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "megan" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
     } else sub.style.opacity = 0;
 
     if (vis.hook) renderHook(t);
@@ -279,8 +297,10 @@ Sources: [1] crm/accounts/acme-retail ·
       const hl = $("#hline"); hl.style.opacity = fade(t, h4 + 1.0, .5);
       $(".bar", hl).style.background = `linear-gradient(90deg, #3FD39A ${((t * 80) % 100)}%, #A8EBCB ${((t * 80) % 100) + 8}%, #3FD39A ${((t * 80) % 100) + 16}%)`;
     } else {
-      $(".chatw").style.opacity = fade(t, h1, .4);
-      $("#chatA").style.background = t >= h2 ? "#FDF1DC" : "";
+      const h0 = cue("h0"); $("#agrid").style.opacity = fade(t, h0, .4) * (1 - fade(t, h1 + .6, .4)); $$("#agrid .ag").forEach((g, i) => g.style.opacity = fade(t, h0 + .3 + i * .9, .35));
+      $("#agrid .ex").style.borderColor = t >= h1 ? "#6E56CF" : ""; $("#agrid .ex").style.transform = t >= h1 ? `scale(${1 + .04 * fade(t, h1, .4)})` : "";
+      $(".chatw").style.opacity = fade(t, h1 + .7, .4);
+      $("#chatA").style.background = t >= h2 ? "#FDF1DC" : ""; $("#chatA").style.borderRadius = "12px";
       show($("#hvMaya"), fade(t, h2, .4) * (1 - fade(t, h3, .35)));
       show($("#hvBuild"), fade(t, h3, .4) * (1 - fade(t, h4, .35)));
       const its = $$("#hvBuild .it"), l3 = L("h2_03");
@@ -326,7 +346,7 @@ Sources: [1] crm/accounts/acme-retail ·
     // orb pulses with whoever speaks on the phone
     const ln = TL.lines.find(l => l.phone && t >= l.start && t < l.start + l.dur);
     const amp = ln ? .5 + .5 * Math.abs(Math.sin(t * 7.3) * Math.sin(t * 2.9 + 1)) : 0;
-    const human = ln && (ln.role === "vignesh" || ln.role === "priya");
+    const human = ln && (ln.role === "vignesh" || ln.role === "megan");
     const orb = $("#orb");
     orb.style.transform = `scale(${1 + .12 * amp})`;
     orb.style.background = human ? "radial-gradient(circle at 40% 35%, #F2C27A, #D9932B 60%, #9A6418)" : "";
