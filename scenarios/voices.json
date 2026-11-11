@@ -1,0 +1,9 @@
+{
+  "model_id": "eleven_multilingual_v2",
+  "output_format": "mp3_44100_128",
+  "roles": {
+    "narrator": {"voice_id": "QIbjfTILJmBvWa89D9kx", "model_id": "eleven_v4", "label": "Vignesh", "settings": {"stability": 0.5, "similarity_boost": 0.8, "style": 0.2}},
+    "agent":    {"voice_id": "hpp4J3VqNfWAUOO0d1Us", "label": "Refill agent (under test)", "phone": true, "settings": {"stability": 0.5, "similarity_boost": 0.75, "style": 0.2}},
+    "caller":   {"voice_id": "pqHfZKP75CvOlQylNhV4", "label": "Simulated caller", "phone": true, "settings": {"stability": 0.35, "similarity_boost": 0.75, "style": 0.35}}
+  }
+}
