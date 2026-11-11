@@ -218,11 +218,11 @@ footer a { color: var(--night-text); }
               <span class="for">For teams that build voice agents</span>
               <span class="meta"><span class="pill">SIA Build</span><span data-len="build"></span></span>
             </a>
-            <a class="uc-card" href="#sia-scenarios">
+            <a class="uc-card" href="#sia-risk">
               <span class="num">02</span>
-              <b>Find the risky calls before launch</b>
+              <b>Find the risks in your voice agent</b>
               <span class="for">For teams that ship voice agents</span>
-              <span class="meta"><span class="pill">SIA Scenarios</span><span data-len="test"></span></span>
+              <span class="meta"><span class="pill">SIA Risk</span><span data-len="test"></span></span>
             </a>
           </div>
         </div>
@@ -312,24 +312,25 @@ footer a { color: var(--night-text); }
     </div>
   </section>
 
-  <section id="sia-scenarios">
+  <section id="sia-risk">
     <div class="wrap">
-      <div class="uc-head"><span class="num">Use case 02</span><span class="pill">SIA Scenarios</span><button class="copylink" data-anchor="sia-scenarios">Copy link</button></div>
-      <h2>Find the risky calls before your callers do.</h2>
+      <div class="uc-head"><span class="num">Use case 02</span><span class="pill">SIA Risk</span><button class="copylink" data-anchor="sia-risk">Copy link</button></div>
+      <h2>Find the risks in your voice agent before your callers do.</h2>
       <p class="uc-who"><b>For:</b> teams that ship voice agents and test them before every launch and every prompt change.</p>
       <div class="uc-cols">
         <div class="box">
           <h3>The problem</h3>
-          <p>The dangerous failures hide in calls nobody thought to write down. A caller changes an answer, asks too early, or pushes back.</p>
+          <p>The risky failures hide in calls nobody thought to write down. A caller changes an answer, mentions a symptom late, or pushes back.</p>
           <p>Good human testers find these, but it takes weeks per agent. Scripted test lists follow the easy path.</p>
         </div>
         <div class="box how">
-          <h3>How SIA Scenarios helps</h3>
+          <h3>How SIA Risk helps</h3>
           <ul>
             <li>You give it your agent's endpoint and its prompt.</li>
-            <li>It calls your agent and explores like a skilled tester, digging wherever the agent slips.</li>
-            <li>It asks your expert when it's unsure. Real complaints and your team's test calls make it sharper.</li>
-            <li>It maps the risky zones and suggests fixes: prompt edits, or fine-tuning when a prompt isn't enough. Then it checks again after every change.</li>
+            <li>It calls your agent hundreds of times, like a rigorous tester. Its search is rewarded for one thing: finding risk. So it digs wherever the agent slips.</li>
+            <li>It asks your expert when it's unsure whether something is a risk.</li>
+            <li>You get a risk report: every risk, its severity, and the calls that prove it.</li>
+            <li>It suggests fixes: prompt edits, or fine-tuning when a prompt isn't enough. Then it checks again after every change.</li>
           </ul>
         </div>
       </div>
@@ -398,7 +399,7 @@ footer a { color: var(--night-text); }
     <div class="wrap research">
       <div>
         <h2>Research</h2>
-        <p class="lead">We research how people and agents should work together, and build what we learn. Our first published work is SIA, a method for agents that improve themselves, accepted at ICML. It's how SIA Build and SIA Scenarios fix agents, with prompt changes and fine-tuning.</p>
+        <p class="lead">We research how people and agents should work together, and build what we learn. Our first published work is SIA, a method for agents that improve themselves, accepted at ICML. It's how SIA Build and SIA Risk fix agents, with prompt changes and fine-tuning.</p>
         <h3>Questions we're working on</h3>
         <ul class="questions">
           <li>When does voice beat a screen, and when does it lose?</li>
@@ -438,7 +439,7 @@ footer a { color: var(--night-text); }
  * poster = a still from the video (JPG, next to index.html). len = shown on the card and the video bar. */
 const VIDEOS = {
   build: { src: "sia-build-demo-2026-11-11.mp4",             poster: "poster-build.jpg", len: "4:11", title: "SIA Build: a voice agent, built by talking" },
-  test:  { src: "sia-scenarios-demo-2026-11-10.mp4",        poster: "poster-test.jpg",  len: "4:48", title: "SIA Scenarios: find the risky calls" },
+  test:  { src: "sia-risk-demo-2026-11-11.mp4",             poster: "poster-risk.jpg",  len: "4:53", title: "SIA Risk: find the risks in your voice agent" },
   code:  { src: "sia-phone-claude-code-2026-11-10.mp4",     poster: "poster-code.jpg",  len: "2:09", title: "SIA Phone: call your coding agent" },
   any:   { src: "sia-phone-any-text-agent-2026-11-10.mp4",  poster: "poster-any.jpg",   len: "2:56", title: "SIA Phone API: give your agent a phone number" },
 };
