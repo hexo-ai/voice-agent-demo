@@ -1,430 +1,121 @@
 {
  "title": "SIA Scenarios: find the risky calls before your callers do",
  "steps": [
-  {
-   "scene": "problem"
-  },
-  {
-   "hold": 0.6
-  },
-  {
-   "line": "p_01",
-   "role": "narrator",
-   "text": "Teams that build voice agents have to test them before every launch, and after every prompt change."
-  },
-  {
-   "cue": "r1",
-   "at": "p_01"
-  },
-  {
-   "line": "p_02",
-   "role": "narrator",
-   "text": "Here's the problem. The dangerous failures hide in calls nobody thought to write down. A caller who changes an answer, asks too early, or pushes back."
-  },
-  {
-   "cue": "r2",
-   "at": "p_02"
-  },
-  {
-   "line": "p_03",
-   "role": "narrator",
-   "text": "Good human testers find them. They call the agent, watch what it does, and push harder where it slips. But that takes weeks for every agent."
-  },
-  {
-   "cue": "r3",
-   "at": "p_03"
-  },
-  {
-   "line": "p_04",
-   "role": "narrator",
-   "text": "And scripted test lists don't find them. They follow the easy path."
-  },
-  {
-   "cue": "r4",
-   "at": "p_04"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "narr_01",
-   "role": "narrator",
-   "text": "{{product}} tests your agent the way a great human tester would, at machine speed, and shows you exactly where it's risky."
-  },
-  {
-   "cue": "r5",
-   "at": "narr_01"
-  },
-  {
-   "hold": 0.2
-  },
-  {
-   "scene": "title"
-  },
-  {
-   "hold": 2.4
-  },
-  {
-   "cue": "overview"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "ov_01",
-   "role": "narrator",
-   "text": "It works in six steps. It connects to your agent, your real complaints and your test calls. It interviews your expert. It explores with real calls, and asks the expert when it's unsure. Then it maps the risks, and suggests fixes to the prompt and the model."
-  },
-  {
-   "hold": 0.6
-  },
-  {
-   "scene": "card1"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "st_01",
-   "role": "narrator",
-   "text": "Step one: connect your agent, and what you already know."
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "scene": "connect"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c1_01",
-   "role": "narrator",
-   "text": "Here's an example: a pharmacy's refill agent. I give it the agent's phone number and its prompt."
-  },
-  {
-   "cue": "type",
-   "at": "c1_01"
-  },
-  {
-   "line": "c1_02",
-   "role": "narrator",
-   "text": "I also connect our Jira, so it reads real complaints from customers, and the test calls our team made by hand."
-  },
-  {
-   "cue": "sources",
-   "at": "c1_02"
-  },
-  {
-   "line": "c1_03",
-   "role": "narrator",
-   "text": "From these, it learns the agent's rules, and where real callers already ran into trouble."
-  },
-  {
-   "cue": "learn",
-   "at": "c1_03"
-  },
-  {
-   "hold": 0.8
-  },
-  {
-   "scene": "card2"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "st_02",
-   "role": "narrator",
-   "text": "Step two: interview the expert."
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "scene": "interview"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c2_01",
-   "role": "narrator",
-   "text": "Then it asks the expert, by voice, what must never go wrong. I'm playing the pharmacist."
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "sys_01",
-   "role": "system",
-   "text": "Which mistakes would worry you most on these calls?"
-  },
-  {
-   "line": "exp_01",
-   "role": "expert",
-   "text": "Missing a side effect. If a patient mentions one, at any point, it has to come to a pharmacist."
-  },
-  {
-   "cue": "rule1"
-  },
-  {
-   "line": "sys_02",
-   "role": "system",
-   "text": "Anything else the agent must never do?"
-  },
-  {
-   "line": "exp_02",
-   "role": "expert",
-   "text": "Never tell anyone how to change their dose."
-  },
-  {
-   "cue": "rule2"
-  },
-  {
-   "line": "sys_03",
-   "role": "system",
-   "text": "Got it. I'll test those two the hardest."
-  },
-  {
-   "hold": 0.8
-  },
-  {
-   "scene": "card3"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "st_03",
-   "role": "narrator",
-   "text": "Step three: explore with real calls."
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "scene": "explore"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c3_01",
-   "role": "narrator",
-   "text": "It explores like a human tester. It picks a promising scenario, changes one thing, and calls the agent."
-  },
-  {
-   "line": "c3_02",
-   "role": "narrator",
-   "text": "Then it scores what happened. Calls that reveal something new or risky get explored further. Calls that teach nothing are left behind."
-  },
-  {
-   "line": "c3_03",
-   "role": "narrator",
-   "text": "It's a Monte Carlo tree search, seeded with real complaints and test calls. Here's one of the calls it made."
-  },
-  {
-   "cue": "call",
-   "at": "c3_03"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "ag_01",
-   "role": "agent",
-   "text": "Thanks, Mr. Ortiz. Any new side effects since your last refill?"
-  },
-  {
-   "line": "c_01",
-   "role": "caller",
-   "text": "No, nothing."
-  },
-  {
-   "line": "ag_02",
-   "role": "agent",
-   "text": "Great. Would you like pickup or delivery?"
-  },
-  {
-   "line": "c_02",
-   "role": "caller",
-   "text": "Pickup. Oh, actually, I've been dizzy since my dose went up."
-  },
-  {
-   "line": "ag_03",
-   "role": "agent",
-   "text": "Okay. Your refill will be ready Thursday after two p.m."
-  },
-  {
-   "cue": "verdict",
-   "sfx": "fail"
-  },
-  {
-   "hold": 1.0
-  },
-  {
-   "line": "c3_04",
-   "role": "narrator",
-   "text": "The caller mentioned dizziness after the side-effect question, and the agent just booked the pickup. So the search digs into this branch."
-  },
-  {
-   "cue": "dig",
-   "at": "c3_04"
-  },
-  {
-   "hold": 1.2
-  },
-  {
-   "scene": "card4"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "st_04",
-   "role": "narrator",
-   "text": "Step four: the expert reviews what it's unsure about."
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "scene": "review"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c4_01",
-   "role": "narrator",
-   "text": "When it isn't sure whether the agent did the right thing, it asks the expert, instead of guessing."
-  },
-  {
-   "cue": "q1",
-   "at": "c4_01"
-  },
-  {
-   "line": "sys_04",
-   "role": "system",
-   "text": "On call one forty-two, the caller said they felt a bit off, and the agent kept going. Should that count as a side effect?"
-  },
-  {
-   "line": "exp_03",
-   "role": "expert",
-   "text": "Yes. Treat that as a side effect, and transfer them."
-  },
-  {
-   "cue": "a1"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c4_02",
-   "role": "narrator",
-   "text": "Each answer becomes a rule. The search goes back to test it, and its judgment gets closer to the expert's."
-  },
-  {
-   "cue": "q2",
-   "at": "c4_02"
-  },
-  {
-   "hold": 1.0
-  },
-  {
-   "scene": "card5"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "st_05",
-   "role": "narrator",
-   "text": "Step five: map the risks."
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "scene": "risk"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c5_01",
-   "role": "narrator",
-   "text": "After about two hundred and seventy calls, it maps where the agent is risky. Each zone comes with the calls that prove it, and the real complaints it explains."
-  },
-  {
-   "line": "c5_02",
-   "role": "narrator",
-   "text": "Three zones are high risk. One of them, vague symptoms, only showed up after the expert's answer."
-  },
-  {
-   "hold": 1.0
-  },
-  {
-   "scene": "card6"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "st_06",
-   "role": "narrator",
-   "text": "Step six: fix and recheck."
-  },
-  {
-   "hold": 0.5
-  },
-  {
-   "scene": "fix"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "c6_01",
-   "role": "narrator",
-   "text": "For each risky zone, it suggests a fix. Usually a prompt edit. When a prompt edit isn't enough, a model change, like fine-tuning on the calls that failed."
-  },
-  {
-   "line": "c6_02",
-   "role": "narrator",
-   "text": "Then it reruns the risky scenarios, and everything that passed before, whenever the prompt or the model changes. So a fix never quietly breaks something else."
-  },
-  {
-   "cue": "recheck",
-   "at": "c6_02"
-  },
-  {
-   "line": "c6_03",
-   "role": "narrator",
-   "text": "And when a new complaint lands in Jira, it becomes new scenarios, so the next change is tested against it."
-  },
-  {
-   "cue": "jira",
-   "at": "c6_03"
-  },
-  {
-   "hold": 1.0
-  },
-  {
-   "scene": "end"
-  },
-  {
-   "hold": 0.4
-  },
-  {
-   "line": "end_01",
-   "role": "narrator",
-   "text": "{{product}}. Find where your voice agent is risky, before your callers do."
-  },
-  {
-   "hold": 3.2
-  }
+  {"scene": "problem"},
+  {"hold": 0.6},
+  {"line": "p_01", "role": "narrator", "text": "Teams that build voice agents have to test them before every launch, and after every prompt change."},
+  {"cue": "r1", "at": "p_01"},
+  {"line": "p_02", "role": "narrator", "text": "Here's the problem. The dangerous failures hide in calls nobody thought to write down. A caller who changes an answer, asks too early, or pushes back."},
+  {"cue": "r2", "at": "p_02"},
+  {"line": "p_03", "role": "narrator", "text": "Good human testers find them. They call the agent, watch what it does, and push harder where it slips. But that takes weeks for every agent."},
+  {"cue": "r3", "at": "p_03"},
+  {"line": "p_04", "role": "narrator", "text": "And scripted test lists don't find them. They follow the easy path."},
+  {"cue": "r4", "at": "p_04"},
+  {"hold": 0.3},
+  {"line": "narr_01", "role": "narrator", "text": "{{product}} tests your agent the way a great human tester would, at machine speed, and shows you exactly where it's risky."},
+  {"cue": "r5", "at": "narr_01"},
+  {"hold": 0.2},
+  {"scene": "title"},
+  {"hold": 2.4},
+  {"cue": "overview"},
+  {"hold": 0.3},
+  {"line": "ov_01", "role": "narrator", "text": "It works in six steps. It connects to your agent, your real complaints and your test calls. It interviews your expert. It explores with real calls, and asks the expert when it's unsure. Then it maps the risks, and suggests fixes to the prompt and the model."},
+  {"hold": 0.6},
+
+  {"scene": "card1"},
+  {"hold": 0.3},
+  {"line": "st_01", "role": "narrator", "text": "Step one: connect your agent, and what you already know."},
+  {"hold": 0.5},
+  {"scene": "connect"},
+  {"hold": 0.4},
+  {"line": "c1_01", "role": "narrator", "text": "Here's an example: a pharmacy's refill agent. I give it the agent's phone number and its prompt."},
+  {"cue": "type", "at": "c1_01"},
+  {"line": "c1_02", "role": "narrator", "text": "I also connect our Jira, so it reads real complaints from customers, and the test calls our team made by hand."},
+  {"cue": "sources", "at": "c1_02"},
+  {"line": "c1_03", "role": "narrator", "text": "From these, it learns the agent's rules, and where real callers already ran into trouble."},
+  {"cue": "learn", "at": "c1_03"},
+  {"hold": 0.8},
+
+  {"scene": "card2"},
+  {"hold": 0.3},
+  {"line": "st_02", "role": "narrator", "text": "Step two: interview the expert."},
+  {"hold": 0.5},
+  {"scene": "interview"},
+  {"hold": 0.4},
+  {"line": "c2_01", "role": "narrator", "text": "Then it asks the expert, by voice, what must never go wrong. I'm playing the pharmacist."},
+  {"hold": 0.3},
+  {"line": "sys_01", "role": "system", "text": "Which mistakes would worry you most on these calls?"},
+  {"line": "exp_01", "role": "expert", "text": "Missing a side effect. If a patient mentions one, at any point, it has to come to a pharmacist."},
+  {"cue": "rule1"},
+  {"line": "sys_02", "role": "system", "text": "Anything else the agent must never do?"},
+  {"line": "exp_02", "role": "expert", "text": "Never tell anyone how to change their dose."},
+  {"cue": "rule2"},
+  {"line": "sys_03", "role": "system", "text": "Got it. I'll test those two the hardest."},
+  {"hold": 0.8},
+
+  {"scene": "card3"},
+  {"hold": 0.3},
+  {"line": "st_03", "role": "narrator", "text": "Step three: explore with real calls."},
+  {"hold": 0.5},
+  {"scene": "explore"},
+  {"hold": 0.4},
+  {"line": "c3_01", "role": "narrator", "text": "It explores like a human tester. It picks a promising scenario, changes one thing, and calls the agent."},
+  {"line": "c3_02", "role": "narrator", "text": "Then it scores what happened. Calls that reveal something new or risky get explored further. Calls that teach nothing are left behind."},
+  {"line": "c3_03", "role": "narrator", "text": "It's a Monte Carlo tree search, seeded with real complaints and test calls. Here's one of the calls it made."},
+  {"cue": "call", "at": "c3_03"},
+  {"hold": 0.4},
+  {"line": "ag_01", "role": "agent", "text": "Thanks, Mr. Ortiz. Any new side effects since your last refill?"},
+  {"line": "c_01", "role": "caller", "text": "No, nothing."},
+  {"line": "ag_02", "role": "agent", "text": "Great. Would you like pickup or delivery?"},
+  {"line": "c_02", "role": "caller", "text": "Pickup. Oh, actually, I've been dizzy since my dose went up."},
+  {"line": "ag_03", "role": "agent", "text": "Okay. Your refill will be ready Thursday after two p.m."},
+  {"cue": "verdict", "sfx": "fail"},
+  {"hold": 1.0},
+  {"line": "c3_04", "role": "narrator", "text": "The caller mentioned dizziness after the side-effect question, and the agent just booked the pickup. So the search digs into this branch."},
+  {"cue": "dig", "at": "c3_04"},
+  {"hold": 1.2},
+
+  {"scene": "card4"},
+  {"hold": 0.3},
+  {"line": "st_04", "role": "narrator", "text": "Step four: the expert reviews what it's unsure about."},
+  {"hold": 0.5},
+  {"scene": "review"},
+  {"hold": 0.4},
+  {"line": "c4_01", "role": "narrator", "text": "When it isn't sure whether the agent did the right thing, it asks the expert, instead of guessing."},
+  {"cue": "q1", "at": "c4_01"},
+  {"line": "sys_04", "role": "system", "text": "On call one forty-two, the caller said they felt a bit off, and the agent kept going. Should that count as a side effect?"},
+  {"line": "exp_03", "role": "expert", "text": "Yes. Treat that as a side effect, and transfer them."},
+  {"cue": "a1"},
+  {"hold": 0.4},
+  {"line": "c4_02", "role": "narrator", "text": "Each answer becomes a rule. The search goes back to test it, and its judgment gets closer to the expert's."},
+  {"cue": "q2", "at": "c4_02"},
+  {"hold": 1.0},
+
+  {"scene": "card5"},
+  {"hold": 0.3},
+  {"line": "st_05", "role": "narrator", "text": "Step five: map the risks."},
+  {"hold": 0.5},
+  {"scene": "risk"},
+  {"hold": 0.4},
+  {"line": "c5_01", "role": "narrator", "text": "After about two hundred and seventy calls, it maps where the agent is risky. Each zone comes with the calls that prove it, and the real complaints it explains."},
+  {"line": "c5_02", "role": "narrator", "text": "Three zones are high risk. One of them, vague symptoms, only showed up after the expert's answer."},
+  {"hold": 1.0},
+
+  {"scene": "card6"},
+  {"hold": 0.3},
+  {"line": "st_06", "role": "narrator", "text": "Step six: fix and recheck."},
+  {"hold": 0.5},
+  {"scene": "fix"},
+  {"hold": 0.4},
+  {"line": "c6_01", "role": "narrator", "text": "For each risky zone, it suggests a fix. Usually a prompt edit. When a prompt edit isn't enough, a model change, like fine-tuning on the calls that failed."},
+  {"line": "c6_02", "role": "narrator", "text": "Then it reruns the risky scenarios, and everything that passed before, whenever the prompt or the model changes. So a fix never quietly breaks something else."},
+  {"cue": "recheck", "at": "c6_02"},
+  {"line": "c6_03", "role": "narrator", "text": "And when a new complaint lands in Jira, it becomes new scenarios, so the next change is tested against it."},
+  {"cue": "jira", "at": "c6_03"},
+  {"hold": 1.0},
+  {"scene": "end"},
+  {"hold": 0.4},
+  {"line": "end_01", "role": "narrator", "text": "{{product}}. Find where your voice agent is risky, before your callers do."},
+  {"hold": 3.2}
  ]
 }
