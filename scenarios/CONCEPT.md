@@ -3,7 +3,7 @@
 *Updated 2026-11-10 from Vignesh's direction. Supersedes the earlier "CallMap" coverage concept. "SIA" is said as one word, like the singer Sia (voice uses "Seeya Scenarios"). Not a Hexo Labs product.*
 
 ## 1. The product in one line
-**SIA Scenarios finds the risky calls before your callers do.** You give it your voice agent's endpoint and its prompt. It calls the agent, explores scenarios with a Monte Carlo tree search the way a skilled human tester would, maps the zones where the agent is risky, and suggests prompt edits.
+**SIA Scenarios finds the risky calls before your callers do.** You give it your voice agent's endpoint and its prompt. It calls the agent, explores scenarios with a Monte Carlo tree search the way a skilled human tester would, maps the zones where the agent is risky, and suggests fixes: prompt edits, and model changes such as fine-tuning.
 
 ## 2. Problem (who, and what hurts)
 - **Who:** teams that ship voice agents (voice-agent companies, enterprises running agents). They test before every launch and after every prompt change.
