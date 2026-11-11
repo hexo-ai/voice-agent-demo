@@ -1,4 +1,4 @@
-"""Build pipeline for the CallMap demo (illustrative concept).
+"""Build pipeline for the SIA Scenarios demo (illustrative concept).
 
   python3 build.py tts        # ElevenLabs clips for changed lines (cached in tts/)
   python3 build.py timeline   # web/timeline.js from clip lengths

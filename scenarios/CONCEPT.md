@@ -1,41 +1,42 @@
-# CallMap: product concept (scenario generation and coverage for voice agents)
+# SIA Scenarios: product concept
 
-*Written 2026-11-10 from the scenario-generator brief (repo `scenario-gen-eval`, HEAD `dfa59cf`), its benchmark report and its prompt-comparison report. "CallMap" is a placeholder name (`scenarios/config.json`).*
+*Updated 2026-11-10 from Vignesh's direction. Supersedes the earlier "CallMap" coverage concept. "SIA" is said as one word, like the singer Sia (voice uses "Seeya Scenarios"). Not a Hexo Labs product.*
 
-## 1. The idea in one line
-**CallMap maps every way a call can go, tests each path with a simulated call, and shows you what your voice agent was never tested on.**
+## 1. The product in one line
+**SIA Scenarios finds the risky calls before your callers do.** You give it your voice agent's endpoint and its prompt. It calls the agent, explores scenarios with a Monte Carlo tree search the way a skilled human tester would, maps the zones where the agent is risky, and suggests prompt edits.
 
 ## 2. Problem (who, and what hurts)
-- **Who:** teams that ship voice agents: voice-agent companies (their QA leads, deployment and forward-deployed engineers) and enterprises running agents in production. They test before every launch and after every prompt change.
-- **What hurts:** a suite can pass every test and still miss the calls that matter. Generated tests repeat the easy path: a caller who answers clearly, in order, the first time. Real callers change an answer after the agent has moved on, ask for an outcome too early, give a hedged answer right at a rule's limit, or push back on a decision. Those are the calls that break agents, and no tool tells you which of them were never tested. **Test count is not coverage.**
-- **Evidence from our own work (real, internal, one run each; do not publish without approval):** on 3 healthcare use cases, a baseline generator prompt produced 31 scenarios that covered 29% of the benchmark's paths and **0 of 26 "changes the answer later" paths**. A better prompt produced 54 scenarios and reached 42%. A deliberately bad prompt scored 11%, so the meter is sensitive. Plain successful answers were over-covered (one item was hit by 11 scenarios).
+- **Who:** teams that ship voice agents (voice-agent companies, enterprises running agents). They test before every launch and after every prompt change.
+- **What hurts:** the dangerous failures hide in calls nobody thought to write down: a caller who changes an answer after the agent has moved on, asks too early, or pushes back. Good human testers find these by calling, watching and pushing harder where the agent slips, but that takes weeks per agent. Scripted test lists follow the easy path.
 
-## 3. What the product does (four steps)
-| Step | What happens | Status today |
-|---|---|---|
-| **1. Map the call** | Reads the agent's requirements (SOP, prompt, call flow). Builds a **call map**: a workflow graph; one *dimension* per decision; every *condition* (distinct caller answer, incl. unclear, refused and borderline ones); every *order break* (jumps ahead, goes back, won't accept the outcome). Each path gets a priority (P0 = could cause harm) and **checks** (what the agent must do). Records **open questions**: things the requirements don't say. | **Built** as a benchmark builder (3 use cases; LLM-built, not yet expert-audited) |
-| **2. Write the tests** | Measures the team's existing suite against the map. Then generates scenarios aimed at the gaps: one deviation per scenario, exact caller wording and timing ("never 'at some point'"); drops scenarios that add nothing. Coverage meter: covered paths / all paths, split by priority and type. | **Measuring: built** (mapping + coverage + feedback agent that rewrites the generator prompt). **Gap-targeted generation: planned** (today generation comes from an external builder's generator) |
-| **3. Run and check** | Runs each scenario as a simulated call (voice or text) against the agent. Judges each call against the path's checks from step 1: pass/fail with the quote that decided it. | **Planned / mocked.** No simulator or judge in the repo |
-| **4. Close the gaps** | Report: coverage *and* pass rate, before vs after. Open questions go to the domain expert instead of being guessed. Re-runs on every prompt change (regression gate). Optional: explores past the map, varying calls that revealed new behaviour (novelty search; the "MCTS" concept page). | **Planned / mocked.** Prompt-fix loop built; regression and exploration are concepts |
+## 3. How it works
+| Step | What happens |
+|---|---|
+| **1. Connect your agent** | The only inputs: the agent's endpoint (phone number, WebSocket or HTTP API) and its prompt. It reads the prompt to learn the agent's steps and rules, and marks the rules where a mistake could hurt someone (high risk). |
+| **2. Explore with calls** | Monte Carlo tree search over scenarios. Each node is a scenario that was actually called. One iteration: pick a promising scenario → change one thing (a different answer, a late correction, pushback) → call the agent → score what happened. New or risky behaviour scores high; the score flows back up the tree, so the search digs where the agent slips and leaves behind branches that teach nothing. |
+| **3. Map the risks** | Groups failing and inconsistent calls into **risky zones**, each with severity, failure rate and the calls that prove it. Risk by step of the call. Where the prompt is silent (agent behaves inconsistently and no rule decides), it sends the question to the domain expert instead of guessing. |
+| **4. Fix and recheck** | Suggests a prompt edit per risky zone, based on the failed calls. Reruns the risky scenarios and everything that passed before, so a fix never quietly breaks something else. |
 
-## 4. Why it's different from Coval, Cekura, Hamming
-Their pages (vendor-stated, read via search snippets only; recheck before using) describe generating scenarios from an agent description, simulating calls with voices, accents and noise, LLM judges, monitoring and CI. They run calls; we don't yet. Where we can be different:
-1. **Coverage against an independent, priority-weighted call map**, built from the requirements, not "number of tests" or "pass rate". We didn't find an equivalent on their pages (not proof it's absent).
-2. **Order breaks and borderline answers as first-class paths.** Our data says generators rarely produce them.
-3. **Open questions to the expert.** The map shows where the requirements are silent, so the agent's behaviour there is a product decision, not a test failure.
-4. **A loop that closes gaps**: it writes the missing tests, and (built today) rewrites the generator prompt from measured gaps.
+## 4. Versus Coval, Cekura, Hamming
+Their pages (vendor-stated, via search snippets in the brief; recheck before using) describe scenario generation from an agent description, simulated calls with voices and noise, LLM judges, monitoring and CI. The intended difference:
+1. **Adaptive exploration, not a fixed list.** The next scenario depends on what the last calls revealed (tree search with a reward for new or risky behaviour), like a human tester.
+2. **Output is a risk map, not a pass rate:** risky zones with evidence calls and severity.
+3. **Fixes, not just findings:** prompt edits per zone, verified by rerunning.
+4. **Unclear rules go to the expert** instead of being counted as passes or failures.
 
-**Honest gaps:** no simulator, no judge, no audio realism, no monitoring, no integrations, no customers. A real product must build step 3 or partner for it (e.g. run calls through an existing simulator).
+## 5. What exists today vs what is mocked
+- **Exists (scenario-gen-eval repo, internal):** building a map of decisions, caller answers and order breaks from requirements; measuring how much of it a scenario suite covers; a feedback agent that writes prompt edits for the *scenario generator*. Useful building blocks for steps 1, 3 and 4.
+- **Not built:** placing calls to an agent endpoint, the tree search, judging calls, risky-zone clustering, prompt edits for the *agent*, rechecks. The MCTS page in the repo is a hand-made concept with made-up numbers.
+- The video is an illustrative concept: tag on every frame, small print on the end card, all numbers mocked.
 
-## 5. Demo plan (illustrative video, first draft 3:15)
-- **Example:** an invented pharmacy prescription-refill agent (verify patient → check refill → side-effect check → pickup or delivery; transfer to a pharmacist on any side effect; never give medical advice). Invented on purpose: the real benchmark use cases and the agent builder they came from are internal.
-- **Problem first:** who (teams shipping voice agents), what (50/50 tests pass; all follow the script), why it matters (real callers break order; nobody knows what wasn't tested).
-- **Four steps**, each with a voiced step card. Hero moment: a late correction ("Actually, I've been dizzy since my dose went up") after the agent passed the side-effect question; the agent schedules the pickup instead of transferring. P0 fail. The team's old suite never had this call.
-- **Mocked numbers:** map of 128 paths (41 high-risk); old suite 50 tests, 50 pass, 31% coverage, 0 late-correction tests; new suite 72 tests, 95% coverage; 72 calls → 65 pass, 7 fail (3 high-risk); 6 paths wait on 3 open questions (e.g. "Is a refill on day 23 of a 30-day supply too early?").
-- **Real claims:** none. "Illustrative product concept" tag on every frame; small print says screens, calls and numbers are mocked. No Hexo, HAI, agent-builder, customer or colleague names. Competitors are not named on screen.
+## 6. Demo (first SIA Scenarios cut, 3:00)
+- Problem first (who / problem / human testers / scripted tests / what's needed), then title + 4-step overview, then a voiced card per step.
+- Invented example: Northgate Pharmacy refill agent, phone number +1 (415) 555-0142 (fictional 555 number).
+- Hero: call #118, "mentions the side effect late": agent books the pickup instead of transferring → failed, high risk → the search digs into that branch (3 more variants, all fail).
+- Mocked numbers: 214 calls, 61 scenarios, tree shows 14; zones: side effect mentioned late 5/7 failed (high), dose questions 3/11 (high), refill exactly one week early inconsistent 3 allowed / 2 refused (medium, question to pharmacist), wrong DOB then corrected 1/9 (low), safe 0/96. After edits: 0/7, 0/11, 0/96 still passing.
 
-## 6. Open questions for Vignesh
-1. Name: keep "CallMap" as placeholder? Domain?
-2. Standalone product (this demo) or a module of SIA Voice (its "Run simulation" step)?
-3. May any real result (29% → 42%, 0 of 26) ever be shown publicly? Needs approval from whoever owns the internal data.
-4. Step 3 (simulate + judge): build ourselves, or partner?
+## 7. Open questions
+1. Endpoint types to show: phone number only, or phone + WebSocket + HTTP API (current)?
+2. Does the user also give requirements/SOPs beyond the prompt, or only the prompt (current)?
+3. Relation to SIA Voice: separate product, or the testing engine inside SIA Voice's "Run simulation" step?
+4. May any real internal result ever appear publicly? (Currently none do.)
