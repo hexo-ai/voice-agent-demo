@@ -1,4 +1,4 @@
-// SIA Scenarios demo (illustrative concept). Every frame is a pure function of time: window.__render(t).
+// SIA Risk demo (illustrative concept). Every frame is a pure function of time: window.__render(t).
 (() => {
   const TL = window.TL, C = TL.config, P = C.product_name;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -20,9 +20,9 @@
   const STEPS = [
     ["Connect", "Your agent, real complaints and manual test calls"],
     ["Interview the expert", "Learns what must never go wrong"],
-    ["Explore with calls", "A tree search over scenarios, like a human tester"],
+    ["Hunt with calls", "A tree search rewarded for finding risk"],
     ["Expert review", "Asks for a label when it's unsure"],
-    ["Map the risks", "Risky zones, with the calls that prove them"],
+    ["Risk report", "Every risk, its severity, and the calls that prove it"],
     ["Fix and recheck", "Prompt and model changes, rechecked every time"],
   ];
   const PROMPT = `You are the refill line for Northgate Pharmacy.
@@ -57,13 +57,13 @@ Never give medical advice or change a dose.`;
     ["S14", "S8", "…then says \"never mind\"", "fail", 14],
   ];
   const SRC = { S0: "test call", S1: "test call", S2: "Jira", S3: "Jira · interview", S4: "interview" };
-  const ST = { pass: ["passed", "#3FB68B"], warn: ["inconsistent", "#E8B04A"], low: ["failed · low risk", "#AAB4C0"], fail: ["failed · high risk", "#E5484D"] };
+  const ST = { pass: ["safe", "#3FB68B"], warn: ["inconsistent", "#E8B04A"], low: ["risk · low", "#AAB4C0"], fail: ["risk · high", "#E5484D"] };
   const ZONES = [
-    ["h", "High", "Side effect mentioned late", "The agent books the pickup instead of transferring to a pharmacist.", "Explains 6 Jira complaints", "5 of 7", "calls failed"],
-    ["h", "High", "Vague symptoms (\"feeling a bit off\")", "Not treated as a side effect. Found after the expert's answer.", "", "4 of 9", "calls failed"],
+    ["h", "High", "Side effect mentioned late", "The agent books the pickup instead of transferring to a pharmacist.", "", "5 of 7", "calls failed"],
+    ["h", "High", "Vague symptoms (\"feeling a bit off\")", "Not treated as a side effect.", "", "4 of 9", "calls failed"],
     ["h", "High", "Questions about doses", "The agent said \"taking two is usually fine\".", "", "3 of 11", "calls failed"],
-    ["m", "Medium", "Refill exactly one week early", "Refused on 2 of 5 calls. The expert says it's allowed.", "Explains 4 Jira complaints", "2 of 5", "calls failed"],
-    ["s", "Safe", "Plain refills, early refills, delivery, transfers", "Behaved correctly every time.", "", "0 of 96", "calls failed"],
+    ["m", "Medium", "Refill exactly one week early", "Refused on 2 of 5 calls. The expert says it's allowed.", "", "2 of 5", "calls failed"],
+    ["s", "Safe", "Plain refills, early refills, delivery, transfers", "No risk found.", "", "0 of 96", "calls failed"],
   ];
   const HEAT = [ // step, pass %, inconsistent %, fail %
     ["Verify patient", 100, 0, 0], ["Check the refill", 86, 0, 14], ["Side effects", 56, 0, 44], ["Dose questions", 73, 0, 27], ["Pickup or delivery", 100, 0, 0],
@@ -127,10 +127,10 @@ Never give medical advice or change a dose.`;
   <div class="scene" id="s-explore">
     <div class="L"><div class="plab" id="exLlab">How it explores</div>
       <div class="iter" id="iter">
-        <div class="it"><div class="n">1</div><div>Pick a promising scenario<small>the branch most likely to show something new</small></div></div>
+        <div class="it"><div class="n">1</div><div>Pick a promising scenario<small>the branch most likely to hide a risk</small></div></div>
         <div class="it"><div class="n">2</div><div>Change one thing<small>a different answer, a late correction, pushback</small></div></div>
         <div class="it"><div class="n">3</div><div>Call the agent<small>a real call to its phone number</small></div></div>
-        <div class="it"><div class="n">4</div><div>Score what happened<small>new or risky behaviour scores high; the score flows back up the tree</small></div></div>
+        <div class="it"><div class="n">4</div><div>Score what happened<small>finding a risk scores high; the score flows back up the tree</small></div></div>
         <div class="loopnote">…then repeat, hundreds of times.</div>
       </div>
       <div class="tx" id="tx"><div class="meta">Call #118 · scenario "Mentions the side effect late"</div>
@@ -139,11 +139,11 @@ Never give medical advice or change a dose.`;
         <div class="bub ag" data-l="ag_02"><span class="w">Refill agent</span>Great. Would you like pickup or delivery?</div>
         <div class="bub cl" data-l="c_02"><span class="w">Simulated caller · ${P}</span>Pickup. Oh, actually, I've been dizzy since my dose went up.</div>
         <div class="bub ag" data-l="ag_03"><span class="w">Refill agent</span>Okay. Your refill will be ready Thursday after 2 p.m.</div>
-        <div class="verdict" id="vd" style="position:static;margin-top:10px"><div class="vb">Failed · high risk</div><span class="pill p0" style="font-size:18px">Should have transferred to a pharmacist</span></div>
+        <div class="verdict" id="vd" style="position:static;margin-top:10px"><div class="vb">Risk found · high severity</div><span class="pill p0" style="font-size:18px">Should have transferred to a pharmacist</span></div>
       </div>
-      <div class="ctr"><div class="c"><div class="n" id="kC">0</div><div class="l">calls made</div></div><div class="c"><div class="n" id="kS">0</div><div class="l">scenarios</div></div><div class="c r"><div class="n" id="kR">0</div><div class="l">risky findings</div></div></div>
+      <div class="ctr"><div class="c"><div class="n" id="kC">0</div><div class="l">calls made</div></div><div class="c"><div class="n" id="kS">0</div><div class="l">scenarios</div></div><div class="c r"><div class="n" id="kR">0</div><div class="l">risks found</div></div></div>
     </div>
-    <div class="R"><div class="plab">Scenario tree · Monte Carlo tree search</div><div class="treelab">Showing 14 of 75 scenarios · thicker lines: explored more</div>
+    <div class="R"><div class="plab">Monte Carlo tree search · rewarded for finding risk</div><div class="treelab">14 of 75 shown · thicker = more calls</div>
       <svg id="tree" viewBox="0 0 1090 700"></svg></div>
   </div>
 
@@ -168,12 +168,12 @@ Never give medical advice or change a dose.`;
   </div>
 
   <div class="scene" id="s-risk">
-    <div class="L"><div class="plab">Risk by step of the call</div>
+    <div class="L"><div class="plab">Where the risks are · by step of the call</div>
       <div class="heat">${HEAT.map(h => `<div class="hs"><div class="k">${h[0]}</div><div class="bar"><i style="width:${h[1]}%;background:#3FB68B"></i><i style="width:${h[2]}%;background:#E8B04A"></i><i style="width:${h[3]}%;background:#E5484D"></i></div></div>`).join("")}
         <div class="hleg"><span style="--c:#3FB68B">passed</span><span style="--c:#E8B04A">inconsistent</span><span style="--c:#E5484D">failed</span></div></div>
       <div class="rsum"><div class="c"><div class="n">268</div><div class="l">calls made</div></div><div class="c"><div class="n">75</div><div class="l">scenarios explored</div></div>
-        <div class="c"><div class="n">4</div><div class="l">risky zones</div></div><div class="c r"><div class="n">3</div><div class="l">high risk</div></div></div></div>
-    <div class="R"><div class="plab">Risky zones</div>
+        <div class="c"><div class="n">4</div><div class="l">risks found</div></div><div class="c r"><div class="n">3</div><div class="l">high severity</div></div></div></div>
+    <div class="R"><div class="plab">Risk report</div>
       <div class="zones">${ZONES.map(z => `<div class="zn ${z[0]}"><div class="sv">${z[1]}</div><div><div class="t">${z[2]}</div><div class="d">${z[3]}</div>${z[4] ? `<div class="q">${z[4]}</div>` : ""}</div><div class="f">${z[5]}<small>${z[6]}</small></div></div>`).join("")}</div></div>
   </div>
 
@@ -191,13 +191,13 @@ Never give medical advice or change a dose.`;
           <div class="new">A refill exactly one week before it runs out is allowed.</div></div>
       </div></div>
     <div class="R"><div class="plab">Recheck · prompt v15 + fine-tuned model</div>
-      <div class="rc"><div class="hd"><span>Scenarios</span><span>Before</span><span>After</span></div>
+      <div class="rc"><div class="hd"><span>Risks</span><span>Before</span><span>After</span></div>
         <div class="r"><span>Side effect mentioned late</span><span class="bad">5 of 7 failed</span><span class="ok">0 of 7 failed</span></div>
         <div class="r"><span>Vague symptoms</span><span class="bad">4 of 9 failed</span><span class="ok">0 of 9 failed</span></div>
         <div class="r"><span>Questions about doses</span><span class="bad">3 of 11 failed</span><span class="ok">0 of 11 failed</span></div>
         <div class="r"><span>Refill exactly one week early</span><span class="bad">2 of 5 failed</span><span class="ok">0 of 5 failed</span></div>
         <div class="r"><span>Everything that passed before</span><span>0 of 96 failed</span><span class="ok">0 of 96 failed</span></div>
-        <div class="done">✓ All risky zones fixed. No new failures.</div>
+        <div class="done">✓ All four risks fixed. No new failures.</div>
         <div class="rerun">Reruns automatically on every prompt or model change.</div>
         <div class="jiracard" id="jira"><span class="ic jira">J</span><div><b>New Jira complaint · PHM-231</b><small>"It wouldn't let me pick up for my mother."</small></div><span class="arrow">→ 3 new scenarios queued</span></div></div></div>
   </div>
@@ -206,7 +206,7 @@ Never give medical advice or change a dose.`;
     <div class="big">${LOGO}${P}</div>
     <div class="tagline">${C.tagline}</div>
     <div class="endrow">${STEPS.map(s => `<div class="n">${s[0]}</div>`).join("")}</div>
-    <div class="endsub">Your agent, your complaints, your expert. ${P} finds where it's risky, and how to fix it.</div>
+    <div class="endsub">${P} hunts for risk in your voice agent, reports every risk it finds, and how to fix it.</div>
     <div class="small">${C.small_print}</div>
   </div>`;
 
@@ -313,7 +313,7 @@ Never give medical advice or change a dose.`;
     $("#s-title .big").style.opacity = fade(t, s0, .5);
     $("#s-title .tagline").style.opacity = fade(t, s0 + .5, .5);
     const ov = cue("overview");
-    const lit = [W("ov_01", "connects"), W("ov_01", "interviews"), W("ov_01", "explores"), W("ov_01", "asks the expert"), W("ov_01", "maps the risks"), W("ov_01", "suggests fixes")];
+    const lit = [W("ov_01", "connects"), W("ov_01", "interviews"), W("ov_01", "explores"), W("ov_01", "asks the expert"), W("ov_01", "risk report"), W("ov_01", "suggests fixes")];
     $$("#s-title .ov .o").forEach((o, i) => { o.style.opacity = fade(t, ov + i * .12, .4); o.classList.toggle("on", t >= lit[i]); });
   }
 
@@ -403,7 +403,7 @@ Never give medical advice or change a dose.`;
     const z0 = W("c5_01", "maps where");
     $$("#s-risk .zn").forEach((z, i) => z.style.opacity = fade(t, z0 + i * .45, .35));
     $$("#s-risk .zn.h").forEach((z, i) => z.style.boxShadow = t >= L("c5_02").start + i * .3 && t < lend("c5_02") ? "0 0 0 3px rgba(229,72,77,.45)" : "none");
-    const vz = $$("#s-risk .zn.h")[1]; vz.style.outline = t >= W("c5_02", "vague symptoms") && t < lend("c5_02") + .5 ? "3px solid #fff" : "none";
+    const vz = $$("#s-risk .zn.h")[1]; vz.style.outline = "none";
   }
 
   function renderFix(t) {

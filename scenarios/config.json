@@ -1,7 +1,7 @@
 {
-  "product_name": "SIA Scenarios",
-  "product_name_spoken": "Seeya Scenarios",
-  "tagline": "Find the risky calls before your callers do.",
+  "product_name": "SIA Risk",
+  "product_name_spoken": "Seeya Risk",
+  "tagline": "Find the risks in your voice agent before your callers do.",
   "illustrative_tag": "Illustrative product concept",
   "small_print": "Illustrative product concept. The product, screens, calls and numbers shown are mocked. The pharmacy and caller are invented.",
   "_note": "product_name_spoken is a phonetic spelling for the voice model: SIA is said as one word, like the singer Sia. The script uses {{product}} everywhere."

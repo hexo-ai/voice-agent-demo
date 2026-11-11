@@ -1,5 +1,5 @@
 {
- "title": "SIA Scenarios: find the risky calls before your callers do",
+ "title": "SIA Risk: find the risks in your voice agent before your callers do",
  "steps": [
   {"scene": "problem"},
   {"hold": 0.6},
@@ -12,14 +12,14 @@
   {"line": "p_04", "role": "narrator", "text": "And scripted test lists don't find them. They follow the easy path."},
   {"cue": "r4", "at": "p_04"},
   {"hold": 0.3},
-  {"line": "narr_01", "role": "narrator", "text": "{{product}} tests your agent the way a great human tester would, at machine speed, and shows you exactly where it's risky."},
+  {"line": "narr_01", "role": "narrator", "text": "{{product}} tests your agent the way a great human tester would, at machine speed, and finds exactly where it's risky."},
   {"cue": "r5", "at": "narr_01"},
   {"hold": 0.2},
   {"scene": "title"},
   {"hold": 2.4},
   {"cue": "overview"},
   {"hold": 0.3},
-  {"line": "ov_01", "role": "narrator", "text": "It works in six steps. It connects to your agent, your real complaints and your test calls. It interviews your expert. It explores with real calls, and asks the expert when it's unsure. Then it maps the risks, and suggests fixes to the prompt and the model."},
+  {"line": "ov_01", "role": "narrator", "text": "It works in six steps. It connects to your agent, your real complaints and your test calls. It interviews your expert. It explores with real calls, hunting for risk, and asks the expert when it's unsure. Then it writes a risk report, and suggests fixes to the prompt and the model."},
   {"hold": 0.6},
 
   {"scene": "card1"},
@@ -60,8 +60,8 @@
   {"scene": "explore"},
   {"hold": 0.4},
   {"line": "c3_01", "role": "narrator", "text": "It explores like a human tester. It picks a promising scenario, changes one thing, and calls the agent."},
-  {"line": "c3_02", "role": "narrator", "text": "Then it scores what happened. Calls that reveal something new or risky get explored further. Calls that teach nothing are left behind."},
-  {"line": "c3_03", "role": "narrator", "text": "It's a Monte Carlo tree search, seeded with real complaints and test calls. Here's one of the calls it made."},
+  {"line": "c3_02", "role": "narrator", "text": "Then it scores what happened. The search is rewarded for one thing: finding risk. Branches where the agent slips get more calls. Safe branches get fewer."},
+  {"line": "c3_03", "role": "narrator", "text": "It's a Monte Carlo tree search, built to discover risk. Here's one of the calls it made."},
   {"cue": "call", "at": "c3_03"},
   {"hold": 0.4},
   {"line": "ag_01", "role": "agent", "text": "Thanks, Mr. Ortiz. Any new side effects since your last refill?"},
@@ -71,7 +71,7 @@
   {"line": "ag_03", "role": "agent", "text": "Okay. Your refill will be ready Thursday after two p.m."},
   {"cue": "verdict", "sfx": "fail"},
   {"hold": 1.0},
-  {"line": "c3_04", "role": "narrator", "text": "The caller mentioned dizziness after the side-effect question, and the agent just booked the pickup. So the search digs into this branch."},
+  {"line": "c3_04", "role": "narrator", "text": "The caller mentioned dizziness after the side-effect question, and the agent just booked the pickup. That's a risk. So the search digs into this branch, to find more."},
   {"cue": "dig", "at": "c3_04"},
   {"hold": 1.2},
 
@@ -93,12 +93,12 @@
 
   {"scene": "card5"},
   {"hold": 0.3},
-  {"line": "st_05", "role": "narrator", "text": "Step five: map the risks."},
+  {"line": "st_05", "role": "narrator", "text": "Step five: the risk report."},
   {"hold": 0.5},
   {"scene": "risk"},
   {"hold": 0.4},
-  {"line": "c5_01", "role": "narrator", "text": "After about two hundred and seventy calls, it maps where the agent is risky. Each zone comes with the calls that prove it, and the real complaints it explains."},
-  {"line": "c5_02", "role": "narrator", "text": "Three zones are high risk. One of them, vague symptoms, only showed up after the expert's answer."},
+  {"line": "c5_01", "role": "narrator", "text": "After about two hundred and seventy calls, it writes a risk report. Every risk comes with its severity, and the calls that prove it."},
+  {"line": "c5_02", "role": "narrator", "text": "It found four risks. Three are high severity, like missing a side effect, or giving advice on doses."},
   {"hold": 1.0},
 
   {"scene": "card6"},
@@ -107,15 +107,15 @@
   {"hold": 0.5},
   {"scene": "fix"},
   {"hold": 0.4},
-  {"line": "c6_01", "role": "narrator", "text": "For each risky zone, it suggests a fix. Usually a prompt edit. When a prompt edit isn't enough, a model change, like fine-tuning on the calls that failed."},
-  {"line": "c6_02", "role": "narrator", "text": "Then it reruns the risky scenarios, and everything that passed before, whenever the prompt or the model changes. So a fix never quietly breaks something else."},
+  {"line": "c6_01", "role": "narrator", "text": "For each risk, it suggests a fix. Usually a prompt edit. When a prompt edit isn't enough, a model change, like fine-tuning on the calls that failed."},
+  {"line": "c6_02", "role": "narrator", "text": "Then it reruns the risky calls, and everything that passed before, whenever the prompt or the model changes. So a fix never quietly breaks something else."},
   {"cue": "recheck", "at": "c6_02"},
   {"line": "c6_03", "role": "narrator", "text": "And when a new complaint lands in Jira, it becomes new scenarios, so the next change is tested against it."},
   {"cue": "jira", "at": "c6_03"},
   {"hold": 1.0},
   {"scene": "end"},
   {"hold": 0.4},
-  {"line": "end_01", "role": "narrator", "text": "{{product}}. Find where your voice agent is risky, before your callers do."},
+  {"line": "end_01", "role": "narrator", "text": "{{product}}. Find the risks in your voice agent, before your callers do."},
   {"hold": 3.2}
  ]
 }
