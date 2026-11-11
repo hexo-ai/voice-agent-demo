@@ -128,18 +128,20 @@ Sources: [1] crm/accounts/northwind-retail ·
   }).join("\n");
   const FEED = isD1 ? [
     { at: "ask_all", cls: "out", h: `${AL} → Claude Code · ChatGPT · Gemini`, b: "Vignesh is on the line. What's waiting for him?" },
-    { at: "ask_all", dt: 1.0, cls: "in term2", h: `Claude Code → ${AL} · question`, b: "Refunds use the same rounding code as checkout. Fix them too? (y/n)" },
-    { at: "ask_all", dt: 1.7, cls: "in", h: `ChatGPT → ${AL} · Slack`, b: "14 new messages in #northwind-shared." },
-    { at: "ask_all", dt: 2.4, cls: "in", h: `Gemini → ${AL} · Gmail`, b: "Tonight's 8:40 PM flight to JFK is delayed 90 min. Clashes with dinner with Dana, 7:00 PM." },
-    { at: "ask_all", dt: 3.2, cls: "stat", b: "3 agents → 3 things, spoken in order", s: "Most urgent first. Asks before doing anything." },
+    { at: "ask_all", dt: 1.0, cls: "in", h: `Gemini → ${AL} · Gmail`, b: "Tonight's 8:40 PM flight to JFK is delayed 90 min. Clashes with dinner with Dana, 7:00 PM." },
+    { at: "ask_all", dt: 1.7, cls: "in term2", h: `Claude Code → ${AL} · question`, b: "Refunds use the same rounding code as checkout. Fix them too? (y/n)" },
+    { at: "ask_all", dt: 2.4, cls: "in", h: `ChatGPT → ${AL} · Slack`, b: "14 new messages in #northwind-shared." },
+    { at: "ask_all", dt: 3.2, cls: "stat", b: "3 agents → 3 things, most urgent first", s: "The flight can't wait, so it goes first. Asks before doing anything." },
+    { at: "move", cls: "out", h: `${AL} → Gemini · Calendar`, b: "Ask Dana to move dinner to breakfast tomorrow, 8:00 AM." },
+    { at: "move", dt: 0.6, cls: "in", h: `Gemini → ${AL}`, b: "Request sent. Waiting for Dana to reply." },
     { at: "route_cc", cls: "out", h: `${AL} → Claude Code`, b: "y. Fix refunds too.", pin: "Rule from the call: do not merge" },
-    { at: "slack_ans", dt: -1.2, cls: "in", h: `ChatGPT → ${AL} · summary`, b: "Maria (Northwind CTO) joined 1 h ago: “Can we see refunds in tomorrow's demo?”" },
-    { at: "move", cls: "out", h: `${AL} → Gemini · Calendar`, b: "Move dinner with Dana to breakfast tomorrow, 8:00 AM." },
-    { at: "move", dt: 0.6, cls: "in", h: `Gemini → ${AL}`, b: "Dana accepted." },
+    { at: "route_cc", dt: 0.8, cls: "out", h: `${AL} → ChatGPT · Slack`, b: "What did Northwind say?" },
+    { at: "slack_ans", dt: -0.6, cls: "in", h: `ChatGPT → ${AL} · summary`, b: "Maria (Northwind CTO) joined 1 h ago: “Can we see refunds in tomorrow's demo?”" },
     { at: "hangup", cls: "sys", b: "Call ended. Claude Code keeps working." },
     { at: "work", cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.6], ["214 of 214 tests pass", 2.0], ["Opened pull request #482 (not merged)", 3.4]] },
-    { at: "incoming2", dt: -1.0, cls: "dec", h: AL + " · done", b: "Call Vignesh with the result." },
-    { at: "sms", cls: "sys", b: "Texted Vignesh the pull request link." },
+    { at: "work", dt: 2.6, cls: "in", h: `Gemini → ${AL}`, b: "Dana replied: breakfast at 8:00 AM works. Calendar updated." },
+    { at: "incoming2", dt: -1.0, cls: "dec", h: AL + " · news", b: "Claude Code is done, and Dana replied. Call Vignesh." },
+    { at: "sms", cls: "sys", b: "Texted Vignesh the pull request link and the new invite." },
   ] : [
     { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Pierre (account manager, verified): brief me on Northwind Retail, meeting in 20 minutes." },
     { at: "answer_text", cls: "in", h: `Atlas → ${AL} · text answer`, txt: "Northwind Retail: renewal Mar 12 [1] · 3 open tickets [2] · #44812 settlement delay, P2, since Nov 3 [3] · #44790 webhook retries [4] · volume +18% QoQ [5] · contact Dan Ortiz [1] · Sources: crm/accounts/northwind-retail, support/tickets?acct=northwind, dashboards/volume/q4" },
@@ -170,7 +172,7 @@ Sources: [1] crm/accounts/northwind-retail ·
       <div class="mlab">People</div>
       <div class="mc" data-w="email">Email</div><div class="mc" data-w="chat">Chat</div><div class="mc" data-w="video">Video call</div><div class="mc" data-w="phone">Phone call</div>
       <div class="mlab">My agents</div>
-      <div class="mc a on">Chat on a screen</div><div class="mc a off">Email</div><div class="mc a off">Video call</div><div class="mc a miss" id="miss">Phone call<small>missing</small></div>
+      <div class="mc a on">Chat on a screen</div><div class="mc a off">Email</div><div class="mc a off">Video call</div><div class="mc a miss" id="miss">Phone call<small id="missT">missing</small></div>
     </div>
   </div>
   <div class="scene" id="s-title">
@@ -210,7 +212,7 @@ Sources: [1] crm/accounts/northwind-retail ·
         <div class="pv" id="pvEnd"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="endSt">Call ended</div></div>
         <div class="pv" id="pvIn"><div class="av"${isD1 ? ' style="background:#17A673"' : ""}>${isD1 ? LOGO(64) : AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st">${isD1 ? "calling…" : "calling via " + P}</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
-        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · ${P}</b>Claude Code: pull request #482 is open, "Fix rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
+        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · ${P}</b>Claude Code: pull request #482 is open, 214 of 214 tests pass, not merged. Dana accepted breakfast, 8:00 AM.` : `<b>MESSAGES · Atlas via ${P}</b>Northwind Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
       <div class="where" id="where"></div>${isD1 ? `<div class="eyes" id="eyes">Phone in my pocket · screen time <b>0:00</b></div>` : ""}
     </div>
@@ -282,7 +284,7 @@ Sources: [1] crm/accounts/northwind-retail ·
       $$("#s-modes .mc.a, #s-modes .mlab").forEach((c, i) => c.style.opacity = 1);
       $$("#s-modes .mc.a").forEach(c => c.style.opacity = fade(t, cue("m2"), .4));
       $$("#s-modes .mlab")[1].style.opacity = fade(t, cue("m2"), .4);
-      $("#miss").classList.toggle("hot", t >= W("e1_m2", "phone"));
+      $("#miss").classList.toggle("hot", t >= W("e1_m2c", "phone")); $("#missT").textContent = t >= W("e1_m2c", "first missing") ? "missing · first to fix" : "missing";
     }
     if (vis.title || vis.end) renderLined(t, vis.title ? "#s-title" : "#s-end", scene(vis.title ? "title" : "end"));
     if (vis.overview) { renderLined(t, "#s-overview", scene("overview")); $$(".ovc div").forEach(d => d.classList.toggle("on", t >= W("ov_01", d.dataset.w))); }

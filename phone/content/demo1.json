@@ -68,13 +68,13 @@
    "at": "e1_m1"
   },
   {
-   "line": "e1_m2",
+   "line": "e1_m2c",
    "role": "narrator",
-   "text": "My agents give me one way in: a screen I have to read. The phone is the missing piece."
+   "text": "My agents give me one way in: a screen I have to read. The phone is the first missing piece we'd like to fix."
   },
   {
    "cue": "m2",
-   "at": "e1_m2"
+   "at": "e1_m2c"
   },
   {
    "hold": 0.6
@@ -86,9 +86,9 @@
    "hold": 0.5
   },
   {
-   "line": "e1_05d",
+   "line": "e1_05e",
    "role": "narrator",
-   "text": "{{product}} gives my agents that missing piece: one phone number I can call, and that calls me back."
+   "text": "{{product}} fills that first gap: one phone number for all my agents. I can call it, and it calls me back."
   },
   {
    "hold": 1.0
@@ -144,19 +144,35 @@
    "hold": 0.8
   },
   {
-   "line": "s_10",
+   "line": "s_20",
    "role": "coder",
-   "text": "Three things. Claude Code needs a decision on the checkout fix. Northwind posted in Slack. And Gemini found a problem with your flight. Start with Claude Code?"
+   "text": "Three things. Your flight is delayed, so let's start there. Then Claude Code needs a decision, and Northwind posted in Slack."
   },
   {
-   "line": "v_11",
+   "line": "v_20",
    "role": "vignesh",
-   "text": "Yes."
+   "text": "Okay. The flight?"
   },
   {
-   "line": "s_11",
+   "line": "s_21",
    "role": "coder",
-   "text": "Refunds use the same code as checkout. Should it fix them too?"
+   "text": "It's delayed ninety minutes, so you'll miss dinner with Dana at seven. Should I ask her to move it to breakfast at eight?"
+  },
+  {
+   "line": "v_03",
+   "role": "vignesh",
+   "text": "Yes, please."
+  },
+  {
+   "cue": "move"
+  },
+  {
+   "hold": 0.6
+  },
+  {
+   "line": "s_22",
+   "role": "coder",
+   "text": "I've sent her the request, and I'll tell you when she replies. Now, Claude Code. Refunds use the same code as checkout. Should it fix them too?"
   },
   {
    "line": "v_12",
@@ -165,10 +181,6 @@
   },
   {
    "cue": "route_cc",
-   "at": "v_12"
-  },
-  {
-   "cue": "ask_slack",
    "at": "v_12"
   },
   {
@@ -184,37 +196,14 @@
    "at": "s_02"
   },
   {
-   "line": "v_13",
+   "line": "v_02",
    "role": "vignesh",
-   "text": "Good thing we're fixing them. And the flight?"
+   "text": "Good thing we're fixing them."
   },
   {
-   "cue": "gemini",
-   "at": "v_13"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "line": "s_13",
+   "line": "s_23",
    "role": "coder",
-   "text": "It's delayed ninety minutes, so you'll miss dinner with Dana at seven. Should I move it to breakfast at eight?"
-  },
-  {
-   "line": "v_03",
-   "role": "vignesh",
-   "text": "Yes, please."
-  },
-  {
-   "cue": "move"
-  },
-  {
-   "hold": 0.8
-  },
-  {
-   "line": "s_14",
-   "role": "coder",
-   "text": "Done. Dana accepted. I'll call you when Claude Code is finished."
+   "text": "Exactly. I'll call you when Claude Code is finished."
   },
   {
    "cue": "hangup",
@@ -248,9 +237,9 @@
    "hold": 0.3
   },
   {
-   "line": "s_05",
+   "line": "s_24",
    "role": "coder",
-   "text": "Hi Vignesh. Claude Code is done. Checkout and refunds both pass, all two hundred fourteen tests. The pull request is open, not merged. The link is in your texts. Good luck with Northwind."
+   "text": "Hi Vignesh. Claude Code is done. Checkout and refunds both pass, all two hundred fourteen tests. The pull request is open, not merged. And Dana replied: breakfast at eight works. The links are in your texts."
   },
   {
    "line": "v_04",
