@@ -31,31 +31,19 @@
   {
    "line": "h1_03",
    "role": "narrator",
-   "text": "Voice mode doesn't help. It just reads the text aloud."
+   "text": "Today, all it can do is send a notification. I see it an hour later, and the work just sat there."
   },
   {
    "cue": "h3",
    "at": "h1_03"
   },
   {
-   "hold": 0.2
-  },
-  {
-   "line": "read_01",
-   "role": "robot",
-   "maxdur": 6.4,
-   "text": "Here's a summary. Hash, test results. Two hundred twelve passed, two failed. Failed tests. Bullet. Test underscore checkout underscore currency, line forty-two, assertion error, expected nineteen point nine nine, got nineteen point nine eight."
-  },
-  {
-   "cue": "read_cut"
-  },
-  {
-   "hold": 0.5
+   "hold": 0.6
   },
   {
    "line": "h1_04",
    "role": "narrator",
-   "text": "I don't need my agent read aloud. I need it to talk with me, and to call me when it needs me."
+   "text": "What I need is simple. My agent should be able to call me, and I should be able to call it."
   },
   {
    "cue": "h4",

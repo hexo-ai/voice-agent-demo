@@ -57,8 +57,9 @@ _Warranty: covered until March 2027._`;
     <div class="hright">
       <div class="hv" id="hvMe"><div class="mecard" id="mecard"><div class="av">V</div><div><div class="t1" id="meT1">Me, at my desk</div><div class="t2" id="meT2">Watching the agent work</div></div></div></div>
       <div class="hv" id="hvPhone"><div class="hphone"><div class="scr">
-        <div class="sbar"><span>9:41</span><span>●●● 5G</span></div>
-        <div id="hRead">${readScreen(MD1)}</div>
+        <div class="sbar"><span>10:28</span><span>●●● 5G</span></div>
+        <div id="hRead"><div class="lock"><div class="lt">10:28</div><div class="ld">Tuesday, November 10</div>
+          <div class="ncard"><div class="nh"><b>Claude Code</b><span>47 min ago</span></div><div class="nb">Needs your input: refunds use the same rounding code. Fix them too? (y/n)</div><div class="nf">Open on your computer to reply</div></div></div></div>
         <div id="hCall" class="cs" style="opacity:0"><div class="av">C</div><div class="nm">Claude Code</div><div class="st">calling via ${P}…</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="hAns">${CALL}</div></div></div>
       </div></div></div>
@@ -254,7 +255,7 @@ _Warranty: covered until March 2027._`;
     if (isD1) {
       $("#termBody").innerHTML = TERM.filter(r => t >= cue(r[0]) + r[1]).map(r => r[2]).join("\n").replace('<span class="cur">▌</span>', Math.floor(t * 2) % 2 ? "▌" : " ");
       const b = $("#tbadge"), clk = $("#bigclock");
-      const waitT0 = h2 + 1.6, waitEnd = h3;
+      const waitT0 = h2 + 1.6, waitEnd = h3 + .8;
       if (t < waitT0) { b.className = "tbadge ok"; b.textContent = "Working · 2 h " + (14 + Math.floor(clamp((t - h1) / 6) * 3)) + " min"; clk.style.opacity = 0; }
       else if (t < h4 + 1.2) {
         const w = clamp((t - waitT0) / (waitEnd - waitT0)); const mins = ease(w) * 47.2;
@@ -265,7 +266,7 @@ _Warranty: covered until March 2027._`;
       const away = t >= h2 + .3; $("#mecard").classList.toggle("away", away);
       $("#meT1").textContent = away ? "Me, away from my desk" : "Me, at my desk"; $("#meT2").textContent = away ? "Walking, driving, in a meeting" : "Watching the agent work";
       show($("#hvPhone"), fade(t, h3, .4));
-      const rd = $("#hRead"); rd.style.opacity = 1 - fade(t, h4 + .6, .35); tokens(rd, robot, cut);
+      const rd = $("#hRead"); rd.style.opacity = 1 - fade(t, h4 + .6, .35); $(".ncard", rd).style.opacity = fade(t, h3 + .8, .4); $(".ncard", rd).style.transform = `translateY(${(1 - fade(t, h3 + .8, .4)) * -20}px)`;
       $("#hCall").style.opacity = fade(t, h4 + .6, .35);
       $("#hAns").style.transform = `scale(${1 + .08 * Math.sin(t * 8)})`;
       const hl = $("#hline"); hl.style.opacity = fade(t, h4 + 1.0, .5);

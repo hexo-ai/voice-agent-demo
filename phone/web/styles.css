@@ -212,3 +212,12 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--
 .ovc i { display: block; font-style: normal; font-size: 22px; font-weight: 700; color: var(--brand2); margin-bottom: 18px; }
 .fc.term2 { background: #0B1017; }
 .fc.term2 .b { font-family: "JB", monospace; font-size: 21px; color: #D6DEE8; }
+
+.lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; color: #fff; }
+.lock .lt { font-size: 84px; font-weight: 700; margin-top: 90px; }
+.lock .ld { font-size: 20px; color: #C9D3E0; }
+.ncard { margin-top: 60px; width: 320px; background: rgba(245,247,250,.95); color: var(--ink); border-radius: 22px; padding: 16px 18px; opacity: 0; }
+.ncard .nh { display: flex; justify-content: space-between; font-size: 16px; color: var(--muted); margin-bottom: 6px; }
+.ncard .nh b { color: var(--ink); }
+.ncard .nb { font-size: 19px; line-height: 1.35; }
+.ncard .nf { font-size: 15px; color: var(--fail); margin-top: 8px; font-weight: 700; }
