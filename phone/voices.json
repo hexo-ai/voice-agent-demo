@@ -59,6 +59,26 @@
         "similarity_boost": 0.75,
         "style": 0.35
       }
+    },
+    "priya": {
+      "voice_id": "cgSgspJ2msm6clMCkdW9",
+      "label": "Priya, account manager",
+      "phone": true,
+      "settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.75,
+        "style": 0.35
+      }
+    },
+    "atlas": {
+      "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+      "label": "Atlas \u00b7 voice by {{product}}",
+      "phone": true,
+      "settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0.2
+      }
     }
   }
 }

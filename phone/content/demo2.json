@@ -1,5 +1,5 @@
 {
- "title": "Give your agent a voice and a phone number",
+ "title": "Give your company's knowledge assistant a phone number",
  "steps": [
   {
    "scene": "hook"
@@ -8,52 +8,52 @@
    "hold": 0.4
   },
   {
-   "line": "h2_01",
+   "line": "k2_01",
    "role": "narrator",
-   "text": "I built a text assistant that helps people fix home appliances. It looks up manuals, checks warranties, and books technicians."
+   "text": "Most companies now have an internal knowledge assistant. Ours is called Atlas. It answers questions from our docs, tickets and dashboards."
   },
   {
    "cue": "h1",
-   "at": "h2_01"
+   "at": "k2_01"
   },
   {
-   "line": "h2_02",
+   "line": "k2_02",
    "role": "narrator",
-   "text": "But my users often need help when they can't type. Standing at a broken dishwasher, hands wet, they want to call."
+   "text": "But our people often need answers away from a screen. Driving to a customer, or walking into a meeting."
   },
   {
    "cue": "h2",
-   "at": "h2_02"
+   "at": "k2_02"
   },
   {
-   "line": "h2_03",
+   "line": "k2_03",
    "role": "narrator",
-   "text": "A phone version is a second product: speech, phone numbers, turn-taking. That's weeks of work."
+   "text": "A phone version is a second product: speech, phone numbers, checking who's calling. That's weeks of work."
   },
   {
    "cue": "h3",
-   "at": "h2_03"
+   "at": "k2_03"
   },
   {
    "hold": 0.4
   },
   {
-   "line": "h2_04",
+   "line": "k2_04",
    "role": "narrator",
-   "text": "And a simple voice wrapper just reads my answer aloud, all six steps at once."
+   "text": "And a simple voice wrapper just reads the answer aloud, citations and all."
   },
   {
    "cue": "h4",
-   "at": "h2_04"
+   "at": "k2_04"
   },
   {
    "hold": 0.2
   },
   {
-   "line": "read_02",
+   "line": "read_03",
    "role": "robot",
-   "maxdur": 6.4,
-   "text": "E24 is a drain error. Try these steps. One. Turn off the dishwasher. Two. Remove the bottom rack. Three. Twist the filter counterclockwise and lift it out. Four. Rinse the filter under the tap. Five."
+   "maxdur": 6.6,
+   "text": "Here's what I found. Acme Retail. Renewal date, March twelfth. Source one, open bracket, C R M slash accounts slash acme dash retail, close bracket. Open tickets, three. Ticket four four eight one two."
   },
   {
    "cue": "read_cut"
@@ -99,24 +99,24 @@
    "cue": "chat"
   },
   {
-   "line": "narr_11",
+   "line": "k2_11",
    "role": "narrator",
-   "text": "To give it a voice and a phone number, I add three lines of code. My agent doesn't change."
+   "text": "To give Atlas a voice and a phone number, I add three lines of code. Atlas doesn't change."
   },
   {
    "cue": "code",
-   "at": "narr_11"
+   "at": "k2_11"
   },
   {
    "cue": "connect"
   },
   {
-   "hold": 3.2
+   "hold": 3.4
   },
   {
-   "line": "narr_12",
+   "line": "k2_12",
    "role": "narrator",
-   "text": "It reads what my agent can do, and speaks for it. Now anyone can call it."
+   "text": "It reads what Atlas can do, checks who's calling, and speaks for it. Now anyone at the company can call it."
   },
   {
    "scene": "call2"
@@ -138,9 +138,9 @@
    "hold": 0.3
   },
   {
-   "line": "c_01",
-   "role": "maya",
-   "text": "Hi. My dishwasher stopped mid-cycle, and it's flashing E24."
+   "line": "p_01",
+   "role": "priya",
+   "text": "Hi Atlas. I'm meeting Acme Retail in twenty minutes. Anything I should know?"
   },
   {
    "cue": "lookup"
@@ -155,65 +155,91 @@
    "hold": 1.0
   },
   {
-   "line": "as_01",
-   "role": "fixit",
-   "text": "Sorry about that. E24 usually means it isn't draining. Is there water at the bottom?"
+   "line": "at_01",
+   "role": "atlas",
+   "text": "Three things. Their contract renews in March. They have one open issue: settlements have been a day late since last Tuesday. And their payment volume is up eighteen percent this quarter. Want details on the delay?"
   },
   {
-   "cue": "onestep",
-   "at": "as_01"
+   "cue": "compress",
+   "at": "at_01"
   },
   {
-   "line": "c_02",
-   "role": "maya",
-   "text": "Yes, a few inches."
+   "line": "p_02",
+   "role": "priya",
+   "text": "Yes. Is it fixed?"
   },
   {
-   "cue": "step1"
+   "cue": "lookup2"
   },
   {
-   "line": "as_02",
-   "role": "fixit",
-   "text": "Okay. Turn the dishwasher off. Then pull out the bottom rack, and twist the filter to the left. Tell me when it's out."
+   "line": "at_02",
+   "role": "atlas",
+   "text": "Not yet. The fix ships Thursday, and no money was lost. Their contact, Dan, was told on Friday."
   },
   {
-   "hold": 1.2
+   "line": "p_03",
+   "role": "priya",
+   "text": "Okay. Can you get me their volume by region? I want it for the meeting."
   },
   {
-   "line": "c_03",
-   "role": "maya",
-   "text": "Okay, it's out. Ugh, it's full of gunk."
+   "cue": "task"
   },
   {
-   "cue": "warranty"
-  },
-  {
-   "hold": 0.3
-  },
-  {
-   "cue": "step2"
-  },
-  {
-   "line": "as_03",
-   "role": "fixit",
-   "text": "That's probably the problem. Rinse it, put it back, and run a rinse cycle. If E24 comes back, I can book a technician. Your warranty covers it until March."
-  },
-  {
-   "line": "c_04",
-   "role": "maya",
-   "text": "Perfect. Thanks!"
+   "line": "at_03",
+   "role": "atlas",
+   "text": "That needs a fresh query on the dashboards. It takes a minute or two. I'll call you back."
   },
   {
    "cue": "hangup",
    "sfx": "hangup"
   },
   {
+   "hold": 0.5
+  },
+  {
+   "cue": "work"
+  },
+  {
+   "hold": 3.6
+  },
+  {
+   "cue": "incoming",
+   "sfx": "ring"
+  },
+  {
+   "hold": 2.4
+  },
+  {
+   "cue": "answered"
+  },
+  {
+   "hold": 0.3
+  },
+  {
+   "line": "at_04",
+   "role": "atlas",
+   "text": "Hi Priya, it's Atlas. West is up thirty-one percent, and it's driving most of the growth. The other regions are flat. I've texted you the chart and the sources."
+  },
+  {
+   "line": "p_04",
+   "role": "priya",
+   "text": "Perfect. Thanks!"
+  },
+  {
+   "cue": "hangup2",
+   "sfx": "hangup"
+  },
+  {
+   "cue": "sms",
+   "sfx": "ping"
+  },
+  {
    "hold": 0.6
   },
   {
-   "line": "narr_13",
+   "line": "k2_13",
    "role": "narrator",
-   "text": "Same agent, same code. My text assistant now answers the phone, and talks like a person, one step at a time."
+   "text": "Same Atlas, same code. Now everyone can call their company's knowledge, from anywhere."
   },
   {
    "scene": "end"

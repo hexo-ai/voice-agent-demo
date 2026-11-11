@@ -13,8 +13,8 @@
   const show = (el, o) => { el.style.opacity = o; el.style.display = o <= 0.001 ? "none" : ""; };
   const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
   const isD1 = D === "demo1";
-  const AGENT = isD1 ? "Claude Code" : "Fixit";
-  const NUM = isD1 ? "+1 (650) 555-0142" : "+1 (415) 555-0137";
+  const AGENT = isD1 ? "Claude Code" : "Atlas";
+  const NUM = isD1 ? "+1 (650) 555-0142" : "Ext. 4400 · +1 (415) 555-0137";
   const LOGO = (s = 28) => `<svg viewBox="0 0 32 32" width="${s}" height="${s}"><rect width="32" height="32" rx="8" fill="#17A673"/><path d="M4 16h5l2.5-6 4 12 3-8 1.8 2H28" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const CALL = '<svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>';
   const tokenize = md => md.split(/(\s+)/).map(w => /\s/.test(w) ? w : `<span class="tok">${w.replace(/</g, "&lt;")}</span>`).join("");
@@ -29,14 +29,17 @@
 - \`test_checkout_tax_rounding\` (line 88)
   AssertionError: expected 4.13, got 4.12
 ... 1,831 more lines`;
-  const MD2 = `**E24 is a drain error.** Try these steps:
-1. Turn off the dishwasher.
-2. Remove the bottom rack.
-3. Twist the filter counterclockwise and lift it out.
-4. Rinse the filter under the tap.
-5. Refit the filter and run a rinse cycle.
-6. If E24 comes back, book a technician.
-_Warranty: covered until March 2027._`;
+  const MD2 = `**Acme Retail: account briefing**
+- Renewal: **March 12** [1]
+- Open tickets: **3** [2]
+  - #44812 Settlement delay, P2, since Nov 3 [3]
+  - #44790 Webhook retries, P3 [4]
+- Volume this quarter: **+18%** [5]
+- Contact: Dan Ortiz, Head of Payments [1]
+
+Sources: [1] crm/accounts/acme-retail ·
+[2] support/tickets?acct=acme · [3] #44812 ·
+[4] #44790 · [5] dashboards/volume/q4`;
   const TERM = [
     ["h1", 0.3, '<span class="pr">~/shop-app $</span> claude'],
     ["h1", 1.0, '<span class="dim">&gt;</span> Refactor the payments module and update the checkout tests'],
@@ -64,22 +67,22 @@ _Warranty: covered until March 2027._`;
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="hAns">${CALL}</div></div></div>
       </div></div></div>
     </div>` : `
-    <div class="chatw"><div class="tb"><i></i><i></i><i></i><span>Fixit · home appliance help · my text assistant</span></div>
-      <div class="chat"><div class="q">My dishwasher stopped mid-cycle. It shows E24.</div><div class="a" id="chatA">${MD2.replace(/\*\*|_/g, "")}</div></div></div>
+    <div class="chatw"><div class="tb"><i></i><i></i><i></i><span>Atlas · Lumen Pay's internal knowledge assistant</span></div>
+      <div class="chat"><div class="q">Brief me on Acme Retail before my meeting.</div><div class="a" id="chatA">${MD2.replace(/\*\*/g, "")}</div></div></div>
     <div class="hright">
-      <div class="hv" id="hvMaya"><div class="mecard"><div class="av">M</div><div><div class="t1">Maya, at her dishwasher</div><div class="t2">Hands wet. Can't scroll six steps.<br>She wants to call, not type.</div></div></div></div>
+      <div class="hv" id="hvMaya"><div class="mecard"><div class="av">P</div><div><div class="t1">Priya, account manager</div><div class="t2">Driving to a customer meeting.<br>Needs a briefing. Can't read a screen.</div></div></div></div>
       <div class="hv" id="hvBuild"><div class="buildc"><h3>A phone version, built by hand</h3><div class="sm">A second product to build and run:</div>
-        <div class="it">Speech in and out</div><div class="it">Phone numbers and calls</div><div class="it">Turn-taking and interruptions</div><div class="it">Answers rewritten for the ear</div>
+        <div class="it">Speech in and out</div><div class="it">Phone numbers and calls</div><div class="it">Checking who's calling</div><div class="it">Answers rewritten for the ear</div>
         <div class="weeks" id="weeks">Week 1</div></div></div>
-      <div class="hv" id="hvPhone"><div class="hphone"><div class="scr"><div class="sbar"><span>6:12</span><span>●●● 5G</span></div>${readScreen(MD2)}</div></div></div>
+      <div class="hv" id="hvPhone"><div class="hphone"><div class="scr"><div class="sbar"><span>1:38</span><span>●●● 5G</span></div>${readScreen(MD2)}</div></div></div>
     </div>`;
 
   // ---------- code typed in demo 2 ----------
   const CODE = [
     ['<span class="k">from</span> siaphone <span class="k">import</span> Voice', "from siaphone import Voice"],
     ["", ""],
-    ['<span class="c"># my existing agent, unchanged</span>', "# my existing agent, unchanged"],
-    ['voice = <span class="f">Voice</span>(agent=fixit_agent)', "voice = Voice(agent=fixit_agent)"],
+    ['<span class="c"># our knowledge assistant, unchanged</span>', "# our knowledge assistant, unchanged"],
+    ['voice = <span class="f">Voice</span>(agent=atlas, callers=<span class="s">"employees"</span>)', 'voice = Voice(agent=atlas, callers="employees")'],
     ['voice.<span class="f">publish</span>(phone=<span class="k">True</span>)', "voice.publish(phone=True)"],
   ];
   const codeLen = CODE.reduce((a, c) => a + c[1].length, 0);
@@ -105,17 +108,21 @@ _Warranty: covered until March 2027._`;
     { at: "approve", dt: 0.5, cls: "in term2", h: "Claude Code · working", items: [["Fixed refunds", 0.3], ["214 of 214 tests pass", 1.4], ["Opened pull request #482 (not merged)", 2.6]] },
     { at: "sms", cls: "sys", b: "Texted the pull request link to Vignesh." },
   ] : [
-    { at: "lookup", cls: "out", h: `${AL} → Fixit assistant`, b: "Customer: dishwasher stopped mid-cycle, error E24." },
-    { at: "answer_text", cls: "in", h: "Fixit assistant → " + AL + " · text answer", txt: "E24 is a drain error. 1. Turn off the dishwasher. 2. Remove the bottom rack. 3. Twist the filter counterclockwise and lift it out. 4. Rinse the filter. 5. Refit it and run a rinse cycle. 6. If E24 comes back, book a technician." },
-    { at: "onestep", cls: "stat", b: "6 steps at once → spoken one step at a time", s: "Asks a question first, then waits for the caller after each step.", dots: true },
-    { at: "warranty", cls: "out", h: `${AL} → Fixit assistant · check_warranty`, b: "Covered until March 2027." },
-    { at: "hangup", cls: "sys", b: "Call ended. Fixed on the call, no technician needed." },
+    { at: "lookup", cls: "out", h: `${AL} → Atlas`, b: "Priya (account manager, verified): brief me on Acme Retail, meeting in 20 minutes." },
+    { at: "answer_text", cls: "in", h: `Atlas → ${AL} · text answer`, txt: "Acme Retail: renewal Mar 12 [1] · 3 open tickets [2] · #44812 settlement delay, P2, since Nov 3 [3] · #44790 webhook retries [4] · volume +18% QoQ [5] · contact Dan Ortiz [1] · Sources: crm/accounts/acme-retail, support/tickets?acct=acme, dashboards/volume/q4" },
+    { at: "compress", cls: "stat", b: "6 facts and 5 citations → 3 things, then a question", s: "Sources go to her phone by text, not read aloud." },
+    { at: "lookup2", cls: "out", h: `${AL} → Atlas`, b: "Status of ticket #44812?" },
+    { at: "task", cls: "out", h: `${AL} → Atlas · query_metrics`, b: "Acme Retail payment volume by region, this quarter vs last." },
+    { at: "hangup", cls: "sys", b: "Call ended. The query keeps running." },
+    { at: "work", cls: "in", h: "Atlas · working", items: [["Querying the volume dashboard", 0.3], ["Scanned 1.4 million payments", 1.4], ["Built a chart by region", 2.5]] },
+    { at: "work", dt: 3.0, cls: "dec", h: AL + " · result ready", b: "Call Priya back now." },
+    { at: "sms", cls: "sys", b: "Texted Priya the chart and the 5 sources." },
   ];
 
   // ---------- DOM ----------
   const OV = [
     ["listens", "Listens", "Understands you, even mid-sentence."],
-    ["short", "Keeps it short", isD1 ? "1,840 lines of output become three sentences." : "Six steps become one at a time."],
+    ["short", "Keeps it short", isD1 ? "1,840 lines of output become three sentences." : "Long answers and citations become three sentences. Sources go by text."],
     ["asks", "Asks before it acts", "Decisions come to you. No guessing."],
     ["calls back", "Calls back", "When the work is done, or when it's stuck."],
   ];
@@ -133,45 +140,45 @@ _Warranty: covered until March 2027._`;
   </div>
   <div class="scene" id="s-overview">
     <h2>How ${P} works</h2>
-    ${lined(isD1 ? "Me" : "Customers", isD1 ? "Claude Code" : "My text agent")}
+    ${lined(isD1 ? "Me" : "Employees", isD1 ? "Claude Code" : "Atlas")}
     <div class="ovc">${OV.map(o => `<div data-w="${o[0]}"><i>${o[1] === "Listens" ? "1" : o[1] === "Keeps it short" ? "2" : o[1] === "Asks before it acts" ? "3" : "4"}</i><b>${o[1]}</b><span>${o[2]}</span></div>`).join("")}</div>
   </div>
   <div class="scene" id="s-setup">
     <div class="L"><div class="plab" style="top:160px">My text assistant</div>
-      <div class="win" id="chatWin"><div class="tb"><i></i><i></i><i></i><span>Fixit · home appliance help</span></div>
-        <div class="chat"><div class="q">My dishwasher shows E24</div><div class="a">${MD2.replace(/\*\*|_/g, "")}</div></div></div>
-      <div class="win" id="codeWin" style="top:260px"><div class="tb"><i></i><i></i><i></i><span>fixit/app.py</span></div><div class="code mono" id="code"></div></div>
+      <div class="win" id="chatWin"><div class="tb"><i></i><i></i><i></i><span>Atlas · internal knowledge assistant</span></div>
+        <div class="chat"><div class="q">Brief me on Acme Retail</div><div class="a">${MD2.replace(/\*\*/g, "")}</div></div></div>
+      <div class="win" id="codeWin" style="top:260px"><div class="tb"><i></i><i></i><i></i><span>atlas/app.py</span></div><div class="code mono" id="code"></div></div>
     </div>
     <div class="R"><div class="plab" style="top:160px">${P} setup</div>
       <div class="setlist">
-        <div class="row"><div class="ck">✓</div><div>Connected to my agent<small>No changes to its code</small></div></div>
-        <div class="row"><div class="ck">✓</div><div>Read what it can do<div class="tools"><span>lookup_manual</span><span>check_warranty</span><span>book_technician</span></div></div></div>
-        <div class="row"><div class="ck">✓</div><div>Voice set up<small>Friendly, short answers, one step at a time</small></div></div>
+        <div class="row"><div class="ck">✓</div><div>Connected to Atlas<small>No changes to its code</small></div></div>
+        <div class="row"><div class="ck">✓</div><div>Read what it can do<div class="tools"><span>search_docs</span><span>lookup_tickets</span><span>query_metrics</span></div></div></div>
+        <div class="row"><div class="ck">✓</div><div>Checks who's calling<small>Employees only, through company sign-in. Each caller hears only what they're allowed to see.</small></div></div>
         <div class="row"><div class="ck">✓</div><div>Phone number<small style="font-size:30px;color:#fff;font-weight:700">${NUM}</small></div></div>
-        <div class="live"><i></i>Live: anyone can call</div>
+        <div class="live"><i></i>Live for everyone at the company</div>
       </div>
     </div>
   </div>
   <div class="scene" id="s-call">
-    <div class="L"><div class="plab">${isD1 ? "My phone" : "Maya's phone"}</div>
+    <div class="L"><div class="plab">${isD1 ? "My phone" : "Priya's phone"}</div>
       <div class="phone"><div class="scr">
         <div class="sbar"><span id="clk">9:41</span><span>●●● 5G</span></div>
-        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "Contact" : "Fixit appliance help"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
+        <div class="pv home" id="pvHome"><div class="card"><div class="k">${isD1 ? "Contact" : "Lumen Pay · company knowledge"}</div><div class="v">${AGENT}</div><div class="p">${NUM}</div></div>
           <div class="btns" style="gap:0"><div class="btn g">${CALL}</div></div></div>
         <div class="pv" id="pvCall"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="callSt">Calling…</div>
           <div class="orb" id="orb"></div><div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div></div></div>
         <div class="pv" id="pvEnd"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st" id="endSt">Call ended</div></div>
         <div class="pv" id="pvIn"><div class="av">${AGENT[0]}</div><div class="nm">${AGENT}</div><div class="st">calling via ${P}</div>
           <div class="btns"><div class="btn r" style="transform:rotate(135deg)">${CALL}</div><div class="btn g" id="ansBtn">${CALL}</div></div></div>
-        <div class="notif" id="notif"><b>MESSAGES · Claude Code via ${P}</b>Pull request #482 is open: "Fix currency rounding in checkout and refunds". 214 of 214 tests pass. Not merged.</div>
+        <div class="notif" id="notif">${isD1 ? `<b>MESSAGES · Claude Code via ${P}</b>Pull request #482 is open: "Fix currency rounding in checkout and refunds". 214 of 214 tests pass. Not merged.` : `<b>MESSAGES · Atlas via ${P}</b>Acme Retail volume by region: West +31%, others flat. Chart and 5 sources attached.`}</div>
       </div></div>
       <div class="where" id="where"></div>
     </div>
     <div class="R"><div class="plab">Behind the scenes</div>
       <div class="chain">
-        <div class="n">${isD1 ? "Me" : "Maya"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
+        <div class="n">${isD1 ? "Me" : "Priya"}<small>on the phone</small></div><div class="lk" id="lk1"><b></b><em>voice</em></div>
         <div class="n al">${P}<small>the voice</small></div><div class="lk" id="lk2"><b></b><em>text</em></div>
-        <div class="n">${isD1 ? "Claude Code" : "Fixit assistant"}<small>${isD1 ? "running in the cloud" : "text agent, unchanged"}</small></div>
+        <div class="n">${isD1 ? "Claude Code" : "Atlas"}<small>${isD1 ? "running in the cloud" : "knowledge assistant, unchanged"}</small></div>
       </div>
       <div class="feed" id="feed"></div>
     </div>
@@ -180,7 +187,7 @@ _Warranty: covered until March 2027._`;
     <div class="big">${LOGO(96)}${P}</div>
     <div class="tagline">${C.tagline}</div>
     <div class="sub2">${C.subtag}</div>
-    ${lined("You", isD1 ? "Claude Code, or any agent" : "Any text agent")}
+    ${lined("You", isD1 ? "Claude Code, or any agent" : "Your company's assistant")}
     <div class="endsub">${isD1 ? "Call your agents. Let them call you." : "Three lines of code. Your agent stays the same."}</div>
     <div class="small">${C.small_print}</div>
   </div>`;
@@ -218,7 +225,7 @@ _Warranty: covered until March 2027._`;
     $("#top .tag").style.color = (dark || split) ? "#E9EEF4" : "var(--ink)";
 
     const exStart = isD1 ? scene("call1") : scene("setup");
-    $("#exTag").textContent = isD1 ? "Example 1: I call my Claude Code" : "Example 2: a developer gives a text assistant a voice";
+    $("#exTag").textContent = isD1 ? "Example 1: I call my Claude Code" : "Example 2: our company's knowledge assistant gets a phone number";
     $("#exTag").style.opacity = clamp(fade(t, exStart + .3) - fade(t, exStart + 7.5, .6));
 
     const ln = TL.lines.find(l => t >= l.start && t < l.start + l.dur + .2);
@@ -226,7 +233,7 @@ _Warranty: covered until March 2027._`;
     if (ln && sc !== "title" && sc !== "end") {
       sub.style.opacity = 1; $(".who", sub).textContent = ln.who;
       $(".txt", sub).textContent = ln.full > ln.dur + .05 ? ln.text.slice(0, Math.round(ln.text.length * clamp((t - ln.start) / ln.full))).replace(/\s\S*$/, "") + "…" : ln.text;
-      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "maya" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
+      $(".who", sub).style.color = ln.role === "vignesh" || ln.role === "priya" ? "#F2C27A" : ln.role === "narrator" ? "#C9D3E0" : ln.role === "robot" ? "#AAB4C0" : "#A8EBCB";
     } else sub.style.opacity = 0;
 
     if (vis.hook) renderHook(t);
@@ -319,22 +326,21 @@ _Warranty: covered until March 2027._`;
     // orb pulses with whoever speaks on the phone
     const ln = TL.lines.find(l => l.phone && t >= l.start && t < l.start + l.dur);
     const amp = ln ? .5 + .5 * Math.abs(Math.sin(t * 7.3) * Math.sin(t * 2.9 + 1)) : 0;
-    const human = ln && (ln.role === "vignesh" || ln.role === "maya");
+    const human = ln && (ln.role === "vignesh" || ln.role === "priya");
     const orb = $("#orb");
     orb.style.transform = `scale(${1 + .12 * amp})`;
     orb.style.background = human ? "radial-gradient(circle at 40% 35%, #F2C27A, #D9932B 60%, #9A6418)" : "";
     orb.style.boxShadow = `0 0 0 ${18 * amp}px ${human ? "rgba(217,147,43,.25)" : "rgba(123,127,232,.28)"}`;
     // phone clock: time passes while the agent works
-    $("#clk").textContent = isD1 ? (t >= cue("question") ? "9:48" : t >= cue("work") + 1.5 ? "9:45" : "9:41") : "6:12";
-    if (isD1) show($("#notif"), fade(t, cue("sms"), .35));
-    else $("#notif").style.display = "none";
+    $("#clk").textContent = isD1 ? (t >= cue("question") ? "9:48" : t >= cue("work") + 1.5 ? "9:45" : "9:41") : (t >= cue("incoming") ? "1:44" : "1:42");
+    show($("#notif"), fade(t, cue("sms"), .35));
     const where = isD1 ? (t >= hang && t < inc ? "I'm still walking. The agent is still working." : "") : (t < hang ? "Maya is at home, hands busy." : "");
     $("#where").textContent = where;
 
     // link activity in the chain
     const pulse = (el, on, ph) => { const b = $("b", el); b.style.opacity = on ? 1 : 0; b.style.left = ((t * 0.9 + ph) % 1) * 80 + "%"; };
     const humanOn = !!ln;
-    const agentOn = FEED.some(f => (f.cls === "out" || f.cls === "in") && t >= f.t0 && t < f.t0 + 1.4) || (isD1 && t >= cue("work") && t < cue("question") + 1);
+    const agentOn = FEED.some(f => (f.cls === "out" || f.cls === "in") && t >= f.t0 && t < f.t0 + 1.4) || (t >= cue("work") && t < (isD1 ? cue("question") + 1 : cue("incoming")));
     pulse($("#lk1"), humanOn, 0); pulse($("#lk2"), agentOn, .4);
 
     // feed
