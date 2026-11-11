@@ -156,6 +156,14 @@ footer a { color: var(--night-text); }
 .questions li::before { content: "?"; position: absolute; left: 0; font-weight: 700; color: var(--sia); }
 .research h3 { font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin-top: 30px; }
 
+/* shareable section links */
+[id] { scroll-margin-top: 80px; }
+.copylink { margin-left: auto; font: inherit; font-size: 14px; font-weight: 700; color: var(--ink-2); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.copylink::before { content: "🔗 "; }
+.copylink:hover { color: var(--ink); border-color: #B9C2CC; }
+.copylink.done { color: var(--phone-dark); border-color: var(--phone-soft); }
+.copylink.done::before { content: "✓ "; }
+
 @media (max-width: 960px) {
   .uc-groups { grid-template-columns: 1fr; }
 }
@@ -204,13 +212,13 @@ footer a { color: var(--night-text); }
         <div class="uc-group">
           <h2 class="glabel">Improve your agent</h2>
           <div class="uc-grid">
-            <a class="uc-card" href="#build">
+            <a class="uc-card" href="#sia-voice">
               <span class="num">01</span>
               <b>Build a voice agent by talking</b>
               <span class="for">For teams that build voice agents</span>
               <span class="meta"><span class="pill">SIA Voice</span><span data-len="build"></span></span>
             </a>
-            <a class="uc-card" href="#test">
+            <a class="uc-card" href="#sia-scenarios">
               <span class="num">02</span>
               <b>Find the risky calls before launch</b>
               <span class="for">For teams that ship voice agents</span>
@@ -221,13 +229,13 @@ footer a { color: var(--night-text); }
         <div class="uc-group">
           <h2 class="glabel">Use your agent</h2>
           <div class="uc-grid">
-            <a class="uc-card" href="#code">
+            <a class="uc-card" href="#sia-phone-coding-agent">
               <span class="num">03</span>
               <b>Call your coding agent</b>
               <span class="for">For any developer</span>
               <span class="meta"><span class="pill phone">SIA Phone</span><span data-len="code"></span></span>
             </a>
-            <a class="uc-card" href="#any">
+            <a class="uc-card" href="#sia-phone-your-agent">
               <span class="num">04</span>
               <b>Give your agent a phone number</b>
               <span class="for">For teams that build text agents</span>
@@ -283,9 +291,9 @@ footer a { color: var(--night-text); }
     </div>
   </div>
 
-  <section id="build">
+  <section id="sia-voice">
     <div class="wrap">
-      <div class="uc-head"><span class="num">Use case 01</span><span class="pill">SIA Voice</span></div>
+      <div class="uc-head"><span class="num">Use case 01</span><span class="pill">SIA Voice</span><button class="copylink" data-anchor="sia-voice">Copy link</button></div>
       <h2>Build a voice agent just by talking.</h2>
       <p class="uc-who"><b>For:</b> teams that build voice agents, and the domain experts who know what each agent should do.</p>
       <div class="uc-cols">
@@ -304,9 +312,9 @@ footer a { color: var(--night-text); }
     </div>
   </section>
 
-  <section id="test">
+  <section id="sia-scenarios">
     <div class="wrap">
-      <div class="uc-head"><span class="num">Use case 02</span><span class="pill">SIA Scenarios</span></div>
+      <div class="uc-head"><span class="num">Use case 02</span><span class="pill">SIA Scenarios</span><button class="copylink" data-anchor="sia-scenarios">Copy link</button></div>
       <h2>Find the risky calls before your callers do.</h2>
       <p class="uc-who"><b>For:</b> teams that ship voice agents and test them before every launch and every prompt change.</p>
       <div class="uc-cols">
@@ -336,9 +344,9 @@ footer a { color: var(--night-text); }
     </div>
   </div>
 
-  <section id="code" class="phone-uc">
+  <section id="sia-phone-coding-agent" class="phone-uc">
     <div class="wrap">
-      <div class="uc-head"><span class="num">Use case 03</span><span class="pill phone">SIA Phone · for you</span></div>
+      <div class="uc-head"><span class="num">Use case 03</span><span class="pill phone">SIA Phone · for you</span><button class="copylink" data-anchor="sia-phone-coding-agent">Copy link</button></div>
       <h2>Call your coding agent.</h2>
       <p class="uc-who"><b>For:</b> any developer who works with a coding agent.</p>
       <div class="uc-cols">
@@ -361,9 +369,9 @@ footer a { color: var(--night-text); }
     </div>
   </section>
 
-  <section id="any" class="phone-uc">
+  <section id="sia-phone-your-agent" class="phone-uc">
     <div class="wrap">
-      <div class="uc-head"><span class="num">Use case 04</span><span class="pill phone">SIA Phone · for your users</span></div>
+      <div class="uc-head"><span class="num">Use case 04</span><span class="pill phone">SIA Phone · for your users</span><button class="copylink" data-anchor="sia-phone-your-agent">Copy link</button></div>
       <h2>Give your agent a phone number.</h2>
       <p class="uc-who"><b>For:</b> teams that build text agents: support, sales, internal assistants.</p>
       <div class="uc-cols">
@@ -454,6 +462,22 @@ document.querySelectorAll("[data-video]").forEach(box => {
     el.play().catch(() => {});
   });
 });
+
+/* shareable section links: "Copy link" copies the section URL */
+(function () {
+  const go = () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    const t = h && document.getElementById(h);
+    if (t) t.scrollIntoView({ behavior: "instant" });
+  };
+  // the video players are added by script, so jump again once the page has its final height
+  go(); window.addEventListener("load", go); window.addEventListener("hashchange", go);
+  document.querySelectorAll(".copylink").forEach(btn => btn.addEventListener("click", () => {
+    const url = location.origin + location.pathname + "#" + btn.dataset.anchor;
+    const done = () => { btn.classList.add("done"); btn.textContent = "Link copied"; setTimeout(() => { btn.classList.remove("done"); btn.textContent = "Copy link"; }, 2000); };
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(done).catch(() => { window.prompt("Copy this link:", url); });
+  }));
+})();
 
 /* design partner form (Tally) */
 (function () {
